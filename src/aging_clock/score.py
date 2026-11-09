@@ -64,6 +64,39 @@ def _risk(X: pd.DataFrame, m: dict, horizon: int) -> np.ndarray:
     return 1.0 - m["baseline_survival"][str(horizon)] ** np.exp(lp)
 
 
+def score_names(model: dict) -> list[str]:
+    return [n for n in model["models"] if n != "reference"]
+
+
+def _grid(model: dict) -> np.ndarray:
+    g = model["bioage_grid"]
+    return np.arange(g["min"], g["max"] + g["step"] / 2, g["step"])
+
+
+def bioages(df: pd.DataFrame, model: dict) -> tuple[dict[str, np.ndarray], np.ndarray]:
+    """Ages biologiques (par score) et risque global a 10 ans, SANS controle des entrees.
+
+    `df` : colonnes age, sex (1/2) et variables du modele, en unites canoniques, valeurs valides.
+    """
+    horizon = model["horizon_months"]
+    grid = _grid(model)
+    X = _design(df, model)
+    female = X["female"].to_numpy()
+    curves = {f: _risk(pd.DataFrame({"age": grid, "female": f}), model["models"]["reference"], horizon)
+              for f in ([0.0, 1.0] if model["include_sex"] else [0.0])}
+    out, risk_global = {}, None
+    for n in score_names(model):
+        risk = _risk(X, model["models"][n], horizon)
+        bio = np.empty_like(risk)
+        for f, curve in curves.items():
+            mask = (female == f) if model["include_sex"] else np.ones_like(risk, bool)
+            bio[mask] = np.interp(risk[mask], curve, grid)
+        out[n] = bio
+        if n == "global":
+            risk_global = risk
+    return out, risk_global
+
+
 def _check(df: pd.DataFrame, model: dict) -> pd.Series:
     """Statut par ligne : 'ok' ou liste des motifs (scores mis a NA)."""
     issues = pd.Series([[] for _ in range(len(df))], index=df.index)
@@ -103,46 +136,46 @@ def score(df: pd.DataFrame, model: dict) -> pd.DataFrame:
     out = pd.DataFrame(index=df.index)
     if "id" in df.columns:
         out["id"] = df["id"]
-    horizon = model["horizon_months"]
-    g = model["bioage_grid"]
-    grid = np.arange(g["min"], g["max"] + g["step"] / 2, g["step"])
-
-    names = [n for n in model["models"] if n != "reference"]
+    names = score_names(model)
     for n in names:
         out[f"age_bio_{n}"] = np.nan
         out[f"ecart_{n}"] = np.nan
     out["risque_deces_10ans"] = np.nan
     if len(valid):
         d = df.loc[valid]
-        X = _design(d, model)
-        female = X["female"].to_numpy()
-        curves = {}
-        for f in ([0.0, 1.0] if model["include_sex"] else [0.0]):
-            G = pd.DataFrame({"age": grid, "female": f})
-            curves[f] = _risk(G, model["models"]["reference"], horizon)
+        bio, risk = bioages(d, model)
+        grid = _grid(model)
         for n in names:
-            risk = _risk(X, model["models"][n], horizon)
-            bio = np.empty_like(risk)
-            for f, curve in curves.items():
-                mask = (female == f) if model["include_sex"] else np.ones_like(risk, bool)
-                bio[mask] = np.interp(risk[mask], curve, grid)
-            out.loc[valid, f"age_bio_{n}"] = bio
-            out.loc[valid, f"ecart_{n}"] = bio - d["age"].to_numpy()
-            if n == "global":
-                out.loc[valid, "risque_deces_10ans"] = risk
-                edge = (bio <= grid[0]) | (bio >= grid[-1])
-                for idx in d.index[edge]:
-                    status[idx] = ("" if status[idx] == "ok" else status[idx] + " ; ") + \
-                        "age biologique en limite de grille"
+            out.loc[valid, f"age_bio_{n}"] = bio[n]
+            out.loc[valid, f"ecart_{n}"] = bio[n] - d["age"].to_numpy()
+        out.loc[valid, "risque_deces_10ans"] = risk
+        edge = (bio["global"] <= grid[0]) | (bio["global"] >= grid[-1])
+        for idx in d.index[edge]:
+            status[idx] = ("" if status[idx] == "ok" else status[idx] + " ; ") +                 "age biologique en limite de grille"
     out["statut"] = status
     return out
 
 
-def main(input_path: str, output_path: str | None = None, model_path: str | None = None) -> Path:
+def main(input_path: str, output_path: str | None = None, model_path: str | None = None,
+         uncertainty: bool = False, variability_path: str | None = None,
+         n_draws: int = 1000, seed: int = 2026) -> Path:
     model = load_model(model_path or DEFAULT_MODEL)
     df = pd.read_csv(input_path)
     res = score(df, model)
+    if uncertainty:
+        from .uncertainty import DEFAULT_VARIABILITY, cv_set, intervals, load_variability, simulate
+        variability = load_variability(variability_path or DEFAULT_VARIABILITY)
+        ok = res.index[res["age_bio_global"].notna()]
+        d = df.loc[ok].copy()
+        d["sex"] = d["sex"].map(lambda v: _SEX_MAP.get(v, v)).astype(float)
+        sims = simulate(d, model, cv_set(variability, model), n_draws=n_draws, seed=seed)
+        iv = intervals(sims)
+        iv.index = ok
+        res = res.join(iv)
     num = [c for c in res.columns if c.startswith(("age_bio_", "ecart_"))]
+    if uncertainty:
+        print(f"Intervalles a 95 % : {n_draws} remesures simulees par personne (variabilite "
+              f"biologique + analytique, voir config/variability.yaml) ; graine {seed}.")
     res[num] = res[num].round(2)
     res["risque_deces_10ans"] = res["risque_deces_10ans"].round(4)
     out = Path(output_path) if output_path else Path(input_path).with_name(Path(input_path).stem + "_scores.csv")

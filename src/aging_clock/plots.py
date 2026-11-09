@@ -130,3 +130,42 @@ def group_intervals(table: pd.DataFrame, est: str, lo: str, hi: str, ref: float,
     fig.tight_layout()
     fig.savefig(path, dpi=160)
     plt.close(fig)
+
+
+def uncertainty_widths(widths: dict, path: Path):
+    """Distribution de la largeur de l'IC 95 % individuel, un histogramme par score (petits multiples)."""
+    n = len(widths)
+    cols = 3
+    rows = int(np.ceil(n / cols))
+    fig, axes = plt.subplots(rows, cols, figsize=(3.6 * cols, 2.8 * rows), squeeze=False, sharex=True)
+    hi = max(np.quantile(w, 0.995) for w in widths.values())
+    for ax, (name, w) in zip(axes.flat, widths.items()):
+        ax.hist(w, bins=np.linspace(0, hi, 50), color=SERIES, edgecolor=SURFACE, linewidth=0.6)
+        ax.axvline(np.median(w), color=INK, lw=1.2, ls="--")
+        ax.text(np.median(w), ax.get_ylim()[1] * 0.92, f" médiane {np.median(w):.1f} ans",
+                fontsize=8, color=INK_2, va="top")
+        ax.set_title(name)
+        ax.set_xlabel("Largeur de l'IC 95 % (ans)")
+        ax.grid(axis="x", visible=False)
+    for ax in list(axes.flat)[n:]:
+        ax.set_visible(False)
+    fig.suptitle("Incertitude individuelle de l'âge biologique (validation 2007-2010)",
+                 x=0.01, ha="left", fontsize=10, fontweight="bold")
+    fig.tight_layout()
+    fig.savefig(path, dpi=160)
+    plt.close(fig)
+
+
+def contribution_bars(table: pd.DataFrame, path: Path):
+    fig, ax = plt.subplots(figsize=(6.4, 0.3 * len(table) + 1.2))
+    y = np.arange(len(table))
+    ax.barh(y, table["part_pct"], color=SERIES, height=0.6)
+    for yi, v in zip(y, table["part_pct"]):
+        ax.text(v + 0.3, yi, f"{v:.1f} %", va="center", fontsize=8, color=INK_2)
+    ax.set_yticks(y, table["variable"])
+    ax.set_xlabel("Part de la variance de l'âge biologique global due au marqueur (%)")
+    ax.grid(axis="y", visible=False)
+    ax.set_title("Contribution de chaque marqueur à l'incertitude (score global)", loc="left")
+    fig.tight_layout()
+    fig.savefig(path, dpi=160)
+    plt.close(fig)

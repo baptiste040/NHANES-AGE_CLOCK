@@ -1,6 +1,6 @@
 """Points d'entree.
 
-    python -m aging_clock score --input fichier.csv     # calcul (NumPy + pandas uniquement)
+    python -m aging_clock score --input fichier.csv [--uncertainty]   # NumPy + pandas uniquement
     python -m aging_clock export                        # regenere le modele JSON
     python -m aging_clock validate --panel checkup_standard
     python -m aging_clock benchmark | equite
@@ -18,6 +18,11 @@ def main():
     s.add_argument("--input", required=True, help="CSV en unites canoniques (docs/specification_entrees.md)")
     s.add_argument("--output", default=None, help="CSV de sortie (defaut : <input>_scores.csv)")
     s.add_argument("--model", default=None, help="modele JSON (defaut : models/checkup_standard_v1.json)")
+    s.add_argument("--uncertainty", action="store_true",
+                   help="ajoute l'intervalle a 95 %% de chaque age biologique (Monte-Carlo)")
+    s.add_argument("--variability", default=None, help="fichier des CV (defaut : config/variability.yaml)")
+    s.add_argument("--draws", type=int, default=1000, help="nombre de remesures simulees")
+    s.add_argument("--seed", type=int, default=2026)
 
     sub.add_parser("export", help="exporte le modele gele en JSON")
     v = sub.add_parser("validate", help="validation temporelle et rapport")
@@ -29,11 +34,13 @@ def main():
     f.add_argument("--bootstrap", type=int, default=None)
     sec = sub.add_parser("secondaire", help="validation secondaire 2015-2018")
     sec.add_argument("--bootstrap", type=int, default=None)
+    sub.add_parser("incertitude", help="precision individuelle de l'age biologique (Monte-Carlo)")
     args = parser.parse_args()
 
     if args.command == "score":
         from . import score
-        score.main(args.input, args.output, args.model)
+        score.main(args.input, args.output, args.model, args.uncertainty, args.variability,
+                   args.draws, args.seed)
     elif args.command == "export":
         from . import export
         print(f"Modele : {export.run()}")
@@ -52,6 +59,11 @@ def main():
         res = fairness.run(n_boot=args.bootstrap)
         fairness.write_report(res["dossier"])
         print(f"Audit d'equite : {res['dossier']}")
+    elif args.command == "incertitude":
+        from . import uncertainty_report
+        res = uncertainty_report.run()
+        uncertainty_report.write_report(res["dossier"])
+        print(f"Incertitude : {res['dossier']}")
     elif args.command == "secondaire":
         from . import secondary
         res = secondary.run(n_boot=args.bootstrap)

@@ -481,3 +481,13 @@ SHA-256 du fichier utilisé : `15483e3fb89eb1aa06640f5cf47a3b9fc184330d94df4d877
 **Livrables.** `reports/checkup_standard/incertitude/INCERTITUDE.md` ; option
 `python -m aging_clock score --input fichier.csv --uncertainty` (intervalle à 95 % par personne,
 NumPy + pandas) ; tests : reproductibilité à graine fixe, bruit nul → intervalle nul.
+
+### Résultat — précision individuelle (2026-11-09)
+
+Validation 2007-2010, n = 9 247, 1 000 remesures par personne, CV de `config/variability.yaml`
+(SHA-256 `15483e3f…`). Score global : IC 95 % individuel de largeur médiane 10,6 ans (ET 2,7 ans) ;
+changement significatif entre deux mesures 7,5 ans [6,9 ; 7,9] ; CCI 0,87 ; 15,7 % de bascules
+plus jeune / plus vieux (47 % quand |écart| < 1 an, 1,5 % quand ≥ 5 ans). Principal contributeur :
+ALAT (36 % de la variance du global). Moyenne de deux prises de sang : 8,4 ans ; à jeun : sans effet ;
+sensibilité 6,8 (bornes basses) – 13,1 ans (bornes hautes). Aucune modification du modèle.
+Rapport : `reports/checkup_standard/incertitude/INCERTITUDE.md`.

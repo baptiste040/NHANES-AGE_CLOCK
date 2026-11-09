@@ -1,0 +1,22 @@
+{
+  "n": 9247,
+  "tirages": 1000,
+  "tirages_contributions": 200,
+  "graine": 2026,
+  "variability_sha256": "15483e3fb89eb1aa06640f5cf47a3b9fc184330d94df4d8773f34c0b40bfce83",
+  "modele": {
+    "name": "checkup_standard",
+    "version": "1.0.0",
+    "created": "2026-11-09",
+    "code_commit": "6f89be20d9100765c7c5988b8eee9555430a6a70",
+    "panel_sha256": "b01418dae864d6f6b86abf7ab660f1a39a5de77925e9d31884d029dc8c27dc86"
+  },
+  "additivite_somme_contributions_sur_total": {
+    "global": 1.0010141799947487,
+    "cardiovasculaire": 0.9994586023346915,
+    "metabolique": 1.00066711713102,
+    "renal": 1.0003578435622535,
+    "hepatique": 1.0008229956151953,
+    "inflammatoire_hematologique": 1.0000723787630748
+  }
+}

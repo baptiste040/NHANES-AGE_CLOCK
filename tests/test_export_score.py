@@ -23,8 +23,9 @@ def test_score_module_imports_only_numpy_pandas():
         if isinstance(node, ast.Import):
             mods |= {a.name.split(".")[0] for a in node.names}
         elif isinstance(node, ast.ImportFrom):
-            mods.add((node.module or "").split(".")[0] if node.level == 0 else "relatif")
-    assert mods <= {"__future__", "json", "pathlib", "numpy", "pandas"}, mods
+            mods.add((node.module or "").split(".")[0] if node.level == 0 else "relatif:" + (node.module or ""))
+    # seul import interne autorise : uncertainty (lui-meme NumPy + pandas, verifie ci-dessous)
+    assert mods <= {"__future__", "json", "pathlib", "numpy", "pandas", "relatif:uncertainty"}, mods
 
 
 def test_score_runs_without_pipeline_dependencies():
@@ -89,3 +90,46 @@ def test_json_reproduces_pipeline_on_validation():
     for n in clock.score_names:
         assert np.allclose(res[f"age_bio_{n}"], ref[f"bioage_{n}"], atol=1e-8, rtol=0), n
     assert np.allclose(res["risque_deces_10ans"], ref["risk_global"], atol=1e-12, rtol=0)
+
+
+# ------------------------------------------------------------- incertitude
+def _uncertainty_inputs():
+    from aging_clock.uncertainty import cv_set
+    model = load_model()
+    df = pd.read_csv(ROOT / "examples" / "exemple_entree_synthetique.csv")
+    cvs = {v: 0.05 for v in model["variables"]}
+    return model, df, cvs
+
+
+def test_simulation_reproducible_with_fixed_seed():
+    from aging_clock.uncertainty import simulate
+    model, df, cvs = _uncertainty_inputs()
+    a = simulate(df, model, cvs, n_draws=200, seed=7)
+    b = simulate(df, model, cvs, n_draws=200, seed=7)
+    c = simulate(df, model, cvs, n_draws=200, seed=8)
+    for n in a:
+        assert np.array_equal(a[n], b[n])
+    assert not np.array_equal(a["global"], c["global"])
+
+
+def test_zero_noise_gives_zero_width_interval():
+    from aging_clock.score import bioages
+    from aging_clock.uncertainty import intervals, simulate
+    model, df, _ = _uncertainty_inputs()
+    sims = simulate(df, model, {v: 0.0 for v in model["variables"]}, n_draws=50, seed=1)
+    iv = intervals(sims)
+    obs, _ = bioages(df, model)
+    for n in sims:
+        assert np.allclose(iv[f"age_bio_{n}_ic95_haut"], iv[f"age_bio_{n}_ic95_bas"], atol=1e-10)
+        assert np.allclose(iv[f"age_bio_{n}_ic95_bas"], obs[n], atol=1e-10)
+
+
+def test_uncertainty_module_imports_only_numpy_pandas():
+    tree = ast.parse((ROOT / "src" / "aging_clock" / "uncertainty.py").read_text(encoding="utf-8"))
+    mods = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            mods |= {a.name.split(".")[0] for a in node.names}
+        elif isinstance(node, ast.ImportFrom):
+            mods.add((node.module or "").split(".")[0] if node.level == 0 else "relatif:" + (node.module or ""))
+    assert mods <= {"__future__", "json", "pathlib", "numpy", "pandas", "relatif:score"}, mods
