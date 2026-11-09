@@ -27,5 +27,33 @@ sur le développement. La valeur retenue est celle de la CV.
 
 ## Jalon 2 (validation vue — décisions sur CV 1999-2006 uniquement)
 
+### Pré-enregistrement 2.1 — système rénal (écrit avant le test, 2026-11-09)
+
+**Candidats** (testés comme ajouts au système rénal, pas comme fusion) :
+- ACR urinaire (albumine/créatinine), mg/mmol = albumine urinaire (mg/L) / créatinine
+  urinaire (mg/dL) × 100 / 8,842 ; plage plausible [0 ; 500] ; plancher 0,1 ; log ; linéaire.
+- Urée sérique, mmol/L = BUN (mg/dL) × 0,357 ; plage [0,5 ; 60] ; log ; linéaire.
+
+Ces transformations sont fixées a priori (pas d'ajustement après coup).
+
+**Options évaluées** : (i) + ACR ; (ii) + urée ; (iii) + ACR + urée.
+
+**Procédure** : CV « un cycle retiré » sur 1999, 2001, 2003, 2005 (4 plis). Entraînement
+sur 3 cycles, C de Harrell sur le cycle retiré. Comparaison sur les **mêmes participants** :
+cohorte de développement en cas complets sur le panel actuel **et** les candidats.
+Pénalisation 0 (décision du jalon 1). Mortalité toutes causes, horizon 10 ans.
+
+**Critère** : une option est retenue si les trois conditions sont réunies :
+- a. gain de C moyen du modèle **rénal** ≥ 0,003 sur les 4 cycles retirés ;
+- b. gain de C du modèle rénal > 0 sur au moins 3 des 4 cycles retirés ;
+- c. gain de C moyen du modèle **global** ≥ 0.
+
+Si plusieurs options passent : on retient l'option (iii) si elle passe, sinon la ou les
+variables qui passent individuellement.
+
+**Garde-fou** : si un candidat manque chez plus de 15 % des participants de la cohorte de
+développement actuelle, c'est signalé avant la décision (perte d'effectif, biais de
+sélection possible), et la décision est soumise à validation humaine.
+
 | Date | Décision | Pourquoi | Données |
 |---|---|---|---|
