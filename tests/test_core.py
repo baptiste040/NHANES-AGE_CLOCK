@@ -145,3 +145,44 @@ def test_treatment_chain_codes_unknown_as_missing():
     out = treatment_chain(df, ["A", "B", "C"])
     expected = [0, 0, 1, 0, np.nan, np.nan, np.nan]
     assert np.allclose(out.to_numpy(), expected, equal_nan=True)
+
+
+# ------------------------------------------------------------- PhenoAge publie
+def _phenoage_case():
+    # Adulte de 50 ans aux marqueurs « normaux », unites du projet (CRP en mg/L)
+    return pd.DataFrame([{"age": 50, "albumin": 45.0, "creatinine": 80.0, "glucose": 5.0,
+                          "crp": 1.0, "lymph_pct": 30.0, "mcv": 90.0, "rdw": 13.0,
+                          "alp": 70.0, "wbc": 6.0}])
+
+
+def test_phenoage_published_constants():
+    from aging_clock import phenoage as pa
+    # Levine 2018, tableau 1 ; correction Liu et al. PLoS Med 2019 (e1002760)
+    assert pa.COEFS == {"albumin": -0.0336, "creatinine": 0.0095, "glucose": 0.1953,
+                        "ln_crp": 0.0954, "lymph_pct": -0.0120, "mcv": 0.0268,
+                        "rdw": 0.3306, "alp": 0.00188, "wbc": 0.0554, "age": 0.0804}
+    assert (pa.INTERCEPT, pa.GAMMA) == (-19.907, 0.0076927)
+    assert (pa.AGE_CONST, pa.LOG_FACTOR, pa.AGE_DENOM) == (141.50, -0.00553, 0.09165)
+    # 1.51714 = exp(120 * gamma) - 1 : M est bien le risque Gompertz a 10 ans
+    assert pa.SCALE == pytest.approx(np.exp(120 * pa.GAMMA) - 1, abs=1e-5)
+
+
+def test_phenoage_worked_example():
+    """Calcul a la main de l'equation publiee (CRP 1 mg/L = 0,1 mg/dL) :
+    xb = -19.907 - 0.0336*45 + 0.0095*80 + 0.1953*5 + 0.0954*ln(0.1) - 0.012*30
+         + 0.0268*90 + 0.3306*13 + 0.00188*70 + 0.0554*6 + 0.0804*50 = -9.06837
+    M  = 1 - exp(-1.51714 * exp(xb) / 0.0076927)                     = 0.022474
+    PhenoAge = 141.50 + ln(-0.00553 * ln(1 - M)) / 0.09165            = 43.501
+    """
+    from aging_clock import phenoage as pa
+    df = _phenoage_case()
+    assert pa.linear_predictor(df)[0] == pytest.approx(-9.06837, abs=1e-5)
+    assert pa.mortality_score(df)[0] == pytest.approx(0.022474, abs=1e-6)
+    assert pa.phenoage(df)[0] == pytest.approx(43.501, abs=1e-3)
+
+
+def test_phenoage_increases_with_crp_and_age():
+    from aging_clock import phenoage as pa
+    base = _phenoage_case()
+    worse = base.assign(crp=10.0, age=60)
+    assert pa.phenoage(worse)[0] > pa.phenoage(base)[0]

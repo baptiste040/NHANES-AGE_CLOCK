@@ -1,0 +1,21 @@
+# Les 9 marqueurs de PhenoAge (Levine 2018), avec les transformations du panel
+# checkup_standard pour ces memes variables. Benchmark uniquement (point 5a) :
+# separe l'effet de la methode de l'effet du nombre de variables.
+name: phenoage9
+description: 9 marqueurs de PhenoAge, methode du score principal (Cox age + sexe)
+version: 1
+include_sex: true
+
+systems:
+  global: Tous les marqueurs
+
+variables:
+  albumin:    {unit: g/L, system: global, range: [15, 60]}
+  creatinine: {unit: umol/L, system: global, range: [20, 1500], log: true, spline: 4}
+  glucose:    {unit: mmol/L, system: global, range: [2, 35], log: true}
+  crp:        {unit: mg/L, system: global, range: [0, 300], log: true, floor: 0.1}
+  lymph_pct:  {unit: "%", system: global, range: [2, 90]}
+  mcv:        {unit: fL, system: global, range: [55, 130]}
+  rdw:        {unit: "%", system: global, range: [9, 30]}
+  alp:        {unit: U/L, system: global, range: [10, 1500], log: true}
+  wbc:        {unit: 10^9/L, system: global, range: [1, 50], log: true}

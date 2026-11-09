@@ -243,3 +243,46 @@ sur l'ACR et la FC). Pénalisation retenue par CV : 0.
 
 Conformément à l'engagement, aucune modification du panel ne découle de ces résultats.
 Rapport complet : `reports/checkup_standard/RESULTATS.md`.
+
+## Point 5a — benchmark PhenoAge (protocole écrit avant exécution, 2026-11-09)
+
+Benchmark sur la validation 2007-2010, **sans modifier le panel ni le modèle** (gelés au point 4).
+
+**PhenoAge publié** (Levine et al. 2018, Aging, doi:10.18632/aging.101414, tableau 1 ;
+équation complète d'après la correction de Liu et al., PLoS Med 2019,
+doi:10.1371/journal.pmed.1002760) :
+- xb = −19,907 − 0,0336·albumine(g/L) + 0,0095·créatinine(µmol/L) + 0,1953·glucose(mmol/L)
+  + 0,0954·ln(CRP mg/dL) − 0,0120·lymphocytes(%) + 0,0268·VGM(fL) + 0,3306·RDW(%)
+  + 0,00188·PAL(U/L) + 0,0554·leucocytes(10⁹/L) + 0,0804·âge ;
+- M = 1 − exp(−1,51714·exp(xb)/0,0076927) (risque de décès à 10 ans) ;
+- PhenoAge = 141,50 + ln(−0,00553·ln(1 − M))/0,09165.
+- Constantes publiées retenues (0,09165 ; 141,50). Plusieurs implémentations publiques, dont
+  le prototype de ce dépôt, utilisaient 0,090165 et 141,50225 : écart documenté ; le C n'en
+  dépend pas (PhenoAge est une fonction croissante de M).
+- CRP : valeur NHANES convertie en mg/dL, sans plancher (comme la publication).
+- Accélération = résidu de la régression linéaire PhenoAge ~ âge, **estimée sur le
+  développement** puis appliquée à la validation.
+- Limite connue : glycémie non à jeun dans notre cohorte (PhenoAge a été construit et
+  validé sur des sujets majoritairement à jeun).
+
+**PhenoAge réentraîné** : même méthode que le score principal (Cox âge + sexe, transformations
+du panel principal pour ces 9 marqueurs, pénalisation par CV sur 1999-2006), sur les 9
+marqueurs de PhenoAge seulement (panel `phenoage9`). Sépare l'effet de la méthode de l'effet
+du nombre de variables.
+
+**Comparaisons** : mêmes participants que la validation principale (n = 9 247) ; C (IC 95 %),
+gain de C vs Cox âge + sexe, HR par écart-type d'accélération (ajusté âge + sexe), calibration
+à 10 ans (M pour PhenoAge publié ; risque à 10 ans pour les versions réentraînées) ; différence
+de C score global − chaque PhenoAge par bootstrap apparié (1000 tirages, mêmes indices) ; mêmes
+analyses chez les personnes sans antécédent déclaré.
+
+### Résultat 5a — benchmark PhenoAge (2026-11-09)
+
+Validation (n = 9 247, 972 décès), différences de C par bootstrap apparié (1000 tirages) :
+- score global − PhenoAge publié : +0,0215 [+0,0166 ; +0,0267] ;
+- score global − PhenoAge réentraîné (9 marqueurs) : +0,0163 [+0,0126 ; +0,0202] ;
+- PhenoAge réentraîné − PhenoAge publié (effet de la méthode) : +0,0052 [+0,0017 ; +0,0085].
+Sans antécédent déclaré (n = 7 123) : +0,0221, +0,0153, +0,0068, mêmes conclusions.
+PhenoAge publié : sous-estime le risque (obs./prédit 1,21) et pente 0,71 (prédictions trop
+dispersées). Aucune modification du panel ni du modèle. Rapport :
+`reports/checkup_standard/benchmark_phenoage/BENCHMARK.md`.
