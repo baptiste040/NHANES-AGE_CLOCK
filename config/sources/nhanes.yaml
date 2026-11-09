@@ -22,6 +22,7 @@ demographics:
   sex:        {file: DEMO, var: RIAGENDR}     # 1 = homme, 2 = femme
   race_eth:   {file: DEMO, var: RIDRETH1}
   income_pir: {file: DEMO, var: INDFMPIR}
+  education:  {file: DEMO, var: DMDEDUC2}     # adultes 20+ : 1-5, 7/9 = refus / ne sait pas
   pregnant:   {file: DEMO, var: RIDEXPRG}     # 1 = enceinte
   weight_mec: {file: DEMO, var: WTMEC2YR}
 

@@ -304,3 +304,32 @@ dispersées). Aucune modification du panel ni du modèle. Rapport :
 - **Paquet R BioAge** (Kwon et Belsky), `R/phenoage_calc.R`, branche `orig = TRUE` : coefficients
   non arrondis, 141,50225, −0,0055305 et 0,090165 ; aucune référence citée dans le fichier.
   Origine probable de la paire du prototype, non retenue.
+
+## Point 5b — audit d'équité (protocole écrit avant exécution, 2026-11-09)
+
+Validation 2007-2010, modèle gelé, score global (écarts par système en annexe descriptive).
+Analyses non pondérées.
+
+**Sous-groupes** (fixés a priori) :
+- sexe ;
+- groupe ethnique NHANES (`RIDRETH1`) : mexicain-américain, autre hispanique, blanc non
+  hispanique, noir non hispanique, autre / multiethnique ;
+- âge : 20-39, 40-59, 60-79 ans ;
+- ratio revenu / seuil de pauvreté (`INDFMPIR`), seuils usuels NHANES : < 1,3 ; 1,3-3,5 ; ≥ 3,5 ;
+- niveau d'études (`DMDEDUC2`) : < fin du secondaire (codes 1-2) ; diplôme du secondaire (3) ;
+  études supérieures partielles (4) ; diplôme universitaire (5). Refus / ne sait pas = manquant.
+
+**Par sous-groupe** : n, décès ; C (IC 95 %, bootstrap 1000) et gain de C vs Cox âge + sexe dans
+le groupe ; rapport observé / prédit à 10 ans (IC 95 % du Kaplan-Meier) ; pente de calibration
+(IC 95 %) ; écart d'âge : moyenne (IC 95 %), écart-type, médiane, intervalle interquartile.
+
+**Règle d'interprétation** (fixée avant exécution) :
+- *Défaut de calibration* : IC du rapport O/P excluant 1 **et** |O/P − 1| > 0,20 ; ou IC de la
+  pente excluant 1 **et** pente hors [0,80 ; 1,20].
+- *Défaut de discrimination* : IC du gain de C (vs âge + sexe dans le groupe) incluant 0.
+- *Différence de santé réelle* : écart d'âge moyen du groupe différent de celui de la
+  population de validation (IC excluant la moyenne globale) **sans** défaut de calibration ni de
+  discrimination dans ce groupe.
+- *Effectif insuffisant* : < 50 décès dans le groupe → résultats rapportés, pas de conclusion.
+- Les C entre tranches d'âge ne sont pas comparés entre eux (un intervalle d'âge étroit réduit
+  mécaniquement le C) ; seul le gain de C vs âge + sexe dans le groupe est interprété.
