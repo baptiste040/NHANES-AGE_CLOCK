@@ -70,17 +70,68 @@ def _extract(frames: dict, spec: dict, year: int) -> pd.Series:
     return values * factor
 
 
+def treatment_chain(df: pd.DataFrame, chain: list[str]) -> pd.Series:
+    """Code une chaine de questions filtres : 1 si oui a toutes les etapes, 0 des qu'une
+    etape vaut non (2), manquant si refus / ne sait pas (7, 9) ou reponse absente."""
+    out = pd.Series(np.nan, index=df.index)
+    open_ = pd.Series(True, index=df.index)          # encore dans la chaine
+    for i, var in enumerate(chain):
+        v = df[var] if var in df else pd.Series(np.nan, index=df.index)
+        no = open_ & (v == 2)
+        out[no] = 0.0
+        open_ = open_ & (v == 1)                     # 7, 9 ou absent : sort, reste manquant
+        if i == len(chain) - 1:
+            out[open_] = 1.0
+    return out
+
+
+_DRUG_INFO: pd.DataFrame | None = None
+
+
+def _drug_flags(source: dict, raw_dir: Path) -> pd.DataFrame:
+    global _DRUG_INFO
+    if _DRUG_INFO is None:
+        path = download(source["drug_info_url"], raw_dir / "RXQ_DRUG.xpt")
+        d = pd.read_sas(path, format="xport", encoding="latin1")
+        med = source["medications"]
+        cls = [c for c in d.columns if c.startswith("RXDDCI") and c.endswith("B")]
+        d["rx_antihypertensive"] = d[cls].isin(med["antihypertensive_classes"]).any(axis=1)
+        d["rx_statin"] = d["RXDDRUG"].str.contains(med["statin_regex"], na=False)
+        _DRUG_INFO = d[["RXDDRGID", "rx_antihypertensive", "rx_statin"]]
+    return _DRUG_INFO
+
+
+def medication_flags(rx: pd.DataFrame, year: int, source: dict, raw_dir: Path) -> pd.DataFrame:
+    """Prise d'antihypertenseur / de statine d'apres les boites vues. Manquant si la
+    question d'usage de medicaments n'a pas de reponse oui/non."""
+    rx = rx.reset_index()
+    rx["RXDDRGID"] = rx["RXDDRGID"].astype(str)
+    rx = rx.merge(_drug_flags(source, raw_dir), on="RXDDRGID", how="left")
+    use = rx.groupby("SEQN")[_per_cycle(source["medications"]["use_var"], year)].first()
+    flags = rx.groupby("SEQN")[["rx_antihypertensive", "rx_statin"]].any().astype(float)
+    flags = flags.reindex(use.index).fillna(0.0)
+    return flags.where(use.isin([1, 2]), np.nan)
+
+
 def harmonize_cycle(year: int, source: dict, raw_dir: Path) -> pd.DataFrame:
     files = source["cycles"][year]
     frames = {}
     for logical, fname in files.items():
         url = source["base_url"].format(year=year, file=fname)
-        frames[logical] = _load_xpt(download(url, raw_dir / f"{year}_{fname}.xpt"))
+        path = download(url, raw_dir / f"{year}_{fname}.xpt")
+        if logical != "RXQ":                          # plusieurs lignes par personne
+            frames[logical] = _load_xpt(path)
 
     out = pd.DataFrame(index=frames["DEMO"].index)
     for block in ("demographics", "variables", "conditions"):
         for name, spec in source[block].items():
             out[name] = _extract(frames, spec, year).reindex(out.index)
+
+    for name, spec in source.get("treatments", {}).items():
+        out[name] = treatment_chain(frames[spec["file"]], spec["chain"]).reindex(out.index)
+    if "medications" in source:
+        rx = pd.read_sas(raw_dir / f"{year}_{files['RXQ']}.xpt", format="xport", encoding="latin1")
+        out = out.join(medication_flags(rx, year, source, raw_dir))
 
     for cond in source["conditions"]:
         out[cond] = (out[cond] == 1).astype(float).where(out[cond].isin([1, 2]))
@@ -94,7 +145,9 @@ def harmonize_cycle(year: int, source: dict, raw_dir: Path) -> pd.DataFrame:
 
 def source_columns() -> list[str]:
     source = load_source("nhanes")
-    return [c for block in ("demographics", "variables", "conditions") for c in source[block]]
+    cols = [c for block in ("demographics", "variables", "conditions", "treatments")
+            for c in source.get(block, {})]
+    return cols + (["rx_antihypertensive", "rx_statin"] if "medications" in source else [])
 
 
 def build_harmonized(years: list[int], raw_dir: Path | None = None,

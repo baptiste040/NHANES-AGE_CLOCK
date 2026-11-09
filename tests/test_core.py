@@ -130,3 +130,13 @@ def test_harrell_c_perfect_and_reversed():
     e = np.ones(5)
     assert harrell_c(t, e, -t) == 1.0
     assert harrell_c(t, e, t) == 0.0
+
+
+def test_treatment_chain_codes_unknown_as_missing():
+    from aging_clock.nhanes import treatment_chain
+    df = pd.DataFrame({"A": [2, 1, 1, 1, 9, 1, np.nan],
+                       "B": [np.nan, 2, 1, 1, np.nan, 7, np.nan],
+                       "C": [np.nan, np.nan, 1, 2, np.nan, np.nan, np.nan]})
+    out = treatment_chain(df, ["A", "B", "C"])
+    expected = [0, 0, 1, 0, np.nan, np.nan, np.nan]
+    assert np.allclose(out.to_numpy(), expected, equal_nan=True)

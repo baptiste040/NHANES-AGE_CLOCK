@@ -108,3 +108,41 @@ retirés ; gain de C moyen du modèle global ≥ 0).
 
 Les variables d'un groupe qui ne remplissent aucune des deux conditions sont retirées.
 Garde-fou des 15 % de manquants inchangé.
+
+### Pré-enregistrement 3 — système cardiovasculaire (écrit avant le test, 2026-11-09)
+
+**Candidats**
+- Fréquence cardiaque de repos (`BPXPLS`, pouls sur 60 s), bpm, plage [30 ; 200].
+- Traitement antihypertenseur déclaré (questionnaire `BPQ` : BPQ020 → BPQ040A → BPQ050A), 0/1.
+- Traitement hypolipémiant déclaré (questionnaire `BPQ` : BPQ060 → BPQ080 → BPQ090D → BPQ100D), 0/1.
+
+**Codage des traitements** : à chaque étape des filtres, 1 = oui → étape suivante ;
+2 = non → 0 ; « refus » (7), « ne sait pas » (9) ou absence de réponse → **manquant**
+(jamais 0). Manquants après codage dans la cohorte de développement (n = 13 883) :
+antihypertenseur 0,87 % ; hypolipémiant 3,44 % ; fréquence cardiaque 0 %.
+
+**Forme de la fréquence cardiaque, décidée avant les options** : sur l'ensemble du
+développement, modèle cardiovasculaire actuel + fréquence cardiaque linéaire, comparé
+au même modèle + spline cubique restreinte à 4 nœuds (comme l'IMC). Test du rapport de
+vraisemblance sur les 2 termes non linéaires : spline si p < 0,05, sinon linéaire.
+Résidus de martingale tracés à titre descriptif.
+
+**Options** (ajouts au système cardiovasculaire) : (i) fréquence cardiaque ;
+(ii) antihypertenseur ; (iii) hypolipémiant ; (iv) (ii) + (iii) ; (v) (i) + (ii) + (iii).
+
+**Procédure** : identique au point 2 (CV « un cycle retiré » sur 1999-2006, mêmes
+participants pour toutes les options = cas complets sur le panel actuel et tous les
+candidats, pénalisation 0, C de Harrell sur le cycle retiré).
+
+**Décision** (critère corrigé) :
+1. Une option passe si a (gain C cardiovasculaire moyen ≥ 0,003), b (gain > 0 sur ≥ 3/4
+   plis) et c (gain C global moyen ≥ 0).
+2. On part de l'option passante la plus large, par priorité (v) > (iv) > options simples.
+3. Dans ce groupe, une variable n'est conservée que si elle passe seule, ou si son apport
+   marginal (gain C cardiovasculaire moyen du groupe moins celui du groupe sans elle) est
+   ≥ 0,003. Les sous-groupes « groupe sans la variable » sont évalués par la même CV.
+4. Si aucun groupe ne passe, on retient les options simples qui passent.
+
+**Sensibilité (non décisionnelle)** : options (ii) à (v) refaites avec le fichier des
+médicaments (antihypertenseur par classe Multum, statine par molécule) à la place du
+questionnaire. Rapportée, sans effet sur la décision.

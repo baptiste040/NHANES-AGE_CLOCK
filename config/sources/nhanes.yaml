@@ -4,17 +4,18 @@
 # facteur de conversion vers l'unite canonique, et calibration lineaire
 # [pente, ordonnee] appliquee AVANT conversion quand NHANES la recommande.
 base_url: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/{year}/DataFiles/{file}.xpt
+drug_info_url: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1988/DataFiles/RXQ_DRUG.xpt
 mortality_url: https://ftp.cdc.gov/pub/Health_Statistics/NCHS/datalinkage/linked_mortality/NHANES_{year}_{year_end}_MORT_2019_PUBLIC.dat
 
 cycles:
-  1999: {DEMO: DEMO, BIOPRO: LAB18, CBC: LAB25, CRP: LAB11, GHB: LAB10, TCHOL: LAB13, HDL: LAB13, TRIGLY: LAB13AM, BPX: BPX, BMX: BMX, MCQ: MCQ, DIQ: DIQ, ALBCR: LAB16}
-  2001: {DEMO: DEMO_B, BIOPRO: L40_B, CBC: L25_B, CRP: L11_B, GHB: L10_B, TCHOL: L13_B, HDL: L13_B, TRIGLY: L13AM_B, BPX: BPX_B, BMX: BMX_B, MCQ: MCQ_B, DIQ: DIQ_B, ALBCR: L16_B}
-  2003: {DEMO: DEMO_C, BIOPRO: L40_C, CBC: L25_C, CRP: L11_C, GHB: L10_C, TCHOL: L13_C, HDL: L13_C, TRIGLY: L13AM_C, BPX: BPX_C, BMX: BMX_C, MCQ: MCQ_C, DIQ: DIQ_C, ALBCR: L16_C}
-  2005: {DEMO: DEMO_D, BIOPRO: BIOPRO_D, CBC: CBC_D, CRP: CRP_D, GHB: GHB_D, TCHOL: TCHOL_D, HDL: HDL_D, TRIGLY: TRIGLY_D, BPX: BPX_D, BMX: BMX_D, MCQ: MCQ_D, DIQ: DIQ_D, ALBCR: ALB_CR_D}
-  2007: {DEMO: DEMO_E, BIOPRO: BIOPRO_E, CBC: CBC_E, CRP: CRP_E, GHB: GHB_E, TCHOL: TCHOL_E, HDL: HDL_E, TRIGLY: TRIGLY_E, BPX: BPX_E, BMX: BMX_E, MCQ: MCQ_E, DIQ: DIQ_E, ALBCR: ALB_CR_E}
-  2009: {DEMO: DEMO_F, BIOPRO: BIOPRO_F, CBC: CBC_F, CRP: CRP_F, GHB: GHB_F, TCHOL: TCHOL_F, HDL: HDL_F, TRIGLY: TRIGLY_F, BPX: BPX_F, BMX: BMX_F, MCQ: MCQ_F, DIQ: DIQ_F, ALBCR: ALB_CR_F}
-  2015: {DEMO: DEMO_I, BIOPRO: BIOPRO_I, CBC: CBC_I, CRP: HSCRP_I, GHB: GHB_I, TCHOL: TCHOL_I, HDL: HDL_I, TRIGLY: TRIGLY_I, BPX: BPX_I, BMX: BMX_I, MCQ: MCQ_I, DIQ: DIQ_I, ALBCR: ALB_CR_I}
-  2017: {DEMO: DEMO_J, BIOPRO: BIOPRO_J, CBC: CBC_J, CRP: HSCRP_J, GHB: GHB_J, TCHOL: TCHOL_J, HDL: HDL_J, TRIGLY: TRIGLY_J, BPX: BPX_J, BMX: BMX_J, MCQ: MCQ_J, DIQ: DIQ_J, ALBCR: ALB_CR_J}
+  1999: {DEMO: DEMO, BIOPRO: LAB18, CBC: LAB25, CRP: LAB11, GHB: LAB10, TCHOL: LAB13, HDL: LAB13, TRIGLY: LAB13AM, BPX: BPX, BMX: BMX, MCQ: MCQ, DIQ: DIQ, ALBCR: LAB16, BPQ: BPQ, RXQ: RXQ_RX}
+  2001: {DEMO: DEMO_B, BIOPRO: L40_B, CBC: L25_B, CRP: L11_B, GHB: L10_B, TCHOL: L13_B, HDL: L13_B, TRIGLY: L13AM_B, BPX: BPX_B, BMX: BMX_B, MCQ: MCQ_B, DIQ: DIQ_B, ALBCR: L16_B, BPQ: BPQ_B, RXQ: RXQ_RX_B}
+  2003: {DEMO: DEMO_C, BIOPRO: L40_C, CBC: L25_C, CRP: L11_C, GHB: L10_C, TCHOL: L13_C, HDL: L13_C, TRIGLY: L13AM_C, BPX: BPX_C, BMX: BMX_C, MCQ: MCQ_C, DIQ: DIQ_C, ALBCR: L16_C, BPQ: BPQ_C, RXQ: RXQ_RX_C}
+  2005: {DEMO: DEMO_D, BIOPRO: BIOPRO_D, CBC: CBC_D, CRP: CRP_D, GHB: GHB_D, TCHOL: TCHOL_D, HDL: HDL_D, TRIGLY: TRIGLY_D, BPX: BPX_D, BMX: BMX_D, MCQ: MCQ_D, DIQ: DIQ_D, ALBCR: ALB_CR_D, BPQ: BPQ_D, RXQ: RXQ_RX_D}
+  2007: {DEMO: DEMO_E, BIOPRO: BIOPRO_E, CBC: CBC_E, CRP: CRP_E, GHB: GHB_E, TCHOL: TCHOL_E, HDL: HDL_E, TRIGLY: TRIGLY_E, BPX: BPX_E, BMX: BMX_E, MCQ: MCQ_E, DIQ: DIQ_E, ALBCR: ALB_CR_E, BPQ: BPQ_E, RXQ: RXQ_RX_E}
+  2009: {DEMO: DEMO_F, BIOPRO: BIOPRO_F, CBC: CBC_F, CRP: CRP_F, GHB: GHB_F, TCHOL: TCHOL_F, HDL: HDL_F, TRIGLY: TRIGLY_F, BPX: BPX_F, BMX: BMX_F, MCQ: MCQ_F, DIQ: DIQ_F, ALBCR: ALB_CR_F, BPQ: BPQ_F, RXQ: RXQ_RX_F}
+  2015: {DEMO: DEMO_I, BIOPRO: BIOPRO_I, CBC: CBC_I, CRP: HSCRP_I, GHB: GHB_I, TCHOL: TCHOL_I, HDL: HDL_I, TRIGLY: TRIGLY_I, BPX: BPX_I, BMX: BMX_I, MCQ: MCQ_I, DIQ: DIQ_I, ALBCR: ALB_CR_I, BPQ: BPQ_I, RXQ: RXQ_RX_I}
+  2017: {DEMO: DEMO_J, BIOPRO: BIOPRO_J, CBC: CBC_J, CRP: HSCRP_J, GHB: GHB_J, TCHOL: TCHOL_J, HDL: HDL_J, TRIGLY: TRIGLY_J, BPX: BPX_J, BMX: BMX_J, MCQ: MCQ_J, DIQ: DIQ_J, ALBCR: ALB_CR_J, BPQ: BPQ_J, RXQ: RXQ_RX_J}
 
 demographics:
   age:        {file: DEMO, var: RIDAGEYR}
@@ -41,6 +42,7 @@ variables:
   # Ratio albumine/creatinine urinaire : URXUMA (mg/L) / URXUCR (mg/dL) x 100 -> mg/g ; / 8.842 -> mg/mmol
   acr:        {file: ALBCR, var: URXUMA, ratio_to: URXUCR, factor: 11.31}
   urea:       {file: BIOPRO, var: LBXSBU, factor: 0.357}                 # BUN mg/dL -> uree mmol/L
+  heart_rate: {file: BPX, var: BPXPLS}                                   # pouls 60 s au repos
   alt:        {file: BIOPRO, var: LBXSATSI}
   ast:        {file: BIOPRO, var: LBXSASSI}
   ggt:        {file: BIOPRO, var: LBXSGTSI}
@@ -54,6 +56,21 @@ variables:
   mcv:        {file: CBC, var: LBXMCVSI}
   hb:         {file: CBC, var: LBXHGB}
   platelets:  {file: CBC, var: LBXPLTSI}
+
+# Traitements declares (questionnaire). Chaine de filtres : a chaque etape,
+# 1 = oui -> etape suivante ; 2 = non -> 0 ; 7/9 (refus / ne sait pas) ou absent -> manquant.
+# La derniere etape a 1 donne 1.
+treatments:
+  htn_treated:   {file: BPQ, chain: [BPQ020, BPQ040A, BPQ050A]}           # hypertension -> conseil -> prise
+  lipid_treated: {file: BPQ, chain: [BPQ060, BPQ080, BPQ090D, BPQ100D]}   # dosage -> hypercholesterolemie -> conseil -> prise
+
+# Fichier des medicaments (boites vues, 30 derniers jours) : analyses de sensibilite.
+# Classes Multum de niveau 2 (RXQ_DRUG, RXDDCI*B).
+medications:
+  file: RXQ
+  use_var: {1999: RXD030, 2001: RXD030, default: RXDUSE}   # 1 = oui, 2 = non
+  antihypertensive_classes: [42, 43, 44, 47, 48, 49, 55, 56, 340, 342, 482]
+  statin_regex: "(?:ATORVA|SIMVA|PRAVA|ROSUVA|LOVA|FLUVA|PITAVA|CERIVA)STATIN"
 
 # Antecedents declares (1 = oui), pour les analyses de sensibilite
 conditions:
