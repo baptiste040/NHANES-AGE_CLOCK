@@ -345,3 +345,52 @@ Verdicts de la règle pré-enregistrée (validation, n = 9 247) :
   60-79 ans.
 - **Effectif insuffisant** : 20-39 ans (41 décès), autre / multiethnique (30 décès).
 Aucune modification du modèle (gelé). Interprétation : `reports/checkup_standard/equite/INTERPRETATION.md`.
+
+## Point 6 — validation secondaire 2015-2018 (protocole écrit avant exécution, 2026-11-09)
+
+Modèle gelé (point 4). Analyse descriptive de transposition : **aucune décision sur le modèle**.
+Seule information de survie vue auparavant sur ces cycles : la proportion brute de décès
+(jalon 1, 3,3 % et 1,7 %).
+
+**Chaînage de mortalité** : le fichier public le plus récent reste celui de 2019 (suivi jusqu'au
+31/12/2019) ; la mise à jour 2022 n'existe qu'en accès restreint (CDC, page « Public-use linked
+mortality files », consultée le 2026-11-09). Suivi : environ 4 ans (2015-2016) et 2 ans (2017-2018).
+
+**Médianes des marqueurs, adultes 20-79 ans** (sans la mortalité) — RDW : 12,6 (2007-08),
+12,6 (2009-10), 12,7 (2011-12), **13,4 (2013-14)**, 13,5 (2015-16), 13,5 (2017-18). ALAT/ASAT/PAL/
+albumine stables jusqu'en 2015-16, sauts en 2017-18 (ALAT 21 → 18, ASAT 23 → 19, PAL 66 → 75,
+albumine 43 → 41 g/L).
+
+**Harmonisation (version « harmonisée »)** — documentation NHANES d'abord, recalage sinon :
+1. *RDW* (2015-16 et 2017-18) : changement d'automate en 2013-14 (Beckman DxH 800, `CBC_H`) ;
+   NHANES précise qu'aucune étude de comparaison n'a pu être faite. → **Recalage par quantiles**
+   sur le dernier cycle avant le changement, **2011-2012**, par strates sexe × âge (20-39, 40-59,
+   60-79), à partir de tous les adultes de chaque cycle (marqueurs seulement, jamais la mortalité).
+   Les autres paramètres de la numération ne sont pas recalés (pas de changement documenté,
+   médianes dans la variation habituelle entre cycles).
+2. *Biochimie 2017-18* (`BIOPRO_J`, passage du Beckman DxC 660i au Roche Cobas 6000) : équations
+   « backward » de l'étude de pontage NHANES (Cobas → DxC 660i), appliquées en unités NHANES avant
+   conversion : ALAT X = 1,013·Y + 2,688 ; ASAT X = 1,018·Y + 3,762 ; log10 PAL = 1,001·log10 Y − 0,04294 ;
+   albumine (g/dL) X = 1,044·Y + 0,01128 ; créatinine (mg/dL) X = 1,051·Y − 0,06945 ;
+   GGT X = 0,8042·Y + 2,363 ; triglycérides (mg/dL) X = 0,9655·Y − 7,020. Glucose : « ajustement non
+   recommandé » par NHANES → non modifié. Cholestérol total, HDL, HbA1c, ACR : pas de changement
+   documenté → non modifiés. Référence de fait : 2015-16 (DxC 660i), dernier cycle avant le changement.
+3. *hs-CRP 2017-18* (`HSCRP_J`, Cobas, valeurs 19,6 % plus basses) : équation backward NHANES
+   Y(DxC 660i) = 1,150·X(Cobas) − 0,3397, pour X ≤ 20 mg/L (au-delà : non recommandé, non modifié).
+4. *CRP standard (≤ 2010) vs hs-CRP (2015-16)* : aucune documentation NHANES sur leur concordance.
+   Vérification descriptive : quantiles (25, 50, 75, 90 %) au-dessus du plancher de 0,1 mg/L par
+   strates sexe × âge, 2009-10 vs 2015-16 ; la tendance 2005-06 → 2009-10 sert de repère de variation
+   « naturelle ». **Non vérifiable formellement** (pas d'échantillon commun ; 2011-2014 sans CRP) :
+   ce sera dit dans le rapport. Pas de correction de la CRP 2015-16.
+
+**Versions rapportées côte à côte** : brute (valeurs telles quelles) et harmonisée.
+
+**Analyses** (par cycle et sur les deux cycles) : n, décès ; C (IC 95 %, bootstrap 1000) sur tout le
+suivi ; gain de C vs âge + sexe ; HR par écart-type de l'écart d'âge (ajusté âge + sexe) ;
+calibration à **3 ans** (risque prédit par le même modèle gelé avec la survie de base du
+développement à 36 mois ; rapport observé/prédit, pente) ; écart d'âge moyen global et par système.
+Attendu : en version harmonisée, écart moyen proche de la validation 2007-2010 (−1,4 an).
+
+**Note pour le point 4** : le recalage par quantiles par strates d'âge et de sexe est une méthode
+candidate pour la transposition à une autre cohorte (alignement de distributions de marqueurs
+sans données de survie).
