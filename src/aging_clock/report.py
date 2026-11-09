@@ -65,6 +65,12 @@ def write(out: Path) -> Path:
 Rapport généré automatiquement par `python -m aging_clock validate --panel {meta['panel']}`.
 Toutes les figures et tables sont dans ce dossier (CSV = vue tableau des figures).
 
+> **Le panel a évolué depuis le jalon 1** (ajout de l'ACR urinaire au système rénal et de la
+> fréquence cardiaque au système cardiovasculaire, décidés par validation croisée sur
+> 1999-2006 uniquement). La cohorte 2007-2010 avait déjà été consultée au jalon 1 ; ce
+> passage est l'unique consultation avec le panel final. Voir `DECISIONS.md`.
+> Résultats du jalon 1 archivés dans `reports/archive/jalon1_checkup_standard/`.
+
 - Développement : cycles NHANES {', '.join(map(str, meta['cycles_developpement']))} ; validation temporelle : {', '.join(map(str, meta['cycles_validation']))}.
 - Mortalité : Linked Mortality Files 2019 (NCHS). Horizon de l'âge biologique : 10 ans.
 - Pénalisation ridge des marqueurs choisie par validation croisée sur le développement : {meta['penalizer']}.

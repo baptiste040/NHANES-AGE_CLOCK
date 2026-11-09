@@ -225,3 +225,21 @@ exécution unique de `python -m aging_clock validate --panel checkup_standard`.
 **Aucune modification du panel, des transformations ou du modèle ne suivra d'après ces
 résultats.** Toute évolution ultérieure du panel exigera une nouvelle cohorte de
 validation (par exemple 2015-2018 ou une cohorte externe) et sera consignée ici.
+
+### Résultat 4 — passage unique sur la validation 2007-2010 (2026-11-09, 17:39-17:48)
+
+Exécution unique au commit `e2a2581`, panel SHA-256 `b01418da…` (identique au gel).
+Validation : n = 9 247, 972 décès (jalon 1 : 9 310 / 997 ; l'écart vient des cas complets
+sur l'ACR et la FC). Pénalisation retenue par CV : 0.
+
+| Score | C (IC95) | Gain de C vs âge + sexe | HR / ET | Obs./prédit 10 ans | Pente |
+|---|---|---|---|---|---|
+| Global | 0,853 [0,841 ; 0,864] | +0,046 [0,040 ; 0,053] | 2,01 | 0,92 | 0,99 |
+| Cardiovasculaire | 0,819 [0,806 ; 0,831] | +0,012 [0,008 ; 0,015] | 1,41 | 0,93 | 0,97 |
+| Métabolique | 0,819 [0,807 ; 0,832] | +0,013 [0,009 ; 0,016] | 1,47 | 0,93 | 0,99 |
+| Rénal | 0,820 [0,807 ; 0,833] | +0,013 [0,010 ; 0,017] | 1,39 | 0,97 | 0,99 |
+| Hépatique | 0,830 [0,819 ; 0,842] | +0,024 [0,019 ; 0,028] | 1,59 | 0,96 | 1,02 |
+| Inflammatoire / hémato. | 0,833 [0,820 ; 0,845] | +0,026 [0,021 ; 0,031] | 1,66 | 0,95 | 0,99 |
+
+Conformément à l'engagement, aucune modification du panel ne découle de ces résultats.
+Rapport complet : `reports/checkup_standard/RESULTATS.md`.
