@@ -1,0 +1,5 @@
+option,gain_systeme_moyen,plis_positifs,gain_global_moyen,critere_a,critere_b,critere_c,retenu
+ii_rx_antihta,0.001732013441761271,4,0.0004890261098130788,False,True,True,False
+iii_rx_statine,2.6002236737349138e-05,3,-1.4129948896185462e-05,False,True,False,False
+iv_rx,0.001958088362008892,4,0.0004988670712689491,False,True,True,False
+v_rx,0.005941915148145405,4,0.0012636313832042056,True,True,True,True

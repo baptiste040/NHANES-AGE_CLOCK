@@ -1,0 +1,8 @@
+option,gain_systeme_moyen,plis_positifs,gain_global_moyen,critere_a,critere_b,critere_c,retenu
+i_fc,0.004172884059147092,4,0.0007776057155893801,True,True,True,True
+ii_antihta,0.0011296582113035636,3,0.00017117127238175378,False,True,True,False
+iii_hypolip,1.243785939517017e-05,1,3.514561334941324e-05,False,False,True,False
+iv_traitements,0.001347582210279974,4,0.00021842032210517281,False,True,True,False
+v_tout,0.005376563895749087,4,0.00098911806792773,True,True,True,True
+v_sans_antihta,0.004207147062057048,4,0.000765019960668023,True,True,True,True
+v_sans_hypolip,0.005229621558263259,4,0.000967640287808158,True,True,True,True

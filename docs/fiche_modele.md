@@ -13,7 +13,9 @@ population de référence (même sexe) égale le risque prédit pour cette perso
 
 - **Le score décrit un risque de mortalité, pas un état de santé « idéal ».** Un écart
   positif signifie un risque de décès supérieur à celui attendu pour l'âge et le sexe.
-- **Traitements.** Si des variables de traitement (antihypertenseur, hypolipémiant)
+- **Traitements.** Dans la version actuelle, les traitements antihypertenseur et
+  hypolipémiant ont été testés et **ne sont pas dans le modèle** (apport insuffisant en
+  validation croisée, voir `DECISIONS.md`). Si des variables de traitement (antihypertenseur, hypolipémiant)
   figurent dans le modèle, elles signalent une maladie connue : elles augmentent le
   risque prédit, donc l'âge biologique, des personnes traitées. Le score **ne mesure pas
   l'effet protecteur des traitements** et ne doit pas être lu comme une incitation à les

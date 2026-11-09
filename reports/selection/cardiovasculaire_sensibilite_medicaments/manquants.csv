@@ -1,0 +1,4 @@
+variable,n_cohorte,manquants,pct_manquants
+heart_rate,13883,1,0.007203054094936254
+rx_antihypertensive,13883,14,0.10084275732910752
+rx_statin,13883,14,0.10084275732910752

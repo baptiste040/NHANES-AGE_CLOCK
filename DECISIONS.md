@@ -33,6 +33,7 @@ sur le développement. La valeur retenue est celle de la CV.
 | 2026-11-09 | **Déviation** : urée retirée, système rénal = créatinine + ACR | Apport marginal de l'urée sous le seuil (voir 2.1, déviation) | CV 1999-2006 |
 | 2026-11-09 | Critère de sélection corrigé pour la suite (voir « Critère corrigé ») | Défaut de formulation révélé en 2.1 | — |
 | 2026-11-09 | Fréquence cardiaque en spline à 4 nœuds | Non-linéarité, LR p = 0,017 (règle pré-enregistrée, voir 3.0) | Développement 1999-2006 |
+| 2026-11-09 | Système cardiovasculaire : + fréquence cardiaque ; traitements non retenus | Critère corrigé (voir 3) | CV 1999-2006 |
 
 ### Pré-enregistrement 2.1 — système rénal (écrit avant le test, 2026-11-09)
 
@@ -158,3 +159,34 @@ une hausse marquée au-delà de 88 bpm (`reports/selection/cardiovasculaire/line
 
 **Décision (règle pré-enregistrée)** : p < 0,05 → **spline à 4 nœuds** pour la FC dans
 les options (i) et (v).
+
+### Résultat 3 — système cardiovasculaire (2026-11-09)
+
+Données : 1999-2006 uniquement. Cohorte commune : n = 13 292 (cas complets sur le panel et
+les candidats du questionnaire). Manquants : antihypertenseur 0,87 %, hypolipémiant 3,44 %,
+FC 0 % — sous le garde-fou de 15 %.
+
+| Option | Gain C cardio. moyen (a ≥ 0,003) | Plis > 0 (b ≥ 3/4) | Gain C global (c ≥ 0) | Passe |
+|---|---|---|---|---|
+| (i) FC (spline) | +0,0042 | 4/4 | +0,0008 | oui |
+| (ii) antihypertenseur | +0,0011 | 3/4 | +0,0002 | non (a) |
+| (iii) hypolipémiant | +0,0000 | 1/4 | +0,0000 | non (a, b) |
+| (iv) deux traitements | +0,0013 | 4/4 | +0,0002 | non (a) |
+| (v) FC + deux traitements | +0,0054 | 4/4 | +0,0010 | oui |
+
+Application du critère corrigé à l'option passante la plus large, (v) :
+
+| Variable | Passe seule | Apport marginal dans (v) (≥ 0,003) | Conservée |
+|---|---|---|---|
+| FC | oui | +0,0040 | **oui** |
+| Antihypertenseur | non | +0,0012 | non |
+| Hypolipémiant | non | +0,0001 | non |
+
+**Décision** : système cardiovasculaire = PAS, PAD, CT, HDL, TG **+ fréquence cardiaque
+(spline 4 nœuds)**. Les traitements ne sont pas retenus ; ils restent dans le panel comme
+variables facultatives (non utilisées par le modèle).
+
+**Sensibilité (fichier des médicaments, non décisionnelle, n = 13 868)** : antihypertenseur
++0,0017 ; statine +0,0000 ; deux traitements +0,0020 ; FC + deux traitements +0,0059.
+Même conclusion qu'avec le questionnaire : apport des traitements sous le seuil, statines nulles.
+Détail : `reports/selection/cardiovasculaire*/`.

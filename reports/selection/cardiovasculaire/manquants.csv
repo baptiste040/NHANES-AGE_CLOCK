@@ -1,0 +1,4 @@
+variable,n_cohorte,manquants,pct_manquants
+heart_rate,13883,1,0.007203054094936254
+htn_treated,13883,121,0.8715695454872866
+lipid_treated,13883,478,3.443059857379529
