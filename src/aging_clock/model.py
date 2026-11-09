@@ -55,6 +55,12 @@ class CoxAtHorizon:
     def risk(self, X: pd.DataFrame) -> np.ndarray:
         return 1.0 - self.s0_ ** np.exp(self.linear_predictor(X))
 
+    def risk_at(self, X: pd.DataFrame, horizon: float) -> np.ndarray:
+        """Risque a un autre horizon : memes coefficients, survie de base du developpement."""
+        bs = self.lifelines_.baseline_survival_.iloc[:, 0]
+        s0 = float(bs[bs.index <= horizon].iloc[-1])
+        return 1.0 - s0 ** np.exp(self.linear_predictor(X))
+
 
 class BioAgeClock:
     def __init__(self, panel: Panel, study: dict):

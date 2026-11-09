@@ -1,0 +1,29 @@
+# Harmonisation des dosages NHANES 2015-2018 vers les methodes des cycles d'entrainement.
+# Protocole : DECISIONS.md, point 6. Toutes les valeurs sont en unites NHANES d'origine ;
+# `factor` = conversion vers l'unite canonique du panel (pour reporter l'ordonnee).
+
+# Equations de pontage publiees par NHANES (BIOPRO_J, HSCRP_J) : sens « backward »,
+# Roche Cobas 6000 (2017-18) -> Beckman DxC 660i (2015-16).
+crosswalks:
+  2017:
+    alt:        {type: linear, slope: 1.013, intercept: 2.688, factor: 1}
+    ast:        {type: linear, slope: 1.018, intercept: 3.762, factor: 1}
+    alp:        {type: log10, slope: 1.001, intercept: -0.04294}
+    albumin:    {type: linear, slope: 1.044, intercept: 0.01128, factor: 10}       # g/dL -> g/L
+    creatinine: {type: linear, slope: 1.051, intercept: -0.06945, factor: 88.42}   # mg/dL -> umol/L
+    ggt:        {type: linear, slope: 0.8042, intercept: 2.363, factor: 1}
+    tg:         {type: linear, slope: 0.9655, intercept: -7.020, factor: 0.01129}  # mg/dL -> mmol/L
+    # hs-CRP mg/L ; min_output : l'equation donne des valeurs negatives sous ~0,3 mg/L ->
+    # bornee au plancher du panel (0,1 mg/L), neutre pour le modele (DECISIONS.md, 6)
+    crp:        {type: linear, slope: 1.150, intercept: -0.3397, factor: 1, max_input: 20, min_output: 0.1}
+    # glucose : « ajustement non recommande » par NHANES -> non modifie
+
+# Changement d'automate sans etude de pontage : recalage par quantiles sur le dernier
+# cycle avant le changement, par strates sexe x age.
+quantile_mapping:
+  rdw:
+    nhanes_file: CBC_G
+    nhanes_var: LBXRDW
+    reference_cycle: 2011
+    cycles: [2015, 2017]
+    age_bands: [20, 40, 60, 80]     # [20-39], [40-59], [60-79]

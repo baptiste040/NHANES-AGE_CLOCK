@@ -394,3 +394,21 @@ Attendu : en version harmonisée, écart moyen proche de la validation 2007-2010
 **Note pour le point 4** : le recalage par quantiles par strates d'âge et de sexe est une méthode
 candidate pour la transposition à une autre cohorte (alignement de distributions de marqueurs
 sans données de survie).
+
+### Correction d'implémentation 6 (2026-11-09, après une première exécution)
+
+Première exécution : en version harmonisée 2017-18, 82 participants avaient une hs-CRP < 0,30 mg/L
+pour laquelle l'équation NHANES (1,150·X − 0,3397) donne une **concentration négative**, rejetée
+comme hors plage : ils sortaient de la cohorte (n = 3 991 au lieu de 4 064 ; décès inchangés, 44).
+Correction : résultat de l'équation borné au plancher du panel (0,1 mg/L). Neutre pour le modèle
+(toute CRP ≤ 0,1 est déjà ramenée à 0,1) ; rétablit la même population que la version brute.
+Le protocole n'est pas modifié ; les deux exécutions sont conservées dans le rapport.
+
+### Résultat 6 — validation secondaire 2015-2018 (2026-11-09)
+
+n = 8 404 (harmonisée), 162 décès (44 en 2017-18), suivi médian 37 mois. Version harmonisée
+(brute entre parenthèses) : C 0,850 (0,848) ; gain de C +0,051 (+0,050) ; HR/ET 2,22 (2,21) ;
+observé/prédit à 3 ans 0,86 [0,72 ; 1,02] (0,68) ; écart moyen −1,08 an (+1,86).
+Les dosages déplacent fortement l'âge biologique et la calibration, pas le classement.
+CRP standard vs hs-CRP : concordance non vérifiable formellement ; quantiles par strate
+compatibles. Aucune modification du modèle. Rapport : `reports/checkup_standard/secondaire/SECONDAIRE.md`.

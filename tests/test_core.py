@@ -186,3 +186,38 @@ def test_phenoage_increases_with_crp_and_age():
     base = _phenoage_case()
     worse = base.assign(crp=10.0, age=60)
     assert pa.phenoage(worse)[0] > pa.phenoage(base)[0]
+
+
+# ------------------------------------------------------------- harmonisation
+def test_crosswalk_alt_backward_matches_nhanes_example():
+    from aging_clock.harmonisation import apply_crosswalk
+    spec = {"type": "linear", "slope": 1.013, "intercept": 2.688, "factor": 1}
+    assert apply_crosswalk(pd.Series([18.0]), spec).iloc[0] == pytest.approx(20.922, abs=1e-3)
+
+
+def test_crosswalk_units_and_range():
+    from aging_clock.harmonisation import apply_crosswalk
+    # albumine : equation en g/dL appliquee a des g/L (4,1 g/dL = 41 g/L)
+    alb = {"type": "linear", "slope": 1.044, "intercept": 0.01128, "factor": 10}
+    assert apply_crosswalk(pd.Series([41.0]), alb).iloc[0] == pytest.approx(10 * (1.044 * 4.1 + 0.01128))
+    crp = {"type": "linear", "slope": 1.15, "intercept": -0.3397, "factor": 1, "max_input": 20}
+    out = apply_crosswalk(pd.Series([10.0, 50.0]), crp)
+    assert out.iloc[0] == pytest.approx(11.1603) and out.iloc[1] == 50.0
+
+
+def test_quantile_map_identity_and_shift():
+    from aging_clock.harmonisation import quantile_map
+    rng = np.random.default_rng(1)
+    ref = pd.DataFrame({"age": rng.integers(20, 80, 4000), "sex": rng.integers(1, 3, 4000),
+                        "rdw": rng.normal(12.6, 0.8, 4000)})
+    shifted = ref.assign(rdw=ref["rdw"] + 0.9)
+    mapped = quantile_map(shifted, ref, "rdw", [20, 40, 60, 80])
+    assert abs(mapped.median() - ref["rdw"].median()) < 0.05
+    assert np.corrcoef(mapped, shifted["rdw"])[0, 1] > 0.999      # rangs conserves
+
+
+def test_crosswalk_min_output_prevents_negative_crp():
+    from aging_clock.harmonisation import apply_crosswalk
+    crp = {"type": "linear", "slope": 1.15, "intercept": -0.3397, "factor": 1,
+           "max_input": 20, "min_output": 0.1}
+    assert apply_crosswalk(pd.Series([0.15]), crp).iloc[0] == 0.1

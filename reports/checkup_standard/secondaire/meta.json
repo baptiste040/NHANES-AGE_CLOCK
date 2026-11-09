@@ -1,0 +1,7 @@
+{
+  "bootstrap": 1000,
+  "seed": 42,
+  "horizon_mois": 36,
+  "chainage_mortalite": "public-use 2019 (suivi au 31/12/2019)",
+  "ecart_moyen_validation_2007_2010": -1.44
+}
