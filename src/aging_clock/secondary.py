@@ -179,8 +179,7 @@ Peu de décès (162, dont 44 en 2017-2018) : intervalles larges.
 - **Biochimie 2017-2018** (Roche Cobas 6000) : équations de pontage NHANES (`BIOPRO_J`, sens
   Cobas → DxC 660i) pour ALAT, ASAT, PAL, albumine, créatinine, GGT, triglycérides ; glucose non
   ajusté (recommandation NHANES). **hs-CRP 2017-2018** : équation NHANES (`HSCRP_J`), bornée au
-  plancher de 0,1 mg/L (l'équation donne des valeurs négatives sous ~0,3 mg/L ; voir la correction
-  d'implémentation dans `DECISIONS.md`).
+  plancher de 0,1 mg/L (l'équation donne des valeurs négatives sous ~0,3 mg/L).
 - **Triglycérides** : l'équation officielle éloigne la médiane 2017-2018 de celle de 2015-2016
   (1,33 → 1,21 mmol/L, contre 1,38 en 2015-2016). Appliquée comme prévu ; à garder en tête.
 
@@ -227,8 +226,5 @@ transposition à une autre cohorte : il aligne la distribution d'un marqueur sur
 population d'entraînement sans données de survie. Sa limite : il efface aussi les vraies
 différences de distribution entre populations (ici, entre cycles). À n'utiliser que lorsqu'un
 changement de méthode est documenté, ou en analyse de sensibilité.
-
-Première exécution (avant correction de la hs-CRP négative) : version harmonisée 2017-2018,
-n = 3 991, C 0,819, O/P 3 ans 0,78, écart moyen −1,16 an — conclusions identiques.
 """
     (out / "SECONDAIRE.md").write_text(text, encoding="utf-8")

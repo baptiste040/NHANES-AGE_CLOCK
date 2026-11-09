@@ -395,7 +395,12 @@ Attendu : en version harmonisée, écart moyen proche de la validation 2007-2010
 candidate pour la transposition à une autre cohorte (alignement de distributions de marqueurs
 sans données de survie).
 
-### Correction d'implémentation 6 (2026-11-09, après une première exécution)
+### Bug de traitement des données corrigé — point 6 (2026-11-09, après une première exécution)
+
+Bug de traitement des données, pas une décision de modélisation. Le rapport ne présente que
+l'exécution corrigée ; la première exécution n'est consignée qu'ici (version harmonisée 2017-18 :
+n = 3 991, C 0,819, observé/prédit à 3 ans 0,78, écart moyen −1,16 an).
+
 
 Première exécution : en version harmonisée 2017-18, 82 participants avaient une hs-CRP < 0,30 mg/L
 pour laquelle l'équation NHANES (1,150·X − 0,3397) donne une **concentration négative**, rejetée
