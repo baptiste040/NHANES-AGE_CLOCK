@@ -1,0 +1,50 @@
+# Methodes de dosage des cycles de developpement (NHANES 1999-2006), d'apres les pages de
+# documentation NHANES de chaque fichier (consultees le 2026-11-09). Reprises dans le JSON
+# du modele : un age biologique absolu n'est interpretable que si les dosages de la cohorte
+# cible sont comparables a ceux-ci, ou harmonises.
+biochimie:
+  variables: [albumin, creatinine, glucose, alp, alt, ast, ggt, tg]
+  fichiers: [LAB18, L40_B, L40_C, BIOPRO_D]
+  methode: >-
+    Hitachi 704 (1999-2001, Coulston Foundation), puis Beckman Synchron LX20 (2002-2006,
+    Collaborative Laboratory Services). Creatinine : recalibration NHANES appliquee pour
+    1999-2000 et 2005-2006 ; ecarts inter-laboratoires 2001-2002 ajustes par NHANES
+    (variables LBD*). Glucose et triglycerides non a jeun.
+numeration:
+  variables: [wbc, lymph_pct, rdw, mcv, hb, platelets]
+  fichiers: [LAB25, L25_B, L25_C, CBC_D]
+  methode: >-
+    Beckman Coulter MAXM (centres d'examen mobiles). Attention : NHANES documente un
+    changement d'automate en 2013-2014 (Beckman Coulter DxH 800) avec un RDW plus eleve
+    d'environ 0,7 point, sans etude de pontage.
+crp:
+  variables: [crp]
+  fichiers: [LAB11, L11_B, L11_C, CRP_D]
+  methode: >-
+    CRP standard, nephelometrie amplifiee au latex (Behring Nephelometer), University of
+    Washington ; mg/dL, limite de detection 0,01 mg/dL (= 0,1 mg/L, plancher du modele).
+hba1c:
+  variables: [hba1c]
+  fichiers: [LAB10, L10_B, L10_C, GHB_D]
+  methode: >-
+    HPLC par affinite boronate, Primus CLC330/CLC385 (1999-2004, University of
+    Missouri-Columbia), puis Tosoh A1c 2.2 Plus (2005-2006, University of Minnesota).
+lipides:
+  variables: [total_chol, hdl]
+  fichiers: [LAB13, L13_B, L13_C, TCHOL_D, HDL_D]
+  methode: >-
+    Cholesterol total enzymatique ; HDL par precipitation heparine-manganese (1999-2002) puis
+    dosage direct (2003-2006) ; Johns Hopkins ; Roche Hitachi 717/912 en 2005-2006 (automate
+    non nomme avant). Une note NHANES evoque une correction du HDL 2005-2006, non verifiee ici.
+urine:
+  variables: [acr]
+  fichiers: [LAB16, L16_B, L16_C, ALB_CR_D]
+  methode: >-
+    Albumine urinaire par immunofluorescence en phase solide ; creatinine urinaire (Jaffe,
+    analyseur CX3) ; University of Minnesota.
+examen:
+  variables: [sbp, dbp, heart_rate, bmi, waist]
+  fichiers: [BPX, BMX]
+  methode: >-
+    Pression arterielle auscultatoire, moyenne des mesures disponibles (jusqu'a 4) ; pouls
+    radial sur 60 s au repos ; IMC et tour de taille mesures (protocole NHANES).

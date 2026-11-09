@@ -417,3 +417,11 @@ observé/prédit à 3 ans 0,86 [0,72 ; 1,02] (0,68) ; écart moyen −1,08 an (+
 Les dosages déplacent fortement l'âge biologique et la calibration, pas le classement.
 CRP standard vs hs-CRP : concordance non vérifiable formellement ; quantiles par strate
 compatibles. Aucune modification du modèle. Rapport : `reports/checkup_standard/secondaire/SECONDAIRE.md`.
+
+## Point 7 — modèle figé exportable (2026-11-09)
+
+`models/checkup_standard_v1.json` : modèle gelé du point 4 (mêmes coefficients), transformations
+apprises, survie de base à 12/24/36/60/120 mois, méthodes de dosage de référence (pages NHANES des
+cycles 1999-2006) et avertissements. Module `aging_clock.score` (NumPy + pandas). Test de
+reproductibilité : le calcul depuis le JSON reproduit le pipeline sur la validation 2007-2010
+(écart < 10⁻⁸ an sur tous les âges biologiques). Aucune modification du modèle.

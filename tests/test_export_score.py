@@ -1,0 +1,91 @@
+"""Modele JSON gele et module de calcul autonome."""
+import ast
+import json
+import os
+import subprocess
+import sys
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import pytest
+
+from aging_clock.score import DEFAULT_MODEL, load_model, score
+
+ROOT = Path(__file__).resolve().parents[1]
+DATA_OK = (ROOT / "data" / "raw" / "2007_DEMO_E.xpt").exists() and (ROOT / "data" / "raw" / "1999_DEMO.xpt").exists()
+
+
+def test_score_module_imports_only_numpy_pandas():
+    tree = ast.parse((ROOT / "src" / "aging_clock" / "score.py").read_text(encoding="utf-8"))
+    mods = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            mods |= {a.name.split(".")[0] for a in node.names}
+        elif isinstance(node, ast.ImportFrom):
+            mods.add((node.module or "").split(".")[0] if node.level == 0 else "relatif")
+    assert mods <= {"__future__", "json", "pathlib", "numpy", "pandas"}, mods
+
+
+def test_score_runs_without_pipeline_dependencies():
+    code = ("import sys; import aging_clock.score as s; "
+            "bad=[m for m in sys.modules if m.split('.')[0] in ('lifelines','sklearn','scipy','yaml','matplotlib','joblib')]; "
+            "print(bad); assert not bad")
+    r = subprocess.run([sys.executable, "-c", code], cwd=ROOT, capture_output=True, text=True,
+                       env={**os.environ, "PYTHONPATH": str(ROOT / "src")})
+    assert r.returncode == 0, r.stdout + r.stderr
+
+
+def test_synthetic_example_scores_without_alert():
+    df = pd.read_csv(ROOT / "examples" / "exemple_entree_synthetique.csv")
+    assert df["id"].str.startswith("SYNTH-").all()          # donnees synthetiques uniquement
+    res = score(df, load_model())
+    assert (res["statut"] == "ok").all()
+    assert res["age_bio_global"].between(10, 120).all()
+
+
+def test_input_checks():
+    model = load_model()
+    row = pd.read_csv(ROOT / "examples" / "exemple_entree_synthetique.csv").iloc[[0]].copy()
+    bad = pd.concat([row.assign(crp=np.nan), row.assign(rdw=99.0), row.assign(sex=3)], ignore_index=True)
+    res = score(bad, model)
+    assert res["age_bio_global"].isna().all()
+    assert "crp manquant" in res.loc[0, "statut"] and "rdw hors plage" in res.loc[1, "statut"]
+    with pytest.raises(ValueError, match="Colonnes obligatoires absentes"):
+        score(row.drop(columns=["acr"]), model)
+
+
+def test_json_contains_lab_methods_and_warning():
+    model = json.loads(Path(DEFAULT_MODEL).read_text(encoding="utf-8"))
+    assert "reference_lab_methods" in model and "numeration" in model["reference_lab_methods"]
+    assert any("dosages" in w and "harmonisés" in w for w in model["warnings"])
+
+
+@pytest.mark.skipif(not DATA_OK, reason="donnees NHANES absentes")
+def test_json_reproduces_pipeline_on_validation():
+    """Le calcul depuis le JSON reproduit exactement le pipeline sur la validation 2007-2010."""
+    from aging_clock.cohort import build_cohort
+    from aging_clock.config import load_panel, load_study
+    from aging_clock.export import build_model_dict
+    from aging_clock.nhanes import build_harmonized
+    from aging_clock.validate import fit_clock
+
+    study, panel = load_study(), load_panel("checkup_standard")
+    dev_c, val_c = study["cycles"]["development"], study["cycles"]["validation"]
+    h = build_harmonized(dev_c + val_c, cache=ROOT / "data" / "processed" / "nhanes_harmonized.csv")
+    co, _ = build_cohort(h, panel, study)
+    dev, val = co[co["cycle"].isin(dev_c)], co[co["cycle"].isin(val_c)]
+    committed = load_model()
+    clock = fit_clock(dev, panel, study, committed["training"]["penalizer"])
+    fresh = build_model_dict(clock, panel, study, dev)
+
+    # le JSON versionne correspond au pipeline actuel (hors date et commit)
+    for key in ("variables", "models", "bioage_grid", "horizon_months"):
+        assert fresh[key] == committed[key], key
+
+    ref = clock.predict(val)
+    res = score(val, committed)
+    assert (res["statut"].str.startswith("ok") | res["statut"].str.contains("limite de grille")).all()
+    for n in clock.score_names:
+        assert np.allclose(res[f"age_bio_{n}"], ref[f"bioage_{n}"], atol=1e-8, rtol=0), n
+    assert np.allclose(res["risque_deces_10ans"], ref["risk_global"], atol=1e-12, rtol=0)

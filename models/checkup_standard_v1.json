@@ -1,0 +1,1088 @@
+{
+ "format": "aging-clock-model",
+ "format_version": 1,
+ "model": {
+  "name": "checkup_standard",
+  "version": "1.0.0",
+  "created": "2026-11-09",
+  "code_commit": "6f89be20d9100765c7c5988b8eee9555430a6a70",
+  "panel_sha256": "b01418dae864d6f6b86abf7ab660f1a39a5de77925e9d31884d029dc8c27dc86"
+ },
+ "description": "Score de vieillissement biologique par système, conçu pour être appliqué à des cohortes de check-up de prévention. Âge biologique = âge auquel le risque de décès à 10 ans de la population de référence (même sexe) égale le risque prédit.",
+ "warnings": [
+  "Un âge biologique absolu n'est interprétable que si les dosages de la cohorte cible sont comparables à ceux du développement (section reference_lab_methods) ou harmonisés. Un changement d'automate peut décaler l'âge biologique de plusieurs années sans changer le classement des personnes (validation secondaire 2015-2018).",
+  "Le score décrit un risque de mortalité toutes causes, pas l'effet protecteur des traitements ; ce n'est pas un outil de diagnostic.",
+  "Le risque absolu est surestimé chez les groupes favorisés (revenu élevé, diplôme universitaire) : sans recalibrage local, l'âge biologique d'une cohorte de check-up de prévention sera probablement surestimé ; le classement reste valide.",
+  "Domaine de validité : adultes de 20 à 79 ans ; valeurs dans les plages de variables[*].range ; unités canoniques de variables[*].unit."
+ ],
+ "training": {
+  "data": "NHANES 1999-2006 chaînées aux Linked Mortality Files 2019 (NCHS)",
+  "cycles": [
+   1999,
+   2001,
+   2003,
+   2005
+  ],
+  "n": 13882,
+  "deaths": 2785,
+  "age_range": [
+   20,
+   79
+  ],
+  "exclusions": [
+   "femmes enceintes",
+   "non éligibles au chaînage",
+   "cas incomplets"
+  ],
+  "penalizer": 0.0,
+  "decisions": "DECISIONS.md"
+ },
+ "reference_lab_methods": {
+  "biochimie": {
+   "variables": [
+    "albumin",
+    "creatinine",
+    "glucose",
+    "alp",
+    "alt",
+    "ast",
+    "ggt",
+    "tg"
+   ],
+   "fichiers": [
+    "LAB18",
+    "L40_B",
+    "L40_C",
+    "BIOPRO_D"
+   ],
+   "methode": "Hitachi 704 (1999-2001, Coulston Foundation), puis Beckman Synchron LX20 (2002-2006, Collaborative Laboratory Services). Creatinine : recalibration NHANES appliquee pour 1999-2000 et 2005-2006 ; ecarts inter-laboratoires 2001-2002 ajustes par NHANES (variables LBD*). Glucose et triglycerides non a jeun."
+  },
+  "numeration": {
+   "variables": [
+    "wbc",
+    "lymph_pct",
+    "rdw",
+    "mcv",
+    "hb",
+    "platelets"
+   ],
+   "fichiers": [
+    "LAB25",
+    "L25_B",
+    "L25_C",
+    "CBC_D"
+   ],
+   "methode": "Beckman Coulter MAXM (centres d'examen mobiles). Attention : NHANES documente un changement d'automate en 2013-2014 (Beckman Coulter DxH 800) avec un RDW plus eleve d'environ 0,7 point, sans etude de pontage."
+  },
+  "crp": {
+   "variables": [
+    "crp"
+   ],
+   "fichiers": [
+    "LAB11",
+    "L11_B",
+    "L11_C",
+    "CRP_D"
+   ],
+   "methode": "CRP standard, nephelometrie amplifiee au latex (Behring Nephelometer), University of Washington ; mg/dL, limite de detection 0,01 mg/dL (= 0,1 mg/L, plancher du modele)."
+  },
+  "hba1c": {
+   "variables": [
+    "hba1c"
+   ],
+   "fichiers": [
+    "LAB10",
+    "L10_B",
+    "L10_C",
+    "GHB_D"
+   ],
+   "methode": "HPLC par affinite boronate, Primus CLC330/CLC385 (1999-2004, University of Missouri-Columbia), puis Tosoh A1c 2.2 Plus (2005-2006, University of Minnesota)."
+  },
+  "lipides": {
+   "variables": [
+    "total_chol",
+    "hdl"
+   ],
+   "fichiers": [
+    "LAB13",
+    "L13_B",
+    "L13_C",
+    "TCHOL_D",
+    "HDL_D"
+   ],
+   "methode": "Cholesterol total enzymatique ; HDL par precipitation heparine-manganese (1999-2002) puis dosage direct (2003-2006) ; Johns Hopkins ; Roche Hitachi 717/912 en 2005-2006 (automate non nomme avant). Une note NHANES evoque une correction du HDL 2005-2006, non verifiee ici."
+  },
+  "urine": {
+   "variables": [
+    "acr"
+   ],
+   "fichiers": [
+    "LAB16",
+    "L16_B",
+    "L16_C",
+    "ALB_CR_D"
+   ],
+   "methode": "Albumine urinaire par immunofluorescence en phase solide ; creatinine urinaire (Jaffe, analyseur CX3) ; University of Minnesota."
+  },
+  "examen": {
+   "variables": [
+    "sbp",
+    "dbp",
+    "heart_rate",
+    "bmi",
+    "waist"
+   ],
+   "fichiers": [
+    "BPX",
+    "BMX"
+   ],
+   "methode": "Pression arterielle auscultatoire, moyenne des mesures disponibles (jusqu'a 4) ; pouls radial sur 60 s au repos ; IMC et tour de taille mesures (protocole NHANES)."
+  }
+ },
+ "horizon_months": 120,
+ "sex_coding": {
+  "1": "homme",
+  "2": "femme"
+ },
+ "include_sex": true,
+ "systems": {
+  "cardiovasculaire": "Pression arterielle et lipides",
+  "metabolique": "Glycemie, HbA1c, adiposite",
+  "renal": "Fonction renale",
+  "hepatique": "Enzymes hepatiques et albumine",
+  "inflammatoire_hematologique": "CRP et numeration sanguine"
+ },
+ "variables": {
+  "sbp": {
+   "unit": "mmHg",
+   "system": "cardiovasculaire",
+   "required": true,
+   "range": [
+    70,
+    260
+   ],
+   "floor": null,
+   "log": false,
+   "clip_transformed": [
+    90.0,
+    193.33333333333331
+   ],
+   "spline_knots_transformed": [
+    100.0,
+    115.33333333333331,
+    128.66666666666666,
+    161.33333333333334
+   ],
+   "alt_units": {}
+  },
+  "dbp": {
+   "unit": "mmHg",
+   "system": "cardiovasculaire",
+   "required": true,
+   "range": [
+    30,
+    150
+   ],
+   "floor": null,
+   "log": false,
+   "clip_transformed": [
+    41.333333333333336,
+    106.0
+   ],
+   "spline_knots_transformed": [
+    54.0,
+    68.0,
+    76.0,
+    91.31666666666628
+   ],
+   "alt_units": {}
+  },
+  "total_chol": {
+   "unit": "mmol/L",
+   "system": "cardiovasculaire",
+   "required": true,
+   "range": [
+    1.5,
+    15
+   ],
+   "floor": null,
+   "log": false,
+   "clip_transformed": [
+    2.81874,
+    8.50794
+   ],
+   "spline_knots_transformed": [
+    3.5945400000000003,
+    4.73238,
+    5.53404,
+    7.05978
+   ],
+   "alt_units": {
+    "mg/dL": 0.02586,
+    "g/L": 2.586
+   }
+  },
+  "hdl": {
+   "unit": "mmol/L",
+   "system": "cardiovasculaire",
+   "required": true,
+   "range": [
+    0.2,
+    5
+   ],
+   "floor": null,
+   "log": true,
+   "clip_transformed": [
+    -0.43618208077022474,
+    1.0177709288234806
+   ],
+   "spline_knots_transformed": [
+    -0.18932200283869904,
+    0.1291317282798355,
+    0.3702937850967235,
+    0.7393912490340132
+   ],
+   "alt_units": {
+    "mg/dL": 0.02586,
+    "g/L": 2.586
+   }
+  },
+  "tg": {
+   "unit": "mmol/L",
+   "system": "cardiovasculaire",
+   "required": true,
+   "range": [
+    0.2,
+    30
+   ],
+   "floor": null,
+   "log": true,
+   "clip_transformed": [
+    -1.01810199802084,
+    2.0780337546153076
+   ],
+   "spline_knots_transformed": null,
+   "alt_units": {
+    "mg/dL": 0.01129,
+    "g/L": 1.129
+   }
+  },
+  "heart_rate": {
+   "unit": "bpm",
+   "system": "cardiovasculaire",
+   "required": true,
+   "range": [
+    30,
+    200
+   ],
+   "floor": null,
+   "log": false,
+   "clip_transformed": [
+    46.0,
+    110.0
+   ],
+   "spline_knots_transformed": [
+    54.0,
+    66.0,
+    76.0,
+    92.0
+   ],
+   "alt_units": {}
+  },
+  "glucose": {
+   "unit": "mmol/L",
+   "system": "metabolique",
+   "required": true,
+   "range": [
+    2,
+    35
+   ],
+   "floor": null,
+   "log": true,
+   "clip_transformed": [
+    1.242422429010333,
+    2.8593908138669772
+   ],
+   "spline_knots_transformed": null,
+   "alt_units": {
+    "mg/dL": 0.05551,
+    "g/L": 5.551
+   }
+  },
+  "hba1c": {
+   "unit": "%",
+   "system": "metabolique",
+   "required": true,
+   "range": [
+    3,
+    18
+   ],
+   "floor": null,
+   "log": false,
+   "clip_transformed": [
+    4.4,
+    11.659499999999934
+   ],
+   "spline_knots_transformed": null,
+   "alt_units": {
+    "mmol/mol": [
+     0.09148,
+     2.152
+    ]
+   }
+  },
+  "bmi": {
+   "unit": "kg/m2",
+   "system": "metabolique",
+   "required": true,
+   "range": [
+    13,
+    80
+   ],
+   "floor": null,
+   "log": false,
+   "clip_transformed": [
+    17.28215,
+    50.13
+   ],
+   "spline_knots_transformed": [
+    20.1505,
+    25.573499999999996,
+    29.77,
+    39.89949999999999
+   ],
+   "alt_units": {}
+  },
+  "waist": {
+   "unit": "cm",
+   "system": "metabolique",
+   "required": true,
+   "range": [
+    50,
+    200
+   ],
+   "floor": null,
+   "log": false,
+   "clip_transformed": [
+    66.3,
+    143.95949999999993
+   ],
+   "spline_knots_transformed": null,
+   "alt_units": {}
+  },
+  "creatinine": {
+   "unit": "umol/L",
+   "system": "renal",
+   "required": true,
+   "range": [
+    20,
+    1500
+   ],
+   "floor": null,
+   "log": true,
+   "clip_transformed": [
+    3.733438297907893,
+    5.175245368958042
+   ],
+   "spline_knots_transformed": [
+    3.9712725646321063,
+    4.258954637083887,
+    4.438564186374369,
+    4.709552435299392
+   ],
+   "alt_units": {
+    "mg/dL": 88.42,
+    "mg/L": 8.842
+   }
+  },
+  "acr": {
+   "unit": "mg/mmol",
+   "system": "renal",
+   "required": true,
+   "range": [
+    0,
+    500
+   ],
+   "floor": 0.1,
+   "log": true,
+   "clip_transformed": [
+    -2.3025850929940455,
+    4.697544253408438
+   ],
+   "spline_knots_transformed": null,
+   "alt_units": {
+    "mg/g": 0.1131
+   }
+  },
+  "alt": {
+   "unit": "U/L",
+   "system": "hepatique",
+   "required": true,
+   "range": [
+    3,
+    2000
+   ],
+   "floor": null,
+   "log": true,
+   "clip_transformed": [
+    2.1972245773362196,
+    4.836281906951478
+   ],
+   "spline_knots_transformed": [
+    2.4849066497880004,
+    2.9444389791664403,
+    3.258096538021482,
+    3.9889840465642745
+   ],
+   "alt_units": {}
+  },
+  "ast": {
+   "unit": "U/L",
+   "system": "hepatique",
+   "required": true,
+   "range": [
+    3,
+    2000
+   ],
+   "floor": null,
+   "log": true,
+   "clip_transformed": [
+    2.4849066497880004,
+    4.6651870983186186
+   ],
+   "spline_knots_transformed": null,
+   "alt_units": {}
+  },
+  "ggt": {
+   "unit": "U/L",
+   "system": "hepatique",
+   "required": true,
+   "range": [
+    3,
+    3000
+   ],
+   "floor": null,
+   "log": true,
+   "clip_transformed": [
+    1.791759469228055,
+    5.602118820879701
+   ],
+   "spline_knots_transformed": null,
+   "alt_units": {}
+  },
+  "alp": {
+   "unit": "U/L",
+   "system": "hepatique",
+   "required": true,
+   "range": [
+    10,
+    1500
+   ],
+   "floor": null,
+   "log": true,
+   "clip_transformed": [
+    3.4339872044851463,
+    5.1681762964867195
+   ],
+   "spline_knots_transformed": null,
+   "alt_units": {}
+  },
+  "albumin": {
+   "unit": "g/L",
+   "system": "hepatique",
+   "required": true,
+   "range": [
+    15,
+    60
+   ],
+   "floor": null,
+   "log": false,
+   "clip_transformed": [
+    34.0,
+    52.0
+   ],
+   "spline_knots_transformed": null,
+   "alt_units": {
+    "g/dL": 10
+   }
+  },
+  "crp": {
+   "unit": "mg/L",
+   "system": "inflammatoire_hematologique",
+   "required": true,
+   "range": [
+    0,
+    300
+   ],
+   "floor": 0.1,
+   "log": true,
+   "clip_transformed": [
+    -2.3025850929940455,
+    3.8736750269463434
+   ],
+   "spline_knots_transformed": null,
+   "alt_units": {
+    "mg/dL": 10
+   }
+  },
+  "wbc": {
+   "unit": "10^9/L",
+   "system": "inflammatoire_hematologique",
+   "required": true,
+   "range": [
+    1,
+    50
+   ],
+   "floor": null,
+   "log": true,
+   "clip_transformed": [
+    1.1631508098056809,
+    2.6741486494265287
+   ],
+   "spline_knots_transformed": null,
+   "alt_units": {}
+  },
+  "lymph_pct": {
+   "unit": "%",
+   "system": "inflammatoire_hematologique",
+   "required": true,
+   "range": [
+    2,
+    90
+   ],
+   "floor": null,
+   "log": false,
+   "clip_transformed": [
+    11.0405,
+    56.459499999999935
+   ],
+   "spline_knots_transformed": null,
+   "alt_units": {}
+  },
+  "rdw": {
+   "unit": "%",
+   "system": "inflammatoire_hematologique",
+   "required": true,
+   "range": [
+    9,
+    30
+   ],
+   "floor": null,
+   "log": false,
+   "clip_transformed": [
+    11.1,
+    18.3
+   ],
+   "spline_knots_transformed": null,
+   "alt_units": {}
+  },
+  "mcv": {
+   "unit": "fL",
+   "system": "inflammatoire_hematologique",
+   "required": true,
+   "range": [
+    55,
+    130
+   ],
+   "floor": null,
+   "log": false,
+   "clip_transformed": [
+    68.1,
+    104.1
+   ],
+   "spline_knots_transformed": null,
+   "alt_units": {}
+  },
+  "hb": {
+   "unit": "g/dL",
+   "system": "inflammatoire_hematologique",
+   "required": true,
+   "range": [
+    6,
+    20
+   ],
+   "floor": null,
+   "log": false,
+   "clip_transformed": [
+    9.9405,
+    17.9
+   ],
+   "spline_knots_transformed": [
+    12.1,
+    13.9,
+    15.0,
+    16.8
+   ],
+   "alt_units": {
+    "g/L": 0.1,
+    "mmol/L": 1.611
+   }
+  },
+  "platelets": {
+   "unit": "10^9/L",
+   "system": "inflammatoire_hematologique",
+   "required": true,
+   "range": [
+    20,
+    1000
+   ],
+   "floor": null,
+   "log": true,
+   "clip_transformed": [
+    4.736198448394496,
+    6.212606095751519
+   ],
+   "spline_knots_transformed": [
+    5.159055299214529,
+    5.480638923341991,
+    5.662960480135946,
+    5.968707559985366
+   ],
+   "alt_units": {}
+  }
+ },
+ "optional_variables": {
+  "ldl": {
+   "unit": "mmol/L",
+   "system": "cardiovasculaire",
+   "required": false,
+   "note": "collectée, non utilisée par le modèle"
+  },
+  "htn_treated": {
+   "unit": "0/1",
+   "system": "cardiovasculaire",
+   "required": false,
+   "note": "collectée, non utilisée par le modèle"
+  },
+  "lipid_treated": {
+   "unit": "0/1",
+   "system": "cardiovasculaire",
+   "required": false,
+   "note": "collectée, non utilisée par le modèle"
+  },
+  "urea": {
+   "unit": "mmol/L",
+   "system": "renal",
+   "required": false,
+   "note": "collectée, non utilisée par le modèle"
+  }
+ },
+ "models": {
+  "reference": {
+   "columns": [
+    "age",
+    "female"
+   ],
+   "coefficients": [
+    0.08646408667319548,
+    -0.4072644297130812
+   ],
+   "means": [
+    47.38740815444461,
+    0.48739374729866014
+   ],
+   "baseline_survival": {
+    "12": 0.997922923119002,
+    "24": 0.9953283416901151,
+    "36": 0.9922543621496626,
+    "60": 0.9845216303318245,
+    "120": 0.958078845492693
+   }
+  },
+  "global": {
+   "columns": [
+    "age",
+    "female",
+    "sbp",
+    "sbp_s1",
+    "sbp_s2",
+    "dbp",
+    "dbp_s1",
+    "dbp_s2",
+    "total_chol",
+    "total_chol_s1",
+    "total_chol_s2",
+    "hdl",
+    "hdl_s1",
+    "hdl_s2",
+    "tg",
+    "heart_rate",
+    "heart_rate_s1",
+    "heart_rate_s2",
+    "glucose",
+    "hba1c",
+    "bmi",
+    "bmi_s1",
+    "bmi_s2",
+    "waist",
+    "creatinine",
+    "creatinine_s1",
+    "creatinine_s2",
+    "acr",
+    "alt",
+    "alt_s1",
+    "alt_s2",
+    "ast",
+    "ggt",
+    "alp",
+    "albumin",
+    "crp",
+    "wbc",
+    "lymph_pct",
+    "rdw",
+    "mcv",
+    "hb",
+    "hb_s1",
+    "hb_s2",
+    "platelets",
+    "platelets_s1",
+    "platelets_s2"
+   ],
+   "coefficients": [
+    0.06871500700452082,
+    -0.288807231179971,
+    -0.015176453661911768,
+    0.07784346004190934,
+    -0.18331187722118258,
+    -0.012053648304040506,
+    0.004897082376748325,
+    0.01554923776118435,
+    -0.14291969413554664,
+    0.18645893328737678,
+    -0.21671929463756484,
+    -0.07545622248595239,
+    -0.44510756129987383,
+    2.4437949365460443,
+    0.039439774527088765,
+    0.005916967788759255,
+    0.0014481646229628305,
+    0.004622127782044093,
+    0.05407279208247449,
+    0.08023173419975103,
+    -0.18091287280329044,
+    0.41297042812514617,
+    -0.9979445445238276,
+    0.022569965157427256,
+    -0.2026988157760859,
+    0.29104487934354767,
+    0.39194171747878365,
+    0.14451423701244276,
+    -0.7006738333625973,
+    -0.5490448418910804,
+    3.14100539659204,
+    0.43436242589915464,
+    0.23816583630413246,
+    0.25024022563612813,
+    -0.030098399086461287,
+    0.042851743714573176,
+    0.24984553429003678,
+    -0.0063894571297991275,
+    0.2501007331188328,
+    0.04224429168865666,
+    0.00420118807234501,
+    0.0010525944399958583,
+    0.03817884312118872,
+    -0.8543593636141041,
+    1.2689525314453802,
+    -3.640960021772618
+   ],
+   "means": [
+    47.38740815444461,
+    0.48739374729866014,
+    124.6822263842866,
+    9.344486909617153,
+    2.2006726311569813,
+    72.16724295250445,
+    8.22748732969012,
+    0.9496135865311226,
+    5.1919939043365515,
+    0.6884149343846926,
+    0.10815456762314961,
+    0.2588239710360929,
+    0.20717307877390276,
+    0.03217153903107983,
+    0.28762054504539913,
+    71.62440570522979,
+    7.984196488328017,
+    1.4740010380328699,
+    1.6610776507156455,
+    5.577529534649185,
+    28.439873253133555,
+    3.237608548184985,
+    0.6594853220465428,
+    97.2337390145512,
+    4.335156972216074,
+    0.17727232870239995,
+    0.021017783011467416,
+    -0.09874555453320105,
+    3.136902975462395,
+    0.26497894619485196,
+    0.04550293933819336,
+    3.1620374447689885,
+    3.1541681561977564,
+    4.244004603456481,
+    43.04682322431926,
+    0.7049490726885818,
+    1.9281045854663812,
+    30.61914709696009,
+    12.718174614608847,
+    89.99590116697881,
+    14.452336478893534,
+    1.1346967741087852,
+    0.13324081428861315,
+    5.567029539581838,
+    0.19452324680366173,
+    0.020445107027220227
+   ],
+   "baseline_survival": {
+    "12": 0.9984752429115882,
+    "24": 0.9965062556148323,
+    "36": 0.994127230966084,
+    "60": 0.9879008499743654,
+    "120": 0.9649956134053767
+   }
+  },
+  "cardiovasculaire": {
+   "columns": [
+    "age",
+    "female",
+    "sbp",
+    "sbp_s1",
+    "sbp_s2",
+    "dbp",
+    "dbp_s1",
+    "dbp_s2",
+    "total_chol",
+    "total_chol_s1",
+    "total_chol_s2",
+    "hdl",
+    "hdl_s1",
+    "hdl_s2",
+    "tg",
+    "heart_rate",
+    "heart_rate_s1",
+    "heart_rate_s2"
+   ],
+   "coefficients": [
+    0.08225380313123676,
+    -0.5115041408027499,
+    -0.015629685228699664,
+    0.0805074726144821,
+    -0.17925096065184337,
+    -0.013347667731153553,
+    -0.004169479648867192,
+    0.06977082106092151,
+    -0.28504790372589806,
+    0.27194916183185325,
+    -0.21003170704026358,
+    -0.07097250370138392,
+    -0.3284434129430996,
+    2.954731682816173,
+    0.11685541026243683,
+    0.004578089413975927,
+    0.027952460570568403,
+    -0.05449673382397353
+   ],
+   "means": [
+    47.38740815444461,
+    0.48739374729866014,
+    124.6822263842866,
+    9.344486909617153,
+    2.2006726311569813,
+    72.16724295250445,
+    8.22748732969012,
+    0.9496135865311226,
+    5.1919939043365515,
+    0.6884149343846926,
+    0.10815456762314961,
+    0.2588239710360929,
+    0.20717307877390276,
+    0.03217153903107983,
+    0.28762054504539913,
+    71.62440570522979,
+    7.984196488328017,
+    1.4740010380328699
+   ],
+   "baseline_survival": {
+    "12": 0.9980041085687724,
+    "24": 0.9955024667814599,
+    "36": 0.9925252849646812,
+    "60": 0.9849809982634213,
+    "120": 0.9588369635271169
+   }
+  },
+  "metabolique": {
+   "columns": [
+    "age",
+    "female",
+    "glucose",
+    "hba1c",
+    "bmi",
+    "bmi_s1",
+    "bmi_s2",
+    "waist"
+   ],
+   "coefficients": [
+    0.08266508134298034,
+    -0.24598991738161033,
+    0.26831850155211373,
+    0.11695041278188506,
+    -0.24140424439258598,
+    0.5352177628903887,
+    -1.233033420115955,
+    0.029819852003003394
+   ],
+   "means": [
+    47.38740815444461,
+    0.48739374729866014,
+    1.6610776507156455,
+    5.577529534649185,
+    28.439873253133555,
+    3.237608548184985,
+    0.6594853220465428,
+    97.2337390145512
+   ],
+   "baseline_survival": {
+    "12": 0.9981009258289691,
+    "24": 0.9957233328642124,
+    "36": 0.9929014731750293,
+    "60": 0.9857666901639114,
+    "120": 0.9610015578968887
+   }
+  },
+  "renal": {
+   "columns": [
+    "age",
+    "female",
+    "creatinine",
+    "creatinine_s1",
+    "creatinine_s2",
+    "acr"
+   ],
+   "coefficients": [
+    0.08050097782714984,
+    -0.3785052771963777,
+    -0.34704391428356246,
+    0.13410275762548304,
+    2.727339465035738,
+    0.24791840017017233
+   ],
+   "means": [
+    47.38740815444461,
+    0.48739374729866014,
+    4.335156972216074,
+    0.17727232870239995,
+    0.021017783011467416,
+    -0.09874555453320105
+   ],
+   "baseline_survival": {
+    "12": 0.9980781397950546,
+    "24": 0.9956625383409539,
+    "36": 0.9927823442937364,
+    "60": 0.9854327065578183,
+    "120": 0.9596126865363382
+   }
+  },
+  "hepatique": {
+   "columns": [
+    "age",
+    "female",
+    "alt",
+    "alt_s1",
+    "alt_s2",
+    "ast",
+    "ggt",
+    "alp",
+    "albumin"
+   ],
+   "coefficients": [
+    0.08188968292968779,
+    -0.5224837877731962,
+    -0.9275848531094341,
+    -0.6247998593164318,
+    3.9394708522126742,
+    0.5066212476185381,
+    0.3760501736105003,
+    0.42206622801306803,
+    -0.0587943803060384
+   ],
+   "means": [
+    47.38740815444461,
+    0.48739374729866014,
+    3.136902975462395,
+    0.26497894619485196,
+    0.04550293933819336,
+    3.1620374447689885,
+    3.1541681561977564,
+    4.244004603456481,
+    43.04682322431926
+   ],
+   "baseline_survival": {
+    "12": 0.9981317880908793,
+    "24": 0.9957740328112703,
+    "36": 0.9929638488951971,
+    "60": 0.9858283734502684,
+    "120": 0.9610569243232867
+   }
+  },
+  "inflammatoire_hematologique": {
+   "columns": [
+    "age",
+    "female",
+    "crp",
+    "wbc",
+    "lymph_pct",
+    "rdw",
+    "mcv",
+    "hb",
+    "hb_s1",
+    "hb_s2",
+    "platelets",
+    "platelets_s1",
+    "platelets_s2"
+   ],
+   "coefficients": [
+    0.07883751211918949,
+    -0.42853462303385703,
+    0.13624887238178243,
+    0.4897877452759656,
+    -0.006480213937266059,
+    0.2961956757052932,
+    0.04853185012053251,
+    -0.10392426712755069,
+    0.047569886916890465,
+    0.07641739150297878,
+    -1.1237623247606217,
+    1.785524565979286,
+    -5.263567187496693
+   ],
+   "means": [
+    47.38740815444461,
+    0.48739374729866014,
+    0.7049490726885818,
+    1.9281045854663812,
+    30.61914709696009,
+    12.718174614608847,
+    89.99590116697881,
+    14.452336478893534,
+    1.1346967741087852,
+    0.13324081428861315,
+    5.567029539581838,
+    0.19452324680366173,
+    0.020445107027220227
+   ],
+   "baseline_survival": {
+    "12": 0.9982040185080132,
+    "24": 0.9959291492378552,
+    "36": 0.993209829666526,
+    "60": 0.9862655770153789,
+    "120": 0.9614639279193565
+   }
+  }
+ },
+ "bioage_grid": {
+  "min": 10,
+  "max": 120,
+  "step": 0.1
+ }
+}

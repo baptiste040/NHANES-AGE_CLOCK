@@ -1,7 +1,26 @@
 # Fiche du modèle — panel `checkup_standard`
 
-Fiche complétée au fil du projet. Version complète (coefficients figés, domaine de
-validité, performances) au moment de l'export du modèle.
+Modèle figé : `models/checkup_standard_v1.json` (coefficients, transformations apprises,
+survie de base, méthodes de dosage de référence). Calcul : `python -m aging_clock score
+--input fichier.csv` (NumPy et pandas uniquement). Entrées : `docs/specification_entrees.md`.
+
+## Données d'entraînement
+
+NHANES 1999-2006 chaînées aux Linked Mortality Files 2019 (NCHS) : 13 882 adultes de 20 à
+79 ans, 2 785 décès, suivi médian 16 ans. Décisions de modélisation : `DECISIONS.md`.
+
+## Performances (validation temporelle 2007-2010, n = 9 247, 972 décès)
+
+| Score | C (IC 95 %) | Gain de C vs âge + sexe | HR par écart-type d'écart | Obs./prédit 10 ans |
+|---|---|---|---|---|
+| Global | 0,853 [0,841 ; 0,864] | +0,046 | 2,01 | 0,92 |
+| Cardiovasculaire | 0,819 | +0,012 | 1,41 | 0,93 |
+| Métabolique | 0,819 | +0,013 | 1,47 | 0,93 |
+| Rénal | 0,820 | +0,013 | 1,39 | 0,97 |
+| Hépatique | 0,830 | +0,024 | 1,59 | 0,96 |
+| Inflammatoire / hémato. | 0,833 | +0,026 | 1,66 | 0,95 |
+
+Détails : `reports/checkup_standard/` (validation, benchmark PhenoAge, équité, 2015-2018).
 
 ## Usage prévu
 
@@ -26,6 +45,11 @@ population de référence (même sexe) égale le risque prédit pour cette perso
 
 ## Limites
 
+- **Dosages.** Un âge biologique absolu n'est interprétable que si les dosages sont comparables
+  à ceux du développement ou harmonisés : en 2015-2018, des changements d'automates (RDW,
+  biochimie) décalaient l'âge biologique moyen de près de 3 ans sans changer le classement.
+- **Population d'entraînement** : adultes américains (NHANES), 1999-2006 ; glycémie non à jeun ;
+  domaine de validité 20-79 ans.
 - **Surestimation du risque absolu des groupes favorisés.** En validation (2007-2010), le modèle
   surestime la mortalité à 10 ans des personnes au revenu élevé (rapport observé/prédit 0,62
   pour un revenu ≥ 3,5 fois le seuil de pauvreté) et des diplômés de l'université (0,69), alors
