@@ -32,6 +32,7 @@ sur le développement. La valeur retenue est celle de la CV.
 | 2026-11-09 | Système rénal : + ACR urinaire + urée | Option (iii) passe le critère pré-enregistré (voir 2.1) | CV 1999-2006 |
 | 2026-11-09 | **Déviation** : urée retirée, système rénal = créatinine + ACR | Apport marginal de l'urée sous le seuil (voir 2.1, déviation) | CV 1999-2006 |
 | 2026-11-09 | Critère de sélection corrigé pour la suite (voir « Critère corrigé ») | Défaut de formulation révélé en 2.1 | — |
+| 2026-11-09 | Fréquence cardiaque en spline à 4 nœuds | Non-linéarité, LR p = 0,017 (règle pré-enregistrée, voir 3.0) | Développement 1999-2006 |
 
 ### Pré-enregistrement 2.1 — système rénal (écrit avant le test, 2026-11-09)
 
@@ -146,3 +147,14 @@ candidats, pénalisation 0, C de Harrell sur le cycle retiré).
 **Sensibilité (non décisionnelle)** : options (ii) à (v) refaites avec le fichier des
 médicaments (antihypertenseur par classe Multum, statine par molécule) à la place du
 questionnaire. Rapportée, sans effet sur la décision.
+
+### Résultat 3.0 — forme de la fréquence cardiaque (2026-11-09, avant les options)
+
+Développement entier, cas complets sur le panel et les candidats (n = 13 292 ; 2 651 décès).
+Modèle cardiovasculaire + FC : linéaire vs spline à 4 nœuds.
+LR des termes non linéaires = 8,15 (2 ddl), **p = 0,017** ; AIC partiel 44 768,7 (linéaire)
+vs 44 764,6 (spline). Résidus de martingale : plats jusqu'à ~70 bpm puis croissants, avec
+une hausse marquée au-delà de 88 bpm (`reports/selection/cardiovasculaire/linearite_fc.*`).
+
+**Décision (règle pré-enregistrée)** : p < 0,05 → **spline à 4 nœuds** pour la FC dans
+les options (i) et (v).
