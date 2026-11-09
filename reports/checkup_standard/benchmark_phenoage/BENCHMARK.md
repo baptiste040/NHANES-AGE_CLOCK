@@ -4,8 +4,18 @@ Panel et modèle principaux gelés (point 4) ; protocole écrit avant exécution
 Trois scores sur les mêmes participants. Différences de C par bootstrap **apparié**
 (mêmes tirages pour les scores comparés).
 
-- **PhenoAge publié** : coefficients de Levine et al. 2018 (tableau 1), équation complète de la
-  correction de Liu et al., PLoS Med 2019 (constantes 141,50 et 0,09165). Pas de réentraînement.
+- **PhenoAge publié**, sans réentraînement. Sources :
+  - poids des marqueurs : Levine et al. 2018, *Aging* 10(4):573-591, tableau 1
+    ([doi:10.18632/aging.101414](https://doi.org/10.18632/aging.101414)) ; l'équation de conversion
+    en années y renvoie au supplément 1 (non vérifié ici) ;
+  - équation complète : correction de Liu et al., *PLoS Med* 2019;16(2):e1002760
+    ([doi:10.1371/journal.pmed.1002760](https://doi.org/10.1371/journal.pmed.1002760)) :
+    M = 1 − exp(−1,51714·exp(xb)/0,0076927) ; PhenoAge = 141,50 + ln(−0,00553·ln(1 − M))/0,09165.
+  - Une autre paire de constantes circule (141,50225 ; 0,090165 ; paquet R BioAge, fonction
+    `phenoage_calc`, `orig = TRUE`). Passer de l'une à l'autre est une transformation affine de
+    PhenoAge : **seules les valeurs en années changent** (PhenoAge moyen, accélération en années et
+    son écart-type). Le C, le HR par écart-type d'accélération et la calibration (calculée sur M,
+    avant conversion) sont identiques.
 - **PhenoAge réentraîné** : ses 9 marqueurs, méthode du score principal (Cox âge + sexe,
   transformations du panel, pénalisation par CV sur 1999-2006).
 - Accélération : écart d'âge pour nos scores ; résidu PhenoAge ~ âge (régression estimée sur le
@@ -48,7 +58,7 @@ C de référence (Cox âge + sexe) : 0.796 [0.775; 0.817].
 
 ## Notes
 
-- PhenoAge publié moyen en validation : 44.0 ans pour un âge moyen de 47.9 ans.
+- PhenoAge publié moyen en validation : 44.0 ans pour un âge moyen de 47.9 ans (valeur en années : dépend des constantes de conversion).
 - Corrélation entre l'écart global et l'accélération PhenoAge : 0.63.
 - Pénalisation retenue pour PhenoAge réentraîné (CV 1999-2006) : 0.003.
 - Bootstrap : 1000 tirages appariés, graine 42.

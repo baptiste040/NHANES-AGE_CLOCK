@@ -256,9 +256,12 @@ doi:10.1371/journal.pmed.1002760) :
   + 0,00188·PAL(U/L) + 0,0554·leucocytes(10⁹/L) + 0,0804·âge ;
 - M = 1 − exp(−1,51714·exp(xb)/0,0076927) (risque de décès à 10 ans) ;
 - PhenoAge = 141,50 + ln(−0,00553·ln(1 − M))/0,09165.
-- Constantes publiées retenues (0,09165 ; 141,50). Plusieurs implémentations publiques, dont
-  le prototype de ce dépôt, utilisaient 0,090165 et 141,50225 : écart documenté ; le C n'en
-  dépend pas (PhenoAge est une fonction croissante de M).
+- Constantes publiées retenues (0,09165 ; 141,50). Le prototype de ce dépôt et le paquet R
+  BioAge utilisaient 0,090165 et 141,50225. *Phrase précisée le 2026-11-09 après vérification* :
+  passer d'un jeu à l'autre est une transformation affine de PhenoAge (pente 0,09165/0,090165).
+  Seules les valeurs exprimées en années en dépendent (PhenoAge, accélération en années, son
+  écart-type) ; le C, le HR par écart-type d'accélération et la calibration (calculée sur M,
+  avant conversion) n'en dépendent pas. Vérifié sur le développement : HR identiques à 10⁻⁶.
 - CRP : valeur NHANES convertie en mg/dL, sans plancher (comme la publication).
 - Accélération = résidu de la régression linéaire PhenoAge ~ âge, **estimée sur le
   développement** puis appliquée à la validation.
@@ -286,3 +289,18 @@ Sans antécédent déclaré (n = 7 123) : +0,0221, +0,0153, +0,0068, mêmes conc
 PhenoAge publié : sous-estime le risque (obs./prédit 1,21) et pente 0,71 (prédictions trop
 dispersées). Aucune modification du panel ni du modèle. Rapport :
 `reports/checkup_standard/benchmark_phenoage/BENCHMARK.md`.
+
+### Précision 5a — sources des constantes de PhenoAge (2026-11-09)
+
+- **Levine et al. 2018**, Aging 10(4):573-591, doi:10.18632/aging.101414 : tableau 1 = poids des
+  9 marqueurs et de l'âge (PAL arrondie à 0,0019). L'équation de conversion en années renvoie au
+  supplément 1 (PDF), **non lu** (non accessible lors de la vérification) : constantes non vérifiées
+  dans cette source.
+- **Liu et al., correction**, PLoS Med 2019;16(2):e1002760, doi:10.1371/journal.pmed.1002760
+  (PMC6388911) : équation complète, xb (intercept −19,907, PAL 0,00188, glucose 0,1953, RDW 0,3306),
+  M = 1 − exp(−1,51714·exp(xb)/0,0076927), PhenoAge = 141,50 + ln(−0,00553·ln(1 − M))/0,09165.
+  La version originale (PLoS Med 2018, doi:10.1371/journal.pmed.1002718) contenait des erreurs
+  (glucose 0,0195, RDW 0,3356, étape M absente). **Source retenue.**
+- **Paquet R BioAge** (Kwon et Belsky), `R/phenoage_calc.R`, branche `orig = TRUE` : coefficients
+  non arrondis, 141,50225, −0,0055305 et 0,090165 ; aucune référence citée dans le fichier.
+  Origine probable de la paire du prototype, non retenue.
