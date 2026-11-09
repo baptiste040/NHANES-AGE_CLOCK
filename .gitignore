@@ -3,3 +3,9 @@ data/
 __pycache__/
 *.ipynb_checkpoints
 .DS_Store
+
+# Analyses individuelles et comparaisons hors perimetre public
+private/
+
+# Artefacts binaires regeneres par le pipeline
+models/*.pkl
