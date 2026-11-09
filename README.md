@@ -47,6 +47,7 @@ python -m venv .venv && .venv/Scripts/pip install -r requirements.txt   # Window
 pip install -e .
 python -m aging_clock validate --panel checkup_standard   # télécharge NHANES au premier lancement
 pytest
+git config core.hooksPath .githooks   # hook pre-commit : bloque le commit si pytest echoue
 ```
 
 Les résultats sont écrits dans `reports/<panel>/` : `RESULTATS.md`, tables CSV et figures.

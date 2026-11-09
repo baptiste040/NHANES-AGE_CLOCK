@@ -190,3 +190,38 @@ variables facultatives (non utilisées par le modèle).
 +0,0017 ; statine +0,0000 ; deux traitements +0,0020 ; FC + deux traitements +0,0059.
 Même conclusion qu'avec le questionnaire : apport des traitements sous le seuil, statines nulles.
 Détail : `reports/selection/cardiovasculaire*/`.
+
+## Point 4 — gel du panel final et engagement avant le passage sur la validation
+
+### Panel final figé (2026-11-09)
+
+- Commit de référence : `d335c349b7992354de7077fd1f3e14eb423f8b67` (dernière modification
+  du panel : `c021053a9c81a51070e0714cc18e7ac8d5ebd1c4`).
+- `config/panels/checkup_standard.yaml` : blob git `54faf0858045b48c71efc5faa384b59460f9862f` ;
+  SHA-256 du fichier (copie de travail) `b01418dae864d6f6b86abf7ab660f1a39a5de77925e9d31884d029dc8c27dc86`
+  (reporté dans `reports/checkup_standard/meta.json` à l'exécution).
+- `config/study.yaml` : SHA-256 `2202ace1cae086d59c1ce4aef879df00130acf52ae012325e09e346255fb3510`.
+- `config/sources/nhanes.yaml` : SHA-256 `98eb5d24ac091f41d562ffb07127ccb1abbcea4888725c3dd20fc1ad4b7a0fe3`.
+
+Variables du modèle, par système (toutes ajustées sur l'âge et le sexe) :
+
+| Système | Variables (transformation) |
+|---|---|
+| Cardiovasculaire | PAS (spline 4), PAD (spline 4), cholestérol total (spline 4), HDL (log, spline 4), triglycérides (log), **fréquence cardiaque (spline 4)** |
+| Métabolique | glycémie (log), HbA1c, IMC (spline 4), tour de taille |
+| Rénal | créatinine (log, spline 4), **ACR urinaire (log, plancher 0,1)** |
+| Hépatique | ALAT (log, spline 4), ASAT (log), GGT (log), PAL (log), albumine |
+| Inflammatoire / hématologique | CRP (log, plancher 0,1), leucocytes (log), lymphocytes %, RDW, VGM, hémoglobine (spline 4), plaquettes (log, spline 4) |
+
+En gras : ajouts du jalon 2. Variables facultatives (collectées, non utilisées) : LDL, urée,
+traitement antihypertenseur, traitement hypolipémiant (et, pour NHANES seulement, les
+indicateurs du fichier des médicaments). Pénalisation : choisie par CV sur 1999-2006 à
+l'exécution (procédure inchangée depuis le jalon 1).
+
+### Engagement (écrit avant le passage)
+
+La cohorte de validation 2007-2010 est consultée **une seule fois** avec ce panel, par une
+exécution unique de `python -m aging_clock validate --panel checkup_standard`.
+**Aucune modification du panel, des transformations ou du modèle ne suivra d'après ces
+résultats.** Toute évolution ultérieure du panel exigera une nouvelle cohorte de
+validation (par exemple 2015-2018 ou une cohorte externe) et sera consignée ici.
