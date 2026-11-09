@@ -1,0 +1,69 @@
+# Panel « check-up de prevention standard ».
+#
+# Decrit ce que la cohorte cible mesure, independamment de la source.
+# Les unites sont les unites canoniques attendues en entree du score ;
+# alt_units donne le facteur multiplicatif vers l'unite canonique.
+#
+# Champs par variable :
+#   unit       unite canonique
+#   system     systeme physiologique (age biologique par systeme)
+#   in_model   false = variable collectee mais non utilisee par le modele
+#   range      plage plausible [min, max] ; hors plage -> valeur manquante
+#   floor      plancher applique avant transformation (ex. limite de detection)
+#   log        true = transformation logarithmique
+#   spline     nombre de noeuds d'une spline cubique restreinte (absent = lineaire)
+name: checkup_standard
+description: Bilan de prevention standard (biologie courante, tension, anthropometrie)
+version: 1
+include_sex: true
+
+systems:
+  cardiovasculaire: Pression arterielle et lipides
+  metabolique: Glycemie, HbA1c, adiposite
+  renal: Fonction renale
+  hepatique: Enzymes hepatiques et albumine
+  inflammatoire_hematologique: CRP et numeration sanguine
+
+variables:
+  # --- Cardiovasculaire
+  sbp:        {unit: mmHg, system: cardiovasculaire, range: [70, 260], spline: 4}
+  dbp:        {unit: mmHg, system: cardiovasculaire, range: [30, 150], spline: 4}
+  total_chol: {unit: mmol/L, system: cardiovasculaire, range: [1.5, 15], spline: 4,
+               alt_units: {mg/dL: 0.02586, g/L: 2.586}}
+  hdl:        {unit: mmol/L, system: cardiovasculaire, range: [0.2, 5], log: true, spline: 4,
+               alt_units: {mg/dL: 0.02586, g/L: 2.586}}
+  tg:         {unit: mmol/L, system: cardiovasculaire, range: [0.2, 30], log: true,
+               alt_units: {mg/dL: 0.01129, g/L: 1.129}}
+  ldl:        {unit: mmol/L, system: cardiovasculaire, range: [0.3, 12], in_model: false,
+               alt_units: {mg/dL: 0.02586, g/L: 2.586}}
+
+  # --- Metabolique
+  glucose:    {unit: mmol/L, system: metabolique, range: [2, 35], log: true,
+               alt_units: {mg/dL: 0.05551, g/L: 5.551}}
+  hba1c:      {unit: "%", system: metabolique, range: [3, 18],
+               alt_units: {mmol/mol: [0.09148, 2.152]}}   # [pente, ordonnee] IFCC -> NGSP
+  bmi:        {unit: kg/m2, system: metabolique, range: [13, 80], spline: 4}
+  waist:      {unit: cm, system: metabolique, range: [50, 200]}
+
+  # --- Renal
+  creatinine: {unit: umol/L, system: renal, range: [20, 1500], log: true, spline: 4,
+               alt_units: {mg/dL: 88.42, mg/L: 8.842}}
+
+  # --- Hepatique
+  alt:        {unit: U/L, system: hepatique, range: [3, 2000], log: true, spline: 4}
+  ast:        {unit: U/L, system: hepatique, range: [3, 2000], log: true}
+  ggt:        {unit: U/L, system: hepatique, range: [3, 3000], log: true}
+  alp:        {unit: U/L, system: hepatique, range: [10, 1500], log: true}
+  albumin:    {unit: g/L, system: hepatique, range: [15, 60], alt_units: {g/dL: 10}}
+
+  # --- Inflammatoire / hematologique
+  crp:        {unit: mg/L, system: inflammatoire_hematologique, range: [0, 300], log: true,
+               floor: 0.1,      # limite de detection du dosage standard ; harmonise CRP et hs-CRP
+               alt_units: {mg/dL: 10}}
+  wbc:        {unit: 10^9/L, system: inflammatoire_hematologique, range: [1, 50], log: true}
+  lymph_pct:  {unit: "%", system: inflammatoire_hematologique, range: [2, 90]}
+  rdw:        {unit: "%", system: inflammatoire_hematologique, range: [9, 30]}
+  mcv:        {unit: fL, system: inflammatoire_hematologique, range: [55, 130]}
+  hb:         {unit: g/dL, system: inflammatoire_hematologique, range: [6, 20], spline: 4,
+               alt_units: {g/L: 0.1, mmol/L: 1.611}}
+  platelets:  {unit: 10^9/L, system: inflammatoire_hematologique, range: [20, 1000], log: true, spline: 4}

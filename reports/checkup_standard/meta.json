@@ -1,0 +1,26 @@
+{
+  "panel": "checkup_standard",
+  "panel_sha256": "386534955bfe31e2593ef959a7593211e5599e29648674b03395d957ab94c86e",
+  "penalizer": 0.0,
+  "bootstrap": 1000,
+  "bootstrap_sensibilites": 300,
+  "seed": 42,
+  "cycles_developpement": [
+    1999,
+    2001,
+    2003,
+    2005
+  ],
+  "cycles_validation": [
+    2007,
+    2009
+  ],
+  "ages_bio_hors_grille_validation": {
+    "global": 14,
+    "cardiovasculaire": 0,
+    "metabolique": 0,
+    "renal": 0,
+    "hepatique": 0,
+    "inflammatoire_hematologique": 6
+  }
+}

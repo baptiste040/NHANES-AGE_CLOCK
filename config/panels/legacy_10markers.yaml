@@ -1,0 +1,20 @@
+# Panel historique (10 marqueurs, sans sexe), conserve uniquement pour
+# mesurer l'effet de la correction du protocole d'evaluation.
+name: legacy_10markers
+description: Marqueurs du premier prototype (base PhenoAge), sans splines ni sexe
+version: 1
+include_sex: false
+
+systems:
+  global: Tous les marqueurs
+
+variables:
+  albumin:    {unit: g/L, system: global, range: [15, 60]}
+  creatinine: {unit: umol/L, system: global, range: [20, 1500]}
+  glucose:    {unit: mmol/L, system: global, range: [2, 35]}
+  alp:        {unit: U/L, system: global, range: [10, 1500]}
+  lymph_pct:  {unit: "%", system: global, range: [2, 90]}
+  mcv:        {unit: fL, system: global, range: [55, 130]}
+  rdw:        {unit: "%", system: global, range: [9, 30]}
+  wbc:        {unit: 10^9/L, system: global, range: [1, 50]}
+  crp:        {unit: mg/L, system: global, range: [0, 300], log: true, floor: 0.001}

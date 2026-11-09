@@ -1,0 +1,63 @@
+# Correspondance NHANES -> variables canoniques des panels.
+#
+# Pour chaque variable : fichier logique, nom NHANES (eventuellement par cycle),
+# facteur de conversion vers l'unite canonique, et calibration lineaire
+# [pente, ordonnee] appliquee AVANT conversion quand NHANES la recommande.
+base_url: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/{year}/DataFiles/{file}.xpt
+mortality_url: https://ftp.cdc.gov/pub/Health_Statistics/NCHS/datalinkage/linked_mortality/NHANES_{year}_{year_end}_MORT_2019_PUBLIC.dat
+
+cycles:
+  1999: {DEMO: DEMO, BIOPRO: LAB18, CBC: LAB25, CRP: LAB11, GHB: LAB10, TCHOL: LAB13, HDL: LAB13, TRIGLY: LAB13AM, BPX: BPX, BMX: BMX, MCQ: MCQ, DIQ: DIQ}
+  2001: {DEMO: DEMO_B, BIOPRO: L40_B, CBC: L25_B, CRP: L11_B, GHB: L10_B, TCHOL: L13_B, HDL: L13_B, TRIGLY: L13AM_B, BPX: BPX_B, BMX: BMX_B, MCQ: MCQ_B, DIQ: DIQ_B}
+  2003: {DEMO: DEMO_C, BIOPRO: L40_C, CBC: L25_C, CRP: L11_C, GHB: L10_C, TCHOL: L13_C, HDL: L13_C, TRIGLY: L13AM_C, BPX: BPX_C, BMX: BMX_C, MCQ: MCQ_C, DIQ: DIQ_C}
+  2005: {DEMO: DEMO_D, BIOPRO: BIOPRO_D, CBC: CBC_D, CRP: CRP_D, GHB: GHB_D, TCHOL: TCHOL_D, HDL: HDL_D, TRIGLY: TRIGLY_D, BPX: BPX_D, BMX: BMX_D, MCQ: MCQ_D, DIQ: DIQ_D}
+  2007: {DEMO: DEMO_E, BIOPRO: BIOPRO_E, CBC: CBC_E, CRP: CRP_E, GHB: GHB_E, TCHOL: TCHOL_E, HDL: HDL_E, TRIGLY: TRIGLY_E, BPX: BPX_E, BMX: BMX_E, MCQ: MCQ_E, DIQ: DIQ_E}
+  2009: {DEMO: DEMO_F, BIOPRO: BIOPRO_F, CBC: CBC_F, CRP: CRP_F, GHB: GHB_F, TCHOL: TCHOL_F, HDL: HDL_F, TRIGLY: TRIGLY_F, BPX: BPX_F, BMX: BMX_F, MCQ: MCQ_F, DIQ: DIQ_F}
+  2015: {DEMO: DEMO_I, BIOPRO: BIOPRO_I, CBC: CBC_I, CRP: HSCRP_I, GHB: GHB_I, TCHOL: TCHOL_I, HDL: HDL_I, TRIGLY: TRIGLY_I, BPX: BPX_I, BMX: BMX_I, MCQ: MCQ_I, DIQ: DIQ_I}
+  2017: {DEMO: DEMO_J, BIOPRO: BIOPRO_J, CBC: CBC_J, CRP: HSCRP_J, GHB: GHB_J, TCHOL: TCHOL_J, HDL: HDL_J, TRIGLY: TRIGLY_J, BPX: BPX_J, BMX: BMX_J, MCQ: MCQ_J, DIQ: DIQ_J}
+
+demographics:
+  age:        {file: DEMO, var: RIDAGEYR}
+  sex:        {file: DEMO, var: RIAGENDR}     # 1 = homme, 2 = femme
+  race_eth:   {file: DEMO, var: RIDRETH1}
+  income_pir: {file: DEMO, var: INDFMPIR}
+  pregnant:   {file: DEMO, var: RIDEXPRG}     # 1 = enceinte
+  weight_mec: {file: DEMO, var: WTMEC2YR}
+
+variables:
+  sbp:        {file: BPX, var: [BPXSY1, BPXSY2, BPXSY3, BPXSY4], agg: mean}
+  dbp:        {file: BPX, var: [BPXDI1, BPXDI2, BPXDI3, BPXDI4], agg: mean, zero_is_missing: true}
+  total_chol: {file: TCHOL, var: LBXTC, factor: 0.02586}                 # mg/dL -> mmol/L
+  hdl:        {file: HDL, var: {1999: LBDHDL, 2001: LBDHDL, 2003: LBXHDD, default: LBDHDD}, factor: 0.02586}
+  tg:         {file: BIOPRO, var: LBXSTR, factor: 0.01129}               # non a jeun
+  ldl:        {file: TRIGLY, var: LBDLDL, factor: 0.02586}               # sous-echantillon a jeun
+  glucose:    {file: BIOPRO, var: LBXSGL, factor: 0.05551}               # non a jeun
+  hba1c:      {file: GHB, var: LBXGH}
+  bmi:        {file: BMX, var: BMXBMI}
+  waist:      {file: BMX, var: BMXWAIST}
+  creatinine: {file: BIOPRO, var: {2001: LBDSCR, default: LBXSCR}, factor: 88.42,
+               # Equations de recalibration recommandees par NHANES (mg/dL)
+               calibration: {1999: [1.013, 0.147], 2005: [0.978, -0.016]}}
+  alt:        {file: BIOPRO, var: LBXSATSI}
+  ast:        {file: BIOPRO, var: LBXSASSI}
+  ggt:        {file: BIOPRO, var: LBXSGTSI}
+  alp:        {file: BIOPRO, var: {2001: LBDSAPSI, default: LBXSAPSI}}
+  albumin:    {file: BIOPRO, var: LBXSAL, factor: 10}                    # g/dL -> g/L
+  crp:        {file: CRP, var: {2015: LBXHSCRP, 2017: LBXHSCRP, default: LBXCRP},
+               factor: {2015: 1, 2017: 1, default: 10}}                  # mg/dL -> mg/L
+  wbc:        {file: CBC, var: LBXWBCSI}
+  lymph_pct:  {file: CBC, var: LBXLYPCT}
+  rdw:        {file: CBC, var: LBXRDW}
+  mcv:        {file: CBC, var: LBXMCVSI}
+  hb:         {file: CBC, var: LBXHGB}
+  platelets:  {file: CBC, var: LBXPLTSI}
+
+# Antecedents declares (1 = oui), pour les analyses de sensibilite
+conditions:
+  chf:      {file: MCQ, var: MCQ160B}
+  chd:      {file: MCQ, var: MCQ160C}
+  angina:   {file: MCQ, var: MCQ160D}
+  mi:       {file: MCQ, var: MCQ160E}
+  stroke:   {file: MCQ, var: MCQ160F}
+  cancer:   {file: MCQ, var: MCQ220}
+  diabetes: {file: DIQ, var: DIQ010}

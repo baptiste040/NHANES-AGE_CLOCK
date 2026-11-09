@@ -1,0 +1,41 @@
+# Parametres de l'etude : decoupage, horizons, reproductibilite.
+paths:
+  raw: data/raw
+  processed: data/processed
+  reports: reports
+
+cycles:
+  development: [1999, 2001, 2003, 2005]   # entrainement uniquement
+  validation: [2007, 2009]                # validation temporelle, jamais vue a l'entrainement
+  secondary: [2015, 2017]                 # hs-CRP, suivi court (jalon 2)
+
+population:
+  # L'age NHANES est plafonne a 85 ans (1999-2006) puis 80 ans (2007+) :
+  # on se restreint a 20-79 ans pour que l'age soit comparable entre cycles.
+  age_min: 20
+  age_max: 79
+  exclude_pregnant: true
+
+model:
+  horizon_months: 120          # risque a 10 ans -> age biologique
+  # Ridge sur les marqueurs (jamais sur l'age ni le sexe), choisi par validation
+  # croisee « un cycle de developpement retire » ; la validation n'intervient pas.
+  penalizer: cv
+  penalizer_grid: [0.0, 0.003, 0.01, 0.03]
+  winsor_quantiles: [0.005, 0.995]   # bornes apprises sur le developpement, appliquees partout
+  bioage_grid: [10, 120, 0.1]  # [min, max, pas] de la courbe de reference
+
+validation:
+  bootstrap: 1000
+  bootstrap_sensitivity: 300
+  seed: 42
+  calibration_groups: 10
+
+sensitivity:
+  early_death_months: 24
+  # Codes UCOD_LEADING des Linked Mortality Files (NCHS)
+  cause_groups:
+    cardiovasculaire: [1, 5]     # cardiopathies, maladies cerebrovasculaires
+    cancer: [2]
+    autre: [3, 4, 6, 7, 8, 9, 10]
+  prevalent_conditions: [chf, chd, angina, mi, stroke, cancer, diabetes]
