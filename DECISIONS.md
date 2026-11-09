@@ -425,3 +425,59 @@ apprises, survie de base à 12/24/36/60/120 mois, méthodes de dosage de référ
 cycles 1999-2006) et avertissements. Module `aging_clock.score` (NumPy + pandas). Test de
 reproductibilité : le calcul depuis le JSON reproduit le pipeline sur la validation 2007-2010
 (écart < 10⁻⁸ an sur tous les âges biologiques). Aucune modification du modèle.
+
+## Piste de recherche — précision individuelle de l'âge biologique (protocole écrit avant exécution, 2026-11-09)
+
+**Questions.** (1) Marge d'erreur de l'âge biologique d'une personne due à la variabilité
+biologique intra-individuelle et à l'erreur analytique ; (2) écart minimal entre deux mesures
+successives traduisant un vrai changement.
+
+**Cadre.** Analyse descriptive : le modèle reste figé, aucune modification n'en découle. Calculs
+avec le modèle exporté `models/checkup_standard_v1.json` et le module autonome (`aging_clock.score`,
+NumPy + pandas), pas le pipeline d'entraînement. Population : validation 2007-2010 (n = 9 247).
+
+**Variabilité.** Fichier `config/variability.yaml` (syntaxe JSON, valide en YAML ; **hors dépôt
+public** à cause de la licence de la base EFLM ; gabarit public `config/variability.example.yaml`).
+SHA-256 du fichier utilisé : `15483e3fb89eb1aa06640f5cf47a3b9fc184330d94df4d8773f34c0b40bfce83`.
+- Valeur centrale : Lacher et al., NCHS 2010 (NHANES 1999-2002, mêmes laboratoires que le
+  développement, prélèvements non à jeun, ~19 jours, domaine public) pour albumine, créatinine,
+  glucose, TG, cholestérol total, PAL, ALAT, ASAT, GGT (CV_A = imprécision NHANES publiée).
+- Base EFLM (méta-analyses, IC 95 %) pour HDL, CRP, HbA1c (NGSP), leucocytes, VGM, hémoglobine,
+  plaquettes ; approximations signalées : lymphocytes % (CV du **nombre**), RDW % (CV du **RDW-SD**) ;
+  CV_A = 0,5 × CV_I (spécification souhaitable).
+- Valeurs de travail signalées : ACR 40 % [25 ; 60] (aucune étude éligible à la méta-analyse EFLM) ;
+  fréquence cardiaque 8 % [5 ; 11] ; IMC 1,5 % [1 ; 3] ; tour de taille 2 % [1 ; 3] (non sourcées).
+- Tension : CV entre visites au cabinet 8,6 % (Br J Gen Pract 2010) ; borne basse = CV intra-visite
+  mesuré dans NHANES 1999-2006 (développement) pour la moyenne de 3 mesures : PAS 2,0 %, PAD 3,9 %
+  (ET intra-visite d'une mesure : PAS 4,5 mmHg, PAD 4,2 mmHg).
+- Jeûne : la valeur centrale (Lacher, non à jeun) inclut la variabilité liée au repas, cohérente
+  avec un modèle entraîné sur des valeurs non à jeun. Scénario « toujours à jeun » : CV_I EFLM à
+  jeun (glucose 4,9 %, TG 19,8 %). Le décalage moyen à jeun / non à jeun (TG jusqu'à +0,3 mmol/L,
+  Langsted et al. 2008) est un biais, non simulé, documenté.
+
+**Méthode.**
+1. Monte-Carlo, graine 2026 : pour chaque personne, 1 000 jeux de biomarqueurs « remesurés » ;
+   bruit multiplicatif log-normal de médiane 1, σ = racine(ln(1 + CV_total²)),
+   CV_total = racine(CV_I² + CV_A²) ; tirages indépendants entre marqueurs. **Hypothèse :** on
+   simule autour de la valeur observée, qui contient déjà du bruit ; la dispersion obtenue est celle
+   d'une remesure, pas l'écart à une « vraie » valeur. Âge et sexe non bruités. Les valeurs tirées
+   passent par les mêmes transformations que le modèle (plancher, log, bornes) ; pas de contrôle de
+   plage (fréquence des bornages rapportée).
+2. Par personne : écart-type et intervalle à 95 % (percentiles 2,5-97,5) de l'âge biologique global
+   et de chaque âge par système ; distributions rapportées (médiane, IQR, 90e centile).
+3. Valeur de changement significatif : tirages appariés en 500 paires de remesures indépendantes ;
+   seuil = 95e centile de |âge bio 1 − âge bio 2| par personne ; médiane et IQR sur les personnes,
+   global et par système ; comparaison avec 1,96 × racine(2) × écart-type.
+4. Fiabilité : CCI ≈ 1 − (variance moyenne due au bruit) / (variance observée de l'écart entre
+   personnes) ; approximation (la variance observée contient déjà du bruit).
+5. Stabilité du classement : proportion de paires de remesures où le signe de l'écart change
+   (plus jeune / plus vieux), globalement et par tranches d'écart observé (|écart| < 1, 1-3, 3-5, ≥ 5 ans).
+6. Contribution de chaque marqueur : simulation en ne bruitant qu'un marqueur à la fois
+   (200 tirages, mêmes personnes) ; part = variance due au marqueur / somme des variances.
+7. Scénarios : (a) moyenne de deux prises de sang (CV des marqueurs sanguins et urinaires / racine(2) ;
+   mesures physiques inchangées) ; (b) prise de sang toujours à jeun ; (c) (a) + (b).
+8. Sensibilité : tout aux bornes basses, puis tout aux bornes hautes (CV_A inchangés).
+
+**Livrables.** `reports/checkup_standard/incertitude/INCERTITUDE.md` ; option
+`python -m aging_clock score --input fichier.csv --uncertainty` (intervalle à 95 % par personne,
+NumPy + pandas) ; tests : reproductibilité à graine fixe, bruit nul → intervalle nul.

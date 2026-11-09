@@ -9,3 +9,6 @@ private/
 
 # Artefacts binaires regeneres par le pipeline
 models/*.pkl
+
+# Variabilite biologique (contient des valeurs EFLM : licence, hors depot public)
+config/variability.yaml

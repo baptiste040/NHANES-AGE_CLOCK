@@ -1,0 +1,188 @@
+{
+ "_description": "GABARIT PUBLIC. Copier en config/variability.yaml (non versionne) et renseigner les valeurs null depuis la base EFLM Biological Variation (biologicalvariation.eu), dont la licence interdit la redistribution dans un logiciel sans autorisation.",
+ "variables": {
+  "albumin": {
+   "cv_i": 3.5,
+   "cv_i_low": null,
+   "cv_i_high": 3.5,
+   "cv_a": 1.3,
+   "source": "Lacher DA, Hughes JP, Carroll MD. National Health Statistics Reports no 21, NCHS, 2010 (domaine public) ; CV_w net de CV_a, NHANES 1999-2002, ~19 jours ; borne basse : EFLM (valeur a renseigner)"
+  },
+  "creatinine": {
+   "cv_i": 6.7,
+   "cv_i_low": null,
+   "cv_i_high": 6.7,
+   "cv_a": 4.6,
+   "source": "Lacher DA, Hughes JP, Carroll MD. National Health Statistics Reports no 21, NCHS, 2010 (domaine public) ; CV_w net de CV_a, NHANES 1999-2002, ~19 jours ; borne basse : EFLM (valeur a renseigner)"
+  },
+  "glucose": {
+   "cv_i": 7.5,
+   "cv_i_low": null,
+   "cv_i_high": 7.5,
+   "cv_a": 1.5,
+   "source": "Lacher DA, Hughes JP, Carroll MD. National Health Statistics Reports no 21, NCHS, 2010 (domaine public) ; CV_w net de CV_a, NHANES 1999-2002, ~19 jours (non a jeun) ; borne basse : EFLM (valeur a renseigner) (a jeun)"
+  },
+  "tg": {
+   "cv_i": 27.8,
+   "cv_i_low": null,
+   "cv_i_high": 27.8,
+   "cv_a": 1.9,
+   "source": "Lacher DA, Hughes JP, Carroll MD. National Health Statistics Reports no 21, NCHS, 2010 (domaine public) ; CV_w net de CV_a, NHANES 1999-2002, ~19 jours (non a jeun) ; borne basse : EFLM (valeur a renseigner) (a jeun)"
+  },
+  "total_chol": {
+   "cv_i": 6.9,
+   "cv_i_low": null,
+   "cv_i_high": 6.9,
+   "cv_a": 1.5,
+   "source": "Lacher DA, Hughes JP, Carroll MD. National Health Statistics Reports no 21, NCHS, 2010 (domaine public) ; CV_w net de CV_a, NHANES 1999-2002, ~19 jours ; borne basse : EFLM (valeur a renseigner)"
+  },
+  "alp": {
+   "cv_i": 8.1,
+   "cv_i_low": 5.3,
+   "cv_i_high": 8.1,
+   "cv_a": 2.1,
+   "source": "Lacher DA, Hughes JP, Carroll MD. National Health Statistics Reports no 21, NCHS, 2010 (domaine public) ; CV_w net de CV_a, NHANES 1999-2002, ~19 jours ; borne basse : Carobene A et al. Clin Chem 2017, doi:10.1373/clinchem.2016.269811"
+  },
+  "alt": {
+   "cv_i": 20.3,
+   "cv_i_low": null,
+   "cv_i_high": 20.3,
+   "cv_a": 4.0,
+   "source": "Lacher DA, Hughes JP, Carroll MD. National Health Statistics Reports no 21, NCHS, 2010 (domaine public) ; CV_w net de CV_a, NHANES 1999-2002, ~19 jours ; borne basse : EFLM (valeur a renseigner)"
+  },
+  "ast": {
+   "cv_i": 15.5,
+   "cv_i_low": null,
+   "cv_i_high": 15.5,
+   "cv_a": 3.1,
+   "source": "Lacher DA, Hughes JP, Carroll MD. National Health Statistics Reports no 21, NCHS, 2010 (domaine public) ; CV_w net de CV_a, NHANES 1999-2002, ~19 jours ; borne basse : EFLM (valeur a renseigner)"
+  },
+  "ggt": {
+   "cv_i": 16.2,
+   "cv_i_low": null,
+   "cv_i_high": 16.2,
+   "cv_a": 3.0,
+   "source": "Lacher DA, Hughes JP, Carroll MD. National Health Statistics Reports no 21, NCHS, 2010 (domaine public) ; CV_w net de CV_a, NHANES 1999-2002, ~19 jours ; borne basse : EFLM (valeur a renseigner)"
+  },
+  "hdl": {
+   "cv_i": null,
+   "cv_i_low": null,
+   "cv_i_high": null,
+   "cv_a": null,
+   "source": "EFLM Biological Variation Database (a renseigner)",
+   "note": "CV_A = 0,5 x CV_I (specification analytique souhaitable), faute de CV_A mesure"
+  },
+  "crp": {
+   "cv_i": null,
+   "cv_i_low": null,
+   "cv_i_high": null,
+   "cv_a": null,
+   "source": "EFLM Biological Variation Database (a renseigner)",
+   "note": "CV_A = 0,5 x CV_I (specification analytique souhaitable), faute de CV_A mesure"
+  },
+  "hba1c": {
+   "cv_i": null,
+   "cv_i_low": null,
+   "cv_i_high": null,
+   "cv_a": null,
+   "source": "EFLM Biological Variation Database (a renseigner)",
+   "note": "CV_A = 0,5 x CV_I (specification analytique souhaitable), faute de CV_A mesure"
+  },
+  "wbc": {
+   "cv_i": null,
+   "cv_i_low": null,
+   "cv_i_high": null,
+   "cv_a": null,
+   "source": "EFLM Biological Variation Database (a renseigner)",
+   "note": "CV_A = 0,5 x CV_I (specification analytique souhaitable), faute de CV_A mesure"
+  },
+  "lymph_pct": {
+   "cv_i": null,
+   "cv_i_low": null,
+   "cv_i_high": null,
+   "cv_a": null,
+   "source": "EFLM Biological Variation Database (a renseigner)",
+   "note": "CV_A = 0,5 x CV_I (specification analytique souhaitable), faute de CV_A mesure"
+  },
+  "rdw": {
+   "cv_i": null,
+   "cv_i_low": null,
+   "cv_i_high": null,
+   "cv_a": null,
+   "source": "EFLM Biological Variation Database (a renseigner)",
+   "note": "CV_A = 0,5 x CV_I (specification analytique souhaitable), faute de CV_A mesure"
+  },
+  "mcv": {
+   "cv_i": null,
+   "cv_i_low": null,
+   "cv_i_high": null,
+   "cv_a": null,
+   "source": "EFLM Biological Variation Database (a renseigner)",
+   "note": "CV_A = 0,5 x CV_I (specification analytique souhaitable), faute de CV_A mesure"
+  },
+  "hb": {
+   "cv_i": null,
+   "cv_i_low": null,
+   "cv_i_high": null,
+   "cv_a": null,
+   "source": "EFLM Biological Variation Database (a renseigner)",
+   "note": "CV_A = 0,5 x CV_I (specification analytique souhaitable), faute de CV_A mesure"
+  },
+  "platelets": {
+   "cv_i": null,
+   "cv_i_low": null,
+   "cv_i_high": null,
+   "cv_a": null,
+   "source": "EFLM Biological Variation Database (a renseigner)",
+   "note": "CV_A = 0,5 x CV_I (specification analytique souhaitable), faute de CV_A mesure"
+  },
+  "acr": {
+   "cv_i": 40.0,
+   "cv_i_low": 25.0,
+   "cv_i_high": 60.0,
+   "cv_a": 0.0,
+   "source": "VALEUR DE TRAVAIL : aucune etude eligible a la meta-analyse (Aslan B et al. Clin Chim Acta 2024, doi:10.1016/j.cca.2024.120032)",
+   "note": "CV_A inclus dans CV_I"
+  },
+  "sbp": {
+   "cv_i": 8.6,
+   "cv_i_low": 2.0,
+   "cv_i_high": 10.0,
+   "cv_a": 0.0,
+   "source": "CV au cabinet entre visites (Br J Gen Pract 2010;60:675) ; borne basse : CV intra-visite NHANES de la moyenne de 3 mesures (3,54/racine(3))",
+   "note": "CV_A inclus"
+  },
+  "dbp": {
+   "cv_i": 8.6,
+   "cv_i_low": 3.9,
+   "cv_i_high": 10.0,
+   "cv_a": 0.0,
+   "source": "CV au cabinet entre visites (Br J Gen Pract 2010;60:675) ; borne basse : CV intra-visite NHANES de la moyenne de 3 mesures (6,78/racine(3))",
+   "note": "CV_A inclus"
+  },
+  "heart_rate": {
+   "cv_i": 8.0,
+   "cv_i_low": 5.0,
+   "cv_i_high": 11.0,
+   "cv_a": 0.0,
+   "source": "VALEUR DE TRAVAIL : ET jour a jour 3-5 bpm (PLoS One 2020, doi:10.1371/journal.pone.0227709, mesures par objets connectes) ; pouls clinique probablement plus variable",
+   "note": "CV_A inclus"
+  },
+  "bmi": {
+   "cv_i": 1.5,
+   "cv_i_low": 1.0,
+   "cv_i_high": 3.0,
+   "cv_a": 0.0,
+   "source": "VALEUR DE TRAVAIL NON SOURCEE",
+   "note": "CV_A inclus"
+  },
+  "waist": {
+   "cv_i": 2.0,
+   "cv_i_low": 1.0,
+   "cv_i_high": 3.0,
+   "cv_a": 0.0,
+   "source": "VALEUR DE TRAVAIL NON SOURCEE",
+   "note": "CV_A inclus"
+  }
+ }
+}
