@@ -27,6 +27,10 @@ sur le développement. La valeur retenue est celle de la CV.
 
 ## Jalon 2 (validation vue — décisions sur CV 1999-2006 uniquement)
 
+| Date | Décision | Pourquoi | Données |
+|---|---|---|---|
+| 2026-11-09 | Système rénal : + ACR urinaire + urée | Option (iii) passe le critère pré-enregistré (voir 2.1) | CV 1999-2006 |
+
 ### Pré-enregistrement 2.1 — système rénal (écrit avant le test, 2026-11-09)
 
 **Candidats** (testés comme ajouts au système rénal, pas comme fusion) :
@@ -55,5 +59,24 @@ variables qui passent individuellement.
 développement actuelle, c'est signalé avant la décision (perte d'effectif, biais de
 sélection possible), et la décision est soumise à validation humaine.
 
-| Date | Décision | Pourquoi | Données |
-|---|---|---|---|
+### Résultat 2.1 — système rénal (2026-11-09)
+
+Données : cycles 1999-2006 uniquement (la validation n'a pas été chargée).
+Manquants dans la cohorte de développement (n = 13 986) : ACR 0,7 % (103), urée 0 % —
+sous le garde-fou de 15 %. Cohorte commune aux options : n = 13 883.
+
+| Option | Gain C rénal moyen (a ≥ 0,003) | Plis positifs (b ≥ 3/4) | Gain C global moyen (c ≥ 0) | Retenue |
+|---|---|---|---|---|
+| + ACR | +0,0080 | 4/4 | +0,0018 | oui |
+| + urée | +0,0007 | 4/4 | +0,0000 | non (a) |
+| + ACR + urée | +0,0087 | 4/4 | +0,0019 | oui |
+
+Détail par pli : `reports/selection/renal/`.
+
+**Décision (application stricte de la règle pré-enregistrée)** : l'option (iii) passe,
+donc ACR **et** urée entrent dans le système rénal.
+
+Remarque : la règle « (iii) si elle passe » laisse entrer l'urée alors que son apport
+propre (+0,0007 seule ; +0,0007 en plus de l'ACR) est sous le seuil (a). Défaut de
+formulation de la règle, identifié après le test ; toute modification serait une
+déviation à documenter ici.

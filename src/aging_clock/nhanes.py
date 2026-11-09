@@ -57,6 +57,9 @@ def _extract(frames: dict, spec: dict, year: int) -> pd.Series:
         values = block.mean(axis=1) if spec.get("agg") == "mean" else block.iloc[:, 0]
     else:
         values = df[var].astype(float)
+    if "ratio_to" in spec:
+        den = df[_per_cycle(spec["ratio_to"], year)].astype(float)
+        values = values / den.where(den > 0)
 
     calib = (spec.get("calibration") or {}).get(year)
     if calib is not None:
@@ -89,12 +92,18 @@ def harmonize_cycle(year: int, source: dict, raw_dir: Path) -> pd.DataFrame:
     return out.reset_index()
 
 
+def source_columns() -> list[str]:
+    source = load_source("nhanes")
+    return [c for block in ("demographics", "variables", "conditions") for c in source[block]]
+
+
 def build_harmonized(years: list[int], raw_dir: Path | None = None,
                      cache: Path | None = None) -> pd.DataFrame:
     raw_dir = raw_dir or ROOT / "data" / "raw"
     if cache is not None and cache.exists():
         df = pd.read_parquet(cache) if cache.suffix == ".parquet" else pd.read_csv(cache)
-        if set(years) <= set(df["cycle"].unique()):
+        expected = set(source_columns())
+        if set(years) <= set(df["cycle"].unique()) and expected <= set(df.columns):
             return df[df["cycle"].isin(years)].reset_index(drop=True)
 
     source = load_source("nhanes")

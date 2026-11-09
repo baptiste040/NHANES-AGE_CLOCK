@@ -48,6 +48,11 @@ variables:
   # --- Renal
   creatinine: {unit: umol/L, system: renal, range: [20, 1500], log: true, spline: 4,
                alt_units: {mg/dL: 88.42, mg/L: 8.842}}
+  # Ajoutes au jalon 2 par CV sur le developpement (voir DECISIONS.md, 2.1)
+  acr:        {unit: mg/mmol, system: renal, range: [0, 500], floor: 0.1, log: true,
+               alt_units: {mg/g: 0.1131}}
+  urea:       {unit: mmol/L, system: renal, range: [0.5, 60], log: true,
+               alt_units: {mg/dL BUN: 0.357, g/L: 16.65}}
 
   # --- Hepatique
   alt:        {unit: U/L, system: hepatique, range: [3, 2000], log: true, spline: 4}

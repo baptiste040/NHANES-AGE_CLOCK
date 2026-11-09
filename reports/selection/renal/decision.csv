@@ -1,0 +1,4 @@
+option,gain_systeme_moyen,plis_positifs,gain_global_moyen,critere_a,critere_b,critere_c,retenu
+acr,0.008011616737027827,4,0.0018200387216427139,True,True,True,True
+uree,0.0006651442638865024,4,1.637928422096313e-05,False,True,True,False
+acr_uree,0.00870969265356622,4,0.0018559558625030337,True,True,True,True
