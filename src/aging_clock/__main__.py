@@ -1,7 +1,7 @@
 """Point d'entree : python -m aging_clock validate --panel checkup_standard"""
 import argparse
 
-from . import benchmark, report, validate
+from . import benchmark, fairness, report, validate
 
 
 def main():
@@ -13,6 +13,8 @@ def main():
                    help="nombre de repliques (defaut : config/study.yaml)")
     b = sub.add_parser("benchmark", help="benchmark PhenoAge sur la validation")
     b.add_argument("--bootstrap", type=int, default=None)
+    f = sub.add_parser("equite", help="audit d'equite sur la validation")
+    f.add_argument("--bootstrap", type=int, default=None)
     args = parser.parse_args()
 
     if args.command == "validate":
@@ -22,6 +24,10 @@ def main():
     elif args.command == "benchmark":
         res = benchmark.run(n_boot=args.bootstrap)
         benchmark.write_report(res["dossier"])
+    elif args.command == "equite":
+        res = fairness.run(n_boot=args.bootstrap)
+        fairness.write_report(res["dossier"])
+        print(f"Audit d'equite : {res['dossier']}")
         print(f"Benchmark : {res['dossier']}")
 
 

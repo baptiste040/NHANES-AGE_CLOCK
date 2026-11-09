@@ -333,3 +333,15 @@ le groupe ; rapport observé / prédit à 10 ans (IC 95 % du Kaplan-Meier) ; pen
 - *Effectif insuffisant* : < 50 décès dans le groupe → résultats rapportés, pas de conclusion.
 - Les C entre tranches d'âge ne sont pas comparés entre eux (un intervalle d'âge étroit réduit
   mécaniquement le C) ; seul le gain de C vs âge + sexe dans le groupe est interprété.
+
+### Résultat 5b — audit d'équité (2026-11-09)
+
+Verdicts de la règle pré-enregistrée (validation, n = 9 247) :
+- **Défaut de calibration** : revenu ≥ 3,5 (O/P 0,62 [0,53 ; 0,73]) ; diplôme universitaire (0,69
+  [0,58 ; 0,84]) ; mexicains-américains (0,65 [0,53 ; 0,80]) ; 40-59 ans (pente 1,21 [1,07 ; 1,34]).
+  Aucun défaut de discrimination (gain de C > 0 dans tous les groupes à ≥ 50 décès).
+- **Différence de risque réelle, bien calibrée** : revenu < 1,3 (écart +0,7 an), noirs non
+  hispaniques, niveau d'études < secondaire et diplôme du secondaire, sexe, autres hispaniques,
+  60-79 ans.
+- **Effectif insuffisant** : 20-39 ans (41 décès), autre / multiethnique (30 décès).
+Aucune modification du modèle (gelé). Interprétation : `reports/checkup_standard/equite/INTERPRETATION.md`.

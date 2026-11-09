@@ -1,0 +1,13 @@
+{
+  "n_validation": 9247,
+  "ecart_moyen_validation": -1.4400561889022654,
+  "manquants_par_axe": {
+    "Sexe": 0,
+    "Groupe ethnique": 0,
+    "Âge": 0,
+    "Revenu / seuil de pauvreté": 788,
+    "Niveau d'études": 9
+  },
+  "bootstrap": 1000,
+  "seed": 42
+}

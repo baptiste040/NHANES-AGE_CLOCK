@@ -101,3 +101,32 @@ def forest(table: pd.DataFrame, label_col: str, path: Path, title: str, xlabel: 
     fig.tight_layout()
     fig.savefig(path, dpi=160)
     plt.close(fig)
+
+
+def group_intervals(table: pd.DataFrame, est: str, lo: str, hi: str, ref: float,
+                    band: tuple[float, float] | None, title: str, path: Path):
+    """Point + IC par sous-groupe, un panneau par axe (petits multiples, une seule serie)."""
+    axes_names = list(dict.fromkeys(table["axe"]))
+    heights = [max(2, (table["axe"] == a).sum()) for a in axes_names]
+    fig, axs = plt.subplots(len(axes_names), 1, figsize=(7.2, 0.42 * sum(heights) + 1.2),
+                            gridspec_kw={"height_ratios": heights}, sharex=True, squeeze=False)
+    xmin = min(table[lo].min(), band[0] if band else ref) * 0.97
+    xmax = max(table[hi].max(), band[1] if band else ref) * 1.03 if table[hi].max() > 0 else 0.5
+    for ax, a in zip(axs[:, 0], axes_names):
+        t = table[table["axe"] == a].iloc[::-1].reset_index(drop=True)
+        y = np.arange(len(t))
+        if band:
+            ax.axvspan(*band, color=GRID, alpha=0.6, lw=0)
+        ax.axvline(ref, color=INK_2, lw=1, ls="--")
+        ax.hlines(y, t[lo], t[hi], color=SERIES, lw=2)
+        ax.plot(t[est], y, "o", ms=6, color=SERIES, mec=SURFACE, mew=1.5)
+        labels = [f"{g} (n={n}, {d} décès)" for g, n, d in zip(t["groupe"], t["n"], t["deces"])]
+        ax.set_yticks(y, labels, fontsize=8)
+        ax.set_ylim(-0.6, len(t) - 0.4)
+        ax.set_title(a, loc="left", fontsize=9)
+        ax.grid(axis="y", visible=False)
+        ax.set_xlim(xmin, xmax)
+    fig.suptitle(title, x=0.01, ha="left", fontsize=10, fontweight="bold")
+    fig.tight_layout()
+    fig.savefig(path, dpi=160)
+    plt.close(fig)
