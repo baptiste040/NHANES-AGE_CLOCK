@@ -30,6 +30,8 @@ sur le développement. La valeur retenue est celle de la CV.
 | Date | Décision | Pourquoi | Données |
 |---|---|---|---|
 | 2026-11-09 | Système rénal : + ACR urinaire + urée | Option (iii) passe le critère pré-enregistré (voir 2.1) | CV 1999-2006 |
+| 2026-11-09 | **Déviation** : urée retirée, système rénal = créatinine + ACR | Apport marginal de l'urée sous le seuil (voir 2.1, déviation) | CV 1999-2006 |
+| 2026-11-09 | Critère de sélection corrigé pour la suite (voir « Critère corrigé ») | Défaut de formulation révélé en 2.1 | — |
 
 ### Pré-enregistrement 2.1 — système rénal (écrit avant le test, 2026-11-09)
 
@@ -80,3 +82,29 @@ Remarque : la règle « (iii) si elle passe » laisse entrer l'urée alors que s
 propre (+0,0007 seule ; +0,0007 en plus de l'ACR) est sous le seuil (a). Défaut de
 formulation de la règle, identifié après le test ; toute modification serait une
 déviation à documenter ici.
+
+### Déviation documentée 2.1 — retrait de l'urée (2026-11-09)
+
+- **Ce que disait la règle** : « si plusieurs options passent, on retient l'option (iii)
+  si elle passe ». L'option (iii) ACR + urée passait les trois conditions
+  (+0,0087 ; 4/4 ; +0,0019), d'où l'entrée de l'urée.
+- **Déviation** : l'urée est retirée. Son gain marginal en plus de l'ACR est de +0,0007
+  (0,0087 − 0,0080), et de +0,0007 seule : sous le seuil (a) de 0,003. Elle n'apporte
+  rien au système et ajouterait une variable à collecter.
+- **Données** : la décision repose uniquement sur la validation croisée 1999-2006 ; la
+  cohorte 2007-2010 n'a pas été consultée.
+- Décidé par le responsable du projet après lecture des résultats de CV.
+
+### Critère corrigé (applicable à partir du point 3, écrit avant tout test)
+
+Une option (variable ou groupe) est retenue si les trois conditions a, b, c sont réunies
+(inchangées : gain de C moyen du système ≥ 0,003 ; gain > 0 sur au moins 3 des 4 cycles
+retirés ; gain de C moyen du modèle global ≥ 0).
+
+**Correction** : au sein d'un groupe retenu, une variable n'est conservée que si :
+- elle passe le critère seule ; **ou**
+- son apport marginal dans le groupe (gain de C moyen du système du groupe complet moins
+  celui du groupe sans elle) atteint 0,003.
+
+Les variables d'un groupe qui ne remplissent aucune des deux conditions sont retirées.
+Garde-fou des 15 % de manquants inchangé.
