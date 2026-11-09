@@ -23,3 +23,18 @@ population de référence (même sexe) égale le risque prédit pour cette perso
   maladie sous-jacente existe, pas parce que le traitement est nocif.
 - Les âges par système décomposent le risque par groupe de marqueurs ; ils ne sont pas
   des diagnostics d'organe.
+
+## Limites
+
+- **Surestimation du risque absolu des groupes favorisés.** En validation (2007-2010), le modèle
+  surestime la mortalité à 10 ans des personnes au revenu élevé (rapport observé/prédit 0,62
+  pour un revenu ≥ 3,5 fois le seuil de pauvreté) et des diplômés de l'université (0,69), alors
+  que leur classement reste bon (gain de C positif, pente de calibration proche de 1). Les
+  biomarqueurs ne captent qu'une partie de l'avantage social.
+- **Conséquence pour les cohortes de check-up de prévention.** Ces cohortes étant souvent plus
+  favorisées que la population générale, l'âge biologique y sera probablement **surestimé sans
+  recalibrage local** ; le classement relatif des personnes devrait rester valide.
+- **Mexicains-Américains** : risque surestimé (observé/prédit 0,65). Les explications avancées
+  (« paradoxe hispanique » de mortalité, décès non retrouvés après un retour à l'étranger) sont
+  des **hypothèses non testées**.
+- Détails : `reports/checkup_standard/equite/` (EQUITE.md, INTERPRETATION.md).
