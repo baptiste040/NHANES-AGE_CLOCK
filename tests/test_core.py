@@ -23,7 +23,12 @@ def test_checkup_panel_systems():
     assert set(panel.active_systems) == {
         "cardiovasculaire", "metabolique", "renal", "hepatique", "inflammatoire_hematologique"}
     assert "ldl" not in panel.model_variables          # LDL facultatif
-    assert set(panel.system_variables("cardiovasculaire")) == {"sbp", "dbp", "total_chol", "hdl", "tg"}
+    # Composition figee par les decisions du jalon 2 (DECISIONS.md, points 2 et 3)
+    assert set(panel.system_variables("cardiovasculaire")) == {
+        "sbp", "dbp", "total_chol", "hdl", "tg", "heart_rate"}
+    assert set(panel.system_variables("renal")) == {"creatinine", "acr"}
+    for optional in ("urea", "htn_treated", "lipid_treated", "rx_antihypertensive", "rx_statin"):
+        assert optional not in panel.model_variables
 
 
 def test_panel_rejects_unknown_key(tmp_path):
