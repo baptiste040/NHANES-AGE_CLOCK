@@ -95,6 +95,7 @@ inchangés.
   rénal).
 
 **Lecture.** Mêmes conclusions qu'avec le modèle non contraint. La remesure sélective fabrique un peu
-plus d'amélioration apparente avec la contrainte (global −0,48 an en contrôle, contre −0,42). C'est
-attendu : une valeur anormale qui revient vers la normale ne peut plus que faire baisser le score,
-alors que sans contrainte elle pouvait aussi le faire monter (ALAT, VGM, leucocytes).
+plus d'amélioration apparente avec la contrainte (global −0,48 an en contrôle, contre −0,42).
+Explication possible (interprétation, non testée) : avec la contrainte, une valeur anormale qui
+revient vers la normale ne peut plus que faire baisser le score. Sans contrainte, elle pouvait aussi
+le faire monter (ALAT, VGM, leucocytes).

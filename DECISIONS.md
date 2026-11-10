@@ -1749,3 +1749,22 @@ effets.
 - Global : « marqueurs communs » retenue (P95 5,52), « dédié » également acceptable.
 - La comparaison mixte (bilan complet contre bilan sans urines, sans recalcul) produit les plus
   grands faux changements.
+
+### Résultat — Q3 allégée (2026-11-10)
+
+Exécution du protocole (`ca1c2af`), sans écart. Paires NHANES III n = 781 ; validation n = 9 276.
+- **Global.** Acceptable : « marqueurs communs » et « modèle dédié ». Avec « marqueurs communs » :
+  P95 5,60, soit 0,80 fois le panel complet ; faux changement −0,07 [−0,20 ; +0,07] ; ΔC −0,0039.
+  Avec « modèle dédié » : P95 6,01 ; ΔC −0,0027. **Retenue : marqueurs communs.** L'imputation
+  échoue sur (a), avec un faux changement de +0,56 [+0,38 ; +0,74].
+- **Rénal.** **Aucune stratégie acceptable.**
+  - Marqueurs communs : ΔC −0,0108 [−0,014 ; −0,008] ; échec sur (c).
+  - Modèle dédié : ΔC −0,0102 ; échec sur (c).
+  - Imputation : faux changement +0,81 et rapport 1,18 ; échec sur (a) et (b).
+  - Application de la conclusion fixée à l'avance : le système rénal n'est suivi qu'aux bilans
+    avec urines.
+- **Comparaison mixte** (bilan 1 complet, bilan 2 sans urines, sans recalcul) : P95 7,3 (global)
+  et 7,2 (rénal) avec les marqueurs communs ; avec le modèle dédié, d moyen +0,92 (global).
+- **Prédictions.** Conclusion bien prédite. Le rénal échoue sur (c) seul, et non sur (a) et (c)
+  comme prévu. Le biais de l'imputation est plus fort que prévu (+0,56 contre +0,25).
+- Rapport : `reports/checkup_standard/suivi/Q3_URINES.md`.

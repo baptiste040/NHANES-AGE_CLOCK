@@ -1,0 +1,448 @@
+{
+ "n_nh3": 781,
+ "paires_nh3": {
+  "complet": {
+   "global": {
+    "changement_moyen": 0.1460231378994705,
+    "changement_moyen_ic95": [
+     -0.11177964084285376,
+     0.38220836245865225
+    ],
+    "p95_abs_d": 6.988730309338802,
+    "p95_ic95": [
+     6.636779635748507,
+     7.536696672175566
+    ],
+    "ratio_p95_vs_complet": 1.0,
+    "faux_changement_moyen": 0.0,
+    "faux_changement_moyen_ic95": [
+     0.0,
+     0.0
+    ],
+    "faux_changement_p95_abs": 0.0,
+    "faux_changement_p95_ic95": [
+     0.0,
+     0.0
+    ]
+   },
+   "renal": {
+    "changement_moyen": 0.06199417730570651,
+    "changement_moyen_ic95": [
+     -0.1489222853070192,
+     0.2560381119978149
+    ],
+    "p95_abs_d": 5.879653193113921,
+    "p95_ic95": [
+     5.394021663366104,
+     6.3097351640210135
+    ],
+    "ratio_p95_vs_complet": 1.0,
+    "faux_changement_moyen": 0.0,
+    "faux_changement_moyen_ic95": [
+     0.0,
+     0.0
+    ],
+    "faux_changement_p95_abs": 0.0,
+    "faux_changement_p95_ic95": [
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "imputation": {
+   "global": {
+    "changement_moyen": 0.7056075149726828,
+    "changement_moyen_ic95": [
+     0.4395918417851645,
+     0.9660444199120327
+    ],
+    "p95_abs_d": 7.41148220123948,
+    "p95_ic95": [
+     6.980660189573541,
+     8.223446297063454
+    ],
+    "ratio_p95_vs_complet": 1.0604905144695265,
+    "faux_changement_moyen": 0.5595843770732125,
+    "faux_changement_moyen_ic95": [
+     0.38377455681698647,
+     0.739057231075878
+    ],
+    "faux_changement_p95_abs": 4.805446408298856,
+    "faux_changement_p95_ic95": [
+     4.621225221852768,
+     5.157943235221111
+    ]
+   },
+   "renal": {
+    "changement_moyen": 0.8717679474695409,
+    "changement_moyen_ic95": [
+     0.6123127365386869,
+     1.1241414047423899
+    ],
+    "p95_abs_d": 6.913415922192705,
+    "p95_ic95": [
+     6.510182410609026,
+     7.264751888245499
+    ],
+    "ratio_p95_vs_complet": 1.1758203579574213,
+    "faux_changement_moyen": 0.8097737701638343,
+    "faux_changement_moyen_ic95": [
+     0.5553600455399238,
+     1.0694895609572694
+    ],
+    "faux_changement_p95_abs": 6.953931824107279,
+    "faux_changement_p95_ic95": [
+     6.687471620332616,
+     7.463949846695634
+    ]
+   }
+  },
+  "communs": {
+   "global": {
+    "changement_moyen": 0.07208151451971677,
+    "changement_moyen_ic95": [
+     -0.12312863225460052,
+     0.27181152139449494
+    ],
+    "p95_abs_d": 5.595117540019878,
+    "p95_ic95": [
+     5.147080464897279,
+     5.844061905966555
+    ],
+    "ratio_p95_vs_complet": 0.8005914225282542,
+    "faux_changement_moyen": -0.0739416233797537,
+    "faux_changement_moyen_ic95": [
+     -0.204243543122638,
+     0.06871984963251218
+    ],
+    "faux_changement_p95_abs": 3.9280435994650844,
+    "faux_changement_p95_ic95": [
+     3.6748409664855473,
+     4.305847727168796
+    ]
+   },
+   "renal": {
+    "changement_moyen": -0.04500570976904644,
+    "changement_moyen_ic95": [
+     -0.08163756630713097,
+     -0.0093769531074638
+    ],
+    "p95_abs_d": 0.9544236385457054,
+    "p95_ic95": [
+     0.9512580596634166,
+     1.1052087570548323
+    ],
+    "ratio_p95_vs_complet": 0.16232651947286597,
+    "faux_changement_moyen": -0.10699988707475296,
+    "faux_changement_moyen_ic95": [
+     -0.2955582635839156,
+     0.09945219811446543
+    ],
+    "faux_changement_p95_abs": 5.684387167413071,
+    "faux_changement_p95_ic95": [
+     5.317732814822122,
+     6.230898572754157
+    ]
+   },
+   "ecart_bilan1_vs_complet": {
+    "global": {
+     "moyen": -0.051612150400590015,
+     "p95_abs": 4.740702753458109
+    },
+    "renal": {
+     "moyen": -0.07468405425621524,
+     "p95_abs": 6.860255139078767
+    }
+   },
+   "comparaison_mixte": {
+    "global": {
+     "changement_moyen": 0.02046936411912674,
+     "changement_moyen_ic95": [
+      -0.2569881173488843,
+      0.2747383643590932
+     ],
+     "p95_abs_d": 7.318791629668862,
+     "p95_ic95": [
+      6.782792104605029,
+      7.883499394767156
+     ]
+    },
+    "renal": {
+     "changement_moyen": -0.11968976402526166,
+     "changement_moyen_ic95": [
+      -0.3973212175601574,
+      0.143751967334652
+     ],
+     "p95_abs_d": 7.228977224867862,
+     "p95_ic95": [
+      6.406285215823637,
+      8.474544059115132
+     ]
+    }
+   }
+  },
+  "dedie": {
+   "global": {
+    "changement_moyen": 0.039588555142856516,
+    "changement_moyen_ic95": [
+     -0.17308759088937734,
+     0.25623615148621043
+    ],
+    "p95_abs_d": 6.011702072091396,
+    "p95_ic95": [
+     5.494687690078315,
+     6.355007742567793
+    ],
+    "ratio_p95_vs_complet": 0.8601994648524587,
+    "faux_changement_moyen": -0.10643458275661391,
+    "faux_changement_moyen_ic95": [
+     -0.24094093187535412,
+     0.04118698034337188
+    ],
+    "faux_changement_p95_abs": 4.065023729633047,
+    "faux_changement_p95_ic95": [
+     3.6519909415243035,
+     4.39184985358181
+    ]
+   },
+   "renal": {
+    "changement_moyen": -0.08985382524423387,
+    "changement_moyen_ic95": [
+     -0.15130113186092076,
+     -0.0309774373202081
+    ],
+    "p95_abs_d": 1.7813179578044185,
+    "p95_ic95": [
+     1.534653136935347,
+     1.8235033919029782
+    ],
+    "ratio_p95_vs_complet": 0.302963099913894,
+    "faux_changement_moyen": -0.15184800254994038,
+    "faux_changement_moyen_ic95": [
+     -0.3424263673367803,
+     0.06250521389733416
+    ],
+    "faux_changement_p95_abs": 5.879653193113921,
+    "faux_changement_p95_ic95": [
+     5.394012316893772,
+     6.339496765152049
+    ]
+   },
+   "ecart_bilan1_vs_complet": {
+    "global": {
+     "moyen": 0.878939038665212,
+     "p95_abs": 4.775912089876094
+    },
+    "renal": {
+     "moyen": 0.9793613834915901,
+     "p95_abs": 6.839878112830583
+    }
+   },
+   "comparaison_mixte": {
+    "global": {
+     "changement_moyen": 0.9185275938080685,
+     "changement_moyen_ic95": [
+      0.6472052685118934,
+      1.1777000801952848
+     ],
+     "p95_abs_d": 7.587922983541166,
+     "p95_ic95": [
+      6.944584510841395,
+      8.29281258409543
+     ]
+    },
+    "renal": {
+     "changement_moyen": 0.8895075582473561,
+     "changement_moyen_ic95": [
+      0.6116108451682631,
+      1.1587004778257823
+     ],
+     "p95_abs_d": 7.053744777783976,
+     "p95_ic95": [
+      6.579488672609557,
+      7.542198967261442
+     ]
+    }
+   }
+  },
+  "report": {
+   "global": {
+    "changement_moyen": 0.07208177588039714,
+    "changement_moyen_ic95": [
+     -0.12312777453311378,
+     0.2718110281096629
+    ],
+    "p95_abs_d": 5.5951263848234944,
+    "p95_ic95": [
+     5.147051902719404,
+     5.844059784625969
+    ],
+    "ratio_p95_vs_complet": 0.8005926881091574,
+    "faux_changement_moyen": -0.07394136201907331,
+    "faux_changement_moyen_ic95": [
+     -0.20424430398335056,
+     0.06872620814908785
+    ],
+    "faux_changement_p95_abs": 3.9281059546793387,
+    "faux_changement_p95_ic95": [
+     3.674782955013285,
+     4.305763086907135
+    ]
+   },
+   "renal": {
+    "changement_moyen": -0.04500504154495886,
+    "changement_moyen_ic95": [
+     -0.0816353511272041,
+     -0.009376957434433852
+    ],
+    "p95_abs_d": 0.9544103739842669,
+    "p95_ic95": [
+     0.9512745147305139,
+     1.1052025533721306
+    ],
+    "ratio_p95_vs_complet": 0.16232426346200907,
+    "faux_changement_moyen": -0.10699921885066538,
+    "faux_changement_moyen_ic95": [
+     -0.295557113721453,
+     0.0994501386826064
+    ],
+    "faux_changement_p95_abs": 5.684396113085192,
+    "faux_changement_p95_ic95": [
+     5.317710861584921,
+     6.2308882496867675
+    ]
+   }
+  }
+ },
+ "validation": {
+  "point": {
+   "C_imputation_global": 0.8474619261294452,
+   "dC_imputation_global": -0.002930532547099296,
+   "C_communs_global": 0.8464445653310112,
+   "dC_communs_global": -0.003947893345533249,
+   "C_dedie_global": 0.8477278878662642,
+   "dC_dedie_global": -0.0026645708102802645,
+   "C_complet_global": 0.8503924586765444,
+   "C_imputation_renal": 0.8161452491473411,
+   "dC_imputation_renal": -0.0036120118684472846,
+   "C_communs_renal": 0.808922495523803,
+   "dC_communs_renal": -0.010834765491985365,
+   "C_dedie_renal": 0.8095847326278023,
+   "dC_dedie_renal": -0.010172528387986102,
+   "C_complet_renal": 0.8197572610157884
+  },
+  "resume": [
+   {
+    "statistique": "C_imputation_global",
+    "estimation": 0.8474619261294452,
+    "ic95_bas": 0.8355929332205182,
+    "ic95_haut": 0.8593386457092709
+   },
+   {
+    "statistique": "dC_imputation_global",
+    "estimation": -0.002930532547099296,
+    "ic95_bas": -0.004567305591411597,
+    "ic95_haut": -0.001403662506687753
+   },
+   {
+    "statistique": "C_communs_global",
+    "estimation": 0.8464445653310112,
+    "ic95_bas": 0.8346231142478927,
+    "ic95_haut": 0.8583065582462382
+   },
+   {
+    "statistique": "dC_communs_global",
+    "estimation": -0.003947893345533249,
+    "ic95_bas": -0.005707970968097572,
+    "ic95_haut": -0.002349207207538606
+   },
+   {
+    "statistique": "C_dedie_global",
+    "estimation": 0.8477278878662642,
+    "ic95_bas": 0.836013764080709,
+    "ic95_haut": 0.8595585540970581
+   },
+   {
+    "statistique": "dC_dedie_global",
+    "estimation": -0.0026645708102802645,
+    "ic95_bas": -0.004260914015612766,
+    "ic95_haut": -0.0011463925113895936
+   },
+   {
+    "statistique": "C_complet_global",
+    "estimation": 0.8503924586765444,
+    "ic95_bas": 0.8381782475626932,
+    "ic95_haut": 0.8619683260244176
+   },
+   {
+    "statistique": "C_imputation_renal",
+    "estimation": 0.8161452491473411,
+    "ic95_bas": 0.8036662677876575,
+    "ic95_haut": 0.8281824624387091
+   },
+   {
+    "statistique": "dC_imputation_renal",
+    "estimation": -0.0036120118684472846,
+    "ic95_bas": -0.006385483235390041,
+    "ic95_haut": -0.0009095237269302285
+   },
+   {
+    "statistique": "C_communs_renal",
+    "estimation": 0.808922495523803,
+    "ic95_bas": 0.7964139542175883,
+    "ic95_haut": 0.8212643665408328
+   },
+   {
+    "statistique": "dC_communs_renal",
+    "estimation": -0.010834765491985365,
+    "ic95_bas": -0.013986383371600016,
+    "ic95_haut": -0.007735943209539065
+   },
+   {
+    "statistique": "C_dedie_renal",
+    "estimation": 0.8095847326278023,
+    "ic95_bas": 0.7969473313434003,
+    "ic95_haut": 0.8218967057421095
+   },
+   {
+    "statistique": "dC_dedie_renal",
+    "estimation": -0.010172528387986102,
+    "ic95_bas": -0.013067658090875973,
+    "ic95_haut": -0.00716140158630276
+   },
+   {
+    "statistique": "C_complet_renal",
+    "estimation": 0.8197572610157884,
+    "ic95_bas": 0.8072293492897482,
+    "ic95_haut": 0.8317616691737499
+   }
+  ],
+  "biais_vs_complet": {
+   "imputation_global": {
+    "moyen": 0.004327569960592335,
+    "p95_abs": 3.9566004124109853
+   },
+   "imputation_renal": {
+    "moyen": 0.006106247959360714,
+    "p95_abs": 5.725591438789618
+   },
+   "communs_global": {
+    "moyen": -0.5529373209100636,
+    "p95_abs": 4.599697020395039
+   },
+   "communs_renal": {
+    "moyen": -0.7999019330429614,
+    "p95_abs": 6.656238541991691
+   },
+   "dedie_global": {
+    "moyen": 0.2220422499621836,
+    "p95_abs": 3.8745558827858453
+   },
+   "dedie_renal": {
+    "moyen": 0.30898637093214143,
+    "p95_abs": 5.824848187558622
+   }
+  }
+ },
+ "sha256_code": "c7749a87090a2f32309eadee77e0c6241d482682a0313fb9b762c559dd6f842f"
+}
