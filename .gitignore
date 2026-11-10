@@ -12,3 +12,4 @@ models/*.pkl
 
 # Variabilite biologique (contient des valeurs EFLM : licence, hors depot public)
 config/variability.yaml
+config/variability_retest.json

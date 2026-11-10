@@ -1,0 +1,203 @@
+{
+ "_description": "GABARIT PUBLIC. Copier en config/variability_retest.json (non versionne) et renseigner les CV_I null depuis la base EFLM (licence : pas de redistribution). CV (%) pour la comparaison simulation / remesures reelles NHANES 2001-2002 (DECISIONS.md, pre-enregistrement du 2026-11-10). Hors depot public (valeurs EFLM). Principal : CV_I EFLM, aucune valeur issue des remesures NHANES ; CV_A : precision de methode documentee par le laboratoire NHANES, sinon fabricant, sinon 0,5 x CV_I (signale).",
+ "principal": {
+  "albumin": {
+   "cv_i": null,
+   "cv_a": 1.3,
+   "src_i": "EFLM BV Database, meta-analyse",
+   "src_a": "NHANES, precision de methode (Lacher 2010, NHSR 21, colonne CV_a : controles qualite)"
+  },
+  "creatinine": {
+   "cv_i": null,
+   "cv_a": 4.6,
+   "src_i": "EFLM",
+   "src_a": "NHSR 21, CV_a"
+  },
+  "glucose": {
+   "cv_i": null,
+   "cv_a": 1.5,
+   "src_i": "EFLM (a jeun)",
+   "src_a": "NHSR 21, CV_a",
+   "flag": "CV_I a jeun applique a tous"
+  },
+  "tg": {
+   "cv_i": null,
+   "cv_a": 1.9,
+   "src_i": "EFLM (a jeun)",
+   "src_a": "NHSR 21, CV_a",
+   "flag": "CV_I a jeun applique a tous"
+  },
+  "total_chol": {
+   "cv_i": null,
+   "cv_a": 1.5,
+   "src_i": "EFLM",
+   "src_a": "NHSR 21, CV_a"
+  },
+  "alp": {
+   "cv_i": null,
+   "cv_a": 2.1,
+   "src_i": "Carobene A et al. Clin Chem 2017 (EuBIVAS), doi:10.1373/clinchem.2016.269811",
+   "src_a": "NHSR 21, CV_a"
+  },
+  "alt": {
+   "cv_i": null,
+   "cv_a": 4.0,
+   "src_i": "EFLM",
+   "src_a": "NHSR 21, CV_a"
+  },
+  "ast": {
+   "cv_i": null,
+   "cv_a": 3.1,
+   "src_i": "EFLM",
+   "src_a": "NHSR 21, CV_a"
+  },
+  "ggt": {
+   "cv_i": null,
+   "cv_a": 3.0,
+   "src_i": "EFLM",
+   "src_a": "NHSR 21, CV_a"
+  },
+  "hdl": {
+   "cv_i": null,
+   "cv_a": 3.2,
+   "src_i": "EFLM",
+   "src_a": "Fiche de methode NHANES 2001-2002 (l13_b_met_lipids) : methode heparine-Mn (majorite des participants), pool SL4I080 49,8 mg/dL, CV 3,2 %"
+  },
+  "crp": {
+   "cv_i": null,
+   "cv_a": 5.7,
+   "src_i": "EFLM",
+   "src_a": "Fabricant : N Latex CRP mono, nephelometre Behring, FDA 510(k) K962523 (1996), CV inter-series 2,6-5,7 % entre 10 et 60 mg/L ; borne haute retenue",
+   "flag": "precision non documentee aux faibles concentrations (mediane NHANES ~2 mg/L)"
+  },
+  "hba1c": {
+   "cv_i": null,
+   "cv_a": 2.5,
+   "src_i": "EFLM (NGSP)",
+   "src_a": "Fiche de methode NHANES 2001-2002 (l10_b_met_glycohemoglobin), pool WB17 a 5,1 %, CV 2,54 %"
+  },
+  "wbc": {
+   "cv_i": null,
+   "cv_a": 2.1,
+   "src_i": "EFLM",
+   "src_a": "NHANES, precision de methode (Lacher 2012, NHSR 54, colonne CV_a : controles de paillasse ou fabricant)"
+  },
+  "lymph_pct": {
+   "cv_i": null,
+   "cv_a": 2.9,
+   "src_i": "EFLM, nombre de lymphocytes (approximation du %)",
+   "src_a": "NHSR 54, CV_a",
+   "flag": "CV_I du nombre, pas du pourcentage"
+  },
+  "rdw": {
+   "cv_i": null,
+   "cv_a": 1.2,
+   "src_i": "EFLM, RDW-SD (approximation du RDW en %)",
+   "src_a": "NHSR 54, CV_a",
+   "flag": "CV_I du RDW-SD, pas du RDW en %"
+  },
+  "mcv": {
+   "cv_i": null,
+   "cv_a": 0.7,
+   "src_i": "EFLM",
+   "src_a": "NHSR 54, CV_a"
+  },
+  "hb": {
+   "cv_i": null,
+   "cv_a": 1.1,
+   "src_i": "EFLM",
+   "src_a": "NHSR 54, CV_a"
+  },
+  "platelets": {
+   "cv_i": null,
+   "cv_a": 3.1,
+   "src_i": "EFLM",
+   "src_a": "NHSR 54, CV_a"
+  },
+  "acr": {
+   "cv_i": 40.0,
+   "cv_a": 0.0,
+   "src_i": "Valeur de travail (aucune etude eligible, Aslan B et al. Clin Chim Acta 2024)",
+   "src_a": "inclus dans CV_I",
+   "flag": "valeur de travail"
+  },
+  "sbp": {
+   "cv_i": 8.6,
+   "cv_a": 0.0,
+   "src_i": "CV au cabinet entre visites (Br J Gen Pract 2010;60:675)",
+   "src_a": "-"
+  },
+  "dbp": {
+   "cv_i": 8.6,
+   "cv_a": 0.0,
+   "src_i": "idem",
+   "src_a": "-"
+  },
+  "heart_rate": {
+   "cv_i": 8.0,
+   "cv_a": 0.0,
+   "src_i": "Valeur de travail (PLoS One 2020, doi:10.1371/journal.pone.0227709)",
+   "src_a": "-",
+   "flag": "valeur de travail"
+  },
+  "bmi": {
+   "cv_i": 1.5,
+   "cv_a": 0.0,
+   "src_i": "Valeur de travail non sourcee",
+   "src_a": "-",
+   "flag": "valeur de travail"
+  },
+  "waist": {
+   "cv_i": 2.0,
+   "cv_a": 0.0,
+   "src_i": "Valeur de travail non sourcee",
+   "src_a": "-",
+   "flag": "valeur de travail"
+  }
+ },
+ "secondaire": {
+  "_source": "CV_w des remesures NHANES : Lacher 2010 (NHSR 21, biochimie) et Lacher 2012 (NHSR 54, hematologie, moyenne hommes/femmes). Partiellement circulaire pour ce test (memes remesures 1999-2002). Autres marqueurs : principal.",
+  "albumin": 3.5,
+  "creatinine": 6.7,
+  "glucose": 7.5,
+  "tg": 27.8,
+  "total_chol": 6.9,
+  "alp": 8.1,
+  "alt": 20.3,
+  "ast": 15.5,
+  "ggt": 16.2,
+  "wbc": 15.1,
+  "lymph_pct": 15.2,
+  "rdw": 1.0,
+  "mcv": 0.34,
+  "hb": 2.8,
+  "platelets": 8.4
+ },
+ "sensibilites": {
+  "lymph_pct x 0,5": {
+   "cv_i": {
+    "lymph_pct": "0,5 x CV_I EFLM"
+   }
+  },
+  "RDW x 0,5": {
+   "cv_i": {
+    "rdw": "0,5 x CV_I EFLM"
+   }
+  },
+  "CRP : CV_A = 0,5 x CV_I": {
+   "cv_a": {
+    "crp": "0,5 x CV_I EFLM"
+   }
+  },
+  "ACR 25 %": {
+   "cv_i": {
+    "acr": 25.0
+   }
+  },
+  "ACR 55 %": {
+   "cv_i": {
+    "acr": 55.0
+   }
+  }
+ }
+}

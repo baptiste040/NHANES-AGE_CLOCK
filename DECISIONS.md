@@ -506,3 +506,155 @@ Rapport : `reports/checkup_standard/incertitude/INCERTITUDE.md`.
   calibration et différences de C appariées inchangés. Seules les valeurs en années changent :
   PhenoAge publié moyen en validation 44,0 → 42,4 ans ; écart-type de l'accélération
   7,54 → 7,66 ans. La première exécution (0,09165) n'est plus rapportée que dans ce paragraphe.
+
+## Fiabilité test-retest réelle — NHANES 2001-2002 (pré-enregistrement, 2026-11-10)
+
+Écrit et commité **avant** toute lecture des valeurs des marqueurs du second examen.
+Code : `src/aging_clock/retest.py` (`python -m aging_clock fiabilite predictions | analyse`).
+
+**Ce qui a déjà été vu des fichiers du second examen** (pendant la revue de littérature) :
+effectifs par fichier (544 à 557 personnes) et distribution du délai `LB2DAY` (3 à 47 jours,
+moyenne 18,9, médiane 17). Aucune valeur de marqueur. Pour calculer les prédictions, seule la
+colonne `SEQN` des six fichiers est conservée (`second_exam_seqn`).
+
+**Population.** Cohorte de développement (mêmes critères qu'ailleurs : 20-79 ans, éligibles au
+chaînage, suivi > 0, hors grossesse, cas complets sur le panel au premier examen), cycle 2001-2002,
+`SEQN` présent dans les six fichiers du second examen (L40_2_B, L25_2_B, L11_2_B, L10_2_B, L13_2_B,
+L16_2_B) : **n = 389** (44,2 ans en moyenne, 46 % de femmes). À l'analyse, on exclut en plus les
+personnes dont une valeur sanguine ou urinaire du second examen est manquante ou hors des plages
+plausibles du panel. Les prédictions sont alors recalculées sur cette population finale, avec le même
+code, les mêmes CV et la même graine ; les deux jeux de prédictions sont rapportés.
+**Ces personnes font partie de la cohorte de développement** : leur premier examen a servi à
+ajuster le modèle, le second jamais. La fiabilité dépend surtout du bruit de mesure, donc le biais
+attendu est faible ; NHANES III (indépendant) servira de confirmation après validation.
+
+**Correspondance des variables du second examen** (mêmes unités et facteurs que le premier examen
+2001) : cholestérol `LB2TC`, HDL `LB2HDL`, TG sériques `LB2STR`, glucose sérique `LB2SGL`, HbA1c
+`LB2GH`, créatinine `LB2SCR` (« pas de correction nécessaire en 2001-2002 », documentation L40_2_B),
+ALAT `LB2SATSI`, ASAT `LB2SASSI`, GGT `LB2SGTSI`, PAL `LB2SAPSI`, albumine `LB2SAL`, CRP `LB2CRP`,
+leucocytes `LB2WBCSI`, lymphocytes % `LB2LYPCT`, RDW `LB2RDW`, VGM `LB2MCVSI`, hémoglobine `LB2HGB`,
+plaquettes `LB2PLTSI`, ACR = `UR2UMA`/`UR2UCR` × 11,31.
+
+**Deux comparaisons.**
+1. **Principale : « fiabilité de la partie biologique du score »**. Seuls les marqueurs sanguins et
+   urinaires changent entre les deux examens. Tension, pouls, IMC et tour de taille gardent leur
+   valeur du premier examen, dans l'observé comme dans la simulation. **Le système
+   cardiovasculaire n'y est pas interprété** (tension et pouls fixes).
+2. **Secondaire : score complet**. Observé = second examen sanguin + bruit simulé sur la tension,
+   le pouls, l'IMC et le tour de taille (200 tirages, métriques moyennées) ; prédit = simulation de
+   tout le panel. Seule comparaison où le système cardiovasculaire est interprété.
+
+**Scores** : âge global, 5 âges par système (modèle gelé `checkup_standard_v1.json`), PhenoAge
+publié (constantes du supplément de Levine 2018 ; accélération = résidu sur l'âge, régression du
+développement), PhenoAge réentraîné (9 marqueurs, notre méthode, pénalisation 0,003 du benchmark 5a).
+Tous les scores sont analysés comme des écarts à l'âge (années). L'âge ne change pas entre les deux
+examens.
+
+**CV de la simulation principale** (`config/variability_retest.json`, hors dépôt public,
+SHA-256 `b7674478…`). CV_I : EFLM pour tous les marqueurs sanguins (PAL : Carobene 2017,
+EuBIVAS), **aucune valeur issue des remesures NHANES**. CV_A : précision de méthode documentée
+par le laboratoire NHANES ; sinon le fabricant ; sinon 0,5 × CV_I.
+
+| Marqueur | CV_I | CV_A | Source CV_A | Remarque |
+|---|---|---|---|---|
+| Albumine | 2,5 | 1,3 | NHSR 21, colonne CV_a (précision de méthode, contrôles qualité) | |
+| Créatinine | 4,4 | 4,6 | idem | |
+| Glucose | 4,9 | 1,5 | idem | CV_I à jeun appliqué à tous |
+| Triglycérides | 19,8 | 1,9 | idem | CV_I à jeun appliqué à tous |
+| Cholestérol total | 5,4 | 1,5 | idem | |
+| PAL | 5,3 | 2,1 | idem | |
+| ALAT | 12,4 | 4,0 | idem | |
+| ASAT | 8,4 | 3,1 | idem | |
+| GGT | 8,2 | 3,0 | idem | |
+| HDL | 5,7 | 3,2 | fiche NHANES 2001-02 (lipides) : méthode héparine-Mn (majorité des participants), pool à 49,8 mg/dL | |
+| CRP | 34,7 | 5,7 | fabricant, N Latex CRP mono (FDA 510(k) K962523) : CV inter-séries 2,6-5,7 % entre 10 et 60 mg/L, borne haute | non documenté aux faibles concentrations |
+| HbA1c | 1,2 | 2,5 | fiche NHANES 2001-02 : pool à 5,1 %, CV 2,54 % | |
+| Leucocytes | 11,1 | 2,1 | NHSR 54, colonne CV_a (contrôles de paillasse ou fabricant) | |
+| Lymphocytes % | 10,9 | 2,9 | idem | CV_I du nombre (aucune valeur trouvée pour le %) |
+| RDW | 1,7 | 1,2 | idem | CV_I du RDW-SD (aucune valeur trouvée pour le %) |
+| VGM | 0,8 | 0,7 | idem | |
+| Hémoglobine | 2,7 | 1,1 | idem | |
+| Plaquettes | 7,2 | 3,1 | idem | |
+| ACR | 40 | inclus | — | valeur de travail |
+| PAS, PAD, pouls, IMC, tour de taille | 8,6 ; 8,6 ; 8,0 ; 1,5 ; 2,0 | — | — | comparaison secondaire seulement |
+
+Vérification : les CV_a de Lacher (NHSR 21 et 54) sont la précision de la méthode de laboratoire
+(« laboratory method precision », contrôles qualité ou fabricant). Ils ne sont pas calculés sur les
+participants reprélevés. Recherches sans résultat : CV_I du pourcentage de lymphocytes et du RDW en %
+(Coskun et al. 2018, CCLM, texte complet : seulement le nombre de lymphocytes et le RDW-SD) ;
+précision de la CRP dans la fiche NHANES (aucun chiffre).
+
+**Configuration précédente (Lacher pour la biochimie) : partiellement circulaire pour ce test.**
+Elle utilisait les CV_w de Lacher 2010, calculés sur les remesures NHANES 1999-2002, donc en
+partie sur les personnes testées ici. Les résultats déjà publiés de la précision individuelle
+(±5 ans, changement significatif de 7,5 ans) en dépendent. Ils restent dans le rapport comme
+**scénario secondaire**.
+- **Scénario secondaire** : CV_I de Lacher 2010 (biochimie) et Lacher 2012 (hématologie, moyenne
+  hommes/femmes ; hémoglobine femmes 3,15 %, recalculé depuis le CV total et le CV_a publiés).
+  CV_A et autres marqueurs comme le principal.
+- **Sensibilités** : lymphocytes % × 0,5 ; RDW × 0,5 ; CRP avec CV_A = 0,5 × CV_I ; ACR à 25 % et à 55 %.
+
+**Métriques** (par score). Observé : d = écart₂ − écart₁.
+- CCI(A,1), accord absolu, modèle à deux facteurs (McGraw et Wong 1996), sur les écarts à l'âge ;
+- Bland-Altman : biais moyen de d et limites d'accord biais ± 1,96 × ET(d) ;
+- écart-type intra-individuel ET_w = ET(d)/racine(2) ; valeur de changement significatif
+  empirique = 1,96 × racine(2) × ET_w ;
+- taux de bascule : proportion de personnes dont le signe de l'écart change entre les deux examens ;
+- CV intra-individuels observés par marqueur : ET(ln x₂ − ln x₁)/racine(2), converti en CV
+  (inclut CV_I et CV_A) ; comparés à racine(CV_I² + CV_A²) ;
+- IC 95 % par bootstrap des personnes (2 000 tirages, graine 2026).
+Prédit (simulation, 1 000 remesures par personne, graine 2026, mêmes définitions que la précision
+individuelle) : ET_w = racine(moyenne des variances simulées) ; changement significatif =
+1,96 × racine(2) × ET_w ; CCI = 1 − ET_w²/variance observée des écarts ; bascule entre paires de
+remesures simulées. Note : le changement significatif publié précédemment (7,5 ans) était le 95ᵉ
+centile par personne. Ici, c'est la formule 1,96 × racine(2) × ET_w, des deux côtés.
+
+**Règle de lecture** (fixée maintenant). Pour chaque score, rapport R = ET_w observé / ET_w prédit
+(principal), avec son IC 95 % bootstrap (prédiction tenue fixe) :
+- IC contenant 1 → **simulation compatible** ;
+- borne basse > 1 → **la simulation sous-estime le bruit** (variabilité non modélisée : délai,
+  jeûne, séance, saison) ;
+- borne haute < 1 → **la simulation surestime le bruit** (CV trop élevés).
+Le scénario secondaire et les sensibilités sont rapportés à titre descriptif, sans règle de décision.
+
+**Facteurs contrôlés** (descriptifs, pas de test d'hypothèse) :
+- délai : corrélation de Spearman entre |d| et `LB2DAY` ; métriques par tertile de délai ;
+- séance et jeûne : les fichiers publics du second examen **ne contiennent ni la séance ni la durée
+  de jeûne**. Indicateur indirect, déclaré comme tel : « à jeun aux deux prélèvements » = premier
+  examen le matin (`PHDSESN` = 0) et jeûne ≥ 8 h (`PHAFSTHR`, fichier PH_B), **et** glycémie
+  plasmatique présente au second examen (`LB2GLU`). Au premier examen, elle n'est mesurée que chez
+  les examinés du matin à jeun ; l'application de cette règle au second examen est notre déduction.
+  Métriques rapportées dans ce sous-groupe et selon la séance du premier examen. Sous-groupe
+  rapporté seulement s'il compte au moins 20 personnes.
+
+**Prédictions figées** (n = 389, population avant exclusions du second examen ;
+`reports/checkup_standard/fiabilite_reelle/predictions.csv`).
+
+| Score | ET_w | Changement significatif | Limites d'accord | CCI | Bascule |
+|---|---|---|---|---|---|
+| **Partie biologique, principal** | | | | | |
+| Global | 1,78 | 4,93 | ± 4,93 | 0,930 | 10,8 % |
+| Cardiovasculaire (non interprété) | 0,60 | 1,67 | ± 1,67 | 0,972 | 7,0 % |
+| Métabolique | 0,26 | 0,72 | ± 0,72 | 0,995 | 2,6 % |
+| Rénal | 1,17 | 3,23 | ± 3,23 | 0,901 | 15,5 % |
+| Hépatique | 1,69 | 4,69 | ± 4,69 | 0,833 | 17,9 % |
+| Inflammatoire et hématologique | 1,46 | 4,05 | ± 4,05 | 0,916 | 12,5 % |
+| PhenoAge publié | 1,60 | 4,43 | ± 4,43 | 0,941 | 11,0 % |
+| PhenoAge réentraîné | 1,41 | 3,91 | ± 3,91 | 0,930 | 11,3 % |
+| **Score complet, principal** | | | | | |
+| Global | 2,20 | 6,09 | ± 6,09 | 0,894 | 13,4 % |
+| Cardiovasculaire | 1,90 | 5,25 | ± 5,25 | 0,721 | 22,3 % |
+| Métabolique | 0,87 | 2,42 | ± 2,42 | 0,943 | 8,4 % |
+| **Partie biologique, scénario secondaire (Lacher)** | | | | | |
+| Global | 2,28 | 6,32 | ± 6,32 | 0,886 | 13,4 % |
+| Hépatique | 2,59 | 7,18 | ± 7,18 | 0,610 | 25,3 % |
+| PhenoAge publié | 1,83 | 5,08 | ± 5,08 | 0,923 | 12,7 % |
+
+Sensibilités, ET_w du global (partie biologique) : lymphocytes % × 0,5 : 1,77 ; RDW × 0,5 :
+1,70 ; CRP CV_A = 0,5 × CV_I : 1,78 ; ACR 25 % : 1,71 (rénal 0,80) ; ACR 55 % : 1,87 (rénal 1,51).
+Biais prédit : 0 partout. CV totaux prédits par marqueur : racine(CV_I² + CV_A²) du tableau
+ci-dessus.
+
+Empreintes : CV `b76744785b175e4f…`, code de `retest.py` à la génération des prédictions
+`644bf578655ee10a…` (fichier `meta_predictions.json`). L'analyse refuse de tourner si le fichier
+des CV a changé.

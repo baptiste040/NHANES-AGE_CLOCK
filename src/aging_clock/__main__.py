@@ -4,6 +4,7 @@
     python -m aging_clock export                        # regenere le modele JSON
     python -m aging_clock validate --panel checkup_standard
     python -m aging_clock benchmark | equite
+    python -m aging_clock fiabilite predictions | analyse
 
 Les imports sont faits a la demande : la commande `score` ne charge ni lifelines ni le pipeline.
 """
@@ -35,6 +36,8 @@ def main():
     sec = sub.add_parser("secondaire", help="validation secondaire 2015-2018")
     sec.add_argument("--bootstrap", type=int, default=None)
     sub.add_parser("incertitude", help="precision individuelle de l'age biologique (Monte-Carlo)")
+    r = sub.add_parser("fiabilite", help="fiabilite test-retest sur les remesures NHANES 2001-2002")
+    r.add_argument("etape", choices=["predictions", "analyse"])
     args = parser.parse_args()
 
     if args.command == "score":
@@ -64,6 +67,10 @@ def main():
         res = uncertainty_report.run()
         uncertainty_report.write_report(res["dossier"])
         print(f"Incertitude : {res['dossier']}")
+    elif args.command == "fiabilite":
+        from . import retest
+        out = retest.predictions() if args.etape == "predictions" else retest.analyse()
+        print(f"Fiabilite : {out}")
     elif args.command == "secondaire":
         from . import secondary
         res = secondary.run(n_boot=args.bootstrap)
