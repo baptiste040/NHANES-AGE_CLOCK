@@ -18,9 +18,11 @@ systèmes), sans réentraînement.
 | Hépatique | 0,831 | 0,830 | +0,0005 [+0,0001 ; +0,0009] | +0,024 | 0,95 ; 1,02 |
 | Inflammatoire | 0,833 | 0,833 | +0,0002 [−0,0004 ; +0,0010] | +0,027 | 0,94 ; 0,99 |
 
-**Règle de décision** : perte < 0,005 de C sur le global. La variante contrainte ne perd rien : elle
-**gagne** légèrement (+0,0008). Elle est **adoptée**, et la prédiction du développement (+0,0001)
-allait dans le même sens.
+**Règle de décision** : perte < 0,005 de C sur le global. La variante contrainte est **adoptée**.
+
+**Conclusion** : la contrainte clinique ne dégrade pas la discrimination. La différence de C est de
++0,0008 : elle est statistiquement détectable grâce à l'appariement, mais négligeable en pratique.
+La prédiction du développement était de +0,0001.
 
 ## Qui voit son score changer, et de combien
 

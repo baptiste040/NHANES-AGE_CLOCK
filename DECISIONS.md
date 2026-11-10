@@ -1604,3 +1604,50 @@ Signalement avec le seuil matériel de 1 an : 823 personnes (8,9 %) sans contrai
 Note ajoutée aux rapports à la demande de l'auteur du projet : la mortalité toutes causes à 10 ans
 sous-estime les facteurs de risque cardiovasculaire (lipides, glycémie). Les systèmes cardio et
 métab « sang seul » ne doivent pas être présentés comme inutiles.
+
+## Suivi — reprise de Q1 et Q2 avec le modèle « sang seul contraint » (analyse secondaire, pré-enregistrement, 2026-11-10)
+
+Demandée par l'auteur du projet après l'adoption de la variante contrainte (étape 1). Écrit et
+commité avant de relancer NHANES III. Code : `src/aging_clock/suivi_contraint.py`.
+
+**Statut.** Analyse **secondaire**. NHANES III a déjà été consulté pour Q1-Q2 avec le modèle non
+contraint : l'évaluation **n'est pas aveugle**. Les résultats pré-enregistrés (modèle non
+contraint) restent dans les rapports, inchangés.
+
+**Ce qui change** : seulement le modèle. Le modèle « sang seul contraint » est appliqué à chaque
+prédiction, y compris aux contributions des moteurs et aux centiles du système prioritaire
+(référence : écarts contraints du développement).
+
+**Ce qui ne change pas** : définitions de Q1 et Q2 et leur amendement, table des moteurs
+actionnables, seuils « anormal », CCI des marqueurs de 2001-2002, règles de lecture
+(compatibilité, règle des 80 %, correction validée à ±10 % du seuil, remesure sélective trompeuse à
+25 % du seuil). Le seuil de référence des règles de Q2 est le P95 de 2001-2002 **du modèle
+contraint**. Les CCI du score (correction secondaire) sont recalculés sur 2001-2002 avec le modèle
+contraint.
+
+**Prédictions (2001-2002, n = 388 ; `Q1_Q2_contraint_predictions.json`).**
+
+| Indicateur | Non contraint (pré-enregistré) | Contraint |
+|---|---|---|
+| Seuil P95 global [IC 95 %] | 5,99 | 5,97 [5,46 ; 6,57] |
+| Seuil P95 cardio ; métab ; rénal ; hépat ; inflam | 2,69 ; 0,93 ; 4,43 ; 4,95 ; 4,49 | 2,61 ; 0,93 ; 4,43 ; 4,95 ; 4,43 |
+| Même système prioritaire | 64,2 % | 64,9 % |
+| Même premier moteur (tous / actionnables) | 62,4 % / 58,5 % | 62,4 % / 58,2 % |
+| Même trio (tous / actionnables) | 27,8 % / 28,6 % | 27,8 % / 28,9 % |
+| Trio largement stable (tous / actionnables) | 82,2 % / 74,7 % | 82,5 % / 74,0 % |
+
+Q2, modèle contraint, moyennes de (écart₂ − écart₁) en années :
+
+| Groupe | Complète | Sélective | Corr. complète | Corr. sélective | Corr. score | Contrôle complète | Contrôle sélective |
+|---|---|---|---|---|---|---|---|
+| Global | +0,28 | −0,31 | +0,70 | +0,10 | +0,24 | −0,05 | −0,64 |
+| Cardio | +0,08 | 0,00 | +0,32 | +0,14 | +0,06 | −0,14 | −0,22 |
+| Métab | −0,13 | −0,20 | +0,01 | −0,05 | −0,06 | −0,14 | −0,21 |
+| Rénal | −0,81 | −0,83 | +0,07 | +0,19 | −0,00 | −0,59 | −0,60 |
+| Hépatique | +0,28 | −0,13 | +0,93 | +0,39 | +0,70 | −0,27 | −0,68 |
+| Inflam | −0,04 | −0,43 | +0,30 | −0,07 | +0,08 | −0,24 | −0,63 |
+| Sélection sur le score | −0,39 | — | +1,13 | — | +0,56 | −0,72 | — |
+
+**Attendu qualitatif** : le modèle contraint change peu les seuils et la stabilité (au plus 1 point
+de pourcentage pour les taux, 0,1 an pour les seuils). Les conclusions de Q1 et Q2 ne devraient pas
+changer.
