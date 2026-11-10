@@ -1252,3 +1252,174 @@ observé/prédit 0,92, pente 1,01.
   des affirmations fortes ;
 - note technique : la valeur p bootstrap affichée « 2,000 » pour les systèmes identiques est un
   artefact de la formule quand toutes les différences sont nulles ; elle se lit « sans objet ».
+
+## Suivi, Q1 et Q2 — pré-enregistrement (2026-11-10)
+
+Écrit et commité **avant** tout calcul de ces indicateurs sur NHANES III. Code :
+`src/aging_clock/suivi.py` (`predictions()` : calage sur 2001-2002 ; `analyse()` : test sur NHANES
+III). Calage figé : `reports/checkup_standard/suivi/Q1_Q2_predictions.json`, SHA-256 `c6472dd2…`
+(code au moment du calage : `2172cb6b…`).
+
+**Modèles.**
+- **Principal** : « sang seul » (étape 0), ajusté sur le développement, pénalisation 0.
+- **Secondaire** : modèle complet. Comme la tension et les mensurations ne sont pas remesurées en
+  2001-2002, la comparaison porte sur sa partie biologique : mesures physiques figées entre les
+  deux examens, et jamais candidates comme moteurs.
+
+**Données.** Mêmes paires qu'au pré-enregistrement de la fiabilité : 2001-2002 (n = 388, calage)
+et NHANES III (n = 781, test ; sang et urine complets au second examen ; CRP censurée à
+2,1 mg/L). Réserve : les remesures sont à environ 2 semaines, donc les résultats sont des bornes
+basses pour un suivi à 6 mois.
+
+### Q1 — définitions
+
+- **Seuil de changement significatif** : 95ᵉ centile de |écart₂ − écart₁| (IC 95 % par bootstrap,
+  2 000 tirages), et version gaussienne, pour le global et chaque système.
+- **Système prioritaire** : système dont l'écart **standardisé** est le plus défavorable. L'écart
+  standardisé est le centile de l'écart d'âge du système parmi les personnes du développement de
+  même sexe et de même tranche d'âge de 10 ans (20-29, …, 70-79).
+- **Contribution d'un marqueur** (en années d'écart global) : écart global observé moins écart
+  global quand le marqueur est remplacé par sa **valeur de référence**, c'est-à-dire la médiane du
+  développement pour le même sexe et la même tranche d'âge de 10 ans.
+- **Moteurs, toutes versions** : jusqu'à 3 marqueurs aux contributions positives les plus fortes,
+  c'est-à-dire ceux qui vieillissent le plus le score. Si moins de 3 contributions sont
+  positives, la liste est plus courte, et elle peut être vide. Les mesures physiques ne sont jamais
+  candidates.
+- **Moteurs actionnables** : mêmes règles, restreintes aux marqueurs de la table ci-dessous, et
+  seulement quand la valeur est du côté actionnable de la référence (au-dessus pour « haut »,
+  en dessous pour « bas »).
+- **Indicateurs de stabilité** entre les deux examens, sans changement de santé :
+  - même système prioritaire ;
+  - même premier moteur (deux listes vides comptent comme identiques) ;
+  - même trio de moteurs (ensembles identiques) ;
+  - trio « largement stable » : indice de Jaccard ≥ 0,5, c'est-à-dire au moins 2 sur 3 en
+    commun pour deux trios.
+
+  Chaque taux est donné avec son IC 95 % (bootstrap des personnes), au total et par tertile
+  d'écart global au premier examen. La distribution du nombre de moteurs est aussi rapportée.
+
+**Table des moteurs actionnables** (fixée maintenant ; références lues en résumé, sauf mention) :
+
+| Marqueur | Sens actionnable | Justification | Référence |
+|---|---|---|---|
+| Glucose, HbA1c | haut | perte de poids et activité physique réduisent l'incidence du diabète | Knowler 2002, *N Engl J Med*, doi:10.1056/nejmoa012512 |
+| TG, cholestérol total | haut | mode de vie et prise en charge lipidique | Miller 2011, déclaration AHA sur les triglycérides, doi:10.1161/cir.0b013e3182160726 (métadonnées seules, pas de résumé) |
+| HDL | bas | l'activité physique aérobie augmente modestement le HDL | Kodama 2007, *Arch Intern Med*, doi:10.1001/archinte.167.10.999 |
+| CRP | haut | la perte de poids abaisse la CRP | Selvin 2007, *Arch Intern Med*, doi:10.1001/archinte.167.1.31 |
+| ALAT, ASAT, GGT | haut | perte de poids (stéatose) et abstinence d'alcool les font baisser | Vilar-Gomez 2015, *Gastroenterology*, doi:10.1053/j.gastro.2015.04.005 ; Kravos 2010, *Alcohol Alcohol*, doi:10.1093/alcalc/agp070 |
+| VGM | haut | baisse avec l'abstinence d'alcool | Kravos 2010 |
+| Leucocytes | haut | l'arrêt du tabac abaisse les leucocytes | Smith 2021, *Am J Med*, doi:10.1016/j.amjmed.2020.06.014 |
+| ACR | haut | contrôle tensionnel et blocage du système rénine-angiotensine (médical) | Vitiello 2026, revue, doi:10.1007/s00210-026-05140-z |
+
+**Non actionnables** :
+- ALAT basse et albumine basse : marqueurs de fragilité (décision de l'auteur du projet) ;
+- créatinine, PAL, RDW, lymphocytes %, hémoglobine, plaquettes : orientation médicale, pas
+  d'action de mode de vie identifiable dans le produit.
+
+### Q1 — prédictions (calage 2001-2002) et règles
+
+| Indicateur (sang seul) | 2001-2002 [IC 95 %] |
+|---|---|
+| Seuil P95 global ; cardio ; métab ; rénal ; hépat ; inflam (ans) | 5,99 [5,45 ; 6,50] ; 2,69 ; 0,93 ; 4,43 ; 4,95 ; 4,49 |
+| Même système prioritaire | 64,2 % [59,5 ; 69,1] |
+| Même premier moteur (tous / actionnables) | 62,4 % / 61,1 % |
+| Même trio (tous / actionnables) | 27,8 % / 29,4 % |
+| Trio largement stable, Jaccard ≥ 0,5 (tous / actionnables) | 82,2 % [78,4 ; 86,1] / 81,4 % [77,6 ; 85,3] |
+
+Modèle complet (partie biologique) : seuil global 5,29 ; même système 72,2 % ; premier moteur
+62,9 % / 63,9 % ; trio identique 25,8 % / 32,5 % ; trio largement stable 84,0 % / 81,7 %.
+Nombre de moteurs au premier examen (sang seul) : 3 pour 384 personnes sur 388 ; 3 moteurs
+actionnables pour 332.
+
+**Règles de lecture.**
+- **Compatibilité** : la valeur de 2001-2002 est dans l'IC 95 % de NHANES III (seuils et taux).
+- **Règle des 80 %** (validée) : un élément est **affichable** si son taux de stabilité observé en
+  NHANES III est ≥ 80 %, et **affichable avec confiance** si la borne basse de l'IC est ≥ 80 %. Elle
+  s'applique au système prioritaire, au premier moteur et au trio (critère : largement stable).
+
+### Q2 — définitions
+
+- **Seuils « anormal »** (validés) :
+
+| Marqueur | Seuil |
+|---|---|
+| Glucose | ≥ 5,6 mmol/L |
+| HbA1c | ≥ 5,7 % |
+| Cholestérol total | ≥ 5,2 mmol/L |
+| HDL | < 1,0 (H) / < 1,3 (F) mmol/L |
+| TG | ≥ 1,7 mmol/L |
+| ALAT, ASAT | > 40 U/L |
+| GGT | > 60 (H) / > 40 (F) U/L |
+| PAL | > 120 U/L |
+| Albumine | < 35 g/L |
+| Créatinine | > 106 (H) / > 89 (F) µmol/L |
+| ACR | ≥ 3 mg/mmol |
+| CRP | > 3 mg/L |
+| Leucocytes | < 4 ou > 10 G/L |
+| Lymphocytes | < 20 ou > 40 % |
+| RDW | > 14,5 % |
+| VGM | < 80 ou > 100 fL |
+| Hémoglobine | < 13 (H) / < 12 (F) g/dL |
+| Plaquettes | < 150 ou > 400 G/L |
+
+  **Sensibilité** : seuils tirés des données, aux centiles 10 et 90 du développement par sexe,
+  du côté ou des côtés de chaque seuil clinique.
+- **Second bilan** :
+  - remesure complète (toutes les valeurs du second examen) ;
+  - remesure sélective : seuls les marqueurs anormaux au premier bilan sont remesurés, les
+    autres gardent leur première valeur.
+- **Amélioration apparente** : moyenne de (écart₂ − écart₁) chez les personnes ayant au moins un
+  marqueur anormal (pour un système, dans ses marqueurs ; pour le global, n'importe lequel) ; une
+  valeur négative signifie un rajeunissement. Même calcul chez les 20 % de personnes au plus
+  grand écart global au premier bilan (sélection sur le score).
+- **Correction principale, marqueur par marqueur** (demandée) : valeur attendue au second bilan
+  sans changement réel, exp(μ + ρ (ln x₁ − μ)).
+  - ρ est le CCI(A,1) du log du marqueur en 2001-2002 : glucose 0,80 ; HbA1c 0,97 ;
+    cholestérol 0,88 ; HDL 0,89 ; TG 0,76 ; ALAT 0,84 ; ASAT 0,74 ; GGT 0,94 ; PAL 0,94 ;
+    albumine 0,77 ; créatinine 0,92 ; ACR 0,75 ; CRP 0,82 ; leucocytes 0,78 ; lymphocytes 0,66 ;
+    RDW 0,96 ; VGM 0,99 ; hémoglobine 0,92 ; plaquettes 0,89.
+  - μ est la moyenne du log dans le développement, même sexe et même tranche d'âge de 10 ans.
+  - Changement corrigé : écart₂ observé − écart₂ attendu, les marqueurs non remesurés gardant
+    leur valeur.
+  - Sensibilité : μ calculé sur le premier examen de l'échantillon testé lui-même.
+- **Correction secondaire, au niveau du score** (ajoutée **pendant le calage**, après avoir vu
+  qu'en 2001-2002 la correction marqueur par marqueur surcorrige la sélection sur le score) :
+  écart₂ attendu = μ_s + ρ_s (écart₁ − μ_s).
+  - μ_s est l'écart moyen du développement, même sexe et même tranche d'âge.
+  - ρ_s est le CCI(A,1) du score en 2001-2002 ; sang seul : global 0,89, cardio 0,80, métab
+    0,95, rénal 0,82, hépat 0,82, inflam 0,89.
+  - Elle ne s'applique qu'à la remesure complète.
+
+### Q2 — prédictions (calage 2001-2002, sang seul) et règles
+
+Moyennes de (écart₂ − écart₁) en années, avec n :
+
+| Groupe | n | Complète | Sélective | Corrigée complète (marqueurs) | Corrigée sélective | Corrigée complète (score) |
+|---|---|---|---|---|---|---|
+| Global, ≥ 1 marqueur anormal | 357 | +0,29 | −0,24 | +0,59 | +0,05 | +0,25 |
+| Cardiovasculaire | 271 | +0,10 | +0,03 | +0,34 | +0,17 | +0,07 |
+| Métabolique | 91 | −0,13 | −0,20 | +0,01 | −0,05 | −0,06 |
+| Rénal | 69 | −0,81 | −0,83 | +0,07 | +0,19 | −0,00 |
+| Hépatique | 69 | +0,33 | −0,01 | +0,83 | +0,36 | +0,67 |
+| Inflammatoire | 247 | −0,02 | −0,38 | +0,21 | −0,13 | +0,11 |
+| Sélection sur le score (20 % les plus « vieux ») | 78 | −0,54 | — | +0,88 | — | +0,42 |
+
+Taux de normalisation spontanée au second examen (marqueurs anormaux au premier) : de 15 %
+(HbA1c) à 46 % (leucocytes) ; CRP 20 %, ACR 32 %, glucose 34 %
+(`Q2_marqueurs_2001_sang.csv`). Rappel : en 2001-2002, le second examen « vieillit » en moyenne
+tout le monde d'environ +0,3 an (décalage systématique), ce qui se mélange à la régression vers la
+moyenne.
+
+**Règles de lecture.** Le seuil de référence est le P95 de 2001-2002 du même modèle et du même
+score (sang seul : global 5,99 ; cardio 2,69 ; métab 0,93 ; rénal 4,43 ; hépat 4,95 ;
+inflam 4,49).
+- **Compatibilité** : la moyenne de 2001-2002 est dans l'IC 95 % de NHANES III (complète,
+  sélective, chaque groupe).
+- **Correction validée**, pour chaque correction : l'IC 95 % du changement corrigé moyen en
+  NHANES III est **entièrement dans ±10 % du seuil** (marge d'équivalence), pour le global **et**
+  au moins 4 des 5 systèmes.
+- **Remesure sélective trompeuse** : son amélioration apparente moyenne (−moyenne de
+  écart₂ − écart₁) dépasse 25 % du seuil, pour le global ou pour un système.
+
+Le modèle complet (secondaire) et les sensibilités (seuils par centiles, μ interne) sont rapportés
+sans règle de décision.
