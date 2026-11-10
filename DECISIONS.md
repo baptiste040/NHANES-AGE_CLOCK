@@ -1838,3 +1838,38 @@ le risque à 10 ans.
   - « Global » ne masque pas le système défavorable au sens de R3 (borne basse 0,71). On **garde
     « global »**.
   - Le pire système doit s'afficher à côté du score global, pas à sa place.
+
+### Résultat — Q4 (2026-11-10)
+
+Exécution du protocole (`585f211`), sans écart.
+
+Validation (n = 9 276), C et différence avec « global » :
+- global : C 0,850 ;
+- moyenne : ΔC −0,0029 [−0,0041 ; −0,0017] ;
+- Cox : ΔC −0,0025 ;
+- hybride (λ = 0,1) : ΔC −0,0027 ;
+- pire système : ΔC **−0,0119** [−0,0154 ; −0,0086].
+
+Fiabilité sur les paires de NHANES III, en CCI :
+- global 0,873 ;
+- moyenne 0,881 ;
+- Cox 0,881 ;
+- hybride 0,882 ;
+- pire système 0,818.
+
+Cas d'un seul système défavorable : 142 personnes, 12 décès. O/E du global 1,19 [0,67 ; 2,10]. La
+note globale moyenne de ce groupe est de −4,9 ans.
+
+Application des règles :
+- R1 et R2 écartent le pire système ;
+- R3 : le global ne masque pas le système défavorable ;
+- **on garde le score global**, avec le système défavorable affiché à côté.
+
+Conclusion prédite correctement. Rapport : `reports/checkup_standard/suivi/Q4_AGREGATION.md`.
+
+## Gel des analyses de la piste « suivi » (2026-11-10)
+
+À la demande de l'auteur du projet, après Q4 : les analyses de la piste « suivi » sont **gelées**.
+- Synthèse : `reports/checkup_standard/suivi/SYNTHESE.md`.
+- Q5 (marqueurs manquants dans un système) reste en attente.
+- Toute nouvelle analyse demandera une levée du gel datée ici, et un pré-enregistrement.
