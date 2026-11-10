@@ -1,0 +1,19 @@
+{
+ "sans_contrainte": {
+  "n_signales": 823,
+  "pct": 8.872358775334195,
+  "par_marqueur": {
+   "alt": 375,
+   "wbc": 59,
+   "lymph_pct": 78,
+   "mcv": 330
+  }
+ },
+ "avec_contrainte": {
+  "n_signales": 0,
+  "pct": 0.0,
+  "par_marqueur": {}
+ },
+ "seuil_materiel_ans": 1.0,
+ "n_validation": 9276
+}

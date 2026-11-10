@@ -32,3 +32,12 @@ observé/prédit 0,92, pente 1,01.
   des affirmations fortes ;
 - note technique : la valeur p bootstrap affichée « 2,000 » pour les systèmes identiques est un
   artefact de la formule quand toutes les différences sont nulles ; elle se lit « sans objet ».
+
+## Note sur les systèmes cardiovasculaire et métabolique « sang seul »
+
+La mortalité toutes causes à 10 ans sous-estime l'importance des facteurs de risque
+cardiovasculaire (lipides, glycémie). Ils agissent sur des décennies, ils sont souvent déjà
+traités, et leur rôle causal porte aussi sur des événements non mortels. Le faible gain de C de
+ces deux systèmes (+0,003 et +0,005) ne signifie pas qu'ils sont inutiles. Ils ne doivent pas être
+présentés comme tels ; ce modèle de mortalité n'est simplement pas le bon outil pour les juger
+(interprétation, non testée ici).

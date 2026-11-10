@@ -60,3 +60,12 @@ Les personnes les plus « vieilles » ont des moteurs plus nets.
 - NHANES III est plus stable que prévu pour les moteurs « tous », probablement en partie parce que
   la CRP y est censurée (58 % à 2,1 mg/L), ce qui fige un moteur fréquent. Les moteurs
   actionnables, eux, ont été bien prédits.
+
+## Note sur les systèmes cardiovasculaire et métabolique « sang seul »
+
+La mortalité toutes causes à 10 ans sous-estime l'importance des facteurs de risque
+cardiovasculaire (lipides, glycémie). Ils agissent sur des décennies, ils sont souvent déjà
+traités, et leur rôle causal porte aussi sur des événements non mortels. Le faible gain de C de
+ces deux systèmes (+0,003 et +0,005) ne signifie pas qu'ils sont inutiles. Ils ne doivent pas être
+présentés comme tels ; ce modèle de mortalité n'est simplement pas le bon outil pour les juger
+(interprétation, non testée ici).

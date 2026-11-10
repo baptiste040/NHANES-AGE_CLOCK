@@ -1584,3 +1584,23 @@ la contrainte ; avec la contrainte, il vaut 0 par construction.
 Si la variante est adoptée, elle devient le modèle principal de Q3 allégée et de Q4. Q1 et Q2
 gardent leurs résultats pré-enregistrés ; leur reprise avec la variante contrainte serait une
 analyse distincte.
+
+### Résultat — étape 1, variante contrainte (2026-11-10)
+
+Exécution du protocole (`e886322`), sans écart. Validation 2007-2010 : C global contraint 0,8504
+[0,839 ; 0,862] contre 0,8496 ; différence appariée **+0,0008 [+0,0001 ; +0,0016]**. Hépatique
++0,0005 ; inflammatoire +0,0002 ; cardiovasculaire −0,0001 ; métabolique et rénal 0. Calibration :
+global 0,90 ; pente 0,99. Règle : perte < 0,005 → **variante adoptée** ; elle devient le modèle
+principal de Q3 allégée et de Q4.
+
+Écarts modifiés : global 46,0 % des personnes (médiane +0,22 an ; 90ᵉ centile +2,1 ; maximum +8,0) ;
+hépatique 11,0 % (+0,72) ; inflammatoire 18,6 % (+0,46 ; 90ᵉ centile +3,4) ; cardiovasculaire 35,7 %
+(+0,33).
+
+Signalement avec le seuil matériel de 1 an : 823 personnes (8,9 %) sans contrainte (ALAT 375, VGM
+330, lymphocytes 78, leucocytes 59) ; 0 avec contrainte. Rapport :
+`reports/checkup_standard/suivi/ETAPE1_CONTRAINTE.md`.
+
+Note ajoutée aux rapports à la demande de l'auteur du projet : la mortalité toutes causes à 10 ans
+sous-estime les facteurs de risque cardiovasculaire (lipides, glycémie). Les systèmes cardio et
+métab « sang seul » ne doivent pas être présentés comme inutiles.
