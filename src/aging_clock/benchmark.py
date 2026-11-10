@@ -141,16 +141,16 @@ Trois scores sur les mêmes participants. Différences de C par bootstrap **appa
 
 - **PhenoAge publié**, sans réentraînement. Sources :
   - poids des marqueurs : Levine et al. 2018, *Aging* 10(4):573-591, tableau 1
-    ([doi:10.18632/aging.101414](https://doi.org/10.18632/aging.101414)) ; l'équation de conversion
-    en années y renvoie au supplément 1 (non vérifié ici) ;
-  - équation complète : correction de Liu et al., *PLoS Med* 2019;16(2):e1002760
-    ([doi:10.1371/journal.pmed.1002760](https://doi.org/10.1371/journal.pmed.1002760)) :
-    M = 1 − exp(−1,51714·exp(xb)/0,0076927) ; PhenoAge = 141,50 + ln(−0,00553·ln(1 − M))/0,09165.
-  - Une autre paire de constantes circule (141,50225 ; 0,090165 ; paquet R BioAge, fonction
-    `phenoage_calc`, `orig = TRUE`). Passer de l'une à l'autre est une transformation affine de
-    PhenoAge : **seules les valeurs en années changent** (PhenoAge moyen, accélération en années et
-    son écart-type). Le C, le HR par écart-type d'accélération et la calibration (calculée sur M,
-    avant conversion) sont identiques.
+    ([doi:10.18632/aging.101414](https://doi.org/10.18632/aging.101414)) ;
+  - risque à 10 ans : M = 1 − exp(−1,51714·exp(xb)/0,0076927) (correction de Liu et al.,
+    *PLoS Med* 2019, [doi:10.1371/journal.pmed.1002760](https://doi.org/10.1371/journal.pmed.1002760)) ;
+  - conversion en années : supplément 1 de Levine et al. 2018 (lu le 2026-11-09) :
+    PhenoAge = 141,50225 + ln(−0,00553·ln(1 − M))/0,090165.
+  - La correction de Liu 2019 imprime 141,50 et 0,09165 (probable faute de frappe), constantes
+    utilisées dans une première exécution (`DECISIONS.md`). Passer de l'une à l'autre est une
+    transformation affine de PhenoAge : **seules les valeurs en années changent** (PhenoAge moyen,
+    accélération en années et son écart-type). Le C, le HR par écart-type d'accélération et la
+    calibration (calculée sur M, avant conversion) sont identiques.
 - **PhenoAge réentraîné** : ses 9 marqueurs, méthode du score principal (Cox âge + sexe,
   transformations du panel, pénalisation par CV sur 1999-2006).
 - Accélération : écart d'âge pour nos scores ; résidu PhenoAge ~ âge (régression estimée sur le

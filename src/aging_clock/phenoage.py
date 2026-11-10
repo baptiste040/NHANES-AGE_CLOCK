@@ -1,9 +1,11 @@
 """PhenoAge publie (Levine et al. 2018), sans reentrainement.
 
-Coefficients : Levine et al., Aging 2018, tableau 1 (doi:10.18632/aging.101414).
-Equation complete : correction de Liu et al., PLoS Med 2019 (doi:10.1371/journal.pmed.1002760) :
+Coefficients : Levine et al., Aging 2018, tableau 1 (doi:10.18632/aging.101414) ; forme de M
+d'apres la correction de Liu et al., PLoS Med 2019 (doi:10.1371/journal.pmed.1002760).
+Conversion en annees : supplement 1 de Levine et al. 2018 (source d'origine) :
     M        = 1 - exp(-1.51714 * exp(xb) / 0.0076927)
-    PhenoAge = 141.50 + ln(-0.00553 * ln(1 - M)) / 0.09165
+    PhenoAge = 141.50225 + ln(-0.00553 * ln(1 - M)) / 0.090165
+La correction de Liu 2019 imprime 141.50 et 0.09165 (probable faute de frappe) ; voir DECISIONS.md.
 1.51714 = exp(120 * 0.0076927) - 1 : M est le risque de deces a 10 ans d'un modele de Gompertz.
 
 Entrees en unites canoniques du projet (identiques a la publication sauf la CRP,
@@ -30,7 +32,7 @@ COEFS = {                       # unite attendue par la formule
 GAMMA = 0.0076927
 HORIZON_MONTHS = 120
 SCALE = 1.51714                 # exp(HORIZON_MONTHS * GAMMA) - 1, tel que publie
-AGE_CONST, LOG_FACTOR, AGE_DENOM = 141.50, -0.00553, 0.09165
+AGE_CONST, LOG_FACTOR, AGE_DENOM = 141.50225, -0.00553, 0.090165   # Levine 2018, supplement 1
 
 MARKERS = ["albumin", "creatinine", "glucose", "crp", "lymph_pct", "mcv", "rdw", "alp", "wbc"]
 

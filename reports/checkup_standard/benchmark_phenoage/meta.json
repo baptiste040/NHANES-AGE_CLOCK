@@ -1,12 +1,12 @@
 {
   "penalizer_pheno9": 0.003,
   "acceleration_pheno_pub": {
-    "intercept": -6.370785879635314,
-    "pente": 1.0467410748228219
+    "intercept": -8.803938941036712,
+    "pente": 1.0639806965841692
   },
-  "phenoage_pub_moyenne_validation": 43.99744723281052,
+  "phenoage_pub_moyenne_validation": 42.393849166939326,
   "age_moyen_validation": 47.92311019790202,
-  "corr_accel_global_pheno_pub": 0.6328409518303079,
+  "corr_accel_global_pheno_pub": 0.6328409518303069,
   "bootstrap": 1000,
   "seed": 42,
   "C_ref": {

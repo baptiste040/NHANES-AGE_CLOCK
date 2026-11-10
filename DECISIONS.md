@@ -491,3 +491,18 @@ plus jeune / plus vieux (47 % quand |écart| < 1 an, 1,5 % quand ≥ 5 ans). Pri
 ALAT (36 % de la variance du global). Moyenne de deux prises de sang : 8,4 ans ; à jeun : sans effet ;
 sensibilité 6,8 (bornes basses) – 13,1 ans (bornes hautes). Aucune modification du modèle.
 Rapport : `reports/checkup_standard/incertitude/INCERTITUDE.md`.
+
+## Correction — constantes de conversion de PhenoAge (2026-11-10)
+
+- **Source d'origine lue** : supplément 1 de Levine et al. 2018 (Aging, doi:10.18632/aging.101414,
+  PMC5940111, fichier `aging-10-101414-s001.pdf`) : PhenoAge = 141,50225 + ln(−0,00553·ln(1 − M))/0,090165 ;
+  tableau S1 identique à nos poids (constante −19,9067, RDW 0,3306, ln CRP 0,0954, γ = 0,0076927).
+- La correction de Liu et al. 2019 (retenue au point 5a) imprime 141,50 et 0,09165. C'est
+  probablement une faute de frappe (un « 0 » manquant). C'est notre interprétation, pas un
+  erratum des auteurs.
+- **Décision** (validée par l'auteur du projet) : adopter 141,50225 et 0,090165 (`phenoage.py`),
+  relancer le benchmark 5a.
+- **Effet constaté** : transformation affine, comme prévu. C, gain de C, HR par écart-type,
+  calibration et différences de C appariées inchangés. Seules les valeurs en années changent :
+  PhenoAge publié moyen en validation 44,0 → 42,4 ans ; écart-type de l'accélération
+  7,54 → 7,66 ans. La première exécution (0,09165) n'est plus rapportée que dans ce paragraphe.

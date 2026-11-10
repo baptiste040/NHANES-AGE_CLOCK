@@ -157,12 +157,12 @@ def _phenoage_case():
 
 def test_phenoage_published_constants():
     from aging_clock import phenoage as pa
-    # Levine 2018, tableau 1 ; correction Liu et al. PLoS Med 2019 (e1002760)
+    # Levine 2018, tableau 1 et supplement 1 (conversion en annees) ; M : correction Liu 2019
     assert pa.COEFS == {"albumin": -0.0336, "creatinine": 0.0095, "glucose": 0.1953,
                         "ln_crp": 0.0954, "lymph_pct": -0.0120, "mcv": 0.0268,
                         "rdw": 0.3306, "alp": 0.00188, "wbc": 0.0554, "age": 0.0804}
     assert (pa.INTERCEPT, pa.GAMMA) == (-19.907, 0.0076927)
-    assert (pa.AGE_CONST, pa.LOG_FACTOR, pa.AGE_DENOM) == (141.50, -0.00553, 0.09165)
+    assert (pa.AGE_CONST, pa.LOG_FACTOR, pa.AGE_DENOM) == (141.50225, -0.00553, 0.090165)
     # 1.51714 = exp(120 * gamma) - 1 : M est bien le risque Gompertz a 10 ans
     assert pa.SCALE == pytest.approx(np.exp(120 * pa.GAMMA) - 1, abs=1e-5)
 
@@ -172,13 +172,13 @@ def test_phenoage_worked_example():
     xb = -19.907 - 0.0336*45 + 0.0095*80 + 0.1953*5 + 0.0954*ln(0.1) - 0.012*30
          + 0.0268*90 + 0.3306*13 + 0.00188*70 + 0.0554*6 + 0.0804*50 = -9.06837
     M  = 1 - exp(-1.51714 * exp(xb) / 0.0076927)                     = 0.022474
-    PhenoAge = 141.50 + ln(-0.00553 * ln(1 - M)) / 0.09165            = 43.501
+    PhenoAge = 141.50225 + ln(-0.00553 * ln(1 - M)) / 0.090165        = 41.889
     """
     from aging_clock import phenoage as pa
     df = _phenoage_case()
     assert pa.linear_predictor(df)[0] == pytest.approx(-9.06837, abs=1e-5)
     assert pa.mortality_score(df)[0] == pytest.approx(0.022474, abs=1e-6)
-    assert pa.phenoage(df)[0] == pytest.approx(43.501, abs=1e-3)
+    assert pa.phenoage(df)[0] == pytest.approx(41.889, abs=1e-3)
 
 
 def test_phenoage_increases_with_crp_and_age():
