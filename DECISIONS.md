@@ -1666,3 +1666,86 @@ Exécution du protocole (`33cb504`), sans écart. NHANES III, n = 781.
   systèmes ; score : +0,62).
 - **Conclusion** : la contrainte ne change aucune conclusion de Q1 ni de Q2. Rapports : section
   « Analyse secondaire » de `Q1_MOTEURS.md` et `Q2_REGRESSION_MOYENNE.md`.
+
+## Suivi, Q3 allégée — urines absentes au second bilan (pré-enregistrement, 2026-11-10)
+
+Demandée par l'auteur du projet : au suivi, seules les urines manquent. Écrit et commité avant de
+toucher aux paires de NHANES III et à la validation 2007-2010 pour cette question. Code :
+`src/aging_clock/q3.py` ; modèle dédié : `config/panels/checkup_sang_sans_urines.yaml`. Modèle de
+référence : « sang seul contraint » (étape 1). Évaluation non aveugle au sens des réserves communes.
+
+**Situation.** Bilan 1 avec ACR, bilan 2 sans ACR. Sur des paires de remesures à environ 2
+semaines, il n'y a pas de changement réel : **tout changement affiché est un faux changement**.
+Scores étudiés : global et rénal (le rénal sans ACR se réduit à la créatinine).
+
+**Stratégies** (plan validé) :
+1. **imputation** : ACR prédite par régression linéaire du log de l'ACR sur les 18 autres
+   marqueurs (log pour les marqueurs transformés en log), l'âge et le sexe, ajustée sur le
+   développement (R² = 0,165) ; bilan 1 avec l'ACR mesurée ;
+2. **marqueurs communs** : ACR mise à la valeur de référence (médiane du développement, même sexe,
+   même tranche d'âge) **aux deux bilans** ; le bilan 1 est recalculé ;
+3. **modèle dédié** : Cox « sang seul, sans urines » (même pipeline, mêmes hyperparamètres, ACR
+   hors modèle), contraint, appliqué **aux deux bilans**.
+- Sensibilité, non prévue au plan : **report** de l'ACR du bilan 1. Elle donne le même changement
+  que les marqueurs communs : l'ACR entre de façon additive dans le prédicteur et ne change pas
+  entre les bilans.
+- Référence : **panel complet**, ACR mesurée aux deux bilans.
+
+**Indicateurs** (global et rénal) :
+- sur les paires :
+  - changement moyen d = écart₂ − écart₁ [IC 95 %] ;
+  - P95 de |d| [IC 95 %] et rapport au P95 du panel complet sur les mêmes paires ;
+  - **faux changement dû à l'absence d'urines** = d(stratégie) − d(panel complet), moyenne [IC]
+    et P95 de sa valeur absolue ;
+- pour les stratégies 2 et 3 :
+  - écart d'affichage du bilan 1 recalculé sans urines par rapport au bilan 1 complet ;
+  - **comparaison mixte** : bilan 1 complet affiché tel quel, bilan 2 avec la stratégie ;
+- validation 2007-2010, un seul bilan sans urines :
+  - C de la stratégie et différence de C appariée avec le panel complet (bootstrap, 1 000
+    tirages) ;
+  - biais de l'écart par rapport au panel complet.
+
+**Règles de décision.** Le seuil de référence T est le P95 du panel complet contraint en 2001-2002
+(global 5,97 ; rénal 4,43). Une stratégie est **acceptable** pour un score si, à la fois :
+- (a) l'IC 95 % du faux changement moyen en NHANES III est entièrement dans ±10 % de T ;
+- (b) le P95 de |d| en NHANES III ne dépasse pas 1,10 fois celui du panel complet ;
+- (c) la différence de C sur la validation est > −0,005 (estimation ponctuelle).
+
+Si plusieurs stratégies sont acceptables, on retient celle au P95 le plus bas.
+
+Limite connue de (a) : d(panel complet) contient la variation propre de l'ACR entre les deux
+examens. Une stratégie sans ACR ne la reproduit pas. La sensibilité « report » sépare les deux
+effets.
+
+**Conclusion sur le suivi rénal, fixée à l'avance.**
+- Si une stratégie est acceptable pour le rénal, le score rénal est suivi au bilan sans urines
+  avec cette stratégie.
+- Sinon, le système rénal **n'est suivi qu'aux bilans avec urines**. Entre deux, on affiche le
+  dernier score rénal mesuré, daté, et on n'annonce aucun changement rénal.
+- Même règle pour le global, sauf qu'en l'absence de stratégie acceptable, le global est donné
+  sans comparaison au bilan complet.
+
+**Prédictions (paires 2001-2002, n = 388 ; développement apparent pour C ;
+`Q3_predictions.json`).**
+
+| Stratégie | Score | d moyen [IC] | P95 \|d\| [IC] (rapport) | Faux changement moyen [IC] | ΔC dév. | (a) / (b) / (c) |
+|---|---|---|---|---|---|---|
+| Complet | global | +0,33 [+0,02 ; +0,62] | 5,97 [5,46 ; 6,57] | — | — | — |
+| Complet | rénal | −0,23 [−0,44 ; −0,00] | 4,43 [3,96 ; 4,79] | — | — | — |
+| Imputation | global | +0,58 | 7,24 (1,21) | +0,25 [+0,06 ; +0,43] | −0,0028 | oui / non / oui |
+| Imputation | rénal | +0,14 | 5,96 (1,34) | +0,36 [+0,08 ; +0,62] | −0,0031 | non / non / oui |
+| Communs | global | +0,52 | 5,52 (0,92) | +0,19 [+0,04 ; +0,33] | −0,0035 | oui / oui / oui |
+| Communs | rénal | +0,04 | 1,04 (0,23) | +0,27 [+0,05 ; +0,47] | −0,0089 | non / oui / non |
+| Dédié | global | +0,56 | 5,86 (0,98) | +0,24 [+0,08 ; +0,38] | −0,0027 | oui / oui / oui |
+| Dédié | rénal | +0,06 | 1,67 (0,38) | +0,29 [+0,07 ; +0,49] | −0,0083 | non / oui / non |
+
+- Bilan 1 recalculé sans urines (P95 de l'écart d'affichage) : communs, global 4,6 et rénal 6,7 ;
+  dédié, global 3,9 et rénal 5,7.
+- Comparaison mixte (P95 de |d|) : communs, global 7,0 et rénal 7,0 ; dédié, global 7,5 et rénal
+  6,2.
+
+**Prédiction de la conclusion.**
+- Rénal : aucune stratégie acceptable, donc le système rénal n'est suivi qu'aux bilans avec urines.
+- Global : « marqueurs communs » retenue (P95 5,52), « dédié » également acceptable.
+- La comparaison mixte (bilan complet contre bilan sans urines, sans recalcul) produit les plus
+  grands faux changements.
