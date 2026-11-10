@@ -1,0 +1,10 @@
+{
+  "penalizer": 0.0,
+  "bootstrap": 1000,
+  "seed": 42,
+  "n_dev_principale": 13903,
+  "n_val_principale": 9276,
+  "n_dev_propre": 14880,
+  "n_val_propre": 9914,
+  "panel_sha256": "66f5ed104921fea7d4d50cbf8cef35533648533c02093d913c698c59ff856a28"
+}
