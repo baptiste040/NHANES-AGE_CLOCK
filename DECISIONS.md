@@ -1148,3 +1148,72 @@ Fiche du modèle : un intervalle gaussien n'est pas adapté. README mis à jour.
 
 **Gel des analyses (décision de l'auteur du projet, 2026-11-10).** Plus aucune nouvelle analyse.
 La suite se limite à la rédaction (rapport PDF).
+
+## Piste « suivi » (2026-11-10) — contexte et réserves communes
+
+Nouvelle piste demandée par l'auteur du projet : ce qu'un produit de check-up de prévention peut
+honnêtement affirmer d'un bilan à l'autre (contexte générique, aucune entreprise). Conditions
+visées :
+- bilan complet au départ, puis une prise de sang tous les 6 mois ;
+- panel de suivi réduit, sans les urines ;
+- variantes de panel et de laboratoire ;
+- ni heure de prélèvement ni jeûne enregistrés ;
+- **ni tension ni mensurations**, et un pouls seulement via un objet connecté optionnel.
+
+Le gel des analyses du 2026-11-10 est levé par l'auteur du projet pour cette piste.
+
+**Réserves communes à toutes les questions.**
+1. Nos remesures sont à environ **2 semaines**, et en NHANES III à la même heure, avec le même
+   protocole et le même personnel. À 6 mois, et sans contrôle de l'heure ni du jeûne, le bruit sera
+   plus grand : nos chiffres sont des **bornes basses**.
+2. Les données de test **ne sont pas vierges**. Les remesures de NHANES III ont déjà été analysées
+   (fiabilité des scores) et la validation 2007-2010 a été consultée plusieurs fois. Les nouveaux
+   indicateurs de cette piste n'y ont jamais été calculés : le pré-enregistrement garde son sens,
+   mais l'évaluation n'est pas à l'aveugle.
+3. Découpage : fiabilité calée sur 2001-2002 et testée sur NHANES III ; mortalité développée sur
+   1999-2006 et validée sur 2007-2010.
+
+## Suivi, étape 0 — modèle « sang seul » (pré-enregistrement, 2026-11-10)
+
+Écrit et commité avant toute évaluation sur la validation 2007-2010. Code :
+`src/aging_clock/sang_seul.py`. Panel : `config/panels/checkup_sang_seul.yaml`.
+
+**Modèle.** Mêmes systèmes, mêmes transformations et mêmes plages que `checkup_standard`, mais
+sans tension (PAS, PAD), pouls, IMC ni tour de taille (déclarés `in_model: false`). L'ACR est
+gardée : le bilan de départ comprend les urines. Il reste 19 marqueurs. Le cardiovasculaire se
+réduit aux lipides (cholestérol, HDL, TG) et le métabolique à la glycémie et à l'HbA1c ; le rénal,
+l'hépatique et l'inflammatoire sont inchangés. Hyperparamètres figés : pénalisation 0 (valeur
+retenue pour le modèle complet, pas de nouvelle sélection), nœuds appris sur le développement,
+même grille d'âge.
+
+**Analyse principale : mêmes personnes que le modèle complet.** Entraînement sur les 13 903
+personnes du développement 1999-2006, validation sur les 9 276 personnes de 2007-2010. On isole
+ainsi l'effet du retrait des variables. Indicateurs par score (global et 5 systèmes) :
+- C [IC 95 %] et gain de C par rapport à âge + sexe ;
+- HR par écart-type d'écart d'âge ;
+- rapport observé/prédit et pente de calibration à 10 ans ;
+- **différence de C appariée** sang seul − complet, par bootstrap (1 000 tirages, graine 42).
+
+**Analyse secondaire : cohorte propre.** Cas complets sur les 19 marqueurs seulement, donc avec
+les personnes sans mesures physiques. On donne C et calibration ; il n'y a pas de comparaison
+appariée.
+
+**Prédiction** (validation croisée « un cycle retiré » sur le développement, mêmes personnes,
+`reports/checkup_sang_seul/prediction_cv_developpement.csv`). Différence de C sang seul − complet :
+
+| Score | Prédiction (moyenne des 4 plis) |
+|---|---|
+| Global | −0,0032 (de −0,0037 à −0,0028 selon les plis) |
+| Cardiovasculaire | −0,0060 (de −0,0082 à −0,0052) |
+| Métabolique | −0,0056 (de −0,0069 à −0,0041) |
+| Rénal, hépatique, inflammatoire | 0 (modèles identiques par construction) |
+
+**Règles de lecture** (fixées maintenant) :
+- la prédiction est **compatible** si elle est dans l'IC 95 % de la différence appariée observée ;
+- la **perte de discrimination est jugée faible** si la borne basse de l'IC de la différence de C
+  du score global est supérieure à −0,010 ;
+- la **calibration est jugée acceptable** si le rapport observé/prédit est dans [0,80 ; 1,20] et
+  si l'IC de la pente coupe [0,80 ; 1,20]. C'est la même règle que l'audit d'équité.
+
+Quel que soit le résultat, l'auteur du projet a décidé que Q1 et Q2 porteraient sur le modèle
+« sang seul » en analyse principale, et sur le modèle complet en secondaire.
