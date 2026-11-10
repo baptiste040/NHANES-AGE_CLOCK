@@ -835,3 +835,142 @@ ni gaussien : il a des queues épaisses. Un changement significatif calculé ave
 trop étroit pour celles qui traversent un épisode aigu. (2) La simulation doit intégrer la
 corrélation des variations, et probablement un mélange « variation habituelle + épisode aigu ».
 (3) Une CRP > 10 mg/L signale déjà un bilan peu fiable pour les scores qui l'utilisent.
+
+## Fiabilité test-retest — réplication sur le second examen de NHANES III (pré-enregistrement, 2026-11-10)
+
+Écrit et commité **avant** toute lecture des valeurs du second examen de NHANES III. Code :
+`src/aging_clock/retest_nh3.py` (`predictions()` puis `analyse()`) et `src/aging_clock/nhanes3.py`
+(lecture des fichiers ASCII à positions fixes d'après les programmes SAS du NCHS). L'analyse ne
+sera lancée qu'après relecture de ce paragraphe par l'auteur du projet.
+
+**Ce qui a déjà été vu.** La documentation NCHS (readme, codebooks LABSE, LAB2SE, EXAMSE) :
+noms des variables, effectifs, plage du délai (1 à 52 jours). Les fichiers `labse.dat` et
+`examse.dat` sont téléchargés, mais **seule la colonne SEQN en a été lue** (`nhanes3.seqn_only`).
+L'examen principal de NHANES III (lab.dat, exam.dat) a été lu : il sert à la population et aux
+prédictions.
+
+**Sélection du sous-échantillon** (documentation EXAMSE, NCHS). « No statistical sampling design
+was applied for the second exam. » Échantillon non aléatoire d'environ 5 % des personnes examinées
+à chaque site (environ 400 par site), choisi par le personnel du centre mobile selon trois
+consignes : surtout des adultes ; moitié 20-39 ans, moitié plus de 40 ans ; moitié hommes, moitié
+femmes. Second examen programmé après le premier, si possible à la même heure, avec les mêmes
+protocoles et le même personnel. Le NCHS recommande de ne pas utiliser les poids d'enquête et
+d'examiner le biais de sélection. Pour comparaison, en 2001-2002 (Lacher et al. 2010, NHSR 21) :
+recrutement non aléatoire, sexes et âges équilibrés de 16 à 69 ans, environ 5 % des personnes
+prélevées, second prélèvement au moins 8 jours après le premier.
+
+**Population.** Mêmes critères que la cohorte du modèle (20-79 ans, éligibles au chaînage de
+mortalité NHANES III 2019, suivi > 0, hors grossesse `MAPF12R` = 1, cas complets sur le panel
+au premier examen), et présence dans `labse` et `examse` : **n = 1 388** (47,4 ans en moyenne,
+54 % de femmes). NHANES III est **indépendant** du développement du modèle (1999-2006).
+À l'analyse, on exclura en plus les valeurs du second examen manquantes ou hors plage plausible.
+On exigera le sang et l'urine pour la comparaison biologique, et les mesures physiques pour la
+comparaison complète. Les prédictions seront alors recalculées sur ces populations finales, avec
+le même code et les mêmes graines.
+
+**Variables.** Examen principal / second examen : albumine `AMPSI`/`AMRSI`, créatinine
+`CEPSI`/`CERSI`, glucose sérique `SGPSI`/`SGRSI`, TG sériques `TRPSI`/`TRRSI`, cholestérol
+`TCPSI`/`TCRSI`, HDL `HDPSI`/`HDRSI`, PAL `APPSI`/`APRSI`, ALAT `ATPSI`/`ATRSI`, ASAT
+`ASPSI`/`ASRSI`, GGT `GGPSI`/`GGRSI`, CRP `CRP`/`CRR` (× 10, mg/L), HbA1c `GHP`/`GHR`, leucocytes
+`WCPSI`/`WCRSI`, lymphocytes % `LMPPCNT`/`LMRPCNT`, RDW `RWP`/`RWR`, VGM `MVPSI`/`MVRSI`,
+hémoglobine `HGP`/`HGR`, plaquettes `PLPSI`/`PLRSI`, ACR (`UBP`/`URP` et `UBR`/`URR`, × 11,31),
+PAS `PEPMNK1R`/`PERMNK1R`, PAD `PEPMNK5R`/`PERMNK5R`, pouls `PEP6DR`/`PER6DR`, IMC
+`BMPBMI`/`BMRBMI`, tour de taille `BMPWAIST`/`BMRWAIST`. Codes « tout en 8 ou en 9 » sur toute la
+largeur du champ (au moins 3 chiffres) traités comme manquants.
+
+**Harmonisation vers les méthodes du modèle** (identique aux deux examens) :
+- **créatinine** : standardisée = 0,960 × créatinine (mg/dL) − 0,184. Source : note CDC sur la
+  créatinine sérique et Selvin et al. 2007, *Am J Kidney Dis* (doi:10.1053/j.ajkd.2007.08.020,
+  résumé lu). La note CDC n'a pas pu être ouverte ; l'équation vient d'un extrait de recherche.
+  Elle est cohérente avec la recalibration 1999-2000 de notre configuration (1,013 ; +0,147), tirée
+  de la même note ;
+- **CRP** : limite de détection de NHANES III 0,21 mg/dL = 2,1 mg/L. 58 % de la population y est.
+  Toute valeur inférieure est fixée à 2,1 mg/L, **dans les remesures simulées comme dans les
+  données réelles** ;
+- autres marqueurs sans correction. Les automates diffèrent de ceux de 1999-2006 (limite déclarée).
+  Cela décale les niveaux mais touche peu les différences entre deux examens mesurés par la même
+  méthode.
+
+**Comparaisons.**
+1. **Biologique** (comme 2001-2002) : seuls le sang et l'urine changent ; mesures physiques fixes ;
+   système cardiovasculaire non interprété.
+2. **Complète** : mesures physiques **réellement remesurées** au second examen. Prédiction : bruit
+   physique tiré des CV de la littérature (PAS et PAD 8,6 %, pouls 8,0 %, IMC 1,5 %, tour de
+   taille 2,0 %), indépendant du sang.
+
+**Trois scénarios de simulation** (bruit multiplicatif en log, 1 000 remesures par personne,
+graine 2026, censure de la CRP à 2,1 mg/L après bruit) :
+1. **EFLM, indépendant** : CV du pré-enregistrement 2001-2002 (`variability_retest.json`).
+2. **CV et corrélations de 2001-2002** : écarts-types en log = ET(ln x₂ − ln x₁)/racine(2) observés
+   en 2001-2002 ; corrélation de Spearman des variations de 2001-2002 ; loi normale multivariée.
+3. **Vecteurs de variation de 2001-2002** : chaque remesure simulée tire au hasard le vecteur complet
+   (ln x₂ − ln x₁)/racine(2) d'une des 388 personnes de 2001-2002, avec un signe aléatoire. Cela
+   conserve la corrélation et les queues épaisses observées. C'est la version non paramétrique du
+   mélange « variation habituelle + épisode aigu ».
+Paramètres figés : `reports/checkup_standard/fiabilite_nhanes3/parametres_2001_2002.json`
+(SHA-256 `aae70c0a…`) ; vecteurs dans `data/processed/vecteurs_variation_2001_2002.csv`
+(hors dépôt, empreinte dans le JSON).
+
+**Critère de comparaison des scénarios** (fixé maintenant), sur les 7 scores interprétés (global,
+métabolique, rénal, hépatique, inflammatoire et hématologique, PhenoAge publié, PhenoAge
+réentraîné) :
+- pour chaque score : R = ET_w observé / ET_w prédit, avec IC 95 % bootstrap (2 000 tirages) ; et
+  rapports centile prédit / centile observé de |écart₂ − écart₁| aux centiles 50, 90 et 95 ;
+- **perte** d'un scénario = moyenne sur les 7 scores de [ |ln R| + moyenne des trois |ln(rapport
+  de centiles)| ] ;
+- **meilleur scénario** = perte la plus faible, pour chaque comparaison (biologique, complète) ;
+- un scénario est dit **adéquat** si, pour les 7 scores, l'IC de R contient 1 **et** les trois
+  rapports de centiles sont dans [0,80 ; 1,25]. Le meilleur scénario peut ne pas être adéquat ;
+  ce sera alors écrit.
+
+**Métriques rapportées** (par score, observées et prédites) : ET_w ; changement significatif
+gaussien 1,96 × racine(2) × ET_w **et** empirique (95ᵉ centile de |d|) ; CCI(A,1) avec IC ;
+Bland-Altman (biais, limites) ; taux de bascule ; centiles 50, 90, 95 de |d| ; CV classiques et
+robustes (écart absolu médian) par marqueur.
+
+**Prédiction directionnelle du décalage systématique** (d'après 2001-2002) : au second examen, le
+score global est **plus vieux** (moyenne de d > 0), l'albumine et l'hémoglobine sont **en
+baisse** (moyenne de ln x₂ − ln x₁ < 0). Test : IC 95 % bootstrap de la moyenne.
+- Confirmé si la borne basse > 0 (global) et la borne haute < 0 (albumine, hémoglobine) ;
+- contredit si l'IC est entièrement du côté opposé ;
+- non concluant sinon.
+Les autres scores et marqueurs sont décrits.
+
+**Règle pratique « CRP > 10 mg/L à l'un des deux examens ».** Prédiction d'après 2001-2002 :
+rapport ET_w sans ces personnes / ET_w de tous = global 0,975 ; métabolique 0,875 ; rénal 1,018 ;
+hépatique 0,982 ; inflammatoire 0,879 ; PhenoAge publié 0,852 ; PhenoAge réentraîné 0,897.
+Test : IC 95 % bootstrap du rapport observé.
+- Prédiction compatible si la valeur prédite est dans l'IC ;
+- effet confirmé pour l'inflammatoire et PhenoAge publié si la borne haute < 1.
+
+**Mesures physiques.** CV observés (classiques et robustes) de la PAS, de la PAD, du pouls, de
+l'IMC et du tour de taille. Ils sont comparés à deux références :
+- la littérature (8,6 ; 8,6 ; 8,0 ; 1,5 ; 2,0 %) ;
+- la variabilité intra-visite de NHANES III, estimée sur les trois lectures de l'examen principal
+  (14 692 adultes de 20-79 ans) : PAS 3,6 % par lecture, 2,1 % pour la moyenne de 3 ; PAD 5,5 %
+  et 3,2 %.
+Descriptif, sans règle de décision.
+
+**Facteurs** (descriptifs) : tertiles du délai (`MXPRDAYS`, sinon `MXRRDAYS`) ; même séance
+(`MXPSESSR` = `MXRSESSR`) ou non ; à jeun ≥ 8 h aux deux examens (`PHPFAST`, `PHRFAST`). Ces
+variables existent cette fois pour les deux examens : pas d'indicateur indirect.
+
+**Prédictions figées** (n = 1 388 ; `predictions.csv`). Partie biologique : ET_w ;
+changement significatif gaussien ; centiles 50 / 90 / 95 de |d|.
+
+| Score | Scénario 1 (EFLM) | Scénario 2 (CV + corrélation 2001-02) | Scénario 3 (vecteurs 2001-02) |
+|---|---|---|---|
+| Global | 1,74 ; 4,8 ; 1,64 / 4,05 / 4,86 | 1,84 ; 5,1 ; 1,75 / 4,28 / 5,13 | 1,81 ; 5,0 ; 1,65 / 4,17 / 5,08 |
+| Métabolique | 0,26 ; 0,7 ; 0,25 / 0,61 / 0,73 | 0,31 ; 0,8 ; 0,29 / 0,71 / 0,85 | 0,30 ; 0,8 ; 0,25 / 0,68 / 0,85 |
+| Rénal | 1,11 ; 3,1 ; 1,02 / 2,60 / 3,12 | 1,50 ; 4,1 ; 1,37 / 3,51 / 4,21 | 1,48 ; 4,1 ; 1,17 / 3,38 / 4,31 |
+| Hépatique | 1,62 ; 4,5 ; 1,46 / 3,77 / 4,58 | 1,63 ; 4,5 ; 1,51 / 3,78 / 4,54 | 1,63 ; 4,5 ; 1,44 / 3,71 / 4,53 |
+| Inflammatoire | 1,46 ; 4,0 ; 1,37 / 3,38 / 4,04 | 1,58 ; 4,4 ; 1,49 / 3,68 / 4,41 | 1,65 ; 4,6 ; 1,40 / 3,72 / 4,70 |
+| PhenoAge publié | 1,63 ; 4,5 ; 1,52 / 3,77 / 4,52 | 1,97 ; 5,5 ; 1,83 / 4,54 / 5,47 | 2,07 ; 5,7 ; 1,69 / 4,54 / 5,82 |
+| PhenoAge réentraîné | 1,41 ; 3,9 ; 1,34 / 3,28 / 3,92 | 1,50 ; 4,2 ; 1,42 / 3,49 / 4,16 | 1,51 ; 4,2 ; 1,31 / 3,44 / 4,29 |
+
+Comparaison complète, global : ET_w 2,18 / 2,26 / 2,23 ; changement significatif 6,0 / 6,3 / 6,2 ;
+cardiovasculaire 2,00 / 2,04 / 2,04. CCI prédits du global : 0,947 / 0,941 / 0,943 (biologique).
+
+Empreintes (`meta_predictions.json`) : CV `b7674478…`, paramètres 2001-2002 `aae70c0a…`, code
+de `retest_nh3.py` `4f89054e…`. L'analyse refuse de tourner si les CV ou les paramètres 2001-2002
+ont changé.
