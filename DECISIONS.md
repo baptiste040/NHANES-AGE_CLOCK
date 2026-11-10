@@ -1879,3 +1879,184 @@ Conclusion prédite correctement. Rapport : `reports/checkup_standard/suivi/Q4_A
 Arrondi corrigé : la note globale moyenne du sous-groupe « un seul système très défavorable » vaut
 −4,848 ans (`Q4_resultats.json`), soit **−4,8 ans** et non −4,9 comme écrit dans le résultat de Q4,
 `Q4_AGREGATION.md` et `SYNTHESE.md`. Aucune conclusion ne change.
+
+## Programme « panel » : comportement des biomarqueurs d'un check-up (2026-11-10)
+
+**Levée du gel.** L'auteur du projet lève le gel des analyses pour ce seul programme (branche
+`panel`, créée depuis `suivi`). La piste « suivi » reste gelée.
+
+**Nature.** Programme de recherche sur le comportement des biomarqueurs et des populations,
+pas un produit. Contexte générique :
+- bilan large au départ, puis un panel de suivi tous les 6 mois ;
+- ni heure ni jeûne enregistrés ;
+- plusieurs laboratoires ;
+- adultes surtout de 30 à 55 ans, plus favorisés et en meilleure santé que la moyenne, dont des
+  athlètes.
+
+Aucune entreprise n'est nommée. La correspondance avec un panel précis reste hors du dépôt.
+
+**Inventaire** (étape 1, sans analyse de valeurs) :
+- 78 marqueurs mesurés et 21 indices dérivés ;
+- 67 marqueurs présents dans NHANES 1999-2018 avec mortalité, 51 avec une remesure en 2001-2002,
+  54 dans NHANES III (examen principal et second examen) ;
+- 9 marqueurs absents de toutes les sources.
+
+**Questions, dans l'ordre validé** :
+1. Q1 : changement détectable à 6 mois ;
+2. Q4 : normalisation spontanée ;
+3. Q2 : jeûne et heure du prélèvement ;
+4. Q5 : changements de méthode de laboratoire ;
+5. Q3 : populations particulières.
+
+Q6 (zones fondées sur le risque) sera décidée après Q3.
+
+### Décisions communes (validées par l'auteur du projet)
+
+- **D1, seuils « usuels ».** Une table, chaque ligne indiquant **son type et sa source lue** :
+  - **seuil de décision clinique** quand il existe (glycémie, HbA1c, lipides, hs-CRP, DFGe, ACR,
+    vitamine D) : recommandations européennes de préférence (ESC/EAS pour les lipides), sinon
+    internationales (ADA, OMS, KDIGO). Pour la vitamine D, le seuil est débattu (20 ou 30 ng/mL) :
+    analyse de sensibilité ;
+  - **intervalle de référence statistique** sinon : intervalles harmonisés nordiques (NORIP), ou à
+    défaut une autre source européenne publiée.
+
+  La distinction « convention statistique » contre « seuil fondé sur le risque » apparaît dans
+  tous les rapports. La table est figée dans le pré-enregistrement de Q4.
+- **D2, population.** Adultes de 20 à 79 ans, sans les femmes enceintes. Les 30-55 ans sont
+  rapportés en plus pour Q1, et en analyse principale pour Q3.
+- **D3, poids d'enquête.** Pondéré pour les descriptions de population ; non pondéré pour la
+  variabilité et les comparaisons internes.
+- **D4, échelle.** Log pour les marqueurs strictement positifs ; règle pour les valeurs nulles
+  ci-dessous.
+- **D5, horizon.** 6 mois. Tout chiffre tiré des remesures à 2 semaines porte le statut
+  « borne basse ».
+- **D6, littérature.**
+  - Ne citer que ce qui a été ouvert, en précisant texte complet ou résumé.
+  - Écrire « rien trouvé avec ces requêtes ».
+
+## Programme « panel », Q1 : changement détectable à 6 mois (pré-enregistrement, 2026-11-10)
+
+Écrit et commité avant tout calcul sur les remesures. Code prévu : `src/aging_clock/panel/`.
+Rapport : `reports/panel/Q1_CHANGEMENT_DETECTABLE.md`.
+
+### Données
+
+- **Remesures NHANES 2001-2002.** Adultes de 20 à 79 ans, non enceintes, avec une valeur aux deux
+  examens (fichiers `*_2_B`, délai médian d'environ 2 semaines).
+- **Remesures NHANES III.** Mêmes critères (fichier `labse`).
+
+Les deux jeux sont analysés **séparément**, sans mise en commun : le second sert de réplication.
+
+Marqueurs : ceux de l'inventaire présents dans au moins un jeu de remesures (environ 40 du suivi
+et 11 du départ), plus les indices dérivés calculables sur les paires. Unités SI. Mêmes plages de
+plausibilité que le projet pour les marqueurs déjà connus ; pour les autres, on exclut seulement
+les codes de valeur manquante.
+
+### Valeurs nulles, négatives ou censurées (D4)
+
+- **Échelle additive** (unités, pas %) pour les marqueurs qui peuvent valoir 0 ou dont plus de
+  1 % des valeurs sont au plancher de résolution : basophiles et éosinophiles (% et nombre), et
+  monocytes en nombre s'ils remplissent le critère. Le changement détectable y est donné en unités.
+- **Valeurs sous la limite de détection.** Remplacées par la valeur publiée par NHANES (limite / √2).
+  La part de valeurs censurées est rapportée. Au-delà de 20 % de valeurs censurées dans un jeu,
+  le résultat est marqué « non interprétable » pour ce jeu (cas attendu : CRP dans NHANES III).
+- **Indices qui peuvent être négatifs ou nuls** : sur l'échelle additive (cas attendu : indice
+  athérogène, déjà en log). Les autres indices dérivés (HOMA-IR, TyG, FIB-4, NLR, SII, rapports)
+  sont sur l'échelle log.
+
+### Indicateurs
+
+Pour chaque marqueur et chaque jeu de remesures, avec $d = \ln x_2 - \ln x_1$ :
+- **CV observé** $CV_{obs} = \sqrt{e^{\mathrm{Var}(d)/2}-1}$, version classique et version robuste
+  (écart absolu médian × 1,4826) ;
+- **décalage moyen** entre examens (moyenne de $d$) ;
+- **changement détectable empirique** : P95 de $|d - \bar d|$, exprimé en % (hausse $e^{q}-1$,
+  baisse $1-e^{-q}$) ;
+- IC 95 % par bootstrap des personnes (2 000 tirages, graine 2026).
+
+Rapportés pour tous les adultes et pour les **30-55 ans**.
+
+### Variabilité à 6 mois
+
+- **CV_I,CT** : CV_I de la méta-analyse EFLM (consultée le 2026-11-10). On vérifie, en lisant les
+  études incluses, qu'il vient surtout d'études courtes.
+- **CV_I,LT** : études BIVAC de la base EFLM, retenues si elles remplissent toutes ces conditions :
+  - adultes en bonne santé ;
+  - durée totale de prélèvement ≥ 6 mois ;
+  - note BIVAC A ou B.
+
+  S'il y en a plusieurs, on prend la médiane de leurs CV_I. S'il n'y en a aucune, CV_I,LT est
+  « non disponible ».
+- **Combinaison**, sur l'échelle log : $CV_{6m}^2 = CV_{obs}^2 + \max(0,\ CV_{I,LT}^2 - CV_{I,CT}^2)$.
+  - Analyse principale : CV_obs de NHANES III (le plus grand échantillon).
+  - Sensibilité : CV_obs de 2001-2002, et version robuste.
+- **Statut** de chaque marqueur :
+  - « extrapolé à 6 mois » si CV_I,LT existe ;
+  - « borne basse (2 semaines) » sinon ;
+  - « EFLM seul » pour un marqueur sans remesure, avec $\sqrt{CV_A^2 + CV_{I,LT\ ou\ CT}^2}$.
+    CV_A vient des fiches de contrôle qualité NHANES, sinon de la spécification EFLM
+    (0,5 × CV_I) ;
+  - « non disponible » sans aucune source.
+- **Changement détectable à 6 mois** (2 mesures, 95 %) : hausse $e^{1{,}96\sqrt2\,\sigma}-1$,
+  baisse $1-e^{-1{,}96\sqrt2\,\sigma}$, avec $\sigma = \sqrt{\ln(1+CV_{6m}^2)}$.
+
+### Effets d'interventions
+
+Interventions et marqueurs, fixés à l'avance :
+
+| Intervention | Marqueurs |
+|---|---|
+| Activité physique (aérobie, résistance) | HbA1c, glycémie, insuline ou HOMA-IR, TG, HDL, LDL, cholestérol total, CRP, ALAT |
+| Alimentation de type méditerranéen | LDL, cholestérol total, TG, HDL, CRP, glycémie, HbA1c |
+| Perte de poids | TG, HDL, LDL, ALAT, GGT, insuline, glycémie, HbA1c, CRP, acide urique |
+| Réduction de l'alcool | GGT, HDL, TG, VGM |
+| Supplémentation en vitamine D | 25-OH vitamine D |
+| Supplémentation en oméga-3 | TG |
+| Supplémentation en B12 ou folates | B12, folates, homocystéine |
+| Supplémentation en fer | ferritine, hémoglobine |
+
+**Recherche** : PubMed, requêtes « `<intervention>` AND `<marqueur>` AND meta-analysis AND
+randomized ». Pour chaque couple, on retient la méta-analyse d'essais randomisés chez l'adulte la
+plus récente et la plus large qui a été **ouverte** (texte complet ou résumé, précisé).
+
+**Extraction** : effet moyen et IC, converti en % de la valeur de départ (moyenne de départ de la
+méta-analyse, ou à défaut la médiane NHANES des 30-55 ans), durée et dose.
+
+**Ratio** = |effet| / changement détectable à 6 mois, du côté de l'effet (hausse ou baisse) :
+
+| Ratio | Conclusion |
+|---|---|
+| ≥ 1 | un effet moyen est **détectable chez une personne** |
+| 0,5 à 1 | **limite** |
+| < 0,5 | **visible seulement en moyenne de groupe** |
+
+La règle s'applique au changement détectable principal, avec en sensibilité le changement
+empirique.
+
+### Ce que le rapport doit dire explicitement (demandé par l'auteur du projet)
+
+- La **variabilité entre laboratoires n'est pas incluse** dans le changement détectable : elle
+  relève de Q5.
+- Les effets des méta-analyses sont des **effets moyens**. Ils ne disent rien de la variabilité de
+  la réponse d'une personne à l'autre.
+- Remesures à 2 semaines ; NHANES est américain et ses laboratoires sont centralisés.
+
+### Prédictions
+
+Fichier `private/panel/Q1_predictions_eflm.csv` (hors dépôt, licence EFLM ; SHA-256
+`d65fabbc89b0465cfdd4b0267f025d859c125fa279ba0efd11cc2615890c168c`). Pour 67 marqueurs, il donne
+le CV attendu à 2 semaines, $\sqrt{CV_I^2 + (0{,}5\,CV_I)^2}$, avec le CV_I de la méta-analyse EFLM.
+
+1. **Directionnelle** (d'après le projet précédent, où l'EFLM sous-estimait presque tous les CV
+   observés) : dans NHANES III, le CV observé classique **dépasse** le CV attendu pour au moins
+   deux tiers des marqueurs remesurés.
+2. **Queues épaisses** : pour au moins la moitié des marqueurs, le changement détectable
+   empirique dépasse de plus de 10 % celui qu'on déduirait du CV robuste.
+3. **Réplication** : pour au moins deux tiers des marqueurs présents dans les deux jeux, les CV
+   observés de 2001-2002 et de NHANES III diffèrent de moins d'un facteur 1,5.
+4. **Interventions** (attendu qualitatif) :
+   - ratio ≥ 1 pour la 25-OH vitamine D sous supplémentation, et pour les TG sous oméga-3 à forte
+     dose ;
+   - ratio < 0,5 pour la plupart des effets de l'activité physique sur les lipides et l'HbA1c.
+
+Ces prédictions sont vérifiées et rapportées ; elles ne conditionnent aucune décision.
