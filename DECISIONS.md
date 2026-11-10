@@ -1005,3 +1005,96 @@ Demandé par l'auteur du projet après relecture. Commité avant le lancement de
    mesuré ici est donc probablement **inférieur** à celui d'un suivi réel (heure, laboratoire,
    saison, état de santé différents d'une visite à l'autre). Même réserve pour 2001-2002, où le
    délai minimal était de 8 jours.
+
+### Résultat — réplication NHANES III (2026-11-10)
+
+Exécution du protocole pré-enregistré et amendé (`6713ba0`) ; empreintes des CV et des
+paramètres 2001-2002 vérifiées par le code. Aucun écart de code. Sorties :
+`reports/checkup_standard/fiabilite_nhanes3/`.
+
+**Population.** 1 388 personnes prévues → **781** avec le sang et l'urine complets au second
+examen. La cause n'était pas anticipée : l'**ACR manque au second examen pour 579 personnes** (urine
+non recueillie). Pouls et tour de taille manquent pour un groupe proche. Les 781 restants
+forment un sous-échantillon du sous-échantillon. Comparaison complète : 740. Délai médian
+16 jours (1-48).
+
+**Choix du scénario** (règle pré-enregistrée, 7 scores interprétés) :
+
+| Comparaison | 1. EFLM indépendant | 2. CV + corrélation 2001-02 | 3. Vecteurs 2001-02 centrés |
+|---|---|---|---|
+| Biologique : perte | 0,517 | **0,299 (meilleur)** | 0,312 |
+| Complète : perte | 0,414 | **0,242 (meilleur)** | 0,243 |
+
+**Aucun scénario n'est adéquat.** Le scénario 2 est le meilleur, à peine devant le 3.
+
+**R = ET_w observé / prédit [IC 95 %], partie biologique :**
+
+| Score | 1. EFLM | 2. CV + corr. 2001-02 | 3. Vecteurs 2001-02 | Rapport des 95ᵉ centiles prédit/observé (2) |
+|---|---|---|---|---|
+| Global | 1,24 [1,16 ; 1,32] | 1,17 [1,10 ; 1,25] | 1,20 [1,12 ; 1,27] | 0,82 |
+| Métabolique | 1,51 [1,35 ; 1,69] | 1,30 [1,16 ; 1,45] | 1,30 [1,16 ; 1,46] | 0,80 |
+| Rénal | 1,83 [1,72 ; 1,95] | 1,36 [1,28 ; 1,45] | 1,38 [1,30 ; 1,47] | 0,72 |
+| Hépatique | 1,11 [1,04 ; 1,18] | 1,10 [1,03 ; 1,17] | 1,12 [1,05 ; 1,19] | 0,87 |
+| Inflammatoire (CRP censurée) | 1,16 [1,07 ; 1,25] | 1,07 [0,98 ; 1,16] | 1,03 [0,95 ; 1,12] | 0,92 |
+| PhenoAge publié (CRP censurée) | 1,68 [1,39 ; 2,00] | 1,39 [1,15 ; 1,65] | 1,33 [1,11 ; 1,59] | 0,81 |
+| PhenoAge réentraîné (CRP censurée) | 1,13 [1,06 ; 1,20] | 1,06 [0,99 ; 1,13] | 1,07 [1,00 ; 1,14] | 0,92 |
+
+Médianes de |d| bien prédites (rapports 0,95 à 1,12 pour le scénario 2, sauf cardiovasculaire non
+interprété), 95ᵉ centiles sous-estimés : les queues sont encore plus épaisses qu'en 2001-2002.
+
+**Valeurs observées, partie biologique** : global ET_w 2,15 ; changement significatif gaussien
+6,0 ans, empirique (95ᵉ centile) 6,2 ans ; CCI 0,91 [0,90 ; 0,93] ; bascule 15,0 %. Rénal : CCI
+0,74, changement significatif 5,6 / 5,9 ans. Hépatique : CCI 0,85, 4,9 / 5,2 ans. Score complet
+(tension et mensurations réellement remesurées) : global ET_w 2,41, changement significatif 6,7 /
+6,9 ans, CCI 0,89 ; R = 1,07 [1,00 ; 1,13] (scénario 2). Cardiovasculaire R = 0,88 [0,82 ; 0,94] :
+la simulation surestime son bruit. Pour l'inflammatoire et les PhenoAge, les valeurs absolues ne
+sont pas comparables à 2001-2002 (CRP censurée, amendement 2).
+
+**CV par marqueur** (observé / robuste / prédit EFLM / observé 2001-02, %) : ACR 88 / 59 / 40 / 57 ;
+ALAT 25,4 / 18,3 / 13,0 / 18,6 ; ASAT 17,8 / 11,1 / 9,0 / 17,7 ; GGT 15,7 / 11,7 / 8,7 / 15,2 ;
+TG 23,2 / 21,5 / 19,9 / 28,2 ; glucose 10,2 / 6,2 / 5,1 / 8,2 ; HDL 10,4 / 7,2 / 6,5 / 9,4 ;
+plaquettes 11,0 / 6,9 / 7,8 / 8,5 ; HbA1c 3,4 / 2,1 / 2,8 / 1,9 ; albumine 4,0 / 2,9 / 2,8 / 3,4 ;
+hémoglobine 2,9 / 2,8 / 2,9 / 2,7. CRP 41 % (CV robuste nul : plus de la moitié des valeurs à la
+limite de détection).
+
+**Mesures physiques** (CV observé / robuste ; littérature ; intra-visite NHANES III pour la
+moyenne de 3 lectures) : PAS 2,8 / 2,3 ; 8,6 ; 2,1. PAD 3,9 / 3,2 ; 8,6 ; 3,2. Pouls 9,5 / 9,6 ;
+8,0. IMC 1,4 / 0,9 ; 1,5. Tour de taille 2,5 / 1,8 ; 2,0. La tension remesurée à environ 2 semaines,
+avec le même protocole et le même personnel, varie presque comme d'une lecture à l'autre dans la
+même visite. C'est 3 fois moins que la variabilité entre visites au cabinet de la littérature.
+
+**Décalage systématique** (prédiction directionnelle de 2001-2002) :
+- score global : +0,12 an [−0,10 ; +0,33] → **non concluant** ;
+- albumine : −0,57 % [−0,97 ; −0,14] → **confirmé** ;
+- hémoglobine : −1,51 % [−1,80 ; −1,22] → **confirmé**.
+Décrits : inflammatoire +0,20 [+0,03 ; +0,37] ; PhenoAge publié +0,36 [+0,10 ; +0,64] ; HDL −1,4 % ;
+GGT −2,0 % ; TG +2,3 %.
+
+**Règle CRP > 10 mg/L** (103 personnes exclues) : rapport observé [IC 95 %] contre prédit.
+
+| Score | Observé [IC 95 %] | Prédit | Verdict |
+|---|---|---|---|
+| Global | 0,959 [0,921 ; 0,993] | 0,975 | compatible |
+| Inflammatoire | 0,930 [0,879 ; 0,976] | 0,879 | compatible de justesse ; effet confirmé (borne haute < 1) |
+| Hépatique | 0,996 [0,964 ; 1,021] | 0,982 | compatible |
+| PhenoAge publié | 0,970 [0,882 ; 1,025] | 0,852 | non compatible ; effet non confirmé |
+| PhenoAge réentraîné | 0,970 [0,937 ; 0,997] | 0,897 | non compatible |
+| Métabolique | 0,987 [0,951 ; 1,014] | 0,875 | non compatible |
+| Rénal | 0,991 [0,966 ; 1,013] | 1,018 | non compatible |
+
+La censure de la CRP limite l'effet attendu pour les PhenoAge.
+
+**Facteurs.** Séance : identique aux deux examens pour les 781 personnes (aucun contraste, effet
+non testable). À jeun ≥ 8 h aux deux (n = 457) : global ET_w 2,09 contre 2,15 pour tous. Délai :
+pas de gradient (tertiles 2,11 / 2,31 / 1,97).
+
+**Lecture** (interprétation) :
+1. La réplication indépendante ne valide **aucun** des trois modèles de bruit.
+2. Le meilleur, CV et corrélations de 2001-2002, prédit bien la **médiane** des écarts mais
+   sous-estime le bruit total de 6 à 39 % selon le score. Les queues sont plus épaisses qu'en
+   2001-2002, surtout pour l'ACR, le rénal et le métabolique.
+3. La corrélation des variations améliore nettement la prédiction : perte 0,30 contre 0,52 pour
+   l'EFLM indépendant.
+4. Le changement significatif réel du score global est d'environ **6 ans pour la partie
+   biologique et 7 ans pour le score complet**, à environ 2 semaines et dans des conditions
+   standardisées. C'est probablement une borne basse pour un suivi réel.

@@ -1,0 +1,7 @@
+comparaison,scenario,perte,adequat,meilleur
+biologique,1_eflm_independant,0.5173419834208428,False,False
+biologique,2_cv2001_correle,0.299050164981436,False,True
+biologique,3_vecteurs2001,0.3123522248553377,False,False
+complete,1_eflm_independant,0.4135193376355066,False,False
+complete,2_cv2001_correle,0.24210330572792102,False,True
+complete,3_vecteurs2001,0.2430483111358496,False,False
