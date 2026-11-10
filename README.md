@@ -75,7 +75,7 @@ déclaré (C 0,838) et pour chaque cause de décès. Les écarts par système so
 **Comparaison à PhenoAge** (Levine 2018) sur les mêmes participants, différences de C par
 bootstrap apparié :
 
-- score global − PhenoAge publié : **+0,022** [+0,017 ; +0,027] ;
+- score global − PhenoAge publié : **+0,022** [+0,016 ; +0,027] ;
 - score global − PhenoAge réentraîné avec notre méthode : +0,016 (apport des variables) ;
 - PhenoAge réentraîné − publié : +0,005 (apport de la méthode) ;
 - PhenoAge publié est mal calibré sur ces données (pente 0,71) ; réentraîné, il l'est bien.

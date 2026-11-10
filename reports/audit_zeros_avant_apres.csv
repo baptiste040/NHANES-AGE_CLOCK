@@ -1,0 +1,48 @@
+indicateur,avant,apres,difference
+n développement,13882,13903,21
+décès développement,2785,2796,11
+n validation,9247,9276,29
+décès validation,972,978,6
+C_ref,0.8067,0.8065,-0.0002
+C_global,0.8530,0.8532,0.0002
+dC_global,0.0464,0.0467,0.0003
+dC_cardiovasculaire,0.0120,0.0121,0.0001
+dC_metabolique,0.0126,0.0126,0.0000
+dC_renal,0.0133,0.0132,-0.0001
+dC_hepatique,0.0237,0.0237,-0.0001
+dC_inflammatoire_hematologique,0.0259,0.0263,0.0004
+O/E global,0.921,0.915,-0.006
+pente global,0.991,0.990,-0.001
+HR/ET global,2.007,2.015,0.008
+ET écart global (ans),7.479,7.494,0.014
+ΔC Score global (panel complet) − PhenoAge publié (Levine 2018),+0.0215,+0.0216,+0.0001
+"ΔC Score global (panel complet) − PhenoAge réentraîné (9 marqueurs, notre méthode)",+0.0163,+0.0164,+0.0000
+"ΔC PhenoAge réentraîné (9 marqueurs, notre méthode) − PhenoAge publié (Levine 2018)",+0.0052,+0.0052,+0.0000
+"O/E Revenu ≥ 3,5",0.620,0.616,-0.004
+O/E Groupe ethnique Mexicain-américain,0.649,0.648,-0.001
+2015-18 brute 2015-2016 C,0.861,0.862,0.002
+2015-18 brute 2015-2016 écart moyen,+1.15,+1.20,+0.04
+2015-18 brute 2017-2018 C,0.818,0.818,0.000
+2015-18 brute 2017-2018 écart moyen,+2.62,+2.64,+0.02
+2015-18 brute 2015-2018 C,0.848,0.850,0.002
+2015-18 brute 2015-2018 écart moyen,+1.86,+1.89,+0.03
+2015-18 harmonisee 2015-2016 C,0.860,0.862,0.002
+2015-18 harmonisee 2015-2016 écart moyen,-1.02,-0.99,+0.03
+2015-18 harmonisee 2017-2018 C,0.820,0.820,0.000
+2015-18 harmonisee 2017-2018 écart moyen,-1.16,-1.15,+0.00
+2015-18 harmonisee 2015-2018 C,0.850,0.851,0.002
+2015-18 harmonisee 2015-2018 écart moyen,-1.08,-1.07,+0.02
+"Incertitude (Lacher) IC95 individuel, largeur médiane",10.576,10.617,0.040
+Incertitude (Lacher) chgt significatif (95e centile),7.466,7.486,0.020
+Incertitude (Lacher) CCI simulé,0.873,0.873,-0.000
+Incertitude (Lacher) bascule simulée,0.157,0.157,0.000
+Fiabilité prédit ET_w global,1.779,1.785,0.006
+Fiabilité prédit ET_w pheno_pub,1.598,1.598,-0.000
+Fiabilité R global,1.051,1.049,-0.001
+Fiabilité obs ET_w global,1.868,1.871,0.004
+Fiabilité obs CCI global,0.923,0.922,-0.001
+Fiabilité R renal,1.337,1.336,-0.000
+Fiabilité R hepatique,1.039,1.038,-0.001
+Fiabilité R inflammatoire_hematologique,1.145,1.147,0.002
+Fiabilité R pheno_pub,1.278,1.279,0.001
+Fiabilité R pheno9,1.068,1.067,-0.000
