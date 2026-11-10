@@ -450,3 +450,63 @@ def analyse() -> Path:
     out = OUT / "Q1_Q2_nhanes3.json"
     out.write_text(json.dumps(res, indent=1, default=str), encoding="utf-8")
     return out
+
+
+# ------------------------------------------------------------------ figures des rapports
+def figures() -> None:
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    P = json.loads(PRED.read_text(encoding="utf-8"))
+    A = json.loads((OUT / "Q1_Q2_nhanes3.json").read_text(encoding="utf-8"))
+    p, a = P["modeles"]["sang"], A["modeles"]["sang"]
+    lab = {"systeme_meme": "Système prioritaire", "premier_meme_tous": "1er moteur (tous)",
+           "trio_jaccard_05_tous": "Trio ≥ 2/3 (tous)", "trio_identique_tous": "Trio identique (tous)",
+           "premier_meme_actionnables": "1er moteur (actionnables)",
+           "trio_jaccard_05_actionnables": "Trio ≥ 2/3 (actionnables)",
+           "trio_identique_actionnables": "Trio identique (actionnables)"}
+    ks = list(lab)
+    fig, ax = plt.subplots(figsize=(7.4, 3.8))
+    y = np.arange(len(ks))
+    obs = [a["stabilite"][k]["taux"] for k in ks]
+    lo = [a["stabilite"][k]["ic95"][0] for k in ks]
+    hi = [a["stabilite"][k]["ic95"][1] for k in ks]
+    ax.errorbar(obs, y, xerr=[np.subtract(obs, lo), np.subtract(hi, obs)], fmt="o", color="#2a78d6",
+                label="NHANES III (observé, IC 95 %)")
+    ax.plot([p["stabilite"][k]["taux"] for k in ks], y, "x", color="#eb6834", label="2001-2002 (prédit)")
+    ax.axvline(.8, color="#0b0b0b", ls="--", lw=.8)
+    ax.text(.805, -.45, "règle des 80 %", fontsize=7.5)
+    ax.set_yticks(y, [lab[k] for k in ks], fontsize=8)
+    ax.invert_yaxis()
+    ax.set_xlim(0, 1)
+    ax.set_xlabel("Part des paires de remesures où l'élément est le même (≈ 2 semaines)", fontsize=8)
+    ax.legend(fontsize=7.5, frameon=False, loc="lower right")
+    ax.set_title("Q1 — stabilité des moteurs, modèle sang seul", fontsize=9)
+    fig.tight_layout()
+    fig.savefig(OUT / "Q1_stabilite.png", dpi=170)
+    plt.close(fig)
+
+    groups = ["global", "cardiovasculaire", "metabolique", "renal", "hepatique",
+              "inflammatoire_hematologique", "selection_score"]
+    names = ["Global", "Cardio (lipides)", "Métab (glycémie)", "Rénal", "Hépatique", "Inflam/hémato",
+             "Sélection sur le score"]
+    keys = [("d_complet", "Brut, remesure complète", "#52514e"),
+            ("d_selectif", "Brut, remesure sélective", "#eb6834"),
+            ("controle_complet", "Contrôle, complète", "#9ec2ec"),
+            ("controle_selectif", "Contrôle, sélective", "#2a78d6")]
+    fig, ax = plt.subplots(figsize=(7.6, 4.0))
+    x = np.arange(len(groups))
+    for j, (k, l, c) in enumerate(keys):
+        v = [a["q2"][g][k].get("moyenne", np.nan) for g in groups]
+        lo = [a["q2"][g][k].get("ic95", [np.nan, np.nan])[0] for g in groups]
+        hi = [a["q2"][g][k].get("ic95", [np.nan, np.nan])[1] for g in groups]
+        ax.bar(x + (j - 1.5) * .2, v, .2, color=c, label=l,
+               yerr=[np.subtract(v, lo), np.subtract(hi, v)], error_kw={"lw": .7})
+    ax.axhline(0, color="#0b0b0b", lw=.7)
+    ax.set_xticks(x, names, fontsize=7.5, rotation=20, ha="right")
+    ax.set_ylabel("Changement moyen d'écart d'âge (ans)", fontsize=8)
+    ax.legend(fontsize=7, frameon=False, ncol=2)
+    ax.set_title("Q2 — « amélioration » sans aucun effet réel (NHANES III, sang seul)", fontsize=9)
+    fig.tight_layout()
+    fig.savefig(OUT / "Q2_regression_moyenne.png", dpi=170)
+    plt.close(fig)

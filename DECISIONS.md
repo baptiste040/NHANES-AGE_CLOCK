@@ -1507,3 +1507,29 @@ Prédictions (2001-2002, sang seul), en années :
 
 *Règle* : même compatibilité que les autres indicateurs (valeur de 2001-2002 dans l'IC de NHANES
 III). Elle est rapportée en tête de la synthèse de Q2 comme méthode recommandée.
+
+### Résultat — Q1 et Q2 sur NHANES III (2026-11-10)
+
+Exécution du protocole amendé (`c32a6ba`), sans écart. n = 781. Rapports :
+`reports/checkup_standard/suivi/Q1_MOTEURS.md` et `Q2_REGRESSION_MOYENNE.md`.
+
+**Q1 (sang seul).**
+- Seuils P95 : global 7,14 [6,47 ; 7,54] (prédit 5,99, non compatible) ; cardiovasculaire 2,27 ;
+  métabolique 1,11 ; rénal 5,88 ; hépatique 5,19 (compatible) ; inflammatoire 4,79 (compatible).
+- Stabilité :
+  - système prioritaire 70,4 % ;
+  - premier moteur 74,3 % (tous) et 61,1 % (actionnables) ;
+  - trio largement stable 89,6 % (tous, **affichable avec confiance**) et 79,9 % (actionnables,
+    juste sous la règle des 80 %).
+- Les indicateurs actionnables sont compatibles avec 2001-2002 ; les indicateurs « tous » sont
+  plus stables que prévu (CRP censurée en NHANES III, interprétation).
+
+**Q2 (sang seul).**
+- Analyse avec groupe contrôle : remesure sélective du global −0,42 [−0,63 ; −0,18] ; inflammatoire
+  −0,53 ; sélection sur le score −0,88 [−1,39 ; −0,34] ; remesure complète du global −0,02.
+- Remesure sélective **trompeuse pour le rénal** (amélioration apparente de 1,15 an, plus de 25 %
+  du seuil de 4,43).
+- **Aucune correction validée.** La correction marqueur par marqueur échoue pour le global en
+  remesure complète (+0,73 [+0,48 ; +0,98], marge ±0,60), et en remesure sélective seuls 3 systèmes
+  sur 5 passent. La correction au niveau du score échoue aussi (global +0,61). Les deux
+  surcorrigent.
