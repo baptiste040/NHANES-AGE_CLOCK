@@ -2060,3 +2060,41 @@ le CV attendu à 2 semaines, $\sqrt{CV_I^2 + (0{,}5\,CV_I)^2}$, avec le CV_I de 
    - ratio < 0,5 pour la plupart des effets de l'activité physique sur les lipides et l'HbA1c.
 
 Ces prédictions sont vérifiées et rapportées ; elles ne conditionnent aucune décision.
+
+### Résultat — programme « panel », Q1 (2026-11-10)
+
+Exécution du protocole (`76c3962`). Rapport : `reports/panel/Q1_CHANGEMENT_DETECTABLE.md`. Les CV_I
+EFLM bruts restent hors du dépôt (`private/panel/`), à la demande de l'auteur du projet (licence) ;
+les fichiers publics ne donnent que les résultats dérivés.
+
+**Variabilité.** 70 marqueurs et indices sur les remesures (NHANES III jusqu'à 1 821 adultes ;
+2001-2002, environ 410).
+- Prédiction 1 vérifiée : le CV observé dépasse le CV attendu d'après l'EFLM pour 35 marqueurs sur
+  42 (83 %).
+- Prédiction 2 vérifiée : queues épaisses pour 80 % des marqueurs.
+- Prédiction 3 vérifiée : réplication entre les deux jeux pour 93 % des marqueurs.
+
+**CV_I à long terme EFLM (note A/B, ≥ 6 mois).** Disponible seulement pour la numération, l'ALAT,
+l'ASAT, les bicarbonates, les plaquettes et la TSH. 30 jeux sur 572 jeux de 6 mois ou plus ; la
+plupart des études longues ont la note C. Ailleurs, le changement détectable est une borne basse.
+
+**Changement détectable à 6 mois** (hausse / baisse, 20-79 ans) :
+- VGM ±3 % ; hémoglobine +10/−9 % ; HbA1c +10/−9 % ;
+- cholestérol total +26/−21 % ; HDL +43/−30 % ; TG +111/−53 % ;
+- ALAT +181/−64 % (extrapolé à 6 mois) ; CRP +351/−78 %.
+
+**Interventions** (25 couples, méta-analyses lues) :
+- 2 détectables chez une personne : vitamine D3 25 µg/j (ratio 1,8) ; HbA1c sous activité
+  physique structurée chez des diabétiques (1,3) ;
+- 3 limites : ALAT sous alimentation méditerranéenne, TG sous oméga-3 2 g/j, homocystéine sous
+  acide folique ;
+- 20 visibles seulement en moyenne de groupe.
+
+Prédiction 4 en partie fausse : oméga-3 à 0,7 et non ≥ 1 ; HbA1c sous activité physique à 1,3 et
+non < 0,5.
+
+**Écarts.**
+- CV_A des marqueurs sans remesure : spécification EFLM (0,5 × CV_I) pour tous ; les fiches NHANES
+  n'ont pas été lues.
+- Filtre de matrice ajouté (sérum, plasma, sang total) pour le CV_I à long terme.
+- Sensibilité non pré-enregistrée incluant les études EFLM de note C.
