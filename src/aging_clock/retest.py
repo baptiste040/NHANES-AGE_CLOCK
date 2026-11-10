@@ -90,7 +90,8 @@ def first_exam_session() -> pd.DataFrame:
     """Seance et duree de jeune du premier examen (PH_B)."""
     ph = pd.read_sas(_raw("PH_B"), format="xport")
     ph["SEQN"] = ph["SEQN"].astype(int)
-    return ph.set_index("SEQN")[["PHDSESN", "PHAFSTHR"]]
+    # Le lecteur SAS xport de pandas rend les 0 sous la forme 5.4e-79 : arrondi (ecart 2026-11-10)
+    return ph.set_index("SEQN")[["PHDSESN", "PHAFSTHR"]].round(6)
 
 
 def population() -> tuple[pd.DataFrame, list]:

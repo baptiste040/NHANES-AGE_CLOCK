@@ -658,3 +658,64 @@ ci-dessus.
 Empreintes : CV `b76744785b175e4f…`, code de `retest.py` à la génération des prédictions
 `644bf578655ee10a…` (fichier `meta_predictions.json`). L'analyse refuse de tourner si le fichier
 des CV a changé.
+
+### Résultat — fiabilité test-retest réelle NHANES 2001-2002 (2026-11-10)
+
+Exécution du protocole pré-enregistré (commit `1795991`). Fichier des CV inchangé (empreinte
+vérifiée par le code). Population finale : **n = 387** (2 exclues : valeur du second examen
+manquante ou hors plage). Délai médian 17 jours (6-47).
+
+**Écarts au protocole.**
+1. *Erreur de codage corrigée* : le lecteur SAS xport de pandas rend les 0 sous la forme
+   5,4 × 10⁻⁷⁹. La séance du matin (`PHDSESN` = 0) n'était donc jamais reconnue : la première
+   exécution classait les 387 personnes « après-midi ou soir » et le sous-groupe « à jeun aux
+   deux » était vide. Arrondi ajouté dans `first_exam_session`. Effet limité aux sous-groupes de
+   séance et de jeûne ; les comparaisons principales sont identiques.
+2. *Défaut de conception de la comparaison secondaire* (score complet) : le bruit physique simulé
+   était ajouté au second examen seulement, alors que deux mesures réelles en portent chacune un.
+   Sa contribution était donc comptée pour moitié. La version pré-enregistrée est conservée
+   (`comparaison_complete.csv`). Une version corrigée, **non pré-enregistrée**, ajoute un bruit
+   indépendant aux deux examens (`comparaison_complete_corrigee_non_preenregistree.csv`). Elle est
+   seule interprétée.
+3. *Défaut du pipeline principal découvert à cette occasion, non corrigé* : la même lecture des
+   0 empêche la règle « diastolique = 0 → manquant ». Pour 37 personnes de la cohorte (16 en
+   développement, 21 en validation, aucune dans la population de fiabilité), une lecture à 0
+   entre dans la moyenne, ce qui sous-estime la diastolique d'environ 19 mmHg (médiane).
+   Correction en attente d'une décision : elle modifie le modèle gelé.
+
+**Partie biologique du score, simulation principale (EFLM).** R = ET_w observé / ET_w prédit
+(IC 95 %) :
+
+| Score | ET_w obs. | ET_w prédit | R [IC 95 %] | Lecture | Chgt signif. obs. / prédit | CCI obs. [IC] / prédit | Biais moyen (ans) [IC] | Bascule obs. / prédit |
+|---|---|---|---|---|---|---|---|---|
+| Global | 1,87 | 1,78 | 1,05 [0,96 ; 1,14] | compatible | 5,2 / 4,9 | 0,92 [0,90 ; 0,94] / 0,93 | +0,32 [+0,05 ; +0,58] | 13,7 % / 10,8 % |
+| Métabolique | 0,31 | 0,26 | 1,20 [1,03 ; 1,38] | bruit sous-estimé | 0,9 / 0,7 | 0,993 / 0,995 | +0,01 | 2,8 % / 2,6 % |
+| Rénal | 1,56 | 1,16 | 1,34 [1,19 ; 1,49] | bruit sous-estimé | 4,3 / 3,2 | 0,82 [0,73 ; 0,87] / 0,90 | −0,23 [−0,44 ; 0,00] | 21,4 % / 15,6 % |
+| Hépatique | 1,76 | 1,69 | 1,04 [0,93 ; 1,17] | compatible | 4,9 / 4,7 | 0,82 [0,77 ; 0,86] / 0,83 | +0,55 [+0,30 ; +0,80] | 20,2 % / 17,8 % |
+| Inflammatoire et hématologique | 1,67 | 1,46 | 1,15 [1,03 ; 1,27] | bruit sous-estimé | 4,6 / 4,0 | 0,89 [0,85 ; 0,91] / 0,92 | +0,22 | 14,5 % / 12,6 % |
+| PhenoAge publié | 2,04 | 1,60 | 1,28 [1,13 ; 1,44] | bruit sous-estimé | 5,7 / 4,4 | 0,91 [0,87 ; 0,93] / 0,94 | +0,43 [+0,15 ; +0,70] | 12,1 % / 10,8 % |
+| PhenoAge réentraîné | 1,51 | 1,41 | 1,07 [0,97 ; 1,17] | compatible | 4,2 / 3,9 | 0,92 [0,89 ; 0,94] / 0,93 | +0,40 [+0,19 ; +0,62] | 12,1 % / 11,0 % |
+
+Cardiovasculaire (non interprété dans cette comparaison) : R = 1,24.
+Scénario secondaire (Lacher), descriptif : global R = 0,82 [0,75 ; 0,89], hépatique 0,68 (bruit
+surestimé), rénal 1,29, PhenoAge publié 1,12.
+
+**Score complet, version corrigée (non pré-enregistrée)** : global ET_w 2,27 contre 2,20 prédit
+(R = 1,03), changement significatif 6,3 contre 6,1 ans, CCI 0,89 contre 0,89 ; cardiovasculaire
+R = 1,02 ; métabolique 1,02. Le bruit physique y est simulé des deux côtés : ce n'est pas une
+mesure réelle.
+
+**CV intra-individuels observés par marqueur** (observé / prédit EFLM / prédit Lacher, %) :
+CRP 59,7 / 35,2 / 35,2 ; ACR 57,1 / 40 / 40 ; TG 28,2 / 19,9 / 27,9 ; ALAT 18,6 / 13,0 / 20,7 ;
+ASAT 17,7 / 9,0 / 15,8 ; lymphocytes % 16,6 / 11,3 / 15,5 ; GGT 15,2 / 8,7 / 16,5 ; leucocytes
+13,4 / 11,3 / 15,3 ; HDL 9,4 / 6,5 / 6,5 ; plaquettes 8,5 / 7,8 / 9,0 ; glucose 8,3 / 5,1 / 7,7 ;
+PAL 7,8 / 5,7 / 8,4 ; créatinine 7,3 / 6,4 / 8,1 ; cholestérol 7,2 / 5,6 / 7,1 ; albumine 3,4 /
+2,8 / 3,7 ; hémoglobine 2,7 / 2,9 / 3,0 ; HbA1c 1,9 / 2,8 / 2,8 ; RDW 1,6 / 2,1 / 1,6 ; VGM 0,8 /
+1,1 / 0,8. Biais moyens les plus nets (second − premier, en log) : ACR −9,6 %, TG +3,6 %,
+hémoglobine −1,9 %, leucocytes −1,8 %, cholestérol −1,6 %, albumine −1,6 %.
+
+**Facteurs.** Délai : aucune corrélation entre |d| et le délai (Spearman |ρ| ≤ 0,05 pour tous les
+scores). « À jeun aux deux » (indicateur indirect, n = 142) : global ET_w 2,03, sans réduction.
+Séance du premier examen : matin (n = 207) 1,94 ; après-midi ou soir (n = 180) 1,78.
+Rapport : `reports/checkup_standard/fiabilite_reelle/`. Interprétation en attente de validation ;
+NHANES III non commencé.
