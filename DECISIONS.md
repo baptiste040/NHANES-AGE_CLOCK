@@ -1651,3 +1651,18 @@ Q2, modèle contraint, moyennes de (écart₂ − écart₁) en années :
 **Attendu qualitatif** : le modèle contraint change peu les seuils et la stabilité (au plus 1 point
 de pourcentage pour les taux, 0,1 an pour les seuils). Les conclusions de Q1 et Q2 ne devraient pas
 changer.
+
+### Résultat — reprise de Q1 et Q2 avec le modèle contraint (2026-11-10, non aveugle)
+
+Exécution du protocole (`33cb504`), sans écart. NHANES III, n = 781.
+- **Q1** : taux de stabilité inchangés à moins d'un point près (système prioritaire 71,1 % ; trio
+  largement stable 89,6 %, affichable avec confiance ; trio actionnable largement stable 79,6 %,
+  non affichable). Seuils P95 : global 6,99 [6,64 ; 7,54] (contre 7,14), cardio 2,21, métab 1,11,
+  rénal 5,88, hépat 5,14, inflam 4,71. Compatibilité avec 2001-2002 : même profil.
+- **Attendu qualitatif** : vérifié pour les taux ; **pas tout à fait pour les seuils** (le global baisse
+  de 0,15 an, au-delà des 0,1 an attendus).
+- **Q2** : remesure sélective trompeuse pour le rénal (1,15 > 1,11), contrôle sélectif global −0,48
+  [−0,69 ; −0,24] ; aucune correction validée (marqueurs : global complète +0,87 ; sélective 3/5
+  systèmes ; score : +0,62).
+- **Conclusion** : la contrainte ne change aucune conclusion de Q1 ni de Q2. Rapports : section
+  « Analyse secondaire » de `Q1_MOTEURS.md` et `Q2_REGRESSION_MOYENNE.md`.

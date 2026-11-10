@@ -68,3 +68,33 @@ remesure sélective du global donne −0,40 an brut ; la correction reste positi
 4. **Aucune correction statistique simple n'a passé le test.** La seule méthode robuste pour
    affirmer une amélioration est la comparaison à un groupe contrôle, ou au minimum la remesure
    complète du panel avec soustraction du changement moyen de la population.
+
+## Analyse secondaire — modèle « sang seul contraint » (non aveugle)
+
+Mêmes définitions et mêmes règles ; seuil de référence : P95 de 2001-2002 du modèle contraint
+(global 5,97). Évaluation non aveugle (voir Q1). Les résultats pré-enregistrés ci-dessus sont
+inchangés.
+
+| Groupe | n | Brut, sélective (libre → contraint) | Contrôle, sélective (libre → contraint) | Corr. marqueurs, complète (libre → contraint) |
+|---|---|---|---|---|
+| Global | 724 | −0,28 → −0,33 [−0,43 ; −0,23] | −0,42 → **−0,48** [−0,69 ; −0,24] | +0,73 → +0,87 [+0,62 ; +1,12] |
+| Cardio | 575 | +0,02 → 0,00 | −0,07 → −0,09 [−0,16 ; −0,02] | +0,29 → +0,27 |
+| Métab | 337 | −0,14 → −0,14 | −0,13 → −0,13 | +0,02 → +0,02 |
+| Rénal | 131 | −1,15 → **−1,15** [−1,55 ; −0,78] | −1,21 → −1,21 | +0,15 → +0,15 |
+| Hépatique | 206 | −0,18 → −0,24 | −0,25 → −0,31 [−0,60 ; −0,01] | +0,93 → +0,95 |
+| Inflam / hémato | 472 | −0,33 → −0,37 | −0,53 → **−0,57** [−0,73 ; −0,43] | +0,34 → +0,49 |
+| Sélection sur le score | 157 | −0,74 → −0,73 | −0,88 → −0,87 [−1,38 ; −0,36] | +1,01 → +1,14 |
+
+**Règles (contraint).**
+- Remesure sélective trompeuse : **oui pour le rénal** (1,15 > 25 % de 4,43 = 1,11) ; non ailleurs.
+- Correction marqueur par marqueur : **non validée** (complète : global hors marge ; sélective :
+  global dans la marge, mais 3 systèmes sur 5 seulement, le rénal et l'hépatique échouant).
+- Correction au niveau du score : **non validée** (global +0,62 [+0,37 ; +0,86]).
+- Compatibilité avec 2001-2002 : même profil que le modèle non contraint (bonne pour les changements
+  bruts sauf l'hépatique en remesure complète ; mauvaise pour le contrôle du cardio, du métab et du
+  rénal).
+
+**Lecture.** Mêmes conclusions qu'avec le modèle non contraint. La remesure sélective fabrique un peu
+plus d'amélioration apparente avec la contrainte (global −0,48 an en contrôle, contre −0,42). C'est
+attendu : une valeur anormale qui revient vers la normale ne peut plus que faire baisser le score,
+alors que sans contrainte elle pouvait aussi le faire monter (ALAT, VGM, leucocytes).

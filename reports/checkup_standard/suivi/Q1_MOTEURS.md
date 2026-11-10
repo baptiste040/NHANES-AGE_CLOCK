@@ -69,3 +69,35 @@ traités, et leur rôle causal porte aussi sur des événements non mortels. Le 
 ces deux systèmes (+0,003 et +0,005) ne signifie pas qu'ils sont inutiles. Ils ne doivent pas être
 présentés comme tels ; ce modèle de mortalité n'est simplement pas le bon outil pour les juger
 (interprétation, non testée ici).
+
+## Analyse secondaire — modèle « sang seul contraint » (non aveugle)
+
+Reprise demandée après l'adoption de la variante contrainte (étape 1). Mêmes définitions et mêmes
+règles. Prédictions de 2001-2002 commitées avant la relance (`33cb504`), mais NHANES III avait déjà
+été consulté avec le modèle non contraint : **l'évaluation n'est pas aveugle**. Les résultats
+pré-enregistrés ci-dessus sont inchangés. Données : `Q1_Q2_contraint_*.json`,
+`Q1_comparaison_libre_contraint.csv`.
+
+| Indicateur (NHANES III, n = 781) | Non contraint (pré-enregistré) [IC 95 %] | Contraint [IC 95 %] | Prédit contraint (2001-02) | Règle des 80 % (contraint) |
+|---|---|---|---|---|
+| Seuil P95 global (ans) | 7,14 [6,47 ; 7,54] | 6,99 [6,64 ; 7,54] | 5,97 (non compatible) | — |
+| Seuil P95 cardiovasculaire | 2,27 [2,12 ; 2,53] | 2,21 [2,08 ; 2,43] | 2,61 (non) | — |
+| Seuil P95 métabolique | 1,11 [0,95 ; 1,23] | 1,11 [0,95 ; 1,23] | 0,93 (non) | — |
+| Seuil P95 rénal | 5,88 [5,39 ; 6,31] | 5,88 [5,39 ; 6,31] | 4,43 (non) | — |
+| Seuil P95 hépatique | 5,19 [4,74 ; 5,60] | 5,14 [4,74 ; 5,60] | 4,95 (oui) | — |
+| Seuil P95 inflammatoire | 4,79 [4,43 ; 5,52] | 4,71 [4,24 ; 5,23] | 4,43 (oui) | — |
+| Même système prioritaire | 70,4 % [67,3 ; 73,8] | 71,1 % [67,7 ; 74,4] | 64,9 % (non) | non affichable |
+| Même premier moteur (tous) | 74,3 % [71,2 ; 77,3] | 74,3 % [71,2 ; 77,3] | 62,4 % (non) | non affichable |
+| Même trio (tous) | 40,7 % [37,4 ; 44,3] | 40,6 % [37,1 ; 44,2] | 27,8 % (non) | non affichable |
+| Trio largement stable (tous) | 89,6 % [87,4 ; 91,7] | 89,6 % [87,5 ; 91,7] | 82,5 % (non) | **affichable avec confiance** |
+| Même premier moteur actionnable | 61,1 % [57,7 ; 64,5] | 61,2 % [57,9 ; 64,8] | 58,2 % (oui) | non affichable |
+| Même trio actionnable | 30,9 % [27,7 ; 34,3] | 31,0 % [27,8 ; 34,4] | 28,9 % (oui) | non affichable |
+| Trio actionnable largement stable | 79,9 % [77,1 ; 82,7] | 79,6 % [76,8 ; 82,5] | 74,0 % (non) | non affichable (juste sous 80 %) |
+
+Par tertile d'écart global (contraint) : système prioritaire 64 %, 72 %, 78 % ; trio actionnable
+largement stable 76 %, 79 %, 85 %.
+
+**Lecture.** La contrainte ne change aucune conclusion de Q1. Les taux de stabilité bougent de moins
+d'un point. Le seuil du score global baisse de 0,15 an (7,14 → 6,99), un peu plus que les 0,1 an
+attendus : en plafonnant les valeurs anormales « récompensées », la contrainte retire une partie
+des fluctuations de part et d'autre de la limite normale.
