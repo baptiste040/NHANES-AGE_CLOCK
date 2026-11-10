@@ -34,8 +34,9 @@ PHYSICAL = ["sbp", "dbp", "heart_rate", "bmi", "waist"]
 
 # Moteurs actionnables : marqueur -> sens actionnable (table pre-enregistree, DECISIONS.md)
 ACTIONABLE = {"glucose": "haut", "hba1c": "haut", "tg": "haut", "total_chol": "haut", "hdl": "bas",
-              "crp": "haut", "alt": "haut", "ast": "haut", "ggt": "haut", "wbc": "haut",
-              "mcv": "haut", "acr": "haut"}
+              "crp": "haut", "alt": "haut", "ast": "haut", "ggt": "haut", "acr": "haut"}
+# Troisieme categorie (amendement) : a interpreter par le medecin, jamais moteur actionnable
+A_INTERPRETER = {"mcv", "wbc"}
 
 # Seuils « anormal » (pre-enregistres) : (bas, haut) ; (H, F) quand ils dependent du sexe
 THRESHOLDS = {
@@ -101,17 +102,17 @@ class Models:
         idx = pd.MultiIndex.from_arrays([df["sex"].to_numpy(), self.band(df["age"])])
         return self.ref.reindex(idx).reset_index(drop=True)
 
-    def contributions(self, m, df, candidates):
-        """Contribution (annees d'ecart global) de chaque marqueur candidat : ecart global
-        observe - ecart global quand le marqueur est remplace par sa valeur de reference."""
+    def contributions(self, m, df, candidates, score="global"):
+        """Contribution (annees d'ecart du score) de chaque marqueur candidat : ecart observe -
+        ecart quand le marqueur est remplace par sa valeur de reference."""
         df = df.reset_index(drop=True)
-        base = self.gaps(m, df)["global"]
+        base = self.gaps(m, df)[score]
         refv = self.reference_values(df)
         out = {}
         for v in candidates:
             x = df.copy()
             x[v] = refv[v].to_numpy()
-            out[v] = base - self.gaps(m, x)["global"]
+            out[v] = base - self.gaps(m, x)[score]
         return pd.DataFrame(out), refv
 
 
@@ -317,13 +318,82 @@ def mean_ci(x, seed=SEED, n_boot=N_BOOT):
             "ic95": [float(np.quantile(b, .025)), float(np.quantile(b, .975))]}
 
 
+def control_ci(d_group_source, d_all, mask, seed=SEED, n_boot=N_BOOT):
+    """Analyse avec groupe controle (amendement) : changement moyen du groupe selectionne moins
+    changement moyen de toute la population remesuree (remesure complete). Separe la regression
+    vers la moyenne du decalage systematique entre examens. Bootstrap des personnes."""
+    if mask.sum() < 5:
+        return {"n": int(mask.sum())}
+    rng = np.random.default_rng(seed)
+    n = len(d_all)
+    est = d_group_source[mask].mean() - d_all.mean()
+    b = []
+    for _ in range(n_boot):
+        i = rng.integers(0, n, n)
+        mi = mask[i]
+        if mi.sum() == 0:
+            continue
+        b.append(d_group_source[i][mi].mean() - d_all[i].mean())
+    return {"n": int(mask.sum()), "moyenne": float(est),
+            "ic95": [float(np.quantile(b, .025)), float(np.quantile(b, .975))]}
+
+
 def summarise_q2(per):
     out = {}
     for s, d in per.items():
         a = d["anormal"]
         out[s] = {k: mean_ci(d[k][a]) for k in ["d_complet", "d_selectif", "corr_complet", "corr_selectif",
                                                  "corr_score_complet"]}
+        out[s]["controle_complet"] = control_ci(d["d_complet"], d["d_complet"], a)
+        out[s]["controle_selectif"] = control_ci(d["d_selectif"], d["d_complet"], a)
     return out
+
+
+def coherence(M: Models | None = None) -> pd.DataFrame:
+    """Coherence sens du modele / sens clinique (amendement), sur la validation 2007-2010 : pour
+    chaque marqueur et chaque cote anormal, contributions au score global et au score de son
+    systeme chez les personnes au-dela du seuil clinique. Contribution < 0 = le modele recompense
+    une valeur cliniquement anormale -> « a revoir par le medecin », jamais presente comme favorable."""
+    M = M or Models()
+    study = load_study()
+    h = build_harmonized(study["cycles"]["development"] + study["cycles"]["validation"],
+                         cache=ROOT / study["paths"]["processed"] / "nhanes_harmonized.csv")
+    co, _ = build_cohort(h, load_panel("checkup_standard"), study)
+    val = co[co["cycle"].isin(study["cycles"]["validation"])].reset_index(drop=True)
+    panel = load_panel("checkup_standard")
+    rows, flags = [], {}
+    for m in ["sang", "complet"]:
+        flag = np.zeros(len(val), bool)
+        for v, (lo, hi) in THRESHOLDS.items():
+            sysn = panel.variables[v].system
+            cg, _ = M.contributions(m, val, [v], "global")
+            cs, _ = M.contributions(m, val, [v], sysn)
+            x, sex = val[v].to_numpy(float), val["sex"].to_numpy()
+            sexed = lambda t: np.where(sex == 1, t[0], t[1]) if isinstance(t, tuple) else t  # noqa: E731
+            for side, thr in [("bas", lo), ("haut", hi)]:
+                if thr is None:
+                    continue
+                tv = sexed(thr)
+                beyond = x < tv if side == "bas" else (x >= tv if v in ("glucose", "hba1c", "total_chol", "tg", "acr") else x > tv)
+                if beyond.sum() == 0:
+                    rows.append({"modele": m, "marqueur": v, "cote_anormal": side, "n": 0})
+                    continue
+                g, sc = cg[v].to_numpy()[beyond], cs[v].to_numpy()[beyond]
+                rewarded = (g < 0) | (sc < 0)
+                flag[np.where(beyond)[0][rewarded]] = True
+                rows.append({"modele": m, "marqueur": v, "systeme": sysn, "cote_anormal": side,
+                             "n": int(beyond.sum()), "pct_validation": float(100 * beyond.mean()),
+                             "contrib_globale_mediane": float(np.median(g)),
+                             "contrib_systeme_mediane": float(np.median(sc)),
+                             "pct_recompenses": float(100 * rewarded.mean()),
+                             "contradiction": bool(np.median(sc) < 0 or np.median(g) < 0)})
+        flags[m] = {"n_personnes_signalees": int(flag.sum()), "pct": float(100 * flag.mean()),
+                    "n_validation": len(val)}
+    t = pd.DataFrame(rows)
+    OUT.mkdir(parents=True, exist_ok=True)
+    t.to_csv(OUT / "coherence_sens_clinique.csv", index=False)
+    (OUT / "coherence_signalements.json").write_text(json.dumps(flags, indent=1), encoding="utf-8")
+    return t
 
 
 # ------------------------------------------------------------------ etapes

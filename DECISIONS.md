@@ -1423,3 +1423,87 @@ inflam 4,49).
 
 Le modèle complet (secondaire) et les sensibilités (seuils par centiles, μ interne) sont rapportés
 sans règle de décision.
+
+### Amendement au pré-enregistrement Q1-Q2 (2026-11-10, avant toute analyse sur NHANES III)
+
+Demandé par l'auteur du projet après relecture. Le calage sur 2001-2002 a été relancé avec ces
+amendements : nouveau calage `Q1_Q2_predictions.json`, SHA-256 `8c52de01…` ; code `suivi.py`
+`7a5010bf…`. Il remplace le précédent (`c6472dd2…`).
+
+**1. Cohérence entre le sens du modèle et le sens clinique** (`suivi.coherence()`, sur la
+validation 2007-2010, n = 9 276 ; ce ne sont pas les données de test de Q1-Q2).
+
+Pour chaque marqueur et chaque côté anormal (seuils cliniques de Q2), on calcule chez les
+personnes au-delà du seuil la contribution du marqueur au score global et au score de son système
+(observé − valeur de référence).
+
+*Règle (pré-enregistrée)* : un marqueur au-delà de son seuil clinique dont la contribution au
+score global ou à son système est négative, c'est-à-dire que le modèle le récompense, est
+signalé **« à revoir par le médecin »**. Il n'est **jamais présenté comme favorable** et ne compte
+jamais comme moteur actionnable.
+
+*Constat*, modèle sang seul, médianes chez les personnes au-delà du seuil (en années) :
+
+| Marqueur, côté anormal | n (% de la validation) | Contribution au global | Contribution au système | % récompensés |
+|---|---|---|---|---|
+| **ALAT > 40** | 1 020 (11,0 %) | −4,07 | **hépatique −3,98** | 100 % |
+| **VGM < 80** | 475 (5,1 %) | −7,45 | −7,75 | 100 % |
+| **Leucocytes < 4** | 239 (2,6 %) | −2,63 | −3,72 | 100 % |
+| **Lymphocytes > 40 %** | 1 198 (12,9 %) | −1,30 | −1,00 | 100 % |
+| **Cholestérol total ≥ 5,2** | 3 918 (42,2 %) | 0,00 | cardiovasculaire −0,20 | 73 % |
+| Hémoglobine basse | 671 (7,2 %) | +0,14 | +2,62 | 9 % (modèle complet : global −0,27, 100 %) |
+| Créatinine haute | 869 (9,4 %) | +1,01 | +2,48 | 7 % |
+
+Tous les autres côtés anormaux sont aggravants, comme le veut le sens clinique.
+
+- **Contradictions franches** (médiane négative) : ALAT élevée, VGM bas, leucocytes bas,
+  lymphocytes % élevés, cholestérol total élevé (effet faible). Dans le modèle complet, s'y ajoute
+  l'hémoglobine basse.
+- **Personnes signalées** (au moins un marqueur concerné) : 4 724 sur 9 276 (51 %) avec le modèle
+  sang seul, dont la plupart par le seul cholestérol ; 5 075 (55 %) avec le modèle complet.
+- **Pour un produit**, une ALAT cliniquement élevée **rajeunit le score hépatique d'environ
+  4 ans**. Afficher ce score sans la règle reviendrait à présenter comme favorable une anomalie
+  hépatique. Ces contradictions viennent de l'apprentissage sur la mortalité : une ALAT basse ou un
+  VGM bas accompagnent la fragilité ou la carence (interprétation, section ALAT de `FIABILITE.md`).
+
+Sorties : `coherence_sens_clinique.csv`, `coherence_signalements.json`.
+
+**2. Troisième catégorie de marqueurs.** VGM et leucocytes sont retirés des actionnables et classés
+**« à interpréter par le médecin »** : ils ne sont jamais moteurs actionnables. Les taux de
+stabilité des moteurs actionnables ont été recalculés (2001-2002, sang seul) :
+- même premier moteur actionnable : 58,5 % ;
+- même trio actionnable : 28,6 % ;
+- trio actionnable largement stable : 74,7 %.
+
+Les autres prédictions de Q1 sont inchangées.
+
+**3. Référence pour les triglycérides.** Miller 2011 (métadonnées seules) est remplacé par
+Dattilo et Kris-Etherton 1992, *Am J Clin Nutr*, doi:10.1093/ajcn/56.2.320. Résumé lu :
+méta-analyse de 70 études ; la perte de poids par le régime abaisse les TG et le cholestérol total.
+
+**4. Correction au niveau du score** : **validée en secondaire** par l'auteur du projet, déclarée
+comme ajoutée après le calage. La même règle d'équivalence (±10 % du seuil) lui est appliquée,
+avec le statut secondaire.
+
+**5. Analyse avec groupe contrôle — méthode recommandée** pour évaluer l'effet d'un protocole.
+Effet = changement moyen du groupe sélectionné − changement moyen de **toute** la population
+remesurée (remesure complète). L'IC 95 % vient d'un bootstrap des personnes, avec le groupe et la
+population tirés ensemble. On soustrait ainsi le décalage systématique entre examens, et il ne
+reste que la régression vers la moyenne, plus l'effet éventuel de la remesure sélective. Elle est
+calculée pour la remesure complète et pour la remesure sélective (dans ce cas, changement
+sélectif du groupe moins changement complet de la population).
+
+Prédictions (2001-2002, sang seul), en années :
+
+| Groupe | n | Changement brut (complète) | Contrôle, complète [IC 95 %] | Contrôle, sélective [IC 95 %] |
+|---|---|---|---|---|
+| Global, ≥ 1 anormal | 357 | +0,29 | −0,04 [−0,13 ; +0,05] | −0,57 [−0,84 ; −0,30] |
+| Cardiovasculaire | 271 | +0,10 | −0,13 [−0,22 ; −0,04] | −0,20 [−0,30 ; −0,08] |
+| Métabolique | 91 | −0,13 | −0,14 [−0,25 ; −0,02] | −0,21 [−0,30 ; −0,12] |
+| Rénal | 69 | −0,81 | −0,59 [−1,13 ; −0,05] | −0,61 [−1,08 ; −0,16] |
+| Hépatique | 69 | +0,33 | −0,22 [−0,79 ; +0,42] | −0,56 [−0,95 ; −0,18] |
+| Inflammatoire | 247 | −0,02 | −0,22 [−0,40 ; −0,05] | −0,58 [−0,79 ; −0,38] |
+| Sélection sur le score (20 %) | 78 | −0,54 | −0,87 [−1,50 ; −0,26] | — |
+
+*Règle* : même compatibilité que les autres indicateurs (valeur de 2001-2002 dans l'IC de NHANES
+III). Elle est rapportée en tête de la synthèse de Q2 comme méthode recommandée.

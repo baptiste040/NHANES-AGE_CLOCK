@@ -1,0 +1,12 @@
+{
+ "sang": {
+  "n_personnes_signalees": 4724,
+  "pct": 50.927123760241486,
+  "n_validation": 9276
+ },
+ "complet": {
+  "n_personnes_signalees": 5075,
+  "pct": 54.711082363087534,
+  "n_validation": 9276
+ }
+}
