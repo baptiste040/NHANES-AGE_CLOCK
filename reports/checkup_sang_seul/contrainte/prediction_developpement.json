@@ -1,0 +1,67 @@
+{
+ "n_dev": 13903,
+ "dC": {
+  "global": 0.00010811454825632172,
+  "cardiovasculaire": -6.4607367133096e-05,
+  "metabolique": 0.0,
+  "renal": 0.0,
+  "hepatique": 5.785020786708284e-05,
+  "inflammatoire_hematologique": 1.2876850676746265e-05
+ },
+ "changements": [
+  {
+   "score": "global",
+   "n": 13903,
+   "n_changes": 6476,
+   "pct_changes": 46.57987484715529,
+   "changement_median_si_change": 0.16258322299716,
+   "p90_si_change": 1.9327272772279986,
+   "max": 9.48103357752963
+  },
+  {
+   "score": "cardiovasculaire",
+   "n": 13903,
+   "n_changes": 5378,
+   "pct_changes": 38.68229878443501,
+   "changement_median_si_change": 0.33819381317062636,
+   "p90_si_change": 0.4248835770157271,
+   "max": 0.42916933482236885
+  },
+  {
+   "score": "metabolique",
+   "n": 13903,
+   "n_changes": 0,
+   "pct_changes": 0.0,
+   "changement_median_si_change": 0.0,
+   "p90_si_change": 0.0,
+   "max": 0.0
+  },
+  {
+   "score": "renal",
+   "n": 13903,
+   "n_changes": 0,
+   "pct_changes": 0.0,
+   "changement_median_si_change": 0.0,
+   "p90_si_change": 0.0,
+   "max": 0.0
+  },
+  {
+   "score": "hepatique",
+   "n": 13903,
+   "n_changes": 1520,
+   "pct_changes": 10.932892181543552,
+   "changement_median_si_change": 0.680800561149546,
+   "p90_si_change": 2.0022201408915037,
+   "max": 2.4971009865717377
+  },
+  {
+   "score": "inflammatoire_hematologique",
+   "n": 13903,
+   "n_changes": 2402,
+   "pct_changes": 17.276846723728692,
+   "changement_median_si_change": 0.4443674456657867,
+   "p90_si_change": 3.120550542498721,
+   "max": 7.910757243379706
+  }
+ ]
+}

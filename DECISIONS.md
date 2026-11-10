@@ -1533,3 +1533,54 @@ Exécution du protocole amendé (`c32a6ba`), sans écart. n = 781. Rapports :
   remesure complète (+0,73 [+0,48 ; +0,98], marge ±0,60), et en remesure sélective seuls 3 systèmes
   sur 5 passent. La correction au niveau du score échoue aussi (global +0,61). Les deux
   surcorrigent.
+
+## Suivi, étape 1 — variante « sang seul contrainte » (pré-enregistrement, 2026-11-10)
+
+Demandée par l'auteur du projet après la vérification de cohérence (une ALAT élevée rajeunissait le
+score hépatique d'environ 4 ans). Écrit et commité avant toute évaluation sur la validation
+2007-2010. Code : `src/aging_clock/contrainte.py`.
+
+**Contrainte clinique.** Une valeur anormale ne doit jamais rendre le score plus favorable.
+- Pour chaque marqueur doté d'un seuil (les 19 seuils de Q2) et chaque côté anormal, si la valeur
+  est au-delà de la limite de la zone normale, le terme du marqueur dans le prédicteur linéaire de
+  **chaque** modèle (global et systèmes) devient le moins favorable des deux : terme à la valeur
+  observée, ou terme à la valeur limite.
+- Une valeur au-delà de la limite, dans le sens que le modèle récompense, compte donc comme la
+  valeur limite. Une valeur au-delà dans le sens aggravant n'est pas modifiée.
+- La règle s'applique à tous les marqueurs, ce qui inclut ceux demandés (ALAT, ASAT, VGM,
+  leucocytes, lymphocytes, cholestérol, hémoglobine) et tous ceux repérés par la vérification de
+  cohérence.
+- Pas de réentraînement : mêmes coefficients que le modèle « sang seul ».
+- Par construction, l'écart d'âge contraint est toujours ≥ l'écart non contraint.
+
+**Évaluation** sur la validation 2007-2010, mêmes personnes (9 276), pour le global et les 5
+systèmes :
+- C [IC 95 %] ;
+- gain de C par rapport à âge + sexe ;
+- HR par écart-type ;
+- calibration (rapport observé/prédit, pente) ;
+- **différence de C appariée contrainte − non contrainte** (bootstrap, 1 000 tirages, graine 42) ;
+- nombre de personnes dont le score change, avec la médiane, le 90ᵉ centile et le maximum du
+  changement.
+
+**Règle de décision** (fixée par l'auteur du projet) : on **adopte** la variante contrainte si
+elle perd **moins de 0,005 de C sur le score global**, c'est-à-dire si l'estimation ponctuelle de la
+différence appariée est > −0,005. L'IC est rapporté.
+
+**Règle de signalement révisée** : « à revoir par le médecin » seulement si la récompense indue
+dépasse un **seuil matériel de 1 an sur le score du système** du marqueur. La récompense indue est
+l'écart du système avec la valeur observée moins l'écart avec la valeur limite ; le signalement
+se déclenche si elle est < −1 an. On calcule le pourcentage de personnes signalées sans et avec
+la contrainte ; avec la contrainte, il vaut 0 par construction.
+
+**Prédiction** (développement, apparent, n = 13 903 ;
+`reports/checkup_sang_seul/contrainte/prediction_developpement.json`) :
+- différence de C : global +0,0001 ; cardiovasculaire −0,0001 ; hépatique +0,0001 ;
+  inflammatoire +0,0000 ; métabolique et rénal 0 ;
+- écarts modifiés : global 46,6 % des personnes (médiane +0,16 an ; 90ᵉ centile +1,93 ;
+  maximum +9,5) ; cardiovasculaire 38,7 % (+0,34) ; hépatique 10,9 % (+0,68 ; 90ᵉ centile +2,0) ;
+  inflammatoire 17,3 % (+0,44 ; 90ᵉ centile +3,1) ; métabolique et rénal : aucun.
+
+Si la variante est adoptée, elle devient le modèle principal de Q3 allégée et de Q4. Q1 et Q2
+gardent leurs résultats pré-enregistrés ; leur reprise avec la variante contrainte serait une
+analyse distincte.
