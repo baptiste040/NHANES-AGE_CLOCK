@@ -301,3 +301,63 @@ Les conclusions sont les mêmes chez les 30-55 ans.
 - Les effets d'interventions viennent souvent de populations malades (diabète, stéatose,
   hyperlipidémie). Chez des personnes en bonne santé, ils sont probablement plus faibles.
 - Plusieurs effets ne viennent que de résumés. Les essais diffèrent en durée et en dose.
+
+## Analyse secondaire (déclarée après les résultats, à la demande de l'auteur du projet)
+
+Trois compléments, sans nouvelle donnée NHANES. Fichier : `Q1_secondaire_moyenner.csv` ; code : `q1_secondaire.py`.
+
+**1. Population des méta-analyses.** Elle figure pour chaque couple dans le tableau ci-dessous. Beaucoup d'effets viennent de populations malades ou à risque : diabétiques, syndrome métabolique, stéatose, hyperlipidémie. Chez des adultes en bonne santé, ils sont probablement plus petits.
+- **HbA1c sous activité physique** : 1,3 chez des diabétiques de type 2 (Umpierre 2011). Chez des **non-diabétiques**, rien trouvé avec ces requêtes : aucune méta-analyse d'activité physique sur l'HbA1c hors diabète.
+- **Oméga-3** : chez les personnes sans hyperlipidémie, l'effet plafonne vers −40 mg/dL (Wang 2023, TC), soit le même ordre de grandeur que l'effet global.
+
+**2. Deux références.**
+- **Statine** (atorvastatine 10 mg/j ou équivalent) : −40 % de LDL (Law 2003, BMJ, résumé). C'est l'exemple d'un effet **clairement détectable** chez une personne : ratio 1,25.
+- **Perte de poids de 5 %** chez des obèses non diabétiques (Magkos 2016, Cell Metab, texte complet) : **un seul essai**, 19 personnes contre 14, effets estimés grossièrement par la différence des variations des médianes. Aucune méta-analyse de perte de poids de 5-10 % sans médicament chez des non-diabétiques n'a été trouvée avec ces requêtes. Look AHEAD (Wing 2011) ne porte que sur des diabétiques et ne donne que des rapports de cotes.
+
+**3. Combien de mesures faudrait-il ?** Deux façons de réduire le bruit :
+- **A, prélèvements rapprochés** : k prises de sang à quelques jours d'intervalle autour de chaque bilan, moyennées. Elles réduisent le bruit à court terme, mais pas la variation biologique à long terme. Si celle-ci dépasse à elle seule l'effet, c'est **impossible** ;
+- **B, tendance** : m bilans espacés avant l'intervention et m après, moyennés. Tout le bruit à 6 mois se divise par m.
+
+Hypothèses : erreurs indépendantes, effet stable dans le temps, même laboratoire. Quand le seuil est une borne basse (pas d'étude à long terme), A et B donnent le même chiffre, **optimiste**. Calcul : $k = \sigma_{obs}^2 / (\sigma^{*2} - \sigma_{LT}^2)$ et $m = \sigma_{6m}^2 / \sigma^{*2}$, avec $\sigma^* = |\ln(1+	ext{effet})| / (1{,}96\sqrt2)$.
+
+| Intervention | Marqueur | Population | Effet moyen | Ratio | **A : prises de sang par bilan** | **B : bilans avant et après** | 30-55 ans (A / B) | Source (lecture) |
+|---|---|---|---|---|---|---|---|---|
+| Activité physique (toutes formes) | Cholestérol total | 148 ECR, adultes | −3 % | 0,14 | **62** | **62** | 64 / 64 | Smart 2025 (R) |
+| Activité physique (toutes formes) | HDL | 148 ECR, adultes | +4 % | 0,10 | **69** | **69** | 65 / 65 | Smart 2025 (R) |
+| Activité physique (toutes formes) | LDL (calculé, à jeun) | 148 ECR, adultes | −6 % | 0,18 | **41** | **41** | 55 / 55 | Smart 2025 (R) |
+| Activité physique (toutes formes) | Triglycérides (à jeun) | 148 ECR, adultes | −7 % | 0,13 | **> 100** | **> 100** | > 100 / > 100 | Smart 2025 (R) |
+| Activité physique structurée | HbA1c | diabète de type 2 | −13 % | 1,34 | **1** | **1** | 1 / 1 | Umpierre 2011 (R) |
+| Activité physique aérobie | Glycémie à jeun (plasma) | syndrome métabolique | −3 % | 0,13 | **76** | **76** | 54 / 54 | Wewege 2018 (R) |
+| Activité physique (toutes formes) | Insuline (à jeun) | surpoids ou stéatose | −20 % | 0,37 | **13** | **13** | 13 / 13 | Smart 2018 (R) |
+| Alimentation méditerranéenne | Glycémie à jeun (plasma) | adultes, 57 essais contrôlés | −3 % | 0,14 | **62** | **62** | 44 / 44 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | Insuline (à jeun) | adultes | −10 % | 0,18 | **55** | **55** | 58 / 58 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | HOMA-IR | adultes | −19 % | 0,33 | **18** | **18** | 18 / 18 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | HbA1c | adultes | −3 % | 0,30 | **12** | **12** | 14 / 14 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | Cholestérol total | adultes | −3 % | 0,14 | **66** | **66** | 68 / 68 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | LDL (calculé, à jeun) | adultes | −7 % | 0,21 | **31** | **31** | 42 / 42 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | HDL | adultes | +3 % | 0,06 | **> 100** | **> 100** | > 100 / > 100 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | Triglycérides (à jeun) | adultes | −10 % | 0,20 | **46** | **46** | 49 / 49 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | ALAT | adultes | −38 % | 0,59 | **impossible** | **5** | impossible / 5 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | GGT | adultes | −11 % | 0,31 | **14** | **14** | 14 / 14 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | CRP | adultes | −29 % | 0,37 | **21** | **21** | 23 / 23 | Papadaki 2020 (TC) |
+| Perte de poids de 5 kg | ALAT | stéatose (NAFLD) | −28 % | 0,43 | **impossible** | **11** | impossible / 11 | Koutoukidis 2021 (R) |
+| Perte de poids de 5 kg | ASAT | stéatose (NAFLD) | −15 % | 0,32 | **impossible** | **16** | impossible / 17 | Koutoukidis 2021 (R) |
+| Perte de poids de 5 kg (poids stabilisé) | HDL | 70 études | +4 % | 0,08 | **100** | **100** | 95 / 95 | Dattilo 1992 (R) |
+| Vitamine D3, 25 µg/j | 25-OH vitamine D | plus de 50 ans, sans calcium | +98 % | 1,80 | **1** | **1** | 1 / 1 | Autier 2012 (R) |
+| Oméga-3 (EPA + DHA), 2 g/j | Triglycérides (à jeun) | 90 ECR, surtout hyperlipidémiques | −36 % | 0,69 | **3** | **3** | 3 / 3 | Wang 2023 (TC) |
+| Acide folique 0,8 mg/j | Homocystéine | 25 ECR | −23 % | 0,73 | **3** | **3** | 2 / 2 | Homocysteine Lowering Trialists' Collaboration 2005 (R) |
+| Fer oral (femmes réglées) | Hémoglobine | femmes réglées | +4 % | 0,37 | **impossible** | **7** | impossible / 7 | Low 2016 (R) |
+| Statine (atorvastatine 10 mg/j ou équivalent) | LDL (calculé, à jeun) | 164 essais contre placebo | −40 % | 1,25 | **1** | **1** | 1 / 1 | Law 2003 (R) |
+| Perte de poids de 5 % (essai unique) | Glycémie à jeun (plasma) | obèses non diabétiques, n = 19 contre 14 | −4 % | 0,18 | **38** | **38** | 27 / 27 | Magkos 2016 (TC) |
+| Perte de poids de 5 % (essai unique) | Insuline (à jeun) | obèses non diabétiques | −14 % | 0,25 | **28** | **28** | 30 / 30 | Magkos 2016 (TC) |
+| Perte de poids de 5 % (essai unique) | Triglycérides (à jeun) | obèses non diabétiques | −38 % | 0,72 | **3** | **3** | 3 / 3 | Magkos 2016 (TC) |
+| Perte de poids de 5 % (essai unique) | HDL | obèses non diabétiques | +0 % | 0,01 | **> 100** | **> 100** | > 100 / > 100 | Magkos 2016 (TC) |
+| Perte de poids de 5 % (essai unique) | ALAT | obèses non diabétiques | −17 % | 0,26 | **impossible** | **33** | impossible / 34 | Magkos 2016 (TC) |
+| Perte de poids de 5 % (essai unique) | CRP | obèses non diabétiques | +5 % | 0,01 | **> 100** | **> 100** | > 100 / > 100 | Magkos 2016 (TC) |
+
+**Lecture pratique** (interprétation) :
+- **Une seule mesure suffit** quand l'effet est direct et fort : vitamine D sous supplémentation, LDL sous statine, et HbA1c chez des diabétiques.
+- **Environ 3 mesures de part et d'autre** pour les TG sous oméga-3 ou sous perte de poids de 5 %, et pour l'homocystéine sous acide folique.
+- **Des dizaines de mesures** pour l'effet de l'activité physique ou de l'alimentation sur les lipides ou la glycémie : en pratique, ce n'est jamais faisable pour une personne.
+- **Impossible par des prélèvements rapprochés** pour l'ALAT et l'hémoglobine : la variation à long terme dépasse déjà l'effet. Seule une tendance sur de nombreux bilans peut alors le montrer.
+- Ces nombres supposent le même laboratoire. Un changement de laboratoire (Q5) les augmente.

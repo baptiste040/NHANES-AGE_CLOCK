@@ -2098,3 +2098,24 @@ non < 0,5.
   n'ont pas été lues.
 - Filtre de matrice ajouté (sérum, plasma, sang total) pour le CV_I à long terme.
 - Sensibilité non pré-enregistrée incluant les études EFLM de note C.
+
+### Analyse secondaire — Q1 (2026-11-11, déclarée après les résultats)
+
+À la demande de l'auteur du projet, sans nouvelle donnée NHANES (`q1_secondaire.py`,
+`Q1_secondaire_moyenner.csv`) :
+1. **Population.** Elle est indiquée pour chaque couple.
+   - HbA1c sous activité physique chez des non-diabétiques : rien trouvé avec ces requêtes.
+   - L'effet de 1,3 vient de diabétiques.
+2. **Références.**
+   - Statine (atorvastatine 10 mg/j) : LDL −40 %, ratio 1,25 (Law 2003).
+   - Perte de poids de 5 % chez des obèses non diabétiques (Magkos 2016, essai unique,
+     n = 19 contre 14) : TG −38 % (ratio 0,72) ; glycémie −4 % (0,18) ; ALAT −17 % (0,26) ; HDL et
+     CRP inchangés.
+   - Aucune méta-analyse de perte de poids de 5-10 % sans médicament chez des non-diabétiques n'a
+     été trouvée avec ces requêtes.
+3. **Nombre de mesures pour atteindre un ratio de 1.**
+   - Une seule mesure suffit pour la vitamine D, les statines et l'HbA1c chez des diabétiques.
+   - Environ 3 mesures de part et d'autre pour les TG (oméga-3, perte de poids) et l'homocystéine.
+   - Des dizaines pour les lipides et la glycémie sous activité physique ou alimentation.
+   - Impossible par des prélèvements rapprochés pour l'ALAT et l'hémoglobine (variation à long
+     terme supérieure à l'effet).
