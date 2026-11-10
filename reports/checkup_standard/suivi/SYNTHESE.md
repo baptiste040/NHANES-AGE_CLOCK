@@ -116,7 +116,7 @@ Sans aucun effet réel, après retrait du décalage entre examens :
   il est le moins fiable.
 - **À afficher à côté du score global** : le système défavorable.
   - Une personne dont un seul système dépasse son 90ᵉ centile, alors que tous les autres sont
-    bons, a en moyenne un score global de « 4,9 ans plus jeune ».
+    bons, a en moyenne un score global de « 4,8 ans plus jeune ».
   - Le risque semble correctement estimé, avec seulement 12 décès et un IC large. C'est la lecture
     « tout va bien » qui est trompeuse.
 

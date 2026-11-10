@@ -98,6 +98,47 @@ Un vrai changement entre deux bilans suppose un écart d'au moins **6,5 ans** po
 entre marqueurs : un intervalle gaussien n'est pas adapté
 ([`FIABILITE.md`](reports/checkup_standard/fiabilite_reelle/FIABILITE.md)).
 
+## Suivi d'un bilan à l'autre
+
+Ce qu'un score de santé peut affirmer entre deux bilans, dans le cas d'un check-up de prévention
+avec un bilan complet au départ, puis une prise de sang tous les 6 mois. Le panel de suivi est
+réduit : ni urines, ni tension, ni mensurations, et ni l'heure ni le jeûne ne sont contrôlés.
+Chaque question a été pré-enregistrée dans `DECISIONS.md` avant d'être évaluée. Synthèse :
+[`SYNTHESE.md`](reports/checkup_standard/suivi/SYNTHESE.md).
+
+> **Bornes basses.** Les remesures (NHANES 2001-2002 et NHANES III) ont lieu à environ 2 semaines.
+> À 6 mois, le bruit sera plus grand. Les évaluations ne sont pas aveugles : NHANES III et la
+> validation 2007-2010 avaient déjà été consultés.
+
+**Modèle « sang seul contraint »** : 19 marqueurs sanguins et urinaires, sans mesures physiques.
+Une **contrainte clinique** s'y ajoute : au-delà de la limite normale, une valeur ne rend jamais le
+score plus favorable que la limite.
+- Discrimination : C global 0,850 [0,839 ; 0,862] sur la validation 2007-2010.
+- La contrainte ne dégrade pas la discrimination : +0,0008 de C, négligeable en pratique.
+- Sans contrainte, une ALAT élevée rajeunissait le score hépatique d'environ 4 ans.
+
+| Affirmation | Statut |
+|---|---|
+| « Votre score a changé » | seulement au-delà du seuil : **7,0 ans** pour le global (P95, NHANES III) |
+| « Votre système le plus âgé est X » | non, comme fait stable : il change une fois sur trois en 2 semaines |
+| « Les marqueurs qui pèsent le plus sont A, B, C » (sans ordre) | oui : au moins 2 sur 3 en commun dans 90 % des remesures |
+| « Vos anomalies se sont améliorées » après une remesure ciblée | non sans groupe contrôle : 0,4 an d'amélioration fabriquée (global), 1,2 an (rénal) |
+| Suivi du système rénal sans urines | non : aucune stratégie acceptable ; afficher le dernier score rénal, daté |
+| Score global au bilan sans urines | oui, en recalculant le bilan 1 sans urines (C −0,004) |
+| Note globale | le score global du modèle, avec le système le plus défavorable affiché à côté |
+
+Les systèmes cardiovasculaire et métabolique « sang seul » apportent peu au-delà de l'âge pour la
+mortalité à 10 ans. Ce critère sous-estime toutefois les lipides et la glycémie : ils ne doivent
+pas être présentés comme inutiles.
+
+Rapports : [`ETAPE0_SANG_SEUL.md`](reports/checkup_standard/suivi/ETAPE0_SANG_SEUL.md),
+[`ETAPE1_CONTRAINTE.md`](reports/checkup_standard/suivi/ETAPE1_CONTRAINTE.md),
+[`Q1_MOTEURS.md`](reports/checkup_standard/suivi/Q1_MOTEURS.md),
+[`Q2_REGRESSION_MOYENNE.md`](reports/checkup_standard/suivi/Q2_REGRESSION_MOYENNE.md),
+[`Q3_URINES.md`](reports/checkup_standard/suivi/Q3_URINES.md),
+[`Q4_AGREGATION.md`](reports/checkup_standard/suivi/Q4_AGREGATION.md). Les marqueurs manquants
+dans un système (Q5) n'ont pas été traités.
+
 ## Limites
 
 - **Dosages** : un âge biologique absolu n'est interprétable que si les dosages de la cohorte
@@ -112,8 +153,11 @@ entre marqueurs : un intervalle gaussien n'est pas adapté
   pas dans le modèle.
 - Hypothèses non testées sur la surestimation chez les Mexicains-Américains (paradoxe hispanique,
   décès non retrouvés après un retour à l'étranger).
+- **Suivi** : les seuils et taux de stabilité viennent de remesures à environ 2 semaines. Ce sont
+  des bornes basses pour un suivi à 6 mois. Les évaluations de cette piste ne sont pas aveugles.
 - Non fait à ce stade : analyses pondérées, imputation multiple, transposition à une cohorte non
-  américaine (recalibrage, alignement des distributions).
+  américaine (recalibrage, alignement des distributions), fiabilité à 6 mois, marqueurs manquants
+  dans un système (Q5).
 
 ## Utiliser le modèle figé
 
@@ -145,11 +189,24 @@ python -m aging_clock export                 # modèle JSON, spécification, exe
 pytest
 ```
 
+Piste « suivi » (avec `PYTHONPATH=src`) :
+
+```python
+from aging_clock import sang_seul, suivi, contrainte, suivi_contraint, q3, q4
+sang_seul.predictions(); sang_seul.run()                 # étape 0 : modèle sang seul
+suivi.coherence(); suivi.predictions(); suivi.analyse()  # cohérence clinique ; Q1-Q2
+contrainte.predictions(); contrainte.run()               # étape 1 : contrainte clinique
+suivi_contraint.predictions(); suivi_contraint.analyse() # Q1-Q2 avec le modèle contraint
+q3.predictions(); q3.analyse()                           # Q3 : urines absentes au second bilan
+q4.predictions(); q4.analyse()                           # Q4 : agrégation en une note globale
+```
+
 | Dossier | Contenu |
 |---|---|
 | `config/` | panels, correspondance NHANES, harmonisation des dosages, paramètres d'étude |
 | `src/aging_clock/` | pipeline (données, modèle, validation) et module de calcul autonome |
-| `reports/checkup_standard/` | rapports : `RESULTATS.md`, `benchmark_phenoage/`, `equite/`, `secondaire/`, sélection de variables |
+| `reports/checkup_standard/` | rapports : `RESULTATS.md`, `benchmark_phenoage/`, `equite/`, `secondaire/`, sélection de variables, `fiabilite_reelle/`, `fiabilite_nhanes3/`, `suivi/` |
+| `reports/checkup_sang_seul/` | modèle « sang seul » (étape 0) et contrainte clinique (`contrainte/`) |
 | `DECISIONS.md` | journal des décisions : critères pré-enregistrés, résultats, déviations |
 | `models/`, `docs/`, `examples/` | modèle figé, fiche du modèle, spécification, exemple synthétique |
 

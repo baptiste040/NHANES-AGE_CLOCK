@@ -39,7 +39,7 @@ le métab 31, le rénal 23, l'hépatique 16 et l'inflammatoire 16. Risque observ
 
 | Option | Note moyenne du sous-groupe (ans) | Risque prédit | O/E [IC 95 %] |
 |---|---|---|---|
-| Global | **−4,9** | 6,8 % | 1,19 [0,67 ; 2,10] |
+| Global | **−4,8** | 6,8 % | 1,19 [0,67 ; 2,10] |
 | Moyenne | −1,5 | 6,8 % | 1,19 [0,67 ; 2,09] |
 | Cox | −1,6 | 6,7 % | 1,21 [0,68 ; 2,13] |
 | Pire système | +4,2 | 10,5 % | 0,77 [0,43 ; 1,36] |
@@ -60,7 +60,7 @@ le métab 31, le rénal 23, l'hépatique 16 et l'inflammatoire 16. Risque observ
 ## Lecture (interprétation)
 
 - **Le message pose problème même si le risque est bien estimé.** Dans ce sous-groupe, le score
-  global dit en moyenne « 4,9 ans plus jeune » alors qu'un système est au-dessus de son 90ᵉ
+  global dit en moyenne « 4,8 ans plus jeune » alors qu'un système est au-dessus de son 90ᵉ
   centile. Le risque de décès semble correctement prédit, mais l'IC est large. Ce qui est trompeur,
   c'est la lecture « tout va bien » : il faut afficher le système défavorable à côté du score
   global.

@@ -1873,3 +1873,9 @@ Conclusion prédite correctement. Rapport : `reports/checkup_standard/suivi/Q4_A
 - Synthèse : `reports/checkup_standard/suivi/SYNTHESE.md`.
 - Q5 (marqueurs manquants dans un système) reste en attente.
 - Toute nouvelle analyse demandera une levée du gel datée ici, et un pré-enregistrement.
+
+### Erratum — Q4 (2026-11-10)
+
+Arrondi corrigé : la note globale moyenne du sous-groupe « un seul système très défavorable » vaut
+−4,848 ans (`Q4_resultats.json`), soit **−4,8 ans** et non −4,9 comme écrit dans le résultat de Q4,
+`Q4_AGREGATION.md` et `SYNTHESE.md`. Aucune conclusion ne change.
