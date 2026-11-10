@@ -2,7 +2,7 @@
 
 Analyse **descriptive** (protocole : `DECISIONS.md`) : le modèle est figé et rien n'en découle pour
 lui. Calculs avec le modèle exporté (`models/checkup_standard_v1.json`) et le module autonome ;
-validation 2007-2010, n = 9247 ; 1000 remesures simulées par personne, graine
+validation 2007-2010, n = 9276 ; 1000 remesures simulées par personne, graine
 2026.
 
 ## Hypothèse
@@ -50,11 +50,11 @@ académique de la base (source : EFLM Biological Variation Database, biologicalv
 
 | Score | ET médian (ans) | IC 95 % : largeur médiane [Q1 ; Q3] (ans) | 90e centile de la largeur |
 |---|---|---|---|
-| Global | 2.7 | 10.6 [9.7 ; 11.0] | 11.4 |
-| Cardiovasculaire | 2.0 | 7.6 [6.6 ; 8.6] | 9.4 |
+| Global | 2.7 | 10.6 [9.8 ; 11.1] | 11.5 |
+| Cardiovasculaire | 2.0 | 7.6 [6.6 ; 8.7] | 9.4 |
 | Métabolique | 0.8 | 3.3 [3.0 ; 3.8] | 4.1 |
-| Rénal | 1.1 | 4.5 [4.4 ; 4.7] | 5.5 |
-| Hépatique | 2.8 | 10.6 [9.1 ; 11.2] | 11.5 |
+| Rénal | 1.1 | 4.5 [4.4 ; 4.7] | 5.4 |
+| Hépatique | 2.8 | 10.6 [9.2 ; 11.2] | 11.5 |
 | Inflammatoire / hémato. | 1.4 | 5.6 [5.4 ; 6.1] | 6.6 |
 
 ![Largeurs](largeurs_ic95.png)
@@ -66,8 +66,8 @@ vrai changement (95e centile de |âge bio 1 − âge bio 2| sur 500 paires de re
 
 | Score | Changement significatif : médiane [Q1 ; Q3] (ans) | 1,96·√2·ET (médiane) |
 |---|---|---|
-| Global | 7.5 [6.9 ; 7.9] | 7.5 |
-| Cardiovasculaire | 5.4 [4.7 ; 6.1] | 5.4 |
+| Global | 7.5 [6.9 ; 7.9] | 7.6 |
+| Cardiovasculaire | 5.4 [4.7 ; 6.2] | 5.4 |
 | Métabolique | 2.3 [2.1 ; 2.7] | 2.3 |
 | Rénal | 3.2 [3.1 ; 3.4] | 3.2 |
 | Hépatique | 7.5 [6.5 ; 8.0] | 7.6 |
@@ -81,7 +81,7 @@ observée contient déjà du bruit). Bascule : part des paires de remesures où 
 | Score | CCI | Bascule plus jeune / plus vieux (%) |
 |---|---|---|
 | Global | 0.87 | 15.7 |
-| Cardiovasculaire | 0.71 | 22.9 |
+| Cardiovasculaire | 0.71 | 22.8 |
 | Métabolique | 0.95 | 9.5 |
 | Rénal | 0.87 | 17.2 |
 | Hépatique | 0.63 | 24.7 |
@@ -91,12 +91,12 @@ Bascule par tranche d'écart observé (%) :
 
 | score | < 1 an | 1-3 ans | 3-5 ans | ≥ 5 ans |
 |---|---|---|---|---|
-| Global | 47.2 | 36.1 | 15.8 | 1.5 |
-| Cardiovasculaire | 45.1 | 29.3 | 8.1 | 0.6 |
+| Global | 47.4 | 36.1 | 15.8 | 1.5 |
+| Cardiovasculaire | 45.1 | 29.4 | 8.0 | 0.5 |
 | Métabolique | 39.4 | 5.6 | 0.0 | 0.0 |
-| Rénal | 43.4 | 13.5 | 0.6 | 0.0 |
-| Hépatique | 48.2 | 34.9 | 14.0 | 2.3 |
-| Inflammatoire / hémato. | 45.5 | 18.8 | 1.5 | 0.0 |
+| Rénal | 43.4 | 13.4 | 0.6 | 0.0 |
+| Hépatique | 48.4 | 34.9 | 14.1 | 2.3 |
+| Inflammatoire / hémato. | 45.4 | 18.9 | 1.5 | 0.0 |
 
 ## Contribution de chaque marqueur (% de la variance due au bruit)
 
@@ -105,30 +105,30 @@ marqueur / variance totale : Global 1.00, Cardiovasculaire 1.00, Métabolique 1.
 
 | Variable | Cardiovasculaire | Global | Hépatique | Inflammatoire / hémato. | Métabolique | Rénal |
 |---|---|---|---|---|---|---|
-| alt | 0.0 | 35.7 | 61.1 | 0.0 | 0.0 | 0.0 |
-| sbp | 30.4 | 10.4 | 0.0 | 0.0 | 0.0 | 0.0 |
-| ast | 0.0 | 8.6 | 12.3 | 0.0 | 0.0 | 0.0 |
-| rdw | 0.0 | 7.0 | 0.0 | 31.7 | 0.0 | 0.0 |
-| acr | 0.0 | 5.8 | 0.0 | 0.0 | 0.0 | 84.3 |
-| heart_rate | 42.1 | 4.7 | 0.0 | 0.0 | 0.0 | 0.0 |
-| albumin | 0.0 | 4.2 | 16.9 | 0.0 | 0.0 | 0.0 |
-| waist | 0.0 | 3.8 | 0.0 | 0.0 | 61.3 | 0.0 |
-| dbp | 12.6 | 3.6 | 0.0 | 0.0 | 0.0 | 0.0 |
-| ggt | 0.0 | 2.8 | 7.3 | 0.0 | 0.0 | 0.0 |
-| platelets | 0.0 | 2.4 | 0.0 | 13.4 | 0.0 | 0.0 |
-| mcv | 0.0 | 2.1 | 0.0 | 9.1 | 0.0 | 0.0 |
-| bmi | 0.0 | 1.9 | 0.0 | 0.0 | 30.1 | 0.0 |
-| wbc | 0.0 | 1.8 | 0.0 | 21.9 | 0.0 | 0.0 |
-| total_chol | 9.6 | 1.3 | 0.0 | 0.0 | 0.0 | 0.0 |
-| lymph_pct | 0.0 | 1.1 | 0.0 | 3.7 | 0.0 | 0.0 |
-| alp | 0.0 | 0.8 | 2.4 | 0.0 | 0.0 | 0.0 |
-| creatinine | 0.0 | 0.8 | 0.0 | 0.0 | 0.0 | 15.7 |
+| alt | 0.0 | 36.0 | 60.9 | 0.0 | 0.0 | 0.0 |
+| sbp | 29.7 | 10.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| ast | 0.0 | 8.8 | 12.4 | 0.0 | 0.0 | 0.0 |
+| rdw | 0.0 | 7.0 | 0.0 | 31.6 | 0.0 | 0.0 |
+| acr | 0.0 | 5.6 | 0.0 | 0.0 | 0.0 | 84.1 |
+| heart_rate | 42.7 | 4.8 | 0.0 | 0.0 | 0.0 | 0.0 |
+| albumin | 0.0 | 4.2 | 17.0 | 0.0 | 0.0 | 0.0 |
+| waist | 0.0 | 3.7 | 0.0 | 0.0 | 61.4 | 0.0 |
+| dbp | 12.7 | 3.6 | 0.0 | 0.0 | 0.0 | 0.0 |
+| ggt | 0.0 | 2.7 | 7.3 | 0.0 | 0.0 | 0.0 |
+| platelets | 0.0 | 2.4 | 0.0 | 13.7 | 0.0 | 0.0 |
+| mcv | 0.0 | 2.1 | 0.0 | 8.9 | 0.0 | 0.0 |
+| bmi | 0.0 | 1.9 | 0.0 | 0.0 | 29.8 | 0.0 |
+| wbc | 0.0 | 1.8 | 0.0 | 22.1 | 0.0 | 0.0 |
+| total_chol | 9.7 | 1.4 | 0.0 | 0.0 | 0.0 | 0.0 |
+| lymph_pct | 0.0 | 1.1 | 0.0 | 3.6 | 0.0 | 0.0 |
+| alp | 0.0 | 0.8 | 2.5 | 0.0 | 0.0 | 0.0 |
+| creatinine | 0.0 | 0.8 | 0.0 | 0.0 | 0.0 | 15.9 |
 | crp | 0.0 | 0.5 | 0.0 | 15.5 | 0.0 | 0.0 |
 | hdl | 2.0 | 0.3 | 0.0 | 0.0 | 0.0 | 0.0 |
 | tg | 3.3 | 0.2 | 0.0 | 0.0 | 0.0 | 0.0 |
 | hba1c | 0.0 | 0.1 | 0.0 | 0.0 | 1.4 | 0.0 |
-| hb | 0.0 | 0.1 | 0.0 | 4.7 | 0.0 | 0.0 |
-| glucose | 0.0 | 0.0 | 0.0 | 0.0 | 7.2 | 0.0 |
+| hb | 0.0 | 0.1 | 0.0 | 4.6 | 0.0 | 0.0 |
+| glucose | 0.0 | 0.0 | 0.0 | 0.0 | 7.4 | 0.0 |
 
 ![Contributions](contributions_global.png)
 
@@ -140,8 +140,8 @@ marqueur / variance totale : Global 1.00, Cardiovasculaire 1.00, Métabolique 1.
 | a. moyenne de 2 prises de sang | 8.4 | 5.9 | 0.92 | 12.6 |
 | b. toujours à jeun | 10.6 | 7.5 | 0.87 | 15.7 |
 | c. a + b | 8.4 | 5.9 | 0.92 | 12.6 |
-| sensibilité : bornes basses | 6.8 | 4.8 | 0.95 | 10.0 |
-| sensibilité : bornes hautes | 13.1 | 9.2 | 0.80 | 19.4 |
+| sensibilité : bornes basses | 6.9 | 4.8 | 0.95 | 10.1 |
+| sensibilité : bornes hautes | 13.1 | 9.3 | 0.80 | 19.4 |
 
 Largeur médiane de l'IC 95 % par système et par scénario (ans) :
 
@@ -149,9 +149,9 @@ Largeur médiane de l'IC 95 % par système et par scénario (ans) :
 |---|---|---|---|---|---|---|
 | principal | 7.6 | 10.6 | 10.6 | 5.6 | 3.3 | 4.5 |
 | a. moyenne de 2 prises de sang | 7.3 | 8.4 | 7.7 | 4.0 | 3.2 | 3.2 |
-| b. toujours à jeun | 7.5 | 10.6 | 10.6 | 5.6 | 3.2 | 4.5 |
+| b. toujours à jeun | 7.6 | 10.6 | 10.6 | 5.6 | 3.2 | 4.5 |
 | c. a + b | 7.3 | 8.4 | 7.7 | 4.0 | 3.2 | 3.2 |
-| sensibilité : bornes basses | 4.2 | 6.8 | 7.0 | 4.7 | 1.8 | 2.9 |
+| sensibilité : bornes basses | 4.3 | 6.9 | 7.0 | 4.8 | 1.8 | 2.9 |
 | sensibilité : bornes hautes | 9.2 | 13.1 | 10.6 | 9.6 | 5.5 | 6.3 |
 
 ## Remesures hors plage du panel
@@ -161,10 +161,11 @@ rejetées), en % des tirages :
 
 | variable | pct_hors_plage |
 |---|---|
-| sbp | 0.014 |
-| dbp | 0.036 |
-| tg | 0.043 |
+| sbp | 0.015 |
+| dbp | 0.028 |
+| tg | 0.045 |
 | acr | 0.023 |
+| hb | 0.010 |
 
 ## Limites
 

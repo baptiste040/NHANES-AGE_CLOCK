@@ -719,3 +719,119 @@ scores). « À jeun aux deux » (indicateur indirect, n = 142) : global ET_w 2,0
 Séance du premier examen : matin (n = 207) 1,94 ; après-midi ou soir (n = 180) 1,78.
 Rapport : `reports/checkup_standard/fiabilite_reelle/`. Interprétation en attente de validation ;
 NHANES III non commencé.
+
+## Correction de bug — lecture des zéros des fichiers SAS (2026-11-10)
+
+**Nature** : correction de bug, pas un réglage. Aucune décision de modélisation n'a changé (panel,
+transformations, pénalisation, protocoles) ; seules les données d'entrée sont corrigées.
+
+**Bug.** `pandas.read_sas` (format xport) rend les valeurs 0 sous la forme d'un flottant minuscule
+(≈ 5,4 × 10⁻⁷⁹). Les règles écrites pour 0 ne s'appliquaient donc pas.
+
+**Audit** (`scripts/audit_zeros_sas.py`, sortie `reports/audit_zeros_sas.csv`). Le script couvre
+tous les fichiers XPT de tous les cycles (1999-2009, 2015-2018), toutes les colonnes numériques,
+plus le fichier des médicaments, le second examen 2001-2002 et PH_B. Il trouve 323 colonnes
+contenant de tels zéros, dont 56 lues par le pipeline, dans quatre familles :
+
+| Variable | Usage dans le pipeline | Effet |
+|---|---|---|
+| `BPXDI1-4` (diastolique), tous cycles | moyenne des lectures, règle « 0 = manquant » | **touchée** : un 0 entrait dans la moyenne (diastolique sous-estimée), ou une moyenne quasi nulle était rejetée par la plage plausible au lieu d'ignorer la seule lecture nulle |
+| `RIDAGEYR` (âge) | filtre 20-79 ans | aucun : les 0 sont des nourrissons, exclus dans les deux cas |
+| `INDFMPIR` (revenu / seuil de pauvreté) | classes < 1,3 / 1,3-3,5 / ≥ 3,5 (équité) | aucun : 5 × 10⁻⁷⁹ et 0 tombent dans la même classe |
+| `WTMEC2YR` (poids d'enquête) | lu, non utilisé dans les analyses | aucun |
+| `PHDSESN`, `PHAFSTHR` (PH_B, fiabilité) | séance et jeûne du premier examen | déjà corrigé par arrondi le 2026-11-10 (écart au protocole de fiabilité) |
+
+Aucun zéro exact n'apparaît dans aucun fichier : tous les 0 sont lus comme 5 × 10⁻⁷⁹. Les
+codes des questionnaires (1, 2, 7, 9), les variables de laboratoire, les codes de médicaments et
+les fichiers de mortalité (texte à largeur fixe, lus sans `read_sas`) ne sont pas touchés.
+
+**Correction.** Fonction `nhanes.read_xpt` : lecture SAS puis remise à 0 exact de toute valeur
+0 < |x| < 10⁻³⁰. Elle sert à toutes les lectures XPT (pipeline, médicaments, fiabilité). Deux tests
+ajoutés. Caches harmonisés supprimés, pipeline entier relancé : validation, export du modèle,
+PhenoAge, équité, 2015-2018, incertitude, prédictions et analyse de fiabilité. La sélection des
+variables (points 1-2) n'a pas été relancée : le panel reste figé.
+
+**Effet sur les effectifs.** +50 personnes complètes dans la cohorte (23 129 → 23 179) : leur
+diastolique n'est plus rejetée. 37 diastoliques sont corrigées (biais médian −19 mmHg).
+
+**Avant / après.**
+
+| Indicateur | Avant | Après |
+|---|---|---|
+| n développement (décès) | 13 882 (2 785) | 13 903 (2 796) |
+| n validation (décès) | 9 247 (972) | 9 276 (978) |
+| C âge + sexe | 0,8067 | 0,8065 |
+| C global [IC 95 %] | 0,8530 [0,841 ; 0,864] | 0,8532 [0,842 ; 0,865] |
+| Gain de C global | +0,0464 | +0,0467 |
+| Gain de C cardio / métab. / rénal / hépat. / inflam. | 0,0120 / 0,0126 / 0,0133 / 0,0237 / 0,0259 | 0,0121 / 0,0126 / 0,0132 / 0,0237 / 0,0263 |
+| HR par écart-type (global) | 2,007 | 2,015 |
+| Obs./prédit 10 ans ; pente (global) | 0,921 ; 0,991 | 0,915 ; 0,990 |
+| Écart-type de l'écart d'âge global | 7,48 ans | 7,49 ans |
+| ΔC global − PhenoAge publié | +0,0215 | +0,0216 |
+| ΔC global − PhenoAge réentraîné ; réentraîné − publié | +0,0163 ; +0,0052 | +0,0164 ; +0,0052 |
+| Équité, obs./prédit : revenu ≥ 3,5 ; mexicain-américain ; diplôme universitaire | 0,620 ; 0,649 ; 0,69 | 0,616 ; 0,648 ; 0,695 |
+| 2015-2018 brut : C ; écart moyen | 0,848 ; +1,86 an | 0,850 ; +1,89 an |
+| 2015-2018 harmonisé : C ; écart moyen | 0,850 ; −1,08 an | 0,851 ; −1,07 an |
+| Incertitude (CV Lacher) : largeur IC 95 % ; chgt significatif ; CCI ; bascule | 10,58 ; 7,47 ; 0,873 ; 15,7 % | 10,62 ; 7,49 ; 0,873 ; 15,7 % |
+| Fiabilité 2001-2002 : n (prédictions / analyse) | 389 / 387 | 390 / 388 |
+| Fiabilité : ET_w prédit / observé (global) ; R | 1,779 / 1,868 ; 1,051 | 1,785 / 1,871 ; 1,049 |
+| Fiabilité : R rénal / hépatique / inflam. / PhenoAge publié / réentraîné | 1,337 / 1,039 / 1,145 / 1,278 / 1,068 | 1,336 / 1,038 / 1,147 / 1,279 / 1,067 |
+
+Toutes les conclusions sont inchangées ; tous les verdicts de fiabilité aussi. Les prédictions
+de fiabilité figées le 2026-11-10 (`1795991`) ont été recalculées avec le modèle corrigé : une
+personne de plus, ET_w prédit du global 1,779 → 1,785. La règle de lecture reste celle du
+pré-enregistrement. Rapports régénérés ; `README.md` et `docs/fiche_modele.md` mis à jour.
+Les chiffres des paragraphes antérieurs de ce fichier sont ceux d'avant la correction.
+
+### Analyse exploratoire (non pré-enregistrée) — pourquoi la simulation se trompe (2026-11-10)
+
+**Statut : exploratoire.** Les corrélations et les CV sont estimés sur les données mêmes qu'on
+cherche à expliquer. Les deux hypothèses ont été posées par l'auteur du projet après les résultats.
+À confirmer sur NHANES III. Code : `src/aging_clock/retest_explore.py` ; sorties :
+`reports/checkup_standard/fiabilite_reelle/exploratoire/`. Même population (n = 388, modèle
+corrigé). L'explication avancée plus haut (« simuler autour d'une valeur déjà bruitée rend la
+méthode trop pessimiste ») n'est pas retenue : l'hypothèse a ci-dessous rend compte des données.
+
+**a. Corrélation des variations intra-individuelles.** Corrélations de Spearman des différences
+ln x₂ − ln x₁. Les protéines totales sont ajoutées (`LBXSTP`/`LB2STP`, hors modèle).
+- Signature de dilution ou de posture : albumine-protéines 0,70 ; hémoglobine-protéines 0,58 ;
+  albumine-hémoglobine 0,51 ; cholestérol-protéines 0,43 ; PAL-protéines 0,41 ; cholestérol-albumine
+  0,38 ; plaquettes-protéines 0,34.
+- Foie : ALAT-ASAT 0,64 ; ALAT-GGT 0,37. Leucocytes-lymphocytes % −0,37.
+- Simulation avec un bruit log-normal corrélé (matrice de Spearman observée, projetée sur les
+  matrices définies positives). Rapport R = ET_w observé / ET_w prédit, partie biologique :
+
+| Simulation | Global | Hépatique | Inflam. | Rénal | Métab. | PhenoAge publié | PhenoAge réentraîné |
+|---|---|---|---|---|---|---|---|
+| CV observés de chaque marqueur, indépendants | 0,82 | 0,72 | 1,08 | 0,99 | 1,07 | 1,09 | 1,01 |
+| CV observés, bruit corrélé | **0,99** | **1,04** | **1,00** | **0,99** | **1,04** | **1,05** | **0,98** |
+| EFLM, indépendants (pré-enregistré) | 1,05 | 1,04 | 1,15 | 1,34 | 1,21 | 1,28 | 1,07 |
+| EFLM, bruit corrélé | 1,18 | 1,38 | 1,09 | 1,34 | 1,17 | 1,27 | 1,05 |
+| Lacher, indépendants | 0,82 | 0,68 | 1,16 | 1,29 | 1,00 | 1,12 | 1,01 |
+| Lacher, bruit corrélé | 1,02 | 0,95 | 1,08 | 1,30 | 0,96 | 1,09 | 1,00 |
+
+Lecture : avec les CV observés et leur corrélation, la simulation retrouve le bruit réel de tous
+les scores (R entre 0,98 et 1,05). L'hypothèse d'indépendance surestimait le bruit du global et
+de l'hépatique. Les variations corrélées se compensent en partie dans le score : par exemple,
+ALAT et ASAT bougent ensemble (ρ = 0,64) alors que leurs effets sont de sens opposés : +10 %
+d'ALAT donne −0,8 an d'âge global (médiane), +10 % d'ASAT +0,5 an. Même chose pour l'albumine
+(+10 % → −1,5 an) et la PAL (+10 % → +0,3 an), corrélées à 0,29. Le
+« compatible » pré-enregistré du score global vient donc de deux erreurs qui se compensent :
+des CV EFLM trop bas et une hypothèse d'indépendance trop pessimiste.
+
+**b. Valeurs extrêmes.** CV classiques comparés à des CV robustes (écart absolu médian) :
+CRP 59,6 contre 35,1 % (EFLM 35,2) ; ACR 57,1 contre 39,9 % (valeur de travail 40) ; ASAT 17,7
+contre 11,5 ; GGT 15,2 contre 11,5 ; glucose 8,2 contre 5,9 ; lymphocytes % 16,8 contre 12,7 ;
+leucocytes 13,6 contre 10,7. Le cœur de la distribution varie à peu près comme le prévoient l'EFLM
+et nos valeurs de travail. L'excès vient des queues : une minorité de personnes varie beaucoup plus.
+- Cinq personnes portent 15 % (global) à 27 % (métabolique) de la somme des d².
+- Sans les 47 personnes dont la CRP dépasse 10 mg/L à l'un des deux examens : ET_w de PhenoAge
+  publié 2,04 → 1,74 ; inflammatoire 1,67 → 1,47 ; global 1,87 → 1,82 (peu sensible).
+- ET_w robuste (écart absolu médian de d) : global 1,69 (prédit EFLM 1,79) ; PhenoAge publié 1,66.
+
+**Conséquences (interprétation).** (1) Le bruit de mesure n'est ni indépendant entre marqueurs,
+ni gaussien : il a des queues épaisses. Un changement significatif calculé avec
+1,96 × racine(2) × ET suppose une loi normale. Il est trop large pour la plupart des personnes et
+trop étroit pour celles qui traversent un épisode aigu. (2) La simulation doit intégrer la
+corrélation des variations, et probablement un mélange « variation habituelle + épisode aigu ».
+(3) Une CRP > 10 mg/L signale déjà un bilan peu fiable pour les scores qui l'utilisent.

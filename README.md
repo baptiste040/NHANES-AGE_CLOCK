@@ -29,9 +29,9 @@ Pour chaque personne, il produit :
 
 | Échantillon | Cycles | n | Décès | Suivi médian |
 |---|---|---|---|---|
-| Développement | 1999-2006 | 13 882 | 2 785 | 16 ans |
-| Validation temporelle | 2007-2010 | 9 247 | 972 | 11 ans |
-| Validation secondaire | 2015-2018 | 8 404 | 162 | 3 ans |
+| Développement | 1999-2006 | 13 903 | 2 796 | 16 ans |
+| Validation temporelle | 2007-2010 | 9 276 | 978 | 11 ans |
+| Validation secondaire | 2015-2018 | 8 421 | 164 | 3 ans |
 
 Les données sont publiques et téléchargées automatiquement dans `data/raw/` (non versionné).
 
@@ -61,11 +61,11 @@ et le sexe seuls, et il est bien calibré :
 | Score | C (IC 95 %) | Gain de C vs âge + sexe | HR / écart-type d'écart | Obs./prédit 10 ans |
 |---|---|---|---|---|
 | Âge + sexe (référence) | 0,807 [0,794 ; 0,819] | — | — | — |
-| **Global** | **0,853** [0,841 ; 0,864] | **+0,046** [0,040 ; 0,053] | 2,01 | 0,92 |
-| Inflammatoire / hémato. | 0,833 | +0,026 | 1,66 | 0,95 |
+| **Global** | **0,853** [0,842 ; 0,865] | **+0,047** [0,040 ; 0,053] | 2,01 | 0,91 |
+| Inflammatoire / hémato. | 0,833 | +0,026 | 1,67 | 0,95 |
 | Hépatique | 0,830 | +0,024 | 1,59 | 0,96 |
 | Métabolique | 0,819 | +0,013 | 1,47 | 0,93 |
-| Rénal (créatinine + ACR) | 0,820 | +0,013 | 1,39 | 0,97 |
+| Rénal (créatinine + ACR) | 0,820 | +0,013 | 1,39 | 0,96 |
 | Cardiovasculaire | 0,819 | +0,012 | 1,41 | 0,93 |
 
 Résultats stables sans les décès des 2 premières années, chez les personnes sans antécédent
@@ -82,7 +82,7 @@ bootstrap apparié :
 
 **Équité** — pas de défaut de discrimination dans les sous-groupes (sexe, groupe ethnique, âge,
 revenu, études). En revanche, le **risque absolu est surestimé chez les plus favorisés** (revenu
-élevé : observé/prédit 0,62 ; diplôme universitaire : 0,69) et chez les Mexicains-Américains
+élevé : observé/prédit 0,62 ; diplôme universitaire : 0,70) et chez les Mexicains-Américains
 (0,65), alors que leur classement reste bon. Les écarts plus élevés des personnes à faible revenu
 correspondent à un surcroît de mortalité réellement observé.
 

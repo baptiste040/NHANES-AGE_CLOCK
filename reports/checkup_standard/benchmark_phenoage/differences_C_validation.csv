@@ -1,4 +1,4 @@
 comparaison,difference_C,ic95_bas,ic95_haut,p_bootstrap_bilateral
-Score global (panel complet) − PhenoAge publié (Levine 2018),0.021548612181533255,0.016642723073975983,0.026744371690083056,0.0
-"Score global (panel complet) − PhenoAge réentraîné (9 marqueurs, notre méthode)",0.0163463607514992,0.012602127161711487,0.02024486096989411,0.0
-"PhenoAge réentraîné (9 marqueurs, notre méthode) − PhenoAge publié (Levine 2018)",0.005202251430034055,0.0016968824083462065,0.008521682530240628,0.004
+Score global (panel complet) − PhenoAge publié (Levine 2018),0.021637714644394346,0.015938332988210756,0.02680121138699397,0.0
+"Score global (panel complet) − PhenoAge réentraîné (9 marqueurs, notre méthode)",0.016395131249068884,0.012122968285880114,0.0205868898907136,0.0
+"PhenoAge réentraîné (9 marqueurs, notre méthode) − PhenoAge publié (Levine 2018)",0.005242583395325462,0.0019039652862607671,0.008552371552148965,0.006

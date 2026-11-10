@@ -6,19 +6,19 @@ survie de base, méthodes de dosage de référence). Calcul : `python -m aging_c
 
 ## Données d'entraînement
 
-NHANES 1999-2006 chaînées aux Linked Mortality Files 2019 (NCHS) : 13 882 adultes de 20 à
-79 ans, 2 785 décès, suivi médian 16 ans. Décisions de modélisation : `DECISIONS.md`.
+NHANES 1999-2006 chaînées aux Linked Mortality Files 2019 (NCHS) : 13 903 adultes de 20 à
+79 ans, 2 796 décès, suivi médian 16 ans. Décisions de modélisation : `DECISIONS.md`.
 
-## Performances (validation temporelle 2007-2010, n = 9 247, 972 décès)
+## Performances (validation temporelle 2007-2010, n = 9 276, 978 décès)
 
 | Score | C (IC 95 %) | Gain de C vs âge + sexe | HR par écart-type d'écart | Obs./prédit 10 ans |
 |---|---|---|---|---|
-| Global | 0,853 [0,841 ; 0,864] | +0,046 | 2,01 | 0,92 |
+| Global | 0,853 [0,842 ; 0,865] | +0,047 | 2,01 | 0,91 |
 | Cardiovasculaire | 0,819 | +0,012 | 1,41 | 0,93 |
 | Métabolique | 0,819 | +0,013 | 1,47 | 0,93 |
-| Rénal | 0,820 | +0,013 | 1,39 | 0,97 |
+| Rénal | 0,820 | +0,013 | 1,39 | 0,96 |
 | Hépatique | 0,830 | +0,024 | 1,59 | 0,96 |
-| Inflammatoire / hémato. | 0,833 | +0,026 | 1,66 | 0,95 |
+| Inflammatoire / hémato. | 0,833 | +0,026 | 1,67 | 0,95 |
 
 Détails : `reports/checkup_standard/` (validation, benchmark PhenoAge, équité, 2015-2018).
 
@@ -52,7 +52,7 @@ population de référence (même sexe) égale le risque prédit pour cette perso
   domaine de validité 20-79 ans.
 - **Surestimation du risque absolu des groupes favorisés.** En validation (2007-2010), le modèle
   surestime la mortalité à 10 ans des personnes au revenu élevé (rapport observé/prédit 0,62
-  pour un revenu ≥ 3,5 fois le seuil de pauvreté) et des diplômés de l'université (0,69), alors
+  pour un revenu ≥ 3,5 fois le seuil de pauvreté) et des diplômés de l'université (0,70), alors
   que leur classement reste bon (gain de C positif, pente de calibration proche de 1). Les
   biomarqueurs ne captent qu'une partie de l'avantage social.
 - **Conséquence pour les cohortes de check-up de prévention.** Ces cohortes étant souvent plus

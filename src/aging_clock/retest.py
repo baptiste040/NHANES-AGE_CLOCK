@@ -20,7 +20,7 @@ import pandas as pd
 from . import phenoage as pa
 from .cohort import apply_panel_ranges, build_cohort
 from .config import ROOT, load_panel, load_study
-from .nhanes import download, build_harmonized
+from .nhanes import download, build_harmonized, read_xpt
 from .score import bioages, load_model
 from .uncertainty import BLOOD_URINE
 
@@ -66,14 +66,14 @@ def second_exam_seqn() -> set[int]:
     """SEQN presents dans les six fichiers du second examen. Aucune autre colonne n'est gardee."""
     sets = []
     for f in SECOND_EXAM:
-        s = pd.read_sas(_raw(f), format="xport")["SEQN"].astype(int)
+        s = read_xpt(_raw(f))["SEQN"].astype(int)
         sets.append(set(s))
     return set.intersection(*sets)
 
 
 def load_second_exam() -> pd.DataFrame:
     """Valeurs du second examen en unites canoniques (etape 2 seulement)."""
-    frames = {f: pd.read_sas(_raw(f), format="xport").assign(SEQN=lambda d: d["SEQN"].astype(int))
+    frames = {f: read_xpt(_raw(f)).assign(SEQN=lambda d: d["SEQN"].astype(int))
               .set_index("SEQN") for f in SECOND_EXAM}
     out = pd.DataFrame(index=sorted(set.intersection(*[set(f.index) for f in frames.values()])))
     for v, (f, col, k) in SECOND_MAP.items():
@@ -88,7 +88,7 @@ def load_second_exam() -> pd.DataFrame:
 
 def first_exam_session() -> pd.DataFrame:
     """Seance et duree de jeune du premier examen (PH_B)."""
-    ph = pd.read_sas(_raw("PH_B"), format="xport")
+    ph = read_xpt(_raw("PH_B"))
     ph["SEQN"] = ph["SEQN"].astype(int)
     # Le lecteur SAS xport de pandas rend les 0 sous la forme 5.4e-79 : arrondi (ecart 2026-11-10)
     return ph.set_index("SEQN")[["PHDSESN", "PHAFSTHR"]].round(6)
@@ -385,4 +385,41 @@ def analyse() -> Path:
             "delai_median": float(info["delai_jours"].median()), "bootstrap": N_BOOT,
             "sha256_code": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
     (out / "meta_analyse.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
+    return out
+
+
+def complete_corrected() -> Path:
+    """Comparaison secondaire corrigee (NON pre-enregistree, ecart du 2026-11-10) : bruit physique
+    simule independamment sur les DEUX examens (deux mesures reelles en portent chacune un)."""
+    study = load_study()
+    panel = load_panel("checkup_standard")
+    out = ROOT / study["paths"]["reports"] / "checkup_standard" / "fiabilite_reelle"
+    cfg = load_cv()
+    co, _ = population()
+    scorer = Scorer()
+    V = list(scorer.model["variables"])
+    blood = [v for v in V if v in BLOOD_URINE]
+    s2 = load_second_exam()
+    s2r, _ = apply_panel_ranges(s2, panel)
+    s2r = s2r.dropna(subset=blood)
+    co = co[co["SEQN"].astype(int).isin(s2r.index)].reset_index(drop=True)
+    e1 = co[["SEQN", "age", "sex"] + V].copy()
+    e2 = e1.copy()
+    e2[blood] = s2r.loc[e1["SEQN"].astype(int), blood].to_numpy()
+    cv = cv_scenario(cfg, "principal", True)
+    rng = np.random.default_rng(SEED)
+    draws = []
+    for _ in range(200):
+        a, b = e1.copy(), e2.copy()
+        for v in PHYSICAL:
+            s = np.sqrt(np.log1p(cv[v] ** 2))
+            a[v] = e1[v].to_numpy(float) * np.exp(rng.standard_normal(len(a)) * s)
+            b[v] = e1[v].to_numpy(float) * np.exp(rng.standard_normal(len(b)) * s)
+        g1, g2 = scorer(a), scorer(b)
+        draws.append(pd.DataFrame([{"score": n, **observed_metrics(g1[n], g2[n])} for n in g1]))
+    f = pd.concat(draws).groupby("score", sort=False).mean()
+    p = pd.read_csv(out / "comparaison_complete.csv").set_index("score")
+    f["pred_et_intra"], f["pred_rcv"], f["pred_cci"] = p["pred_et_intra"], p["pred_rcv"], p["pred_cci"]
+    f["ratio_et_obs_pred"] = f["et_intra"] / f["pred_et_intra"]
+    f.to_csv(out / "comparaison_complete_corrigee_non_preenregistree.csv")
     return out

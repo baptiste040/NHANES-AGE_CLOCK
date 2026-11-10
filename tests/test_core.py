@@ -221,3 +221,29 @@ def test_crosswalk_min_output_prevents_negative_crp():
     crp = {"type": "linear", "slope": 1.15, "intercept": -0.3397, "factor": 1,
            "max_input": 20, "min_output": 0.1}
     assert apply_crosswalk(pd.Series([0.15]), crp).iloc[0] == 0.1
+
+
+def test_read_xpt_restores_exact_zeros(tmp_path):
+    """Defaut de pd.read_sas (xport) : 0 lu comme ~5.4e-79 ; read_xpt le remet a 0."""
+    import pandas as pd
+    from aging_clock import nhanes
+    raw = pd.DataFrame({"SEQN": [1.0, 2.0, 3.0], "BPXDI1": [5.397605e-79, 70.0, np.nan]})
+    orig = pd.read_sas
+    pd.read_sas = lambda *a, **k: raw.copy()
+    try:
+        df = nhanes.read_xpt(tmp_path / "x.xpt")
+    finally:
+        pd.read_sas = orig
+    assert df["BPXDI1"].iloc[0] == 0.0 and df["BPXDI1"].iloc[1] == 70.0 and np.isnan(df["BPXDI1"].iloc[2])
+
+
+def test_zero_diastolic_reading_is_missing():
+    """Une lecture diastolique a 0 est exclue de la moyenne (zero_is_missing)."""
+    import pandas as pd
+    from aging_clock import nhanes
+    frames = {"BPX": pd.DataFrame({"BPXDI1": [0.0, 80.0], "BPXDI2": [70.0, 0.0],
+                                   "BPXDI3": [72.0, 0.0], "BPXDI4": [np.nan, np.nan]})}
+    spec = {"file": "BPX", "var": ["BPXDI1", "BPXDI2", "BPXDI3", "BPXDI4"], "agg": "mean",
+            "zero_is_missing": True}
+    out = nhanes._extract(frames, spec, 2001)
+    assert out.tolist() == [71.0, 80.0]

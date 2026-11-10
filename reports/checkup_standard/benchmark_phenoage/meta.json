@@ -1,24 +1,24 @@
 {
   "penalizer_pheno9": 0.003,
   "acceleration_pheno_pub": {
-    "intercept": -8.803938941036712,
-    "pente": 1.0639806965841692
+    "intercept": -8.811789224541643,
+    "pente": 1.0642309619407186
   },
-  "phenoage_pub_moyenne_validation": 42.393849166939326,
-  "age_moyen_validation": 47.92311019790202,
-  "corr_accel_global_pheno_pub": 0.6328409518303069,
+  "phenoage_pub_moyenne_validation": 42.45971981532468,
+  "age_moyen_validation": 47.97563605002156,
+  "corr_accel_global_pheno_pub": 0.634825429315351,
   "bootstrap": 1000,
   "seed": 42,
   "C_ref": {
     "validation": [
-      0.8066754628647668,
-      0.7939781397596769,
-      0.8191855934861819
+      0.8065118838791243,
+      0.7937413407436728,
+      0.8192720810811566
     ],
     "sans_antecedent": [
-      0.7956768164799086,
-      0.775065555174666,
-      0.8168593671038082
+      0.7961152018571584,
+      0.7734184668189618,
+      0.817651637192718
     ]
   }
 }

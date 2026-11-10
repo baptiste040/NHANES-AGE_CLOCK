@@ -35,8 +35,19 @@ def download(url: str, dest: Path) -> Path:
     return dest
 
 
+def read_xpt(path: Path, **kw) -> pd.DataFrame:
+    """pd.read_sas (xport) en corrigeant un defaut de lecture : les 0 sont rendus sous la forme
+    d'un flottant minuscule (~5.4e-79). Ils sont remis a 0 exact (audit : scripts/audit_zeros_sas.py)."""
+    df = pd.read_sas(path, format="xport", **kw)
+    for col in df.columns:
+        if pd.api.types.is_float_dtype(df[col]):
+            x = df[col]
+            df.loc[(x != 0) & (x.abs() < 1e-30), col] = 0.0
+    return df
+
+
 def _load_xpt(path: Path) -> pd.DataFrame:
-    df = pd.read_sas(path, format="xport")
+    df = read_xpt(path)
     df["SEQN"] = df["SEQN"].astype(int)
     return df.set_index("SEQN")
 
@@ -92,7 +103,7 @@ def _drug_flags(source: dict, raw_dir: Path) -> pd.DataFrame:
     global _DRUG_INFO
     if _DRUG_INFO is None:
         path = download(source["drug_info_url"], raw_dir / "RXQ_DRUG.xpt")
-        d = pd.read_sas(path, format="xport", encoding="latin1")
+        d = read_xpt(path, encoding="latin1")
         med = source["medications"]
         cls = [c for c in d.columns if c.startswith("RXDDCI") and c.endswith("B")]
         d["rx_antihypertensive"] = d[cls].isin(med["antihypertensive_classes"]).any(axis=1)
@@ -130,7 +141,7 @@ def harmonize_cycle(year: int, source: dict, raw_dir: Path) -> pd.DataFrame:
     for name, spec in source.get("treatments", {}).items():
         out[name] = treatment_chain(frames[spec["file"]], spec["chain"]).reindex(out.index)
     if "medications" in source:
-        rx = pd.read_sas(raw_dir / f"{year}_{files['RXQ']}.xpt", format="xport", encoding="latin1")
+        rx = read_xpt(raw_dir / f"{year}_{files['RXQ']}.xpt", encoding="latin1")
         out = out.join(medication_flags(rx, year, source, raw_dir))
 
     for cond in source["conditions"]:
