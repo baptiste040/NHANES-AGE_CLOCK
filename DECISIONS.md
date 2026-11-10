@@ -1768,3 +1768,73 @@ Exécution du protocole (`ca1c2af`), sans écart. Paires NHANES III n = 781 ; va
 - **Prédictions.** Conclusion bien prédite. Le rénal échoue sur (c) seul, et non sur (a) et (c)
   comme prévu. Le biais de l'imputation est plus fort que prévu (+0,56 contre +0,25).
 - Rapport : `reports/checkup_standard/suivi/Q3_URINES.md`.
+
+## Suivi, Q4 — agrégation en une note globale (pré-enregistrement, 2026-11-10)
+
+Plan validé par l'auteur du projet. Écrit et commité avant toute évaluation sur la validation
+2007-2010 et sur les paires de NHANES III pour cette question. Code : `src/aging_clock/q4.py`.
+Modèle : « sang seul contraint ». Évaluation non aveugle au sens des réserves communes.
+
+**Options** (toutes en années d'écart d'âge) :
+- **global** : score global du modèle (référence) ;
+- **moyenne** : moyenne des 5 écarts de système ;
+- **Cox** : moyenne pondérée des 5 écarts. Poids = coefficients d'un Cox âge + sexe + 5 écarts
+  ajusté sur le développement, normalisés à une somme de 1 : cardio 0,175 ; métab 0,160 ;
+  rénal 0,210 ; hépat 0,212 ; inflam 0,243 ;
+- **pire système** : écart du système prioritaire (centile standardisé le plus élevé, comme en Q1) ;
+- **hybride** : moyenne + λ × (pire − moyenne). λ est choisi par validation croisée à 5 plis sur le
+  développement, dans {0 ; 0,1 ; … ; 1 ; 1,5 ; 2}, en maximisant le C du Cox âge + sexe + agrégat.
+  Résultat : **λ = 0,1**, avec un C de CV de 0,8466 pour λ = 0 comme pour λ = 0,1. Le C baisse
+  ensuite de façon monotone.
+
+Chaque agrégat entre dans un Cox âge + sexe + agrégat ajusté sur le développement. Ce modèle donne
+le risque à 10 ans.
+
+**Mesures.**
+- Validation 2007-2010 :
+  - C [IC 95 %] ;
+  - différence de C appariée avec l'option « global » (bootstrap, 1 000 tirages) ;
+  - calibration (rapport observé/prédit, pente).
+- Fiabilité sur les paires de NHANES III :
+  - CCI(A,1) de l'agrégat ;
+  - P95 de |d| ;
+  - P95 rapporté à l'écart-type entre personnes du développement.
+- **Cas « un système très défavorable, tout le reste excellent »** : un seul système au-dessus de
+  son 90ᵉ centile standardisé, tous les autres sous leur médiane. Dans ce sous-groupe de la
+  validation, on compare le risque observé à 10 ans (Kaplan-Meier) au risque prédit moyen de chaque
+  option, par le rapport O/E et son IC (IC de Kaplan-Meier rapporté au risque prédit moyen).
+
+**Règles de décision.**
+- R1, discrimination : une option est écartée si sa différence de C avec « global » est < −0,005
+  (estimation ponctuelle), comme à l'étape 1.
+- R2, fiabilité : une option est écartée si son CCI en NHANES III est inférieur de plus de 0,02 à
+  celui de « global ».
+- R3, cas d'un seul système très défavorable : on dit que « global » **masque** un système
+  défavorable si la borne basse de l'IC de son O/E dans le sous-groupe est > 1.
+  - Si « global » masque et qu'une option non écartée par R1-R2 a un IC d'O/E contenant 1, on
+    recommande cette option (la plus fiable si plusieurs).
+  - Sinon, on **garde « global »**. Une autre option n'est pas adoptée si elle n'apporte rien sur
+    R3.
+
+**Prédictions (développement, apparent ; fiabilité sur 2001-2002 ; `Q4_predictions.json`).**
+
+| Option | C dév. | ΔC vs global | CCI 2001-02 | P95 \|d\| (ans) | P95 / ET | O/E cas un système [IC] |
+|---|---|---|---|---|---|---|
+| Global | 0,848 | — | 0,891 | 5,97 | 0,89 | 1,13 [0,71 ; 1,78] |
+| Moyenne | 0,847 | −0,0015 | 0,901 | 1,70 | 0,84 | 1,15 [0,73 ; 1,81] |
+| Cox | 0,847 | −0,0014 | 0,903 | 1,81 | 0,83 | 1,16 [0,73 ; 1,83] |
+| Pire système | 0,840 | **−0,0081** | 0,809 | 4,47 | 1,12 | 0,70 [0,44 ; 1,10] |
+| Hybride (λ = 0,1) | 0,847 | −0,0015 | 0,897 | 1,79 | 0,84 | 1,05 [0,66 ; 1,66] |
+
+- Calibration : O/E de 1,00 à 1,01 et pente de 1,00 pour toutes les options (apparent).
+- Cas d'un seul système défavorable (développement) : 257 personnes, 42 décès ; le système en
+  cause est le cardio dans 92 cas.
+  - Le score global moyen de ce sous-groupe est de **−4,4 ans** : le score global dit « plus
+    jeune » alors qu'un système est au-dessus de son 90ᵉ centile.
+  - Le risque observé (6,6 %) est un peu au-dessus du risque prédit (5,8 %), mais l'IC est large.
+- **Prédiction de la conclusion.**
+  - Le pire système est écarté (R1, et R2 avec un CCI inférieur de 0,08).
+  - La moyenne, le Cox et l'hybride passent R1 et R2.
+  - « Global » ne masque pas le système défavorable au sens de R3 (borne basse 0,71). On **garde
+    « global »**.
+  - Le pire système doit s'afficher à côté du score global, pas à sa place.
