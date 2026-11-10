@@ -43,6 +43,29 @@ population de référence (même sexe) égale le risque prédit pour cette perso
 - Les âges par système décomposent le risque par groupe de marqueurs ; ils ne sont pas
   des diagnostics d'organe.
 
+## Précision individuelle : changement significatif entre deux bilans
+
+Mesurée sur des remesures réelles à quelques semaines d'intervalle : NHANES 2001-2002
+(n = 388) et NHANES III (n = 781, indépendant du développement). Voir
+`reports/checkup_standard/fiabilite_reelle/FIABILITE.md`.
+
+- **Un intervalle gaussien (± 1,96 écart-type) n'est pas adapté.** Le bruit de mesure a des
+  queues épaisses : la plupart des personnes varient peu, une minorité (épisode aigu, CRP
+  élevée) varie beaucoup. Les variations des marqueurs sont en outre corrélées entre elles
+  (dilution, posture, enzymes hépatiques). Aucun modèle de bruit simulé n'a reproduit la
+  variabilité observée dans la réplication.
+- **Seuils empiriques** (`models/seuils_changement_v1.json`, option `--uncertainty`) : un écart
+  entre deux bilans est un vrai changement s'il dépasse le 95ᵉ centile des écarts observés.
+  Valeurs, CRP ≤ 10 mg/L aux deux bilans : **global 6,5 ans** [IC 95 % 6,0 ; 7,1] ;
+  cardiovasculaire 4,8 ; métabolique 2,8 ; rénal 5,5 ; hépatique 5,1 ; inflammatoire et
+  hématologique 4,3.
+- **CRP > 10 mg/L à l'un des deux bilans** : pas de seuil fourni ; refaire le bilan avant de
+  comparer. Toutes personnes confondues, le seuil global serait de 6,9 ans.
+- Ce sont des **bornes basses** : remesures à 1-48 jours, même protocole, même personnel, même
+  heure, échantillons non aléatoires. Entre deux check-ups espacés d'un an, avec un autre
+  laboratoire ou une autre saison, le bruit sera plus grand.
+- Fiabilité (CCI) observée du score global : 0,91 (partie biologique) et 0,89 (score complet).
+
 ## Limites
 
 - **Dosages.** Un âge biologique absolu n'est interprétable que si les dosages sont comparables

@@ -24,8 +24,7 @@ def test_score_module_imports_only_numpy_pandas():
             mods |= {a.name.split(".")[0] for a in node.names}
         elif isinstance(node, ast.ImportFrom):
             mods.add((node.module or "").split(".")[0] if node.level == 0 else "relatif:" + (node.module or ""))
-    # seul import interne autorise : uncertainty (lui-meme NumPy + pandas, verifie ci-dessous)
-    assert mods <= {"__future__", "json", "pathlib", "numpy", "pandas", "relatif:uncertainty"}, mods
+    assert mods <= {"__future__", "json", "pathlib", "numpy", "pandas"}, mods
 
 
 def test_score_runs_without_pipeline_dependencies():
@@ -133,3 +132,18 @@ def test_uncertainty_module_imports_only_numpy_pandas():
         elif isinstance(node, ast.ImportFrom):
             mods.add((node.module or "").split(".")[0] if node.level == 0 else "relatif:" + (node.module or ""))
     assert mods <= {"__future__", "json", "pathlib", "numpy", "pandas", "relatif:score"}, mods
+
+
+# ------------------------------------------------------------- seuils de changement
+def test_change_thresholds_added_and_crp_rule():
+    from aging_clock.score import DEFAULT_THRESHOLDS, add_change_thresholds
+    th = json.loads(Path(DEFAULT_THRESHOLDS).read_text(encoding="utf-8"))
+    model = load_model()
+    df = pd.read_csv(ROOT / "examples" / "exemple_entree_synthetique.csv")
+    df.loc[0, "crp"] = 25.0
+    res = add_change_thresholds(score(df, model), df)
+    for n in [x for x in model["models"] if x != "reference"]:
+        col = f"seuil_changement_{n}"
+        assert np.isnan(res.loc[0, col])                                   # CRP > 10 : pas de seuil
+        assert np.allclose(res.loc[1:, col], th["scores"][n]["seuil_ans"])
+    assert res["alerte_crp"].tolist()[0] and not res["alerte_crp"].iloc[1:].any()

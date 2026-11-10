@@ -156,26 +156,40 @@ def score(df: pd.DataFrame, model: dict) -> pd.DataFrame:
     return out
 
 
+DEFAULT_THRESHOLDS = Path(__file__).resolve().parents[2] / "models" / "seuils_changement_v1.json"
+
+
+def add_change_thresholds(res: pd.DataFrame, df: pd.DataFrame,
+                          thresholds_path: str | Path = DEFAULT_THRESHOLDS) -> pd.DataFrame:
+    """Seuil empirique de changement significatif (annees) par score.
+
+    Un ecart entre deux bilans est considere comme un vrai changement s'il depasse le seuil.
+    Seuils = 95e centile des ecarts observes sur des remesures a quelques semaines (NHANES 2001-2002
+    et NHANES III ; models/seuils_changement_v1.json). Valables si la CRP est <= 10 mg/L aux deux
+    bilans : si CRP > 10 mg/L, seuil non fourni (alerte_crp). Pas d'intervalle gaussien : le bruit
+    reel a des queues epaisses (voir docs/fiche_modele.md).
+    """
+    with open(thresholds_path, encoding="utf-8") as f:
+        th = json.load(f)
+    res = res.copy()
+    crp_hi = pd.to_numeric(df["crp"], errors="coerce") > 10
+    res["alerte_crp"] = crp_hi.to_numpy()
+    for n, spec in th["scores"].items():
+        col = f"seuil_changement_{n}"
+        res[col] = np.where(res[f"age_bio_{n}"].notna() & ~crp_hi.to_numpy(), spec["seuil_ans"], np.nan)
+    return res
+
+
 def main(input_path: str, output_path: str | None = None, model_path: str | None = None,
-         uncertainty: bool = False, variability_path: str | None = None,
-         n_draws: int = 1000, seed: int = 2026) -> Path:
+         uncertainty: bool = False, thresholds_path: str | None = None) -> Path:
     model = load_model(model_path or DEFAULT_MODEL)
     df = pd.read_csv(input_path)
     res = score(df, model)
     if uncertainty:
-        from .uncertainty import DEFAULT_VARIABILITY, cv_set, intervals, load_variability, simulate
-        variability = load_variability(variability_path or DEFAULT_VARIABILITY)
-        ok = res.index[res["age_bio_global"].notna()]
-        d = df.loc[ok].copy()
-        d["sex"] = d["sex"].map(lambda v: _SEX_MAP.get(v, v)).astype(float)
-        sims = simulate(d, model, cv_set(variability, model), n_draws=n_draws, seed=seed)
-        iv = intervals(sims)
-        iv.index = ok
-        res = res.join(iv)
+        res = add_change_thresholds(res, df, thresholds_path or DEFAULT_THRESHOLDS)
+        print("Seuils de changement significatif ajoutes (95e centile des ecarts observes sur des "
+              "remesures reelles ; valables si CRP <= 10 mg/L aux deux bilans).")
     num = [c for c in res.columns if c.startswith(("age_bio_", "ecart_"))]
-    if uncertainty:
-        print(f"Intervalles a 95 % : {n_draws} remesures simulees par personne (variabilite "
-              f"biologique + analytique, voir config/variability.yaml) ; graine {seed}.")
     res[num] = res[num].round(2)
     res["risque_deces_10ans"] = res["risque_deces_10ans"].round(4)
     out = Path(output_path) if output_path else Path(input_path).with_name(Path(input_path).stem + "_scores.csv")

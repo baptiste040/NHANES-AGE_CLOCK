@@ -390,3 +390,128 @@ def analyse() -> Path:
             "sha256_code": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
     (OUT / "meta_analyse.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
     return OUT
+
+
+# ------------------------------------------------------------------ analyses finales (non pre-enregistrees)
+NO_ACR = ["metabolique", "hepatique", "inflammatoire_hematologique", "pheno_pub", "pheno9"]
+
+
+def selection_bias() -> Path:
+    """NON PRE-ENREGISTRE (demande du 2026-11-10). Les 781 personnes avec ACR au second examen
+    sont-elles representatives ? Fiabilite des scores sans ACR : 781 contre toutes les personnes
+    disponibles (sang complet hors ACR) et contre les personnes sans ACR. Mesures physiques fixes."""
+    panel = load_panel("checkup_standard")
+    d, _ = population()
+    scorer = r.Scorer()
+    V = list(scorer.model["variables"])
+    blood = [v for v in V if v in BLOOD_URINE and v != "acr"]
+    s2 = harmonize(second_exam(d["SEQN"].to_numpy()))
+    s2r, _ = apply_panel_ranges(s2, panel)
+    ok = s2r[blood].notna().all(axis=1).to_numpy()
+    d, s2r = d[ok].reset_index(drop=True), s2r[ok].reset_index(drop=True)
+    has_acr = s2r["acr"].notna().to_numpy()
+    e1 = d[["age", "sex"] + V].copy()
+    e2 = e1.copy()
+    e2[blood] = s2r[blood].to_numpy()        # ACR du premier examen : sans effet sur ces scores
+    g1, g2 = scorer(e1), scorer(e2)
+    rows = []
+    for n in NO_ACR:
+        for label, m in [("avec ACR (analyse principale)", has_acr),
+                         ("tous disponibles", np.ones(len(d), bool)),
+                         ("sans ACR au second examen", ~has_acr)]:
+            a, b = g1[n][m], g2[n][m]
+            o = r.observed_metrics(a, b)
+            rows.append({"score": n, "groupe": label, "n": int(m.sum()), **o,
+                         "et_intra_ic95": r._boot_ci(lambda i: r.observed_metrics(a[i], b[i])["et_intra"], len(a)),
+                         "cci_ic95": r._boot_ci(lambda i: r.icc_a1(a[i], b[i]), len(a))})
+        rng = np.random.default_rng(SEED)
+        ia, ic = np.where(has_acr)[0], np.where(~has_acr)[0]
+        rat = []
+        for _ in range(N_BOOT):
+            x, y = rng.choice(ia, len(ia)), rng.choice(ic, len(ic))
+            rat.append(r.observed_metrics(g1[n][y], g2[n][y])["et_intra"] /
+                       r.observed_metrics(g1[n][x], g2[n][x])["et_intra"])
+        rows.append({"score": n, "groupe": "rapport ET_w sans ACR / avec ACR",
+                     "et_intra": float(np.median(rat)),
+                     "et_intra_ic95": (float(np.quantile(rat, .025)), float(np.quantile(rat, .975)))})
+    pd.DataFrame(rows).to_csv(OUT / "biais_selection_acr.csv", index=False)
+    desc = pd.DataFrame({"groupe": np.where(has_acr, "avec ACR", "sans ACR"), "age": d["age"],
+                         "femme": (d["sex"] == 2).astype(float),
+                         "seance_matin": (d["seance_1"] == 1).astype(float),
+                         "ecart_global_1": g1["global"]})
+    desc.groupby("groupe").agg(["mean", "count"]).round(3).to_csv(OUT / "biais_selection_caracteristiques.csv")
+    return OUT
+
+
+THRESHOLD_SCORES = {"global": "complet", "cardiovasculaire": "complet", "metabolique": "complet",
+                    "renal": "biologique", "hepatique": "biologique",
+                    "inflammatoire_hematologique": "biologique"}
+THRESHOLDS = ROOT / "models" / "seuils_changement_v1.json"
+
+
+def empirical_thresholds() -> Path:
+    """NON PRE-ENREGISTRE (demande du 2026-11-10). Seuil empirique de changement significatif :
+    95e centile de |ecart_2 - ecart_1|, IC 95 % par bootstrap stratifie par source, avec et sans les
+    personnes dont la CRP depasse 10 mg/L a l'un des deux examens.
+    Scores sans mesure physique (renal, hepatique, inflammatoire) : 2001-2002 + NHANES III regroupes.
+    Scores avec mesures physiques (global, cardiovasculaire, metabolique) : NHANES III seul, ou tout
+    est reellement remesure (2001-2002 n'a pas remesure la tension ni les mensurations)."""
+    from .retest_explore import _paired
+    panel = load_panel("checkup_standard")
+    scorer = r.Scorer()
+    V = list(scorer.model["variables"])
+    blood = [v for v in V if v in BLOOD_URINE]
+    phys = [v for v in V if v not in BLOOD_URINE]
+    a1, a2, _, _ = _paired()
+    s01 = {"g1": scorer(a1), "g2": scorer(a2),
+           "crp_hi": ((a1["crp"] > 10) | (a2["crp"] > 10)).to_numpy()}
+    d, _ = population()
+    s2 = harmonize(second_exam(d["SEQN"].to_numpy()))
+    s2r, _ = apply_panel_ranges(s2, panel)
+    ok_b = s2r[blood].notna().all(axis=1).to_numpy()
+    ok_p = ok_b & s2r[phys].notna().all(axis=1).to_numpy()
+    e1 = d[["age", "sex"] + V].reset_index(drop=True)
+    e2b = e1.copy()
+    e2b.loc[ok_b, blood] = s2r.loc[ok_b, blood].to_numpy()
+    e2c = e2b.copy()
+    e2c.loc[ok_p, phys] = s2r.loc[ok_p, phys].to_numpy()
+    crp_hi3 = ((e1["crp"] > 10) | (e2b["crp"] > 10)).to_numpy()
+    nb = {"g1": scorer(e1[ok_b]), "g2": scorer(e2b[ok_b]), "crp_hi": crp_hi3[ok_b]}
+    nc = {"g1": scorer(e1[ok_p]), "g2": scorer(e2c[ok_p]), "crp_hi": crp_hi3[ok_p]}
+    rng = np.random.default_rng(SEED)
+    rows = []
+    for n, kind in THRESHOLD_SCORES.items():
+        sources = [("NHANES III", nc)] if kind == "complet" else [("2001-2002", s01), ("NHANES III", nb)]
+        for rule in ["tous", "sans CRP > 10 mg/L"]:
+            parts, diffs = [], []
+            for _, s in sources:
+                m = np.ones(len(s["crp_hi"]), bool) if rule == "tous" else ~s["crp_hi"]
+                dd = (s["g2"][n] - s["g1"][n])[m]
+                parts.append(np.abs(dd))
+                diffs.append(dd)
+            allv = np.concatenate(parts)
+            boot = [np.percentile(np.concatenate([p[rng.integers(0, len(p), len(p))] for p in parts]), 95)
+                    for _ in range(N_BOOT)]
+            rows.append({"score": n, "comparaison": kind, "regle": rule,
+                         "sources": " + ".join(s for s, _ in sources), "n": len(allv),
+                         "seuil_p95": float(np.percentile(allv, 95)),
+                         "ic95_bas": float(np.quantile(boot, .025)), "ic95_haut": float(np.quantile(boot, .975)),
+                         "p50": float(np.percentile(allv, 50)), "p90": float(np.percentile(allv, 90)),
+                         "gaussien": float(1.96 * np.std(np.concatenate(diffs), ddof=1))})
+    t = pd.DataFrame(rows)
+    t.to_csv(OUT / "seuils_changement.csv", index=False)
+    main = t[t.regle == "sans CRP > 10 mg/L"]
+    seuils = {"format": "aging-clock-thresholds", "version": 1,
+              "definition": ("95e centile de |age biologique 2 - age biologique 1| observe sur des remesures "
+                             "a 1-48 jours d'intervalle (NHANES 2001-2002 et NHANES III), en conditions "
+                             "standardisees : borne basse pour un suivi reel."),
+              "regle_crp": ("Seuils valables si la CRP est <= 10 mg/L aux deux bilans ; au-dela, refaire le "
+                            "bilan avant de comparer."),
+              "scores": {row.score: {"seuil_ans": round(row.seuil_p95, 2),
+                                     "ic95": [round(row.ic95_bas, 2), round(row.ic95_haut, 2)],
+                                     "n": int(row.n), "sources": row.sources}
+                         for row in main.itertuples()},
+              "seuils_toutes_personnes": {row.score: round(row.seuil_p95, 2)
+                                          for row in t[t.regle == "tous"].itertuples()}}
+    THRESHOLDS.write_text(json.dumps(seuils, indent=1, ensure_ascii=False), encoding="utf-8")
+    return OUT

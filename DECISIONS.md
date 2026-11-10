@@ -1098,3 +1098,53 @@ pas de gradient (tertiles 2,11 / 2,31 / 1,97).
 4. Le changement significatif réel du score global est d'environ **6 ans pour la partie
    biologique et 7 ans pour le score complet**, à environ 2 semaines et dans des conditions
    standardisées. C'est probablement une borne basse pour un suivi réel.
+
+### Analyses finales (non pré-enregistrées, 2026-11-10) et gel des analyses
+
+Demandées par l'auteur du projet après les résultats de NHANES III. Code :
+`retest_nh3.selection_bias()` et `retest_nh3.empirical_thresholds()`.
+
+**1. Biais de sélection lié à l'ACR manquante.** On ne reporte pas l'ACR du premier examen : cela
+figerait le système rénal. On compare plutôt la fiabilité des scores sans ACR, mesures physiques
+fixes, dans trois groupes : les 781 personnes avec ACR, les 1 233 personnes disponibles (sang
+complet hors ACR) et les 452 personnes sans ACR. Rapport ET_w sans ACR / avec ACR [IC 95 %] :
+
+| Score | Rapport [IC 95 %] |
+|---|---|
+| Métabolique | 1,03 [0,85 ; 1,27] |
+| Hépatique | 0,98 [0,89 ; 1,07] |
+| Inflammatoire | 0,95 [0,83 ; 1,07] |
+| PhenoAge publié | 0,94 [0,75 ; 1,20] |
+| PhenoAge réentraîné | 0,97 [0,88 ; 1,08] |
+
+CCI quasi identiques entre groupes. **Aucun biais de sélection détecté** sur la fiabilité. Les
+personnes sans ACR au second examen sont un peu plus âgées (49,6 contre 46,9 ans) et ont un écart
+global initial plus élevé (+2,4 contre +1,9 an).
+
+**2. Seuil empirique de changement significatif** (95ᵉ centile de |écart₂ − écart₁| ; IC 95 % par
+bootstrap stratifié par source, 2 000 tirages). Scores sans mesure physique : 2001-2002 et
+NHANES III regroupés. Scores avec mesures physiques (global, cardiovasculaire, métabolique) :
+NHANES III seul, la seule source où tout est réellement remesuré.
+
+| Score | Sources (n) | Tous | Sans CRP > 10 mg/L [IC 95 %] | Gaussien (sans CRP > 10) |
+|---|---|---|---|---|
+| Global (complet) | NHANES III (740 / 646) | 6,93 | **6,50** [5,95 ; 7,11] | 6,40 |
+| Cardiovasculaire | NHANES III | 4,89 | **4,84** [4,46 ; 5,41] | 4,76 |
+| Métabolique | NHANES III | 2,82 | **2,83** [2,55 ; 3,05] | 2,71 |
+| Rénal | 2001-02 + NHANES III (1 169 / 1 019) | 5,51 | **5,52** [5,17 ; 6,07] | 5,20 |
+| Hépatique | 2001-02 + NHANES III | 5,10 | **5,10** [4,75 ; 5,55] | 4,89 |
+| Inflammatoire et hématologique | 2001-02 + NHANES III | 4,75 | **4,32** [3,92 ; 4,60] | 4,26 |
+
+Médianes de |d| : 0,7 (métabolique) à 2,1 ans (global). Le seuil gaussien est un peu plus
+étroit que le 95ᵉ centile ; c'est au-delà du 95ᵉ centile que les queues épaisses pèsent le plus.
+Réserve : en NHANES III, la CRP est censurée à 2,1 mg/L, ce qui stabilise artificiellement
+l'inflammatoire.
+
+**Option `--uncertainty` remplacée.** Elle n'ajoute plus d'intervalle Monte-Carlo, mais le seuil
+empirique de chaque score (`models/seuils_changement_v1.json`, version « sans CRP > 10 mg/L ») et
+une colonne `alerte_crp`. Si la CRP dépasse 10 mg/L, aucun seuil n'est fourni. `score.py` ne
+dépend plus de `uncertainty.py`, conservé pour le rapport `INCERTITUDE.md`, désormais historique.
+Fiche du modèle : un intervalle gaussien n'est pas adapté. README mis à jour. Test ajouté.
+
+**Gel des analyses (décision de l'auteur du projet, 2026-11-10).** Plus aucune nouvelle analyse.
+La suite se limite à la rédaction (rapport PDF).

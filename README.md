@@ -91,6 +91,13 @@ biochimie et hs-CRP en 2017-2018) déplacent l'écart d'âge moyen de −1,1 an 
 **+1,9 an** (brut), sans changer le classement (C 0,85 dans les deux cas). Harmonisation par
 équations de pontage NHANES ou, à défaut, recalage par quantiles par strates d'âge et de sexe.
 
+**Fiabilité réelle** — sur des remesures à quelques semaines (NHANES 2001-2002, n = 388 ; NHANES III,
+n = 781, indépendant du développement), protocoles pré-enregistrés : CCI du score global 0,89-0,92.
+Un vrai changement entre deux bilans suppose un écart d'au moins **6,5 ans** pour le score global
+(95ᵉ centile observé, CRP ≤ 10 mg/L). Le bruit a des queues épaisses et des variations corrélées
+entre marqueurs : un intervalle gaussien n'est pas adapté
+([`FIABILITE.md`](reports/checkup_standard/fiabilite_reelle/FIABILITE.md)).
+
 ## Limites
 
 - **Dosages** : un âge biologique absolu n'est interprétable que si les dosages de la cohorte
@@ -111,8 +118,11 @@ biochimie et hs-CRP en 2017-2018) déplacent l'écart d'âge moyen de −1,1 an 
 ## Utiliser le modèle figé
 
 ```bash
-python -m aging_clock score --input examples/exemple_entree_synthetique.csv
+python -m aging_clock score --input examples/exemple_entree_synthetique.csv [--uncertainty]
 ```
+
+- `--uncertainty` ajoute, pour chaque score, le seuil empirique de changement significatif
+  (`models/seuils_changement_v1.json`) et une alerte si la CRP dépasse 10 mg/L.
 
 - Modèle : [`models/checkup_standard_v1.json`](models/checkup_standard_v1.json) (coefficients,
   transformations, survie de base, méthodes de dosage de référence, avertissements).

@@ -1,0 +1,70 @@
+{
+ "format": "aging-clock-thresholds",
+ "version": 1,
+ "definition": "95e centile de |age biologique 2 - age biologique 1| observe sur des remesures a 1-48 jours d'intervalle (NHANES 2001-2002 et NHANES III), en conditions standardisees : borne basse pour un suivi reel.",
+ "regle_crp": "Seuils valables si la CRP est <= 10 mg/L aux deux bilans ; au-dela, refaire le bilan avant de comparer.",
+ "scores": {
+  "global": {
+   "seuil_ans": 6.5,
+   "ic95": [
+    5.95,
+    7.11
+   ],
+   "n": 646,
+   "sources": "NHANES III"
+  },
+  "cardiovasculaire": {
+   "seuil_ans": 4.84,
+   "ic95": [
+    4.46,
+    5.41
+   ],
+   "n": 646,
+   "sources": "NHANES III"
+  },
+  "metabolique": {
+   "seuil_ans": 2.83,
+   "ic95": [
+    2.55,
+    3.05
+   ],
+   "n": 646,
+   "sources": "NHANES III"
+  },
+  "renal": {
+   "seuil_ans": 5.52,
+   "ic95": [
+    5.17,
+    6.07
+   ],
+   "n": 1019,
+   "sources": "2001-2002 + NHANES III"
+  },
+  "hepatique": {
+   "seuil_ans": 5.1,
+   "ic95": [
+    4.75,
+    5.55
+   ],
+   "n": 1019,
+   "sources": "2001-2002 + NHANES III"
+  },
+  "inflammatoire_hematologique": {
+   "seuil_ans": 4.32,
+   "ic95": [
+    3.92,
+    4.6
+   ],
+   "n": 1019,
+   "sources": "2001-2002 + NHANES III"
+  }
+ },
+ "seuils_toutes_personnes": {
+  "global": 6.93,
+  "cardiovasculaire": 4.89,
+  "metabolique": 2.82,
+  "renal": 5.51,
+  "hepatique": 5.1,
+  "inflammatoire_hematologique": 4.75
+ }
+}

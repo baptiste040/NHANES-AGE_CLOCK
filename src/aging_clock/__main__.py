@@ -20,10 +20,9 @@ def main():
     s.add_argument("--output", default=None, help="CSV de sortie (defaut : <input>_scores.csv)")
     s.add_argument("--model", default=None, help="modele JSON (defaut : models/checkup_standard_v1.json)")
     s.add_argument("--uncertainty", action="store_true",
-                   help="ajoute l'intervalle a 95 %% de chaque age biologique (Monte-Carlo)")
-    s.add_argument("--variability", default=None, help="fichier des CV (defaut : config/variability.yaml)")
-    s.add_argument("--draws", type=int, default=1000, help="nombre de remesures simulees")
-    s.add_argument("--seed", type=int, default=2026)
+                   help="ajoute le seuil empirique de changement significatif de chaque score")
+    s.add_argument("--thresholds", default=None,
+                   help="seuils de changement (defaut : models/seuils_changement_v1.json)")
 
     sub.add_parser("export", help="exporte le modele gele en JSON")
     v = sub.add_parser("validate", help="validation temporelle et rapport")
@@ -42,8 +41,7 @@ def main():
 
     if args.command == "score":
         from . import score
-        score.main(args.input, args.output, args.model, args.uncertainty, args.variability,
-                   args.draws, args.seed)
+        score.main(args.input, args.output, args.model, args.uncertainty, args.thresholds)
     elif args.command == "export":
         from . import export
         print(f"Modele : {export.run()}")

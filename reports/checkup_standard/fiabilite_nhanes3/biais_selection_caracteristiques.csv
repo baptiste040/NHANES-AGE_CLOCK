@@ -1,0 +1,5 @@
+,age,age,femme,femme,seance_matin,seance_matin,ecart_global_1,ecart_global_1
+,mean,count,mean,count,mean,count,mean,count
+groupe,,,,,,,,
+avec ACR,46.885,781,0.538,781,0.562,781,1.862,781
+sans ACR,49.569,452,0.549,452,0.573,452,2.445,452
