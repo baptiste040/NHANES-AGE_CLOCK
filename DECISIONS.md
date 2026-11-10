@@ -974,3 +974,34 @@ cardiovasculaire 2,00 / 2,04 / 2,04. CCI prédits du global : 0,947 / 0,941 / 0,
 Empreintes (`meta_predictions.json`) : CV `b7674478…`, paramètres 2001-2002 `aae70c0a…`, code
 de `retest_nh3.py` `4f89054e…`. L'analyse refuse de tourner si les CV ou les paramètres 2001-2002
 ont changé.
+
+### Amendement au pré-enregistrement NHANES III (2026-11-10, avant toute lecture des valeurs du second examen)
+
+Demandé par l'auteur du projet après relecture. Commité avant le lancement de `analyse()`.
+
+1. **Scénario 3 centré.** Les vecteurs de variation de 2001-2002 sont centrés (moyenne de chaque
+   marqueur retirée) avant le rééchantillonnage. Le scénario ne prédit ainsi que le bruit ; le
+   décalage systématique est testé à part. Moyennes retirées (en log) : par exemple ACR −0,095,
+   TG +0,036, CRP −0,030, leucocytes −0,019, ALAT −0,019, hémoglobine −0,018, albumine −0,016,
+   cholestérol −0,015. Les vecteurs sont bien appliqués en **variations relatives** : x* = x ·
+   exp(v/racine(2)), avec v = (ln x₂ − ln x₁) centré. Les scénarios 1 et 2 sont déjà centrés par
+   construction (bruit gaussien de moyenne 0 en log, facteur multiplicatif de médiane 1). Ils ne
+   changent pas.
+   Prédictions du scénario 3 recalculées (biologique) : global ET_w 1,81 → 1,80 (changement
+   significatif 5,0 ; centiles 1,64 / 4,16 / 5,06) ; hépatique 1,63 → 1,60 ; rénal 1,48 → 1,47 ;
+   inflammatoire 1,65 → 1,64 ; PhenoAge publié 2,07 → 2,04 ; réentraîné 1,51 → 1,49 ; métabolique
+   inchangé (0,30). Complète, global : 2,23 → 2,22. Code `retest_nh3.py` : nouvelle empreinte
+   `716d4d1e…` ; paramètres 2001-2002 inchangés (`aae70c0a…`).
+2. **CRP à la limite de détection.** Avec 58 % de valeurs à la limite (2,1 mg/L), la CRP de ces
+   personnes ne peut pas varier entre les deux examens. Le système inflammatoire et hématologique
+   et les deux PhenoAge seront donc **artificiellement stables** en NHANES III. Leurs valeurs
+   absolues (changement significatif, CCI, bascule) **ne sont pas comparables** à 2001-2002 ni à
+   une cohorte qui dose la CRP ultrasensible. Pour ces trois scores, seule la comparaison
+   simulation contre réalité (même censure des deux côtés) est interprétée.
+3. **Créatinine** : l'équation 0,960 × créatinine − 0,184 est **non vérifiée à la source CDC** (note
+   non ouverte ; extrait de recherche seulement).
+4. **Généralisation** : sélection non aléatoire, choisie par le personnel, et seconds examens
+   programmés si possible à la même heure, avec le même protocole et le même personnel. Le bruit
+   mesuré ici est donc probablement **inférieur** à celui d'un suivi réel (heure, laboratoire,
+   saison, état de santé différents d'une visite à l'autre). Même réserve pour 2001-2002, où le
+   délai minimal était de 8 jours.

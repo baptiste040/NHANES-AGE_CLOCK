@@ -139,7 +139,8 @@ def _noise_factory(scenario: str, variables: list, cfg: dict, p2001: dict, physi
         L = np.linalg.cholesky(R / np.outer(dd, dd))
         gen_b = lambda n, rng: (rng.standard_normal((n, len(blood))) @ L.T) * sig_b
     elif scenario == "3_vecteurs2001":
-        V = pd.read_csv(VECTORS_2001)[blood].to_numpy() / np.sqrt(2)
+        V = pd.read_csv(VECTORS_2001)[blood].to_numpy()
+        V = (V - V.mean(axis=0)) / np.sqrt(2)          # amendement 2026-11-10 : centre (bruit seul)
         gen_b = lambda n, rng: V[rng.integers(0, len(V), n)] * np.where(rng.random((n, 1)) < .5, 1, -1)
     else:
         raise ValueError(scenario)
