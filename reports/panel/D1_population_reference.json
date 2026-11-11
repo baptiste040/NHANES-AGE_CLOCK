@@ -1,0 +1,53 @@
+{
+ "flux": [
+  [
+   "adultes 20-79 ans, NHANES 2003-2010",
+   20398
+  ],
+  [
+   "non enceintes",
+   19704
+  ],
+  [
+   "non-fumeurs (cotinine < 3 ng/mL)",
+   12596
+  ],
+  [
+   "IMC 18,5-30",
+   7471
+  ],
+  [
+   "sans diabète ni traitement antidiabétique",
+   6877
+  ],
+  [
+   "sans maladie cardiovasculaire déclarée",
+   6467
+  ],
+  [
+   "sans maladie hépatique déclarée",
+   6298
+  ],
+  [
+   "sans cancer déclaré",
+   5853
+  ],
+  [
+   "sans maladie rénale déclarée",
+   5786
+  ],
+  [
+   "sans antihypertenseur ni hypolipémiant déclaré",
+   4769
+  ]
+ ],
+ "exclus_de_q4": {
+  "Lp(a), ApoA1": "pas de mesure dans NHANES 2003-2010 (NHANES III seulement, qui sert de jeu de test)",
+  "Sélénium, iode urinaire": "pas de mesure dans NHANES 2003-2010 chez tous les adultes",
+  "LH, FSH, PSA": "intervalles dépendant du sexe, du cycle ou de l'âge, hors population de référence générale",
+  "Albumine et créatinine urinaires brutes": "concentrations brutes sans intervalle interprétable ; seul le rapport (KDIGO) est utilisé",
+  "Glucose sérique non à jeun": "aucun seuil de décision lu pour une glycémie non à jeun",
+  "CRP (seuil de risque)": "seuils de risque AHA/CDC 2003 non lus (accès refusé) : seul l'intervalle statistique est utilisé",
+  "Indices dérivés (HOMA-IR, TyG, rapports, FIB-4, NLR, SII…)": "aucun seuil lu ; non calculés comme intervalles dans ce protocole"
+ }
+}

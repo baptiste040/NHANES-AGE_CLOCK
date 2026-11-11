@@ -306,19 +306,24 @@ Les conclusions sont les mêmes chez les 30-55 ans.
 
 Trois compléments, sans nouvelle donnée NHANES. Fichier : `Q1_secondaire_moyenner.csv` ; code : `q1_secondaire.py`.
 
-**1. Population des méta-analyses.** Elle figure pour chaque couple dans le tableau ci-dessous. Beaucoup d'effets viennent de populations malades ou à risque : diabétiques, syndrome métabolique, stéatose, hyperlipidémie. Chez des adultes en bonne santé, ils sont probablement plus petits.
-- **HbA1c sous activité physique** : 1,3 chez des diabétiques de type 2 (Umpierre 2011). Chez des **non-diabétiques**, rien trouvé avec ces requêtes : aucune méta-analyse d'activité physique sur l'HbA1c hors diabète.
-- **Oméga-3** : chez les personnes sans hyperlipidémie, l'effet plafonne vers −40 mg/dL (Wang 2023, TC), soit le même ordre de grandeur que l'effet global.
+**1. Population des méta-analyses.** Elle figure pour chaque couple dans le tableau ci-dessous. Beaucoup d'effets viennent de populations malades ou à risque : diabétiques, syndrome métabolique, stéatose, obésité, hyperlipidémie. Chez des adultes en bonne santé, ils sont probablement plus petits.
+- **HbA1c sous activité physique** : ratio 1,3 chez des diabétiques de type 2 (Umpierre 2011). Chez des **non-diabétiques**, rien trouvé avec ces requêtes : aucune méta-analyse d'activité physique sur l'HbA1c hors diabète. On ne peut donc pas dire si l'effet serait détectable chez une personne non diabétique.
+- **Oméga-3** : sans hyperlipidémie, l'effet plafonne vers −40 mg/dL (Wang 2023, TC), soit le même ordre de grandeur que l'effet global.
 
 **2. Deux références.**
-- **Statine** (atorvastatine 10 mg/j ou équivalent) : −40 % de LDL (Law 2003, BMJ, résumé). C'est l'exemple d'un effet **clairement détectable** chez une personne : ratio 1,25.
-- **Perte de poids de 5 %** chez des obèses non diabétiques (Magkos 2016, Cell Metab, texte complet) : **un seul essai**, 19 personnes contre 14, effets estimés grossièrement par la différence des variations des médianes. Aucune méta-analyse de perte de poids de 5-10 % sans médicament chez des non-diabétiques n'a été trouvée avec ces requêtes. Look AHEAD (Wing 2011) ne porte que sur des diabétiques et ne donne que des rapports de cotes.
+- **Statine** (atorvastatine 10 mg/j ou équivalent) : −40 % de LDL (Law 2003, BMJ, résumé). C'est un effet **clairement détectable** chez une personne : ratio 1,25.
+- **Perte de poids de 5-10 %**, d'après deux méta-analyses, sur un scénario de 7 kg :
+  - lipides : Hasan 2020 (73 ECR, surpoids ou obésité, IMC moyen 36), par kg perdu après une intervention sur le mode de vie : TG −4,0 mg/dL, LDL −1,28, HDL +0,46 ;
+  - ALAT : Koutoukidis 2021, −0,83 U/L par kg, chez des personnes avec stéatose.
+  - L'article de Dattilo 1992, également lu, ne donne dans son résumé que la pente du HDL.
+- **En appui seulement** : Magkos 2016 (Cell Metab, texte complet), un **petit essai unique** (19 personnes contre 14), chez des obèses non diabétiques. Il donne les seuls chiffres trouvés pour la glycémie, l'insuline et la CRP hors diabète. Ses effets sont estimés grossièrement, par la différence des variations des médianes.
+- **Non trouvé avec ces requêtes** : une méta-analyse de l'effet d'une perte de poids sans médicament sur la glycémie, l'HbA1c ou la CRP chez des non-diabétiques. Look AHEAD (Wing 2011) ne porte que sur des diabétiques et ne donne que des rapports de cotes.
 
 **3. Combien de mesures faudrait-il ?** Deux façons de réduire le bruit :
 - **A, prélèvements rapprochés** : k prises de sang à quelques jours d'intervalle autour de chaque bilan, moyennées. Elles réduisent le bruit à court terme, mais pas la variation biologique à long terme. Si celle-ci dépasse à elle seule l'effet, c'est **impossible** ;
 - **B, tendance** : m bilans espacés avant l'intervention et m après, moyennés. Tout le bruit à 6 mois se divise par m.
 
-Hypothèses : erreurs indépendantes, effet stable dans le temps, même laboratoire. Quand le seuil est une borne basse (pas d'étude à long terme), A et B donnent le même chiffre, **optimiste**. Calcul : $k = \sigma_{obs}^2 / (\sigma^{*2} - \sigma_{LT}^2)$ et $m = \sigma_{6m}^2 / \sigma^{*2}$, avec $\sigma^* = |\ln(1+	ext{effet})| / (1{,}96\sqrt2)$.
+Hypothèses : erreurs indépendantes, effet stable dans le temps, même laboratoire. Quand le seuil est une borne basse (pas d'étude à long terme), A et B donnent le même chiffre, **optimiste**. Calcul : $k = \sigma_{obs}^2 / (\sigma^{*2} - \sigma_{LT}^2)$ et $m = \sigma_{6m}^2 / \sigma^{*2}$, avec $\sigma^* = |\ln(1+\text{effet})| / (1{,}96\sqrt2)$.
 
 | Intervention | Marqueur | Population | Effet moyen | Ratio | **A : prises de sang par bilan** | **B : bilans avant et après** | 30-55 ans (A / B) | Source (lecture) |
 |---|---|---|---|---|---|---|---|---|
@@ -348,16 +353,20 @@ Hypothèses : erreurs indépendantes, effet stable dans le temps, même laborato
 | Acide folique 0,8 mg/j | Homocystéine | 25 ECR | −23 % | 0,73 | **3** | **3** | 2 / 2 | Homocysteine Lowering Trialists' Collaboration 2005 (R) |
 | Fer oral (femmes réglées) | Hémoglobine | femmes réglées | +4 % | 0,37 | **impossible** | **7** | impossible / 7 | Low 2016 (R) |
 | Statine (atorvastatine 10 mg/j ou équivalent) | LDL (calculé, à jeun) | 164 essais contre placebo | −40 % | 1,25 | **1** | **1** | 1 / 1 | Law 2003 (R) |
-| Perte de poids de 5 % (essai unique) | Glycémie à jeun (plasma) | obèses non diabétiques, n = 19 contre 14 | −4 % | 0,18 | **38** | **38** | 27 / 27 | Magkos 2016 (TC) |
-| Perte de poids de 5 % (essai unique) | Insuline (à jeun) | obèses non diabétiques | −14 % | 0,25 | **28** | **28** | 30 / 30 | Magkos 2016 (TC) |
-| Perte de poids de 5 % (essai unique) | Triglycérides (à jeun) | obèses non diabétiques | −38 % | 0,72 | **3** | **3** | 3 / 3 | Magkos 2016 (TC) |
-| Perte de poids de 5 % (essai unique) | HDL | obèses non diabétiques | +0 % | 0,01 | **> 100** | **> 100** | > 100 / > 100 | Magkos 2016 (TC) |
-| Perte de poids de 5 % (essai unique) | ALAT | obèses non diabétiques | −17 % | 0,26 | **impossible** | **33** | impossible / 34 | Magkos 2016 (TC) |
-| Perte de poids de 5 % (essai unique) | CRP | obèses non diabétiques | +5 % | 0,01 | **> 100** | **> 100** | > 100 / > 100 | Magkos 2016 (TC) |
+| Perte de poids de 7 kg (≈ 5-10 %), méta-analyse | Triglycérides (à jeun) | 73 ECR, surpoids ou obésité (IMC moyen 36) | −24 % | 0,45 | **8** | **8** | 8 / 8 | Hasan 2020 (R) |
+| Perte de poids de 7 kg (≈ 5-10 %), méta-analyse | LDL (calculé, à jeun) | 73 ECR, surpoids ou obésité | −7 % | 0,23 | **26** | **26** | 36 / 36 | Hasan 2020 (R) |
+| Perte de poids de 7 kg (≈ 5-10 %), méta-analyse | HDL | 73 ECR, surpoids ou obésité | +7 % | 0,16 | **30** | **30** | 29 / 29 | Hasan 2020 (R) |
+| Perte de poids de 7 kg (≈ 5-10 %), méta-analyse | ALAT | stéatose (NAFLD) | −39 % | 0,60 | **impossible** | **5** | impossible / 5 | Koutoukidis 2021 (R) |
+| Perte de poids de 5 % (essai unique, petite taille) | Glycémie à jeun (plasma) | obèses non diabétiques, n = 19 contre 14 | −4 % | 0,18 | **38** | **38** | 27 / 27 | Magkos 2016 (TC) |
+| Perte de poids de 5 % (essai unique, petite taille) | Insuline (à jeun) | obèses non diabétiques | −14 % | 0,25 | **28** | **28** | 30 / 30 | Magkos 2016 (TC) |
+| Perte de poids de 5 % (essai unique, petite taille) | Triglycérides (à jeun) | obèses non diabétiques | −38 % | 0,72 | **3** | **3** | 3 / 3 | Magkos 2016 (TC) |
+| Perte de poids de 5 % (essai unique, petite taille) | HDL | obèses non diabétiques | +0 % | 0,01 | **> 100** | **> 100** | > 100 / > 100 | Magkos 2016 (TC) |
+| Perte de poids de 5 % (essai unique, petite taille) | ALAT | obèses non diabétiques | −17 % | 0,26 | **impossible** | **33** | impossible / 34 | Magkos 2016 (TC) |
+| Perte de poids de 5 % (essai unique, petite taille) | CRP | obèses non diabétiques | +5 % | 0,01 | **> 100** | **> 100** | > 100 / > 100 | Magkos 2016 (TC) |
 
 **Lecture pratique** (interprétation) :
 - **Une seule mesure suffit** quand l'effet est direct et fort : vitamine D sous supplémentation, LDL sous statine, et HbA1c chez des diabétiques.
-- **Environ 3 mesures de part et d'autre** pour les TG sous oméga-3 ou sous perte de poids de 5 %, et pour l'homocystéine sous acide folique.
-- **Des dizaines de mesures** pour l'effet de l'activité physique ou de l'alimentation sur les lipides ou la glycémie : en pratique, ce n'est jamais faisable pour une personne.
-- **Impossible par des prélèvements rapprochés** pour l'ALAT et l'hémoglobine : la variation à long terme dépasse déjà l'effet. Seule une tendance sur de nombreux bilans peut alors le montrer.
+- **Environ 3 à 8 mesures de part et d'autre** pour les TG sous oméga-3 ou sous perte de poids, et pour l'homocystéine sous acide folique.
+- **Des dizaines de mesures** pour les lipides et la glycémie sous activité physique, alimentation ou perte de poids modérée : en pratique, ce n'est jamais faisable pour une personne.
+- **Impossible par des prélèvements rapprochés** pour l'ALAT et l'hémoglobine : la variation à long terme dépasse déjà l'effet. Seule une tendance sur plusieurs bilans peut alors le montrer.
 - Ces nombres supposent le même laboratoire. Un changement de laboratoire (Q5) les augmente.

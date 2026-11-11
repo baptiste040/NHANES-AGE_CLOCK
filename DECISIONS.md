@@ -2119,3 +2119,115 @@ non < 0,5.
    - Des dizaines pour les lipides et la glycémie sous activité physique ou alimentation.
    - Impossible par des prélèvements rapprochés pour l'ALAT et l'hémoglobine (variation à long
      terme supérieure à l'effet).
+
+### Complément Q1 (2026-11-11, analyse secondaire)
+
+Perte de poids : méta-analyses ajoutées sur un scénario de 7 kg (5-10 %).
+- Lipides : Hasan 2020 (73 ECR, surpoids ou obésité ; par kg après une intervention sur le mode de
+  vie : TG −4,0, LDL −1,28, HDL +0,46 mg/dL).
+- ALAT : Koutoukidis 2021.
+
+Ratios : TG 0,45, LDL 0,23, HDL 0,16, ALAT 0,60. Magkos 2016 est gardé en appui, comme petit
+essai unique.
+
+## Programme « panel » : table D1 figée, et pré-enregistrement de Q4 (2026-11-11)
+
+Décisions de l'auteur du projet (2026-11-11) :
+- **Intervalles statistiques** : calculés sur NHANES selon le CLSI EP28. NORIP sert seulement de
+  comparaison, si les articles sont fournis. Aucune page de laboratoire privé.
+- **Seuils cliniques** : sources européennes ou OMS accessibles. Quand les organismes divergent,
+  on enregistre les deux seuils et Q4 tourne avec chacun. Le désaccord est présenté comme un
+  résultat (exemple de seuil conventionnel).
+- **Marqueurs sans seuil lu** : exclus de l'analyse principale, listés avec leur raison.
+
+### Table D1 (figée)
+
+**Seuils de décision clinique (type R)** : `reports/panel/D1_seuils_cliniques.csv`.
+- Glycémie à jeun : ≥ 6,1 mmol/L (OMS 2006 ; ESC 2023 diabète, tableau 6) **et** ≥ 5,6 mmol/L
+  (ADA, rapporté par ESC 2023).
+- HbA1c : ≥ 6,0 % (OMS, rapporté par ESC 2023) **et** ≥ 5,7 % (ADA, rapporté par ESC 2023).
+- LDL : ≥ 3,0 mmol/L, objectif du risque faible (ESC/EAS 2019).
+- Cholestérol non-HDL : ≥ 3,4 mmol/L, objectif secondaire du risque modéré, faute d'objectif pour
+  le risque faible (ESC/EAS 2019).
+- TG, à jeun et non à jeun : ≥ 1,7 mmol/L (ESC/EAS 2019).
+- DFGe : < 60 (KDIGO 2024). Rapport albumine/créatinine : ≥ 3 mg/mmol, soit 30 mg/g (KDIGO 2024).
+- 25-OH vitamine D : < 20 ng/mL, avec < 30 ng/mL en sensibilité (Endocrine Society 2011). Le
+  seuil est débattu.
+
+Sources lues : ESC 2023 et ESC/EAS 2019 en texte intégral (extraits exacts), OMS 2006 et KDIGO
+2024 en PDF, Endocrine Society 2011 en texte intégral.
+
+**Intervalles de référence statistiques (type S)** : `reports/panel/D1_intervalles_statistiques.csv`,
+code `src/aging_clock/panel/intervalles.py` (CLSI EP28).
+- **Population de référence** : NHANES 2003-2010, cycles distincts des jeux de test de Q4. Adultes
+  de 20 à 79 ans, avec les critères suivants :
+  - non-fumeurs (cotinine < 3 ng/mL, Benowitz 2009) ;
+  - IMC de 18,5 à 30, femmes non enceintes ;
+  - sans diabète, maladie cardiovasculaire, hépatique, rénale ni cancer déclarés ;
+  - sans traitement antidiabétique, antihypertenseur ni hypolipémiant déclaré.
+
+  Résultat : 4 769 adultes.
+- **Méthode** : 2,5ᵉ et 97,5ᵉ centiles non paramétriques, par sexe, avec un IC 90 % des bornes par
+  bootstrap.
+- **Partition par âge** (20-39, 40-59, 60-79 ans) : si une tranche a moins de 1 % ou plus de 5 % de
+  ses valeurs au-delà d'une borne commune, et si chaque tranche compte au moins 120 personnes.
+  L'idée vient de Harris et Boyd (décrite par Lahti 2004) ; les seuils de 1 % et 5 % sont choisis
+  ici.
+- **Cycles** : 2003-2010, sauf B12 et folates érythrocytaires (2003-2006), à cause de changements de
+  méthode documentés.
+- **Limite connue** : les jeux de test (2001-2002, NHANES III) ont d'autres méthodes de laboratoire.
+  Les valeurs entières (électrolytes) font déclencher la partition par âge à cause des ex aequo.
+- Ferritine, capacité de fixation et saturation : femmes seulement (sous-échantillon NHANES).
+- La hs-CRP n'a pas de seuil de risque lu (AHA/CDC 2003 inaccessible) : intervalle statistique
+  seulement.
+
+**Exclus de l'analyse principale de Q4**, avec leur raison (`D1_population_reference.json`) :
+- Lp(a), ApoA1, sélénium, iode urinaire ;
+- LH, FSH, PSA ;
+- concentrations urinaires brutes ;
+- glucose sérique non à jeun ;
+- indices dérivés sans seuil lu.
+
+### Q4 : protocole
+
+Données, indicateurs et règles : voir le brouillon validé, avec ces précisions.
+- **Paires** : celles de Q1 (2001-2002 et NHANES III), analysées séparément.
+- **Anormal** :
+  - type R : au-delà du seuil (≥ pour un seuil haut, < pour un seuil bas) ;
+  - type S : hors de l'intervalle du sexe et de la tranche d'âge.
+- **Indicateurs** :
+  - taux de normalisation au second examen, avec IC de Wilson ;
+  - même taux pour les anomalies limites (à moins d'un changement détectable empirique de Q1 au-delà
+    du seuil) et pour les anomalies nettes ;
+  - taux d'apparition ;
+  - normalisation attendue sous le seul bruit (modèle binormal conditionnel, échelle log si
+    possible).
+- **Prédiction** : les taux de 2001-2002 (`Q4_normalisation_2001.csv`, empreintes dans
+  `Q4_predictions_2001.json`). Ils sont compatibles s'ils tombent dans l'IC de NHANES III.
+- **Règles** (calculées sur le plus petit des deux taux quand les deux jeux ont au moins
+  20 anomalies) :
+
+  | Normalisation | Conclusion |
+  |---|---|
+  | ≥ 30 % | confirmer avant de signaler |
+  | ≥ 50 % | anomalie isolée peu informative |
+
+  - Avec un seul jeu disponible, la conclusion porte le statut « un seul jeu ».
+  - Avec moins de 20 anomalies dans un jeu, aucune conclusion pour ce jeu.
+- **Glycémie et HbA1c** : Q4 tourne avec les seuils OMS et ADA. Le désaccord est rapporté comme un
+  résultat.
+
+**Aperçu des prédictions (2001-2002)** :
+- normalisation ≥ 50 % pour bilirubine, calcium, chlorure, bicarbonates, potassium, protéines,
+  lymphocytes, neutrophiles, sodium, phosphate, fer, MPV, HDL, homocystéine, leucocytes,
+  éosinophiles et urée ;
+- 30 à 50 % pour la plupart des enzymes, la CRP, la créatinine, l'hématocrite et le LDL ;
+- < 30 % pour la ferritine, le VGM, la TCMH, les folates, l'HbA1c (OMS 10 %, ADA 16 %), le non-HDL
+  (13 %), le DFGe (12 %), la vitamine D (11 %), la glycémie OMS (19 %) et l'ACR (28 %).
+
+**Réserves.**
+- Remesures à 2 semaines.
+- Évaluation non aveugle pour les 19 marqueurs déjà vus dans la piste « suivi ».
+- CRP de NHANES III censurée.
+- Les intervalles statistiques classent anormaux, par construction, 5 % des personnes en bonne
+  santé de la population de référence.

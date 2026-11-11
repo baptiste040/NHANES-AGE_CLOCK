@@ -1,0 +1,13 @@
+id,sens,seuil,variante,libelle,source
+glu_fast,haut,110.0,OMS,"≥ 6,1 mmol/L (110 mg/dL)","OMS 2006 (recommandation 4) ; ESC 2023 diabète, tableau 6"
+glu_fast,haut,100.0,ADA,"≥ 5,6 mmol/L (100 mg/dL)","ADA (2021), rapporté par ESC 2023 diabète, tableau 6"
+hba1c,haut,6.0,OMS,"≥ 6,0 %","OMS (2011, 2019), rapporté par ESC 2023 diabète, tableau 6"
+hba1c,haut,5.7,ADA,"≥ 5,7 %","ADA (2021), rapporté par ESC 2023 diabète, tableau 6"
+ldl,haut,116.0,,"≥ 3,0 mmol/L (116 mg/dL), objectif du risque faible","ESC/EAS 2019, objectifs de traitement"
+non_hdl,haut,130.0,,"≥ 3,4 mmol/L (130 mg/dL), objectif du risque modéré","ESC/EAS 2019, objectifs secondaires"
+tg_fast,haut,150.0,,"≥ 1,7 mmol/L (150 mg/dL)","ESC/EAS 2019 (« < 1,7 mmol/L indique un risque plus faible »)"
+tg_serum,haut,150.0,,"≥ 1,7 mmol/L (150 mg/dL), non à jeun",ESC/EAS 2019
+egfr,bas,60.0,,"< 60 mL/min/1,73 m² (G3a et au-delà)","KDIGO 2024, catégories G"
+acr,haut,30.0,,"≥ 3 mg/mmol (30 mg/g), A2","KDIGO 2024, catégories A"
+vitd,bas,20.0,,< 20 ng/mL (50 nmol/L),"Endocrine Society 2011, recommandation 1.2"
+vitd,bas,30.0,sensibilité 30,< 30 ng/mL (75 nmol/L),"Endocrine Society 2011, recommandation 2.1 (cible)"

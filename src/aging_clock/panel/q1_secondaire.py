@@ -21,13 +21,18 @@ from .remesures import OUT
 ADDED = [
     ("Statine (atorvastatine 10 mg/j ou équivalent)", "ldl", -40.0, "Law 2003, BMJ, doi:10.1136/bmj.326.7404.1423", "R",
      "164 essais contre placebo", "−1,8 mmol/L depuis 4,8 mmol/L"),
-    ("Perte de poids de 5 % (essai unique)", "glu_fast", -4.1, "Magkos 2016, Cell Metab, doi:10.1016/j.cmet.2016.02.005", "TC",
+    ("Perte de poids de 7 kg (≈ 5-10 %), méta-analyse", "tg_fast", -4.0 * 7, "Hasan 2020, J Clin Endocrinol Metab, doi:10.1210/clinem/dgaa673", "R",
+     "73 ECR, surpoids ou obésité (IMC moyen 36)", "−4,0 mg/dL par kg, interventions sur le mode de vie, 12 mois"),
+    ("Perte de poids de 7 kg (≈ 5-10 %), méta-analyse", "ldl", -1.28 * 7, "Hasan 2020", "R", "73 ECR, surpoids ou obésité", "−1,28 mg/dL par kg"),
+    ("Perte de poids de 7 kg (≈ 5-10 %), méta-analyse", "hdl", 0.46 * 7, "Hasan 2020", "R", "73 ECR, surpoids ou obésité", "+0,46 mg/dL par kg"),
+    ("Perte de poids de 7 kg (≈ 5-10 %), méta-analyse", "alt", -0.83 * 7, "Koutoukidis 2021", "R", "stéatose (NAFLD)", "−0,83 U/L par kg"),
+    ("Perte de poids de 5 % (essai unique, petite taille)", "glu_fast", -4.1, "Magkos 2016, Cell Metab, doi:10.1016/j.cmet.2016.02.005", "TC",
      "obèses non diabétiques, n = 19 contre 14", "différence des variations des médianes, 95→91 contre 98→98 mg/dL"),
-    ("Perte de poids de 5 % (essai unique)", "insulin", -13.6, "Magkos 2016", "TC", "obèses non diabétiques", "16,7→15,0 contre 20,6→21,3 mU/L"),
-    ("Perte de poids de 5 % (essai unique)", "tg_fast", -37.9, "Magkos 2016", "TC", "obèses non diabétiques", "153→105 contre 107→114 mg/dL"),
-    ("Perte de poids de 5 % (essai unique)", "hdl", 0.3, "Magkos 2016", "TC", "obèses non diabétiques", "41→40 contre 47→46 mg/dL ; non significatif"),
-    ("Perte de poids de 5 % (essai unique)", "alt", -16.7, "Magkos 2016", "TC", "obèses non diabétiques", "18→15 contre 17→17 U/L"),
-    ("Perte de poids de 5 % (essai unique)", "crp", 5.1, "Magkos 2016", "TC", "obèses non diabétiques", "3,70→4,68 contre 3,59→4,36 mg/L ; non significatif"),
+    ("Perte de poids de 5 % (essai unique, petite taille)", "insulin", -13.6, "Magkos 2016", "TC", "obèses non diabétiques", "16,7→15,0 contre 20,6→21,3 mU/L"),
+    ("Perte de poids de 5 % (essai unique, petite taille)", "tg_fast", -37.9, "Magkos 2016", "TC", "obèses non diabétiques", "153→105 contre 107→114 mg/dL"),
+    ("Perte de poids de 5 % (essai unique, petite taille)", "hdl", 0.3, "Magkos 2016", "TC", "obèses non diabétiques", "41→40 contre 47→46 mg/dL ; non significatif"),
+    ("Perte de poids de 5 % (essai unique, petite taille)", "alt", -16.7, "Magkos 2016", "TC", "obèses non diabétiques", "18→15 contre 17→17 U/L"),
+    ("Perte de poids de 5 % (essai unique, petite taille)", "crp", 5.1, "Magkos 2016", "TC", "obèses non diabétiques", "3,70→4,68 contre 3,59→4,36 mg/L ; non significatif"),
 ]
 NOTES = {
     "hba1c": "Chez des non-diabétiques : rien trouvé avec ces requêtes (méta-analyses d'activité physique sur l'HbA1c "
@@ -53,8 +58,12 @@ def run() -> pd.DataFrame:
     base = iv[["groupe", "intervention", "id", "marqueur", "effet_pct", "source", "lu", "population", "note"]].copy()
     base["origine"] = "principale"
     add = []
+    v = pd.read_csv(OUT / "Q1_variabilite_remesures.csv")
+    v55 = v[(v.groupe == "30-55 ans") & (v.jeu == "nhanes3")].set_index("id")["mediane_x1"]
     for grp in ["20-79 ans", "30-55 ans"]:
         for inter, mid, pct, src, lu, pop, note in ADDED:
+            if "méta-analyse" in inter:          # effet absolu -> % de la mediane NHANES III des 30-55 ans
+                pct = 100 * pct / v55[mid]
             c = cd[(cd.groupe == grp) & (cd.id == mid)].iloc[0]
             add.append({"groupe": grp, "intervention": inter, "id": mid, "marqueur": c.marqueur, "effet_pct": pct,
                         "source": src, "lu": lu, "population": pop, "note": note, "origine": "secondaire"})
