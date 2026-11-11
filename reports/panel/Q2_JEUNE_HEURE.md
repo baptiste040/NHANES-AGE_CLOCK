@@ -235,3 +235,83 @@ teste sur l'analyse A ; pour l'heure, sur NHANES 1999-2018 (après-midi contre m
 - Composition des repas inconnue.
 - NHANES est américain.
 - Changements détectables de Q1 = bornes basses.
+
+## Analyses secondaires (non pré-enregistrées, demandées après les résultats)
+
+La conclusion pré-enregistrée ci-dessus reste telle quelle, mais elle est **fragile** : le modèle principal, linéaire en heures de jeûne, dilue probablement l'effet d'un repas récent. Une baisse des TG de 0,2 % après un repas n'est pas crédible physiologiquement. Code : `q2_secondaire.py`.
+
+### 1. Jeûne modélisé par morceaux, chez une même personne (NHANES III)
+
+Modèle par morceaux (0-4 h, 4-8 h, ≥ 8 h ; nœuds à 4 et 8 h), sur les mêmes paires que l'analyse principale. Effet rapporté : 2 h contre 10 h, en %.
+
+| Marqueur | n | **Par morceaux** [IC 95 %] | Linéaire (pré-enregistré) | Classes | Contraste direct | Entre personnes (NHANES III) |
+|---|---|---|---|---|---|---|
+| Triglycérides (à jeun) | 1153 | **+14,9** [+4,0 ; +27,5] | −0,2 | +8,5 | +7,9 | +23,3 |
+| Triglycérides sériques (non à jeun) | 855 | **+8,0** [−3,9 ; +21,9] | −1,4 | +1,8 | +0,7 | +23,1 |
+| Glycémie à jeun (plasma) | 1176 | **+3,4** [−2,1 ; +10,1] | +1,1 | +3,6 | +3,9 | +9,8 |
+| Glucose sérique (non à jeun) | 1136 | **+2,9** [−3,2 ; +10,1] | +1,6 | +3,4 | +4,2 | +10,5 |
+| Insuline (à jeun) | 1168 | **+21,9** [+4,3 ; +41,6] | +11,1 | +25,2 | +18,0 | +76,6 |
+| HOMA-IR | 1160 | **+23,2** [+1,9 ; +48,0] | +11,7 | +27,3 | +19,6 | +93,6 |
+| QUICKI | 1160 | **−2,8** [−5,1 ; −0,4] | −1,6 | −3,3 | −2,5 | −8,2 |
+| Indice TyG | 1145 | **+0,2** (unités) [+0,1 ; +0,3] | +0,0 | +0,1 | +0,1 | +0,3 |
+| Cholestérol total | 1160 | **−0,9** [−3,6 ; +2,0] | −1,2 | −1,5 | −1,6 | −1,2 |
+| HDL | 1147 | **−1,4** [−5,3 ; +2,7] | −1,1 | −1,5 | +0,0 | −2,4 |
+| LDL (calculé, à jeun) | 583 | **−1,0** [−2,7 ; +0,7] | −4,0 | +0,0 | — | +0,0 |
+| LDL calculé (Friedewald) | 1093 | **−1,5** [−6,3 ; +3,6] | −1,1 | −1,1 | −1,7 | −6,2 |
+
+**Lecture.**
+- Le modèle par morceaux retrouve un effet du repas que le modèle linéaire diluait : TG +15 % [+4 ; +28] au lieu de −0,2 % ; insuline +22 % ; HOMA-IR +23 %.
+- Ces effets restent inférieurs à ceux des associations entre personnes (TG +23 %, insuline +77 %).
+- Rapportés au changement détectable de Q1 (TG +111 %, insuline +115 %), ils restent sous 0,2 (TG 0,13 ; insuline 0,19 ; HOMA-IR 0,16). La catégorie « indifférent » ne change pas : le jeûne pèse peu pour juger un changement au regard du bruit.
+- Les lipides autres que les TG (cholestérol total, HDL, LDL) bougent de moins de 2 % chez une même personne.
+
+### 2. Confrontation à la déclaration EAS/EFLM (Nordestgaard et al., Eur Heart J 2016, texte complet lu)
+
+La déclaration donne les changements moyens maximaux 1 à 6 h après un repas habituel. Ils sont convertis ici en % de la médiane à jeun de NHANES III.
+
+| Marqueur | Nordestgaard 2016 | En % de la médiane à jeun (NHANES III) | Même personne, par morceaux | Entre personnes (NHANES III) |
+|---|---|---|---|---|
+| Triglycérides | +0,3 mmol/L (+26 mg/dL) | +24,1 % | +14,9 % | +23,3 % |
+| Cholestérol total | −0,2 mmol/L (−8 mg/dL) | −4,0 % | −0,9 % | −1,2 % |
+| LDL calculé | −0,2 mmol/L (−8 mg/dL) | −6,5 % | −1,5 % | −6,2 % |
+| HDL | inchangé | +0,0 % | −1,4 % | −2,4 % |
+
+- **TG** : la déclaration (+24 %) rejoint nos associations entre personnes (+23 %). Elle est plus forte que l'estimation chez une même personne (+15 %), elle-même bien supérieure à celle du modèle pré-enregistré.
+- **Cholestérol total et LDL** : la déclaration (−4 à −7 %) est proche de l'association entre personnes pour le LDL calculé (−6 %), mais plus forte que nos estimations chez une même personne (environ −1 %).
+- **Glycémie** : la déclaration ne donne pas de changement moyen. Elle rappelle seulement que la glycémie à jeun est l'une des rares analyses qui exigent encore le jeûne, et qu'elle est souvent remplacée par l'HbA1c.
+
+### 3. Le jeûne compte pour classer, pas seulement pour suivre
+
+Personnes à jeun (≥ 8 h) de NHANES III : part au-dessus du seuil telle que mesurée, puis si leur prélèvement avait été non à jeun, selon la fourchette d'effets estimés. Effet multiplicatif appliqué à chaque valeur.
+
+| Seuil | Effet appliqué | Au-dessus, à jeun | Au-dessus, non à jeun | Basculent |
+|---|---|---|---|---|
+| glycémie ≥ 6,1 mmol/L (OMS) | même personne, linéaire (pré-enregistré) (+1,1 %) | 14,2 % | 15,4 % | **+1,2 points** |
+| glycémie ≥ 6,1 mmol/L (OMS) | même personne, par morceaux (+3,4 %) | 14,2 % | 18,4 % | **+4,2 points** |
+| glycémie ≥ 6,1 mmol/L (OMS) | même personne, classes (+3,6 %) | 14,2 % | 18,6 % | **+4,4 points** |
+| glycémie ≥ 6,1 mmol/L (OMS) | entre personnes (NHANES III) (+9,8 %) | 14,2 % | 30,0 % | **+15,9 points** |
+| glycémie ≥ 5,6 mmol/L (ADA) | même personne, linéaire (pré-enregistré) (+1,1 %) | 30,9 % | 33,8 % | **+2,9 points** |
+| glycémie ≥ 5,6 mmol/L (ADA) | même personne, par morceaux (+3,4 %) | 30,9 % | 41,5 % | **+10,5 points** |
+| glycémie ≥ 5,6 mmol/L (ADA) | même personne, classes (+3,6 %) | 30,9 % | 41,8 % | **+10,9 points** |
+| glycémie ≥ 5,6 mmol/L (ADA) | entre personnes (NHANES III) (+9,8 %) | 30,9 % | 62,2 % | **+31,3 points** |
+| TG ≥ 1,7 mmol/L (ESC/EAS, à jeun) | même personne, linéaire (pré-enregistré) (−0,2 %) | 29,0 % | 28,6 % | **−0,4 points** |
+| TG ≥ 1,7 mmol/L (ESC/EAS, à jeun) | même personne, par morceaux (+14,9 %) | 29,0 % | 37,3 % | **+8,3 points** |
+| TG ≥ 1,7 mmol/L (ESC/EAS, à jeun) | même personne, classes (+8,5 %) | 29,0 % | 33,9 % | **+4,9 points** |
+| TG ≥ 1,7 mmol/L (ESC/EAS, à jeun) | entre personnes (NHANES III) (+23,3 %) | 29,0 % | 42,0 % | **+13,0 points** |
+| HOMA-IR ≥ 3,36 (75ᵉ centile à jeun de NHANES III, valeur illustrative : aucun seuil lu) | même personne, linéaire (pré-enregistré) (+11,7 %) | 25,0 % | 30,6 % | **+5,6 points** |
+| HOMA-IR ≥ 3,36 (75ᵉ centile à jeun de NHANES III, valeur illustrative : aucun seuil lu) | même personne, par morceaux (+23,2 %) | 25,0 % | 35,6 % | **+10,6 points** |
+| HOMA-IR ≥ 3,36 (75ᵉ centile à jeun de NHANES III, valeur illustrative : aucun seuil lu) | même personne, classes (+27,3 %) | 25,0 % | 37,3 % | **+12,3 points** |
+| HOMA-IR ≥ 3,36 (75ᵉ centile à jeun de NHANES III, valeur illustrative : aucun seuil lu) | entre personnes (NHANES III) (+93,6 %) | 25,0 % | 64,0 % | **+39,0 points** |
+
+**Lecture.** Même un petit effet moyen du repas déplace beaucoup de personnes autour d'un seuil, parce que beaucoup ont une valeur proche de ce seuil.
+- **Glycémie, seuil ADA (5,6 mmol/L)** : de +3 à +11 points selon l'estimation chez une même personne, +31 points selon l'association entre personnes.
+- **TG** : jusqu'à +13 points.
+- **HOMA-IR** : jusqu'à +39 points.
+
+Le jeûne compte donc pour **classer** une personne (normal ou anormal), même quand il compte peu pour juger un **changement** au regard du bruit (Q1). C'est d'ailleurs pourquoi la déclaration EAS/EFLM propose, pour les TG d'un prélèvement non à jeun, un seuil d'alerte différent : ≥ 2 mmol/L au lieu de 1,7.
+
+### Note clinique
+
+- **Le HOMA-IR et le QUICKI sont définis sur des valeurs à jeun.** Calculés sur un prélèvement non à jeun, ils ne sont pas valides, quel que soit le ratio au changement détectable.
+- **De même, une « glycémie à jeun » dont le jeûne n'est pas vérifié** n'est pas une glycémie à jeun. Elle ne peut pas être comparée aux seuils de l'OMS ou de l'ADA, qui sont définis à jeun.
+- Dans un suivi où le jeûne n'est pas contrôlé, ces trois indicateurs ne devraient être affichés que si le jeûne est déclaré et suffisant. Sinon, l'HbA1c est l'indicateur glycémique adapté : elle ne dépend pas du repas, avec un effet de +0,0 % dans nos données.

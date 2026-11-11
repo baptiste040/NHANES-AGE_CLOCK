@@ -2506,3 +2506,28 @@ En classes ou en contraste direct (34 à 44 paires discordantes) : TG +8 %, insu
 - fer : baisse le soir seulement.
 
 **LDL Martin-Hopkins** : non estimable, comme prévu (tableau de facteurs publié en figure).
+
+### Analyses secondaires — programme « panel », Q2, NON pré-enregistrées (2026-11-11)
+
+Demandées par l'auteur du projet **après** lecture des résultats, parce que la conclusion
+pré-enregistrée est fragile (modèle linéaire en heures de jeûne). La conclusion pré-enregistrée
+reste inchangée dans le rapport. Code : `src/aging_clock/panel/q2_secondaire.py`.
+
+1. **Jeûne par morceaux chez une même personne** (NHANES III, mêmes paires ; nœuds à 4 et 8 h,
+   durée plafonnée à 24 h ; 2 h contre 10 h ; IC bootstrap, 2 000 tirages, graine 2026) :
+   TG +14,9 % [+4,0 ; +27,5] (linéaire : −0,2 %) ; insuline +21,9 % ; HOMA-IR +23,2 % ;
+   glycémie +3,4 % ; QUICKI −2,8 % ; cholestérol total, HDL, LDL : moins de 2 %. Ratios au
+   changement détectable toujours < 0,2 : catégories inchangées.
+2. **Nordestgaard et al., Eur Heart J 2016** (déclaration EAS/EFLM, texte complet lu) : TG +26 mg/dL
+   (+24 % de la médiane à jeun de NHANES III), cholestérol total et LDL −8 mg/dL (−4 % et −7 %),
+   HDL inchangé ; aucun changement moyen donné pour la glycémie. Accord avec les associations entre
+   personnes (TG +23 %, LDL calculé −6 %) plus qu'avec les estimations chez une même personne.
+3. **Classification** (personnes à jeun ≥ 8 h de NHANES III ; effet multiplicatif appliqué) :
+   personnes qui passeraient au-dessus du seuil si le prélèvement était non à jeun, selon la
+   fourchette d'effets (même personne → entre personnes) : glycémie OMS +1 à +16 points, ADA +3 à
+   +31 points, TG 1,7 mmol/L jusqu'à +13 points, HOMA-IR (75ᵉ centile, valeur illustrative sans
+   source) +6 à +39 points.
+
+**Note clinique ajoutée au rapport** : HOMA-IR et QUICKI sont définis à jeun et ne sont pas valides
+sur un prélèvement non à jeun, quel que soit le ratio ; même chose pour une « glycémie à jeun » dont
+le jeûne n'est pas vérifié.
