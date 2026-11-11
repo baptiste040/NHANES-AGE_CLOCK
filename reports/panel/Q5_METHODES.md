@@ -49,15 +49,19 @@ intervention réaliste ?
    - Ce sont des bornes basses pour la plupart (CV mesurés au sein des groupes de méthode).
    - Pour les enzymes, le bruit domine : ×1,02 à ×1,04.
 3. **Pour classer, un changement de laboratoire compte beaucoup.**
-   - Changement de plateforme de biochimie en 2017 : +26 points de personnes sous la limite basse de l'ASAT, +13 pour
+   - Passage Beckman → Roche en 2017 (bilan biochimique) : +26 points de personnes sous la limite basse de l'ASAT, +13 pour
      le chlore, +14 pour la bilirubine, +10 pour le calcium et l'ALAT (intervalles S).
    - Glycémie, seuil ADA : +4 à +5 points à chaque changement d'instrument, pour des décalages de
      seulement 1 à 2 %.
+     - Pour le passage Roche Cobas C501 → C311 de 2015, on trouve +6,8 points (adultes de 18 ans et
+       plus sans diabète connu, pondéré), contre +12,2 points dans le texte du NCHS.
+     - L'écart vient du chiffre « avant correction » du NCHS, que nous ne retrouvons pas (voir V1).
+       Hypothèse : il a été calculé sur une version antérieure du fichier.
    - Vitamine D, RIA → LC-MS/MS : −10 points sous 50 nmol/L.
    - Un intervalle de référence n'est donc valable que pour la méthode qui l'a produit.
 4. **Un changement de laboratoire peut imiter ou masquer l'effet moyen d'une intervention
    réaliste.**
-   - TG : +9,6 % en 2017, contre −6,8 % pour l'activité physique (ρ = 1,4 : il **masque** l'effet).
+   - TG : +9,6 % en 2017 (Beckman → Roche), contre −6,8 % pour l'activité physique (ρ = 1,4 : il **masque** l'effet).
    - Insuline : jusqu'à ρ = 2,3 ; cholestérol total : ρ = 1,2 ; HDL : ρ ≥ 0,5 pour quatre
      interventions.
    - ALAT : ρ = 0,83 face à une perte de poids de 5 %, 0,50 face à une perte de 5 kg ; ASAT : 1,2.
@@ -73,6 +77,13 @@ intervention réaliste ?
   ou disposer d'une équation de passage.
 - **Pour classer**, n'appliquer un intervalle de référence qu'aux résultats de la méthode qui l'a
   produit.
+- **Pour évaluer l'effet d'un protocole à l'échelle d'une cohorte** (lien avec Q1) :
+  - les effets d'hygiène de vie ne sont visibles qu'en moyenne de groupe (Q1) ;
+  - un changement de laboratoire peut imiter ou masquer ces effets pour 11 marqueurs sur 15
+    (partie d) ;
+  - toute évaluation doit donc **enregistrer le laboratoire de chaque prélèvement et en tenir
+    compte**, soit en comparant à laboratoire identique, soit en mettant le laboratoire en
+    covariable.
 
 ## Vérifications de l'implémentation
 
@@ -106,11 +117,15 @@ détail dans `Q5_verification_V1_variantes.csv`). On a testé 36 variantes de ca
 - Aucune variante ne retrouve la valeur **avant** correction (53,7 %).
 - L'écart n'est donc ni dû aux poids, ni à l'âge, ni à l'exclusion des diabétiques connus, ni au
   jeûne. Il reste inexpliqué. Hypothèse non testable ici : le chiffre « avant » du NCHS a été
-  calculé sur une version antérieure du fichier, avant la mise à l'échelle du nouvel instrument d'une partie des
+  calculé sur une version antérieure du fichier, avant la mise à l'échelle C311 d'une partie des
   échantillons.
 - Conséquence : l'implémentation de l'équation est vérifiée (valeurs « après »). Mais l'effet du
-  changement d'instrument sur la classification est de +6,8 points dans nos calculs, contre
-  +12,2 points dans le texte du NCHS.
+  changement d'instrument sur la classification (part de 100-125 mg/dL) diffère :
+  - **+6,8 points** dans nos calculs (48,3 → 41,5 %) ;
+  - **+12,2 points** dans le texte du NCHS (53,7 → 41,5 %).
+
+  L'hypothèse retenue est que le chiffre « avant » du NCHS a été calculé sur une version antérieure
+  du fichier GLU_I, avant que la partie des échantillons dosés sur C501 soit mise à l'échelle C311.
 
 ## Partie (a) : équations de passage publiées
 
@@ -290,7 +305,7 @@ et le revenu, et régression médiane.
     laboratoire de 2001-2002 a été corrigé, mais le laboratoire de 1999-2000 diffère encore.
   - Vitamine D (2001-2007) : de −4 à +2 %. La conversion LC-MS/MS du NCHS laisse un écart faible.
 - **Changements non chiffrés par le NCHS** :
-  - NFS (nouvel automate en 2012) : RDW +5,5 % et VPM +10 % (ratios 0,79 et 0,77,
+  - NFS (automate Coulter HMX → DxH en 2012) : RDW +5,5 % et VPM +10 % (ratios 0,79 et 0,77,
     « faux changement possible ») ; hématocrite +1,4 % ;
   - HbA1c (2007) : +1,7 % ;
   - HDL : −5 % (2007) et +3 % (méthode directe, 2003).

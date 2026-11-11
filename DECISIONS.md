@@ -2880,6 +2880,8 @@ sont retrouvées exactement (41,5 % et 3,4 %), mais pas les valeurs avant (48,3 
 À la demande de l'auteur du projet, 36 variantes ont été testées sans changer l'analyse : poids
 WTSAF2YR ou WTMEC2YR, âge minimal 18 ou 20 ans, exclusion des diabétiques connus, jeûne ≥ 8 h.
 Aucune n'explique l'écart, qui reste inexpliqué.
+Effet sur la classification (part de 100-125 mg/dL) : +6,8 points dans nos calculs, contre +12,2
+dans le texte du NCHS. Hypothèse : version antérieure du fichier GLU_I.
 
 **Règle pré-enregistrée (suivi).**
 - Ratio ≥ 1 : folates érythrocytaires 2007 (+85 %) ; créatinine 1999-2000 (+22 %).
@@ -2888,7 +2890,7 @@ Aucune n'explique l'écart, qui reste inexpliqué.
   - en empirique : PAL et bilirubine 1999-2003, RDW et VPM (2012), insuline 2003.
 - Tous les autres marqueurs : < 0,5.
 
-**Classification.** Changement de plateforme de biochimie en 2017 : +26 points sous la limite basse de l'ASAT,
+**Classification.** Passage Beckman → Roche en 2017 (bilan biochimique) : +26 points sous la limite basse de l'ASAT,
 +10 à +14 pour l'ALAT, le chlore, le calcium et la bilirubine (S). Glycémie : +4 à +5 points au
 seuil ADA à chaque changement d'instrument (R). Vitamine D, RIA → LC-MS/MS : −10 points sous
 50 nmol/L.
@@ -2902,6 +2904,14 @@ laboratoires de routine y reste inconnu.
 **(d)** ρ ≥ 0,5 pour 11 marqueurs sur 15 : TG, insuline, HOMA-IR, cholestérol total, HDL,
 glycémie, HbA1c, GGT, ALAT, ASAT et CRP. Pas pour la vitamine D (ρ ≤ 0,15), ni pour le LDL sous
 statine.
+
+**Lien avec Q1, ajouté à la synthèse à la demande de l'auteur du projet.** Les effets d'hygiène de vie
+ne sont visibles qu'en moyenne de groupe. Or un changement de laboratoire peut les imiter ou les
+masquer pour 11 marqueurs sur 15. Toute évaluation de l'effet d'un protocole à l'échelle d'une
+cohorte doit donc enregistrer le laboratoire de chaque prélèvement et en tenir compte : comparaisons
+à laboratoire identique, ou laboratoire en covariable.
+
+**Noms de fabricants** : conservés. La règle de neutralité ne vise que l'entreprise du panel cible.
 
 **Prédictions.** P1 non vérifiée (2 analytes à faible variabilité parmi les 5 premiers ; aucune
 enzyme ≥ 1). P2 vérifiée (20 sur 24). P3 non vérifiée (vitamine D).
