@@ -185,7 +185,8 @@ dans les deux jeux.
    limites (à moins d'un changement détectable du seuil) redeviennent normales dans 41 % des cas
    (médiane, NHANES III). Les anomalies nettes, dans 8 % des cas. Seule exception : les
    électrolytes et les bicarbonates, dont l'intervalle est très étroit.
-3. **Les seuils de risque ont des taux de normalisation plus faibles** (9 à 29 %). Ils classent
+3. **Les seuils de risque ont des taux de normalisation plus faibles** : de 9 à 29 % dans NHANES
+   III, et jusqu'à 33 % en 2001-2002 (LDL). Ils classent
    anormaux beaucoup de personnes loin du seuil : 61 % de LDL ≥ 3,0 mmol/L et 72 % de non-HDL
    ≥ 3,4 mmol/L dans NHANES III.
 4. **Intervalles statistiques non transposables** (⚠) pour l'ALAT, l'ASAT, la créatinine, la
