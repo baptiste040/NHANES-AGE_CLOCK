@@ -1,0 +1,152 @@
+{
+ "tres_actifs": {
+  "definition": "5 % les plus actifs au sein de chaque sexe (seuils H 72, F 43 min/jour)",
+  "n": 166,
+  "n_sains": 92,
+  "n_comparaison": 3128,
+  "par_sexe": {
+   "H": {
+    "n": 83,
+    "n_sains": 44,
+    "n_comparaison": 1573
+   },
+   "F": {
+    "n": 83,
+    "n_sains": 48,
+    "n_comparaison": 1555
+   }
+  }
+ },
+ "tres_actifs_seuil_global": {
+  "definition": "5 % les plus actifs, seuil global (59 min/jour)",
+  "n": 168,
+  "n_sains": 81,
+  "n_comparaison": 3126,
+  "par_sexe": {
+   "H": {
+    "n": 136,
+    "n_sains": 63,
+    "n_comparaison": 1520
+   },
+   "F": {
+    "n": 32,
+    "n_sains": 18,
+    "n_comparaison": 1606
+   }
+  }
+ },
+ "tres_actifs_questionnaire": {
+  "definition": "activité vigoureuse de loisir ≥ 300 min/semaine",
+  "n": 521,
+  "n_sains": 204,
+  "n_comparaison": 8739,
+  "par_sexe": {
+   "H": {
+    "n": 334,
+    "n_sains": 118,
+    "n_comparaison": 4299
+   },
+   "F": {
+    "n": 187,
+    "n_sains": 86,
+    "n_comparaison": 4440
+   }
+  }
+ },
+ "pilule": {
+  "definition": "pilule actuelle (RHD442 = 1), sans injectable ni patch ou anneau sur ordonnance",
+  "n": 546,
+  "n_sains": 294,
+  "n_comparaison": 3236,
+  "par_sexe": {
+   "F": {
+    "n": 546,
+    "n_sains": 294,
+    "n_comparaison": 3236
+   }
+  }
+ },
+ "pilule_oestroprogestative": {
+  "definition": "pilule + ordonnance d'éthinylestradiol (ou mestranol) oral",
+  "n": 344,
+  "n_sains": 187,
+  "n_comparaison": 3236,
+  "par_sexe": {
+   "F": {
+    "n": 344,
+    "n_sains": 187,
+    "n_comparaison": 3236
+   }
+  }
+ },
+ "pilule_progestative": {
+  "definition": "pilule + ordonnance de progestatif seul (noréthindrone, norgestrel)",
+  "n": 13,
+  "n_sains": 9,
+  "n_comparaison": 3236,
+  "par_sexe": {
+   "F": {
+    "n": 13,
+    "n_sains": 9,
+    "n_comparaison": 3236
+   }
+  }
+ },
+ "injectable": {
+  "definition": "injectable actuel (RHQ520 = 1), sans pilule",
+  "n": 103,
+  "n_sains": 37,
+  "n_comparaison": 3236,
+  "par_sexe": {
+   "F": {
+    "n": 103,
+    "n_sains": 37,
+    "n_comparaison": 3236
+   }
+  }
+ },
+ "menopause": {
+  "definition": "sans règles depuis 12 mois (ménopause), sans hystérectomie ni traitement hormonal",
+  "n": 687,
+  "n_sains": 144,
+  "n_comparaison": 780,
+  "par_sexe": {
+   "F": {
+    "n": 687,
+    "n_sains": 144,
+    "n_comparaison": 780
+   }
+  }
+ },
+ "menopause_thm": {
+  "definition": "ménopause sous traitement hormonal (rapporté à part, sans règle)",
+  "n": 55,
+  "n_sains": 20,
+  "n_comparaison": 780,
+  "par_sexe": {
+   "F": {
+    "n": 55,
+    "n_sains": 20,
+    "n_comparaison": 780
+   }
+  }
+ },
+ "favorisee": {
+  "definition": "revenu ≥ 3,5 × seuil de pauvreté, diplôme universitaire, non-fumeur",
+  "n": 1075,
+  "n_sains": 607,
+  "n_comparaison": 8191,
+  "par_sexe": {
+   "H": {
+    "n": 509,
+    "n_sains": 279,
+    "n_comparaison": 4130
+   },
+   "F": {
+    "n": 566,
+    "n_sains": 328,
+    "n_comparaison": 4061
+   }
+  }
+ }
+}

@@ -2924,3 +2924,252 @@ enzyme ≥ 1). P2 vérifiée (20 sur 24). P3 non vérifiée (vitamine D).
   - unités des folates dans la classification ;
   - osmolalité exclue de la classification.
 - Créatinine 2005-2006 : convention de sens opposée entre (a) et (b), signalée dans le rapport.
+
+### Pré-enregistrement — programme « panel », Q3 : populations particulières (2026-11-11)
+
+**Question.** Chez des groupes proches de la population cible, les marqueurs sont-ils décalés ?
+Les seuils usuels (D1) donnent-ils trop de faux signaux chez les personnes en bonne santé ? De combien
+un centile « population générale » flatte-t-il une population favorisée et en bonne santé ?
+
+Ce texte est complet : il ne renvoie à aucun brouillon. Les effectifs ci-dessous ont été comptés à
+partir des questionnaires, des ordonnances et de l'accéléromètre seulement
+(`q3.run(only_groups=True)`, fichier `reports/panel/Q3_groupes.json`). Aucune valeur de marqueur
+n'a été lue. Version validée par l'auteur du projet avec six modifications (voir la fin).
+
+#### Cycles et marqueurs
+
+- **NHANES 2003-2010** : ce sont les cycles et donc les méthodes de laboratoire des intervalles
+  statistiques D1. Q5 a montré qu'un intervalle n'est valable que pour la méthode qui l'a produit.
+  Accéléromètre : 2003-2006. Chaque marqueur est restreint aux cycles de son intervalle D1 (folates
+  érythrocytaires et B12 : 2003-2006).
+- **Marqueurs** :
+  - pour les taux hors seuil : ceux de la table D1 (intervalles S, seuils R) ;
+  - pour les décalages : les mêmes, plus la CK, l'HbA1c, la vitamine D, la glycémie et les TG à jeun
+    et les indices dérivés de Q1 (DFGe CKD-EPI 2021, non-HDL, LDL, RAC, HOMA-IR, QUICKI, TyG, TG/HDL,
+    indice athérogène, LDL/HDL, albumine/globulines, FIB-4, GGT/HDL, ASAT/ALAT, urée/créatinine,
+    NLR, SII, calcium corrigé, glycémie moyenne estimée).
+  - Les marqueurs à jeun (glycémie, insuline, TG, LDL et leurs indices) sont analysés dans le
+    sous-échantillon à jeun (poids WTSAF2YR > 0).
+- **Changement détectable** : celui de Q1, groupe 30-55 ans (`cd6m_hausse` ou `cd6m_baisse` selon le
+  sens du décalage ; `cd6m_unites` sur l'échelle additive). Si un marqueur manque dans le groupe
+  30-55 ans, on prend le groupe 20-79 ans, et on l'indique. Même échelle (log ou additive) que Q1.
+
+#### Groupes (effectifs comptés avant analyse)
+
+« Sains » : membres de la population de référence D1 (`intervalles.reference_population`), critères
+appliqués tels quels :
+- non enceinte ;
+- cotinine < 3 ng/mL ;
+- IMC de 18,5 à 30 ;
+- sans diabète ni antidiabétique ;
+- sans maladie cardiovasculaire, hépatique, rénale ni cancer déclarés ;
+- sans antihypertenseur ni hypolipémiant.
+
+| Groupe | Définition | Comparaison | Effectif (dont sains) | Comparaison (n) |
+|---|---|---|---|---|
+| **Très actifs** (principal) | 30-55 ans, accéléromètre 2003-2006 fiable (PAXSTAT = PAXCAL = 1), au moins 4 jours valides : **5 % les plus actifs au sein de chaque sexe** en minutes d'activité modérée à vigoureuse par jour (seuils : 72 min/jour chez les hommes, 43 chez les femmes) | les autres 30-55 ans **du même sexe** avec accéléromètre valide | 166 (92) ; H 83 (44), F 83 (48) | H 1 573, F 1 555 |
+| Très actifs, sensibilité 1 | 5 % les plus actifs, **seuil global** (59 min/jour) | les autres 30-55 ans avec accéléromètre valide | 168 (81) ; H 136 (63), F 32 (18) | 3 126 |
+| Très actifs, sensibilité 2 | 30-55 ans, 2003-2010, activité vigoureuse de loisir ≥ 300 min/semaine (questionnaire) | les autres 30-55 ans | 521 (204) ; H 334, F 187 | 8 739 |
+| **Pilule** (principal) | femmes de 20 à 49 ans, non enceintes, pilule actuelle (RHD442 = 1), sans injectable (RHQ520 ≠ 1) ni patch ou anneau sur ordonnance | femmes de 20 à 49 ans non enceintes, réglées dans l'année (RHQ031 = 1), sans pilule, injectable ni contraceptif hormonal sur ordonnance | 546 (294) | 3 236 |
+| Pilule œstroprogestative | pilule + ordonnance orale d'éthinylestradiol (ou de mestranol) dans le fichier des médicaments (RXQ_RX) | idem | 344 (187) | 3 236 |
+| Pilule progestative seule | pilule + ordonnance de noréthindrone ou de norgestrel seuls, sans éthinylestradiol | idem | 13 (9) : non estimable, rapporté par transparence | 3 236 |
+| **Injectable** (analyse séparée) | injectable actuel (RHQ520 = 1 ; acétate de médroxyprogestérone, progestatif seul), sans pilule | idem | 103 (37) | 3 236 |
+| **Après la ménopause** | femmes de 45 à 59 ans, sans règles depuis 12 mois pour cause de ménopause (RHQ031 = 2, RHD042 = 7), sans hystérectomie (RHD280 ≠ 1), sans traitement hormonal actuel (RHQ558, RHQ566, RHQ574, RHQ584, RHQ600 ≠ 1, et aucune ordonnance d'œstrogène ou de progestatif) | femmes de 45 à 59 ans réglées dans l'année (RHQ031 = 1), sans pilule ni hormone sur ordonnance | 687 (144) | 780 |
+| Ménopause sous traitement hormonal | idem, avec traitement hormonal actuel | idem | 55 (20) : rapporté à part, sans règle | 780 |
+| **Favorisée** | 30-55 ans, revenu ≥ 3,5 fois le seuil de pauvreté (INDFMPIR), diplôme universitaire (DMDEDUC2 = 5), non-fumeur actuel (SMQ020 = 2 ou SMQ040 = 3) et cotinine < 10 ng/mL | les autres 30-55 ans | 1 075 (607) ; H 509 (279), F 566 (328) | 8 191 |
+
+- **Le seuil d'activité décrit des personnes actives, pas des athlètes de compétition.** 72 minutes
+  par jour chez les hommes et 43 chez les femmes, cela correspond à des personnes très actives au
+  quotidien. L'accéléromètre porté à la hanche capte mal le vélo et la natation, et ne capte pas la
+  musculation.
+- **Le questionnaire RHQ ne dit pas quel type de pilule.** La distinction entre pilule
+  œstroprogestative et pilule progestative seule vient du fichier des médicaments sur ordonnance des
+  30 derniers jours (RXQ_RX, noms de molécules).
+  - Une femme sous pilule sans ordonnance retrouvée reste dans le groupe « pilule » mais n'entre dans
+    aucun des deux sous-groupes.
+  - La noréthindrone seule peut aussi être prescrite à dose gynécologique (la dose n'est pas lue).
+  - Les variables RHQ562-RHQ566 portent sur les hormones de la ménopause : elles excluent la
+    contraception.
+- **Corrections par rapport à la version présentée** (avant toute lecture de marqueur) :
+  - le traitement hormonal de la ménopause comptait RHQ580 (« a déjà utilisé » un patch). Il est
+    remplacé par les usages actuels, plus l'ordonnance. La ménopause passe de 700 à 687 femmes ;
+  - la comparaison de la contraception excluait les femmes n'ayant jamais pris la pilule
+    (RHD442 manquant). Elle les inclut désormais.
+- RHD042 = 7 code « ménopause ou hystérectomie » : l'hystérectomie est exclue par RHD280.
+
+**Accéléromètre** (`src/aging_clock/panel/accelerometre.py`, règles de Troiano et al., Med Sci Sports
+Exerc 2008) :
+- non-port : au moins 60 minutes consécutives à 0 coup, avec au plus 2 minutes consécutives entre
+  1 et 100 coups ;
+- jour valide : au moins 600 minutes de port ; personne retenue : au moins 4 jours valides ;
+- activité modérée à vigoureuse : minutes à 2 020 coups/minute ou plus ; moyenne sur les jours
+  valides.
+
+#### Mesures
+
+1. **Décalage.**
+   - Régression médiane (moindres carrés repondérés itératifs, comme Q5) de ln(x), ou de x sur
+     l'échelle additive, sur l'indicatrice du groupe. Ajustement sur l'âge (spline cubique
+     restreinte, 4 ddl, nœuds aux centiles 5, 27,5, 50, 72,5 et 95), et sur le sexe quand les deux
+     sexes sont présents.
+   - **Très actifs** : analyse principale **par sexe**, chaque sexe contre son comparateur du même
+     sexe. L'estimation commune (deux sexes, ajustée sur le sexe) sert aux attentes physiologiques.
+   - **Ménopause** : l'ajustement sur l'âge est indispensable, car les ménopausées sont plus âgées
+     que les femmes réglées du même intervalle 45-59 ans. Il est fait par la même spline, dans
+     l'intervalle 45-59 ans.
+   - Effet en % (ou en unités). IC 95 % par bootstrap des personnes, stratifié groupe/comparaison
+     (500 tirages, graine 2026).
+   - Sensibilité : moindres carrés (moyenne géométrique).
+   - Toutes les strates (deux sexes, puis chaque sexe) sont produites pour les groupes mixtes.
+2. **Taux hors seuil chez les sains du groupe** (« faux signaux »), par sexe et par côté :
+   - pour les intervalles S, sous la limite basse et au-dessus de la limite haute, limites de D1
+     appliquées par sexe et par tranche d'âge ;
+   - pour les seuils R, dans le sens du seuil ;
+   - non pondéré (D3, comparaison interne).
+3. **Taux de référence** : le même taux dans la population de référence D1, restreinte au même
+   sexe et aux mêmes âges que le groupe (par exemple les femmes de 20 à 49 ans pour la
+   contraception).
+4. **Centile « population générale » (groupe favorisé)** :
+   - pour chaque marqueur et chaque sexe, médiane du groupe favorisé ;
+   - puis son centile dans la population générale de 30 à 55 ans (non enceintes, favorisés compris)
+     du même sexe, pondéré par les poids d'examen (WTMEC2YR ; WTSAF2YR pour les marqueurs à jeun).
+   - Principal : groupe favorisé **et sain**. Rapportés aussi : tout le groupe favorisé, et le centile
+     non pondéré.
+   - Écart = centile − 50, en points. Il mesure de combien un centile « population générale » situe
+     une personne favorisée et en bonne santé loin du milieu.
+   - Mesure descriptive. On signale un écart d'au moins 10 points, sans règle de décision.
+
+#### Règles de décision (par groupe, sexe, marqueur et côté)
+
+Les seuils usuels sont **inadaptés** au groupe si :
+- |décalage| ≥ changement détectable à 6 mois (Q1, 30-55 ans), **ou**
+- le taux hors seuil chez les sains du groupe est au moins **2 fois** le taux de référence **et**
+  au moins **10 %**.
+
+Autres catégories :
+- **décalé, sous le changement détectable** : l'IC du décalage exclut 0, mais |décalage| est
+  inférieur au changement détectable ;
+- **sans différence** : sinon ;
+- **non estimable** : moins de 50 personnes mesurées dans le groupe pour le décalage, ou moins de
+  30 sains mesurés pour le taux.
+
+Analyses principales :
+- très actifs par sexe (5 % au sein de chaque sexe) ;
+- pilule ;
+- injectable ;
+- ménopause sans traitement ;
+- favorisée.
+
+Les sensibilités sont rapportées sans règle propre :
+- seuil global et questionnaire pour les très actifs ;
+- pilule œstroprogestative confirmée par ordonnance.
+
+On note si elles confirment l'analyse principale.
+
+#### Attentes physiologiques (validées par l'auteur du projet)
+
+- **Règle de confirmation.** Une attente est confirmée si le décalage a le signe attendu et que son
+  IC exclut 0. Elle est contredite si l'IC exclut 0 dans l'autre sens.
+- **Sources.** Ce sont des revues ouvertes et lues (texte intégral PMC, conservé dans
+  `private/panel/Q3_litterature/`). Une attente sans source lue est marquée **« sans source lue »**.
+
+| Groupe | Attente | Source lue |
+|---|---|---|
+| Très actifs | TG ↓, cholestérol total ↓ | Lee 2017 : l'utilisation des graisses à l'effort réduit le cholestérol total et les TG de repos |
+| | glycémie à jeun ↓ | Lee 2017 |
+| | ferritine ↓ | Lee 2017 (sportifs d'endurance, surtout les femmes, sujets à la carence en fer) ; Solberg 2023 (prévalence élevée de la carence en fer chez les sportifs d'endurance) |
+| | CK ↑ | Lee 2017 (la CK culmine environ 24 h après un effort lésant, élevée jusqu'à 7 jours) |
+| | hémoglobine et hématocrite ↓ | Mairbäurl 2013 (hématocrite plus bas chez les sportifs, « anémie du sportif » ; l'hémoglobine et l'hématocrite dépendent du volume plasmatique) |
+| | HDL ↑ ; créatinine ↑ (masse musculaire), donc DFGe ↓ ; ASAT ↑ ; leucocytes ↓ ; CRP ↓ ; insuline ↓ | **sans source lue** |
+| Pilule (et pilule œstroprogestative) | TG ↑, HDL ↑ | Regidor 2023 (éthinylestradiol + drospirénone : TG +42 à +74 %, HDL +13 à +26 % selon les essais) |
+| | ferritine ↑ | Fischer 2021 (la pilule réduit les pertes menstruelles ; ferritine plus haute chez les utilisatrices dans une étude citée) |
+| | CRP ↑ ; CTF (capacité totale de fixation du fer) ↑ ; albumine ↓ ; vitamine B12 ↓ | **sans source lue** |
+| Pilule progestative seule | lipides neutres | Regidor 2023 (drospirénone seule : effet sur les lipides jugé neutre) ; groupe non estimable |
+| Injectable | pas d'attente de signe sur un marqueur du bilan | Glisic 2018 (méta-analyse des progestatifs seuls) : prise de poids modeste, surtout sous médroxyprogestérone injectable ; selon une revue antérieure citée, pas d’effet sur la glycémie chez les femmes minces tolérantes au glucose |
+| Après la ménopause | cholestérol total ↑, LDL ↑, TG ↑, ApoB ↑, HDL ↓ | Fasero 2025 (« increased levels of total cholesterol, LDL-cholesterol, triglycerides and apolipoprotein B ; decreased HDL ») |
+| | PAL ↑ | Bhattoa 2025 : hausse des marqueurs du remodelage osseux, dont la PAL osseuse, en fin de périménopause et en début de postménopause. Lien **indirect** : NHANES mesure la PAL totale |
+| | ferritine ↑ ; hémoglobine ↑ ; acide urique ↑ | **sans source lue** |
+| Favorisée | pas d'attente de signe ; taux de faux signaux proches du taux de référence | sans objet |
+
+Revues lues (toutes en texte intégral) :
+- Lee EC et al., J Strength Cond Res 2017, doi:10.1519/JSC.0000000000002122 (PMC5640004) ;
+- Solberg A et al., Life 2023, doi:10.3390/life13102007 (PMC10608302) ;
+- Mairbäurl H, Front Physiol 2013, doi:10.3389/fphys.2013.00332 (PMC3824146) ;
+- Regidor PA et al., Womens Health 2023, doi:10.1177/17455057221147388 (PMC9905034) ;
+- Fischer JAJ et al., Nutrients 2021, doi:10.3390/nu13072340 (PMC8308850) ;
+- Glisic M et al., Eur J Prev Cardiol 2018, doi:10.1177/2047487318774847 (PMC6039863) ;
+- Fasero M et al., J Clin Med 2025, doi:10.3390/jcm14113663 (PMC12156203) ;
+- Bhattoa HP et al., Osteoporos Int 2025, doi:10.1007/s00198-025-07422-3 (PMC12064614).
+
+Recherches PubMed (filtre « pubmed pmc », revues et méta-analyses) :
+- sur les sportifs (biomarqueurs, fer, hématologie, créatinine) ;
+- sur la pilule (lipides, CRP, fer, B12, transferrine, albumine) ;
+- sur l'injectable ;
+- sur la ménopause (lipides, fer, ferritine, PAL, acide urique).
+
+**Rien trouvé avec ces requêtes** :
+- une revue lue appuyant la créatinine, l'ASAT, les leucocytes, la CRP ou l'insuline chez les
+  sportifs ;
+- la CRP, la CTF, l'albumine ou la B12 sous pilule ;
+- la ferritine, l'hémoglobine ou l'acide urique après la ménopause.
+
+#### Prédiction
+
+- **P1.** Au moins un couple (groupe, marqueur) est classé « inadapté » chez les très actifs
+  (analyse principale, l'un ou l'autre sexe), par la règle du taux (faux signaux) :
+  - créatinine (limite haute S) ;
+  - DFGe (< 60) ;
+  - ASAT (limite haute S) ;
+  - hémoglobine (limite basse S).
+
+  Formulée sans avoir lu aucune valeur de marqueur.
+
+#### Limites (à écrire dans le rapport)
+
+- Les proxys restent imparfaits :
+  - « très actif » n'est pas « athlète de compétition » ; l'accéléromètre de hanche capte mal le vélo
+    et la natation ;
+  - la contraception et la ménopause sont déclarées ;
+  - le type de pilule vient des ordonnances, qui ne sont pas toujours retrouvées.
+- Les effectifs de sains sont petits : très actifs 44 hommes et 48 femmes, injectable 37, ménopause
+  144.
+- L'accéléromètre de 2011-2014 (prévu au plan) n'est pas utilisé. Ses mesures (MIMS) n'ont pas les
+  mêmes unités, et les méthodes de laboratoire de ces cycles diffèrent de celles de D1.
+- Hormones exclues (testostérone, estradiol, SHBG, FSH) : elles ne sont pas mesurées en 2003-2010
+  chez tous les adultes. Or l'éthinylestradiol augmente fortement la SHBG (Regidor 2023), ce qui
+  est un faux signal classique sous pilule. L'indice d'androgènes libres (testostérone/SHBG) en
+  dépend : un bilan hormonal sous pilule ne s'interprète pas avec des seuils généraux. Q3 ne peut
+  pas le chiffrer.
+- Étude transversale, sur des Américains, cycles 2003-2010 : les méthodes de laboratoire ont changé
+  depuis (Q5).
+- Les changements détectables de Q1 sont des bornes basses (remesures à environ 2 semaines).
+- Convention statistique (S) contre seuil fondé sur le risque (R) : un taux « hors S » élevé chez des
+  sains signale un intervalle mal adapté, pas un risque.
+
+#### Livrables
+
+- Rapport : `reports/panel/Q3_POPULATIONS.md`.
+- Données :
+  - `Q3_groupes.json` (effectifs, déjà produit) ;
+  - `Q3_decalages.csv`, `Q3_faux_signaux.csv`, `Q3_centiles_favorisee.csv`, `Q3_synthese.csv` ;
+  - `Q3_attentes.json`, `Q3_predictions.json`.
+- Code : `src/aging_clock/panel/q3.py`, `src/aging_clock/panel/accelerometre.py`.
+
+#### Décisions de l'auteur du projet (validation du 2026-11-11)
+
+1. **Très actifs.** Le groupe à seuil global est masculin à 80 %. L'analyse principale devient donc
+   celle des 5 % les plus actifs au sein de chaque sexe, avec un comparateur de même sexe ; le seuil
+   global passe en sensibilité. Le rapport précise que ces personnes sont actives, pas des athlètes
+   de compétition, et que l'accéléromètre capte mal le vélo et la natation.
+2. **Contraception.**
+   - Pilule en analyse principale, injectables en analyse séparée (effets différents, progestatif
+     seul).
+   - La pilule œstroprogestative et la pilule progestative seule sont distinguées par les ordonnances.
+     La seconde (13 femmes) est non estimable.
+3. **Attentes.** Ferritine plus basse chez les très actifs, plus haute sous pilule. Chaque groupe
+   s'appuie sur au moins une revue lue. Les attentes sans source sont marquées comme telles.
+4. **Ménopause** : ajustement sur l'âge explicite.
+5. **Population favorisée** : ajout du centile « population générale » de la personne médiane du
+   groupe.
+6. **Accéléromètre et hormones.** Abandon de l'accéléromètre 2011-2014 validé. Exclusion des hormones
+   validée, avec la limite de la SHBG sous pilule écrite dans le rapport.
