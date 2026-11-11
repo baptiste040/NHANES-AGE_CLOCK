@@ -1,0 +1,35 @@
+evenement,ids,type,cycle_transforme,chiffre,spans_b,diffusion_ajustee
+1,creat,E,1999.0,True,1999-2001,non
+2,creat,E,2005.0,True,2003-2005,non
+3,creat,I,2005.0,True,2005-2009,oui
+4,alp creat ldh phos bili,L,,False,1999-2003,oui
+5,albumin alp ast alt urea hco3 ca tc_serum ck cl creat glu_serum ggt iron k ldh na phos bili protein tg_serum urate,"L, I, M",2015.0,True,2015-2017,non
+6,glu_fast,I,2003.0,True,2003-2005,non
+7,glu_fast,I,2005.0,True,2005-2007,non
+8,glu_fast,I,2013.0,True,2013-2015,partielle
+9,insulin,M,2001.0,True,2001-2003,non
+10,insulin,M,2003.0,True,2003-2005,non
+11,insulin,M,2009.0,True,2009-2011,partielle
+12,insulin,M,2011.0,True,2011-2013,non
+13,hdl,"L, I",2005.0,True,2005-2007,non
+14,hdl,M,,False,2001-2003,partielle
+15,tc tg_fast,"L, I",,False,2005-2007,non
+16,hba1c,inconnu,,False,2005-2007,non
+17,wbc neut_pct lymph_pct mono_pct eos_pct baso_pct rbc hb hct mcv mch mchc rdw plt mpv,I,,False,2009-2013,non
+18,ferritin,I,2007.0,True,2007-2009,non
+19,ferritin,I,2009.0,True,2009-2015,partielle
+20,b12,M,2005.0,True,2005-2011,non
+21,b12,K,,False,2011-2013,oui
+22,rbc_folate,M,2005.0,True,2005-2007,non
+23a,vitd,"M, E",2001.0,True,,oui
+23b,vitd,"M, E",2003.0,True,2001-2003 2003-2005,oui
+23c,vitd,"M, E",2005.0,True,2005-2007,oui
+24,crp_hs,"L, I, M",2015.0,True,2015-2017,non
+25,apob,"L, I",2005.0,True,2005-2007,non
+26,apob,"I, M",2013.0,True,2013-2015,non
+27,testo,M,2011.0,True,2011-2013,partielle
+28,ft4 tsh,L,,False,2007-2011,T4 totale seulement
+29,hcy,I,1999.0,True,1999-2003,non précisé
+30,hcy,K,,False,2003-2005,oui
+31,u_creat,"I, M",2005.0,True,2005-2007,non
+32,iron_fe,L,,False,1999-2003,TIBC seulement

@@ -1,0 +1,88 @@
+id,analyte_du_decalage,intervention,effet_pct,source_effet,decalage,decalage_pct,rho,signalement,suffit
+tc,tc_serum,Activité physique (toutes formes),-2.9064039408867,"Smart 2025, Sports Med, doi:10.1007/s40279-024-02115-z",(a) événement 5,-3.332105263157903,1.1464701159678883,peut imiter,True
+tc,tc,Activité physique (toutes formes),-2.9064039408867,"Smart 2025, Sports Med, doi:10.1007/s40279-024-02115-z",(b) événement 15,0.3122963385322697,0.10745111308822158,non,False
+hdl,hdl,Activité physique (toutes formes),4.395833333333333,Smart 2025,(a) événement 13,-2.4499999999999966,0.5573459715639804,peut masquer,False
+hdl,hdl,Activité physique (toutes formes),4.395833333333333,Smart 2025,(b) événement 14,2.921485479280994,0.6646033317795627,peut imiter,False
+ldl,ldl,Activité physique (toutes formes),-5.869918699186992,Smart 2025,(a) événement 13,1.3600446428571278,0.23169735605460764,non,False
+tg_fast,tg_serum,Activité physique (toutes formes),-6.788135593220339,Smart 2025,(a) événement 5,9.55983606557378,1.4083154253903944,peut masquer,True
+tg_fast,tg_fast,Activité physique (toutes formes),-6.788135593220339,Smart 2025,(b) événement 15,0.414057467889517,0.06099722997623346,non,False
+hba1c,hba1c,Activité physique structurée,-12.641509433962264,"Umpierre 2011, JAMA, doi:10.1001/jama.2011.576",(b) événement 16,1.67005254989121,0.13210863454363303,non,False
+hba1c,hba1c,Activité physique structurée,-12.641509433962264,"Umpierre 2011, JAMA, doi:10.1001/jama.2011.576","(c) EurA1c 2026, Clin Chem Lab Med, doi:10.1515/cclm-2026-0276",3.8914907121938347,0.3078343399198108,non,False
+glu_fast,glu_serum,Activité physique aérobie,-2.918918918918919,"Wewege 2018, Atherosclerosis, doi:10.1016/j.atherosclerosis.2018.05.002",(a) événement 5,2.410000000000001,0.8256481481481485,peut masquer,False
+glu_fast,glu_fast,Activité physique aérobie,-2.918918918918919,"Wewege 2018, Atherosclerosis, doi:10.1016/j.atherosclerosis.2018.05.002",(a) événement 6,1.850207253886027,0.6338672999424352,peut masquer,False
+glu_fast,glu_fast,Activité physique aérobie,-2.918918918918919,"Wewege 2018, Atherosclerosis, doi:10.1016/j.atherosclerosis.2018.05.002",(a) événement 7,1.1595959595959604,0.3972689861578753,non,False
+glu_fast,glu_fast,Activité physique aérobie,-2.918918918918919,"Wewege 2018, Atherosclerosis, doi:10.1016/j.atherosclerosis.2018.05.002",(a) événement 8,1.7840404040403879,0.6111990273101329,peut masquer,False
+glu_fast,glu_fast,Activité physique aérobie,-2.918918918918919,"Wewege 2018, Atherosclerosis, doi:10.1016/j.atherosclerosis.2018.05.002","(c) Spain 2019, Biochem Med (Zagreb), doi:10.11613/BM.2019.010701",3.2327311482469367,1.107509745232747,peut imiter ou masquer,True
+insulin,insulin,Activité physique (toutes formes),-19.768664563617246,"Smart 2018, Br J Sports Med, doi:10.1136/bjsports-2016-096197",(a) événement 9,-22.3028346456693,1.128191263193165,peut imiter,True
+insulin,insulin,Activité physique (toutes formes),-19.768664563617246,"Smart 2018, Br J Sports Med, doi:10.1136/bjsports-2016-096197",(a) événement 10,13.069429957550028,0.6611185047675572,peut masquer,False
+insulin,insulin,Activité physique (toutes formes),-19.768664563617246,"Smart 2018, Br J Sports Med, doi:10.1136/bjsports-2016-096197",(a) événement 11,-10.723653562005286,0.5424571562482461,peut imiter,False
+insulin,insulin,Activité physique (toutes formes),-19.768664563617246,"Smart 2018, Br J Sports Med, doi:10.1136/bjsports-2016-096197",(a) événement 12,-12.041316536673264,0.609111277998738,peut imiter,False
+glu_fast,glu_serum,Alimentation méditerranéenne,-3.2216216216216216,"Papadaki 2020, Nutrients, doi:10.3390/nu12113342",(a) événement 5,2.410000000000001,0.7480704697986581,peut masquer,False
+glu_fast,glu_fast,Alimentation méditerranéenne,-3.2216216216216216,"Papadaki 2020, Nutrients, doi:10.3390/nu12113342",(a) événement 6,1.850207253886027,0.5743092986055621,peut masquer,False
+glu_fast,glu_fast,Alimentation méditerranéenne,-3.2216216216216216,"Papadaki 2020, Nutrients, doi:10.3390/nu12113342",(a) événement 7,1.1595959595959604,0.35994169886787364,non,False
+glu_fast,glu_fast,Alimentation méditerranéenne,-3.2216216216216216,"Papadaki 2020, Nutrients, doi:10.3390/nu12113342",(a) événement 8,1.7840404040403879,0.5537709307843486,peut masquer,False
+glu_fast,glu_fast,Alimentation méditerranéenne,-3.2216216216216216,"Papadaki 2020, Nutrients, doi:10.3390/nu12113342","(c) Spain 2019, Biochem Med (Zagreb), doi:10.11613/BM.2019.010701",3.2327311482469367,1.0034484268887305,peut imiter ou masquer,True
+insulin,insulin,Alimentation méditerranéenne,-9.884332281808623,Papadaki 2020,(a) événement 9,-22.3028346456693,2.25638252638633,peut imiter,True
+insulin,insulin,Alimentation méditerranéenne,-9.884332281808623,Papadaki 2020,(a) événement 10,13.069429957550028,1.3222370095351144,peut masquer,True
+insulin,insulin,Alimentation méditerranéenne,-9.884332281808623,Papadaki 2020,(a) événement 11,-10.723653562005286,1.0849143124964922,peut imiter,True
+insulin,insulin,Alimentation méditerranéenne,-9.884332281808623,Papadaki 2020,(a) événement 12,-12.041316536673264,1.218222555997476,peut imiter,True
+homa_ir,homa_ir,Alimentation méditerranéenne,-18.930288461538463,Papadaki 2020,(a) événement 6,2.0937914239494093,0.11060536283974022,non,False
+homa_ir,homa_ir,Alimentation méditerranéenne,-18.930288461538463,Papadaki 2020,(a) événement 7,1.3248202959830646,0.06998415785764506,non,False
+homa_ir,homa_ir,Alimentation méditerranéenne,-18.930288461538463,Papadaki 2020,(a) événement 8,1.7942574257425736,0.09478236052176642,non,False
+homa_ir,homa_ir,Alimentation méditerranéenne,-18.930288461538463,Papadaki 2020,(a) événement 9,-21.95797407670107,1.1599386940835104,peut imiter,True
+homa_ir,homa_ir,Alimentation méditerranéenne,-18.930288461538463,Papadaki 2020,(a) événement 10,13.318449538494503,0.7035523819699953,peut masquer,False
+homa_ir,homa_ir,Alimentation méditerranéenne,-18.930288461538463,Papadaki 2020,(a) événement 11,-10.571632258988306,0.5584506691732235,peut imiter,False
+homa_ir,homa_ir,Alimentation méditerranéenne,-18.930288461538463,Papadaki 2020,(a) événement 12,-12.022427704034634,0.6350895142702739,peut imiter,False
+hba1c,hba1c,Alimentation méditerranéenne,-2.830188679245284,Papadaki 2020,(b) événement 16,1.67005254989121,0.590085234294894,peut masquer,False
+hba1c,hba1c,Alimentation méditerranéenne,-2.830188679245284,Papadaki 2020,"(c) EurA1c 2026, Clin Chem Lab Med, doi:10.1515/cclm-2026-0276",3.8914907121938347,1.3749933849751543,peut imiter ou masquer,True
+tc,tc_serum,Alimentation méditerranéenne,-2.8078817733990147,Papadaki 2020,(a) événement 5,-3.332105263157903,1.186697137580797,peut imiter,True
+tc,tc,Alimentation méditerranéenne,-2.8078817733990147,Papadaki 2020,(b) événement 15,0.3122963385322697,0.11122132758254517,non,False
+ldl,ldl,Alimentation méditerranéenne,-6.699186991869919,Papadaki 2020,(a) événement 13,1.3600446428571278,0.20301637265949846,non,False
+hdl,hdl,Alimentation méditerranéenne,2.708333333333333,Papadaki 2020,(a) événement 13,-2.4499999999999966,0.9046153846153835,peut masquer,False
+hdl,hdl,Alimentation méditerranéenne,2.708333333333333,Papadaki 2020,(b) événement 14,2.921485479280994,1.078702330811444,peut imiter,True
+tg_fast,tg_serum,Alimentation méditerranéenne,-10.423728813559322,Papadaki 2020,(a) événement 5,9.55983606557378,0.9171224843395984,peut masquer,False
+tg_fast,tg_fast,Alimentation méditerranéenne,-10.423728813559322,Papadaki 2020,(b) événement 15,0.414057467889517,0.039722586350376426,non,False
+alt,alt,Alimentation méditerranéenne,-37.73333333333333,Papadaki 2020,(a) événement 5,-13.94333333333332,0.36952296819787955,non,False
+alt,alt,Alimentation méditerranéenne,-37.73333333333333,Papadaki 2020,"(c) Spain 2019, Biochem Med (Zagreb), doi:10.11613/BM.2019.010701",13.225459548395136,0.35049804456877576,non,False
+ggt,ggt,Alimentation méditerranéenne,-10.91304347826087,Papadaki 2020,(a) événement 5,9.61000000000003,0.8805976095617557,peut masquer,False
+ggt,ggt,Alimentation méditerranéenne,-10.91304347826087,Papadaki 2020,"(c) Spain 2019, Biochem Med (Zagreb), doi:10.11613/BM.2019.010701",4.628234255487174,0.4241011469171514,non,False
+crp,crp_hs,Alimentation méditerranéenne,-28.51851851851852,Papadaki 2020,(a) événement 24,2.497368421052637,0.08757006151743013,non,False
+crp,crp_hs,Alimentation méditerranéenne,-28.51851851851852,Papadaki 2020,"(c) INSTAND 2019, PLoS One, doi:10.1371/journal.pone.0221426",32.322768228274334,1.1333957690433858,peut imiter ou masquer,True
+alt,alt,Perte de poids de 5 kg,-27.666666666666664,"Koutoukidis 2021, Metabolism, doi:10.1016/j.metabol.2020.154455",(a) événement 5,-13.94333333333332,0.5039759036144573,peut imiter,False
+alt,alt,Perte de poids de 5 kg,-27.666666666666664,"Koutoukidis 2021, Metabolism, doi:10.1016/j.metabol.2020.154455","(c) Spain 2019, Biochem Med (Zagreb), doi:10.11613/BM.2019.010701",13.225459548395136,0.47802865837572783,non,False
+ast,ast,Perte de poids de 5 kg,-14.736842105263158,Koutoukidis 2021,(a) événement 5,-17.84521739130436,1.2109254658385102,peut imiter,True
+ast,ast,Perte de poids de 5 kg,-14.736842105263158,Koutoukidis 2021,"(c) Spain 2019, Biochem Med (Zagreb), doi:10.11613/BM.2019.010701",5.967092410416974,0.40490984213543757,non,False
+hdl,hdl,Perte de poids de 5 kg (poids stabilisé),3.6253125,"Dattilo 1992, Am J Clin Nutr, doi:10.1093/ajcn/56.2.320",(a) événement 13,-2.4499999999999966,0.6758038100163769,peut masquer,False
+hdl,hdl,Perte de poids de 5 kg (poids stabilisé),3.6253125,"Dattilo 1992, Am J Clin Nutr, doi:10.1093/ajcn/56.2.320",(b) événement 14,2.921485479280994,0.805857558288008,peut imiter,False
+vitd,vitd,"Vitamine D3, 25 µg/j",97.5,"Autier 2012, J Clin Endocrinol Metab, doi:10.1210/jc.2012-1238",(a) événement 23a,7.4880374633446545,0.07680038423943235,non,False
+vitd,vitd,"Vitamine D3, 25 µg/j",97.5,"Autier 2012, J Clin Endocrinol Metab, doi:10.1210/jc.2012-1238",(a) événement 23b,1.4304565281272996,0.014671349006433842,non,False
+vitd,vitd,"Vitamine D3, 25 µg/j",97.5,"Autier 2012, J Clin Endocrinol Metab, doi:10.1210/jc.2012-1238",(a) événement 23c,14.646309442009088,0.1502185583795804,non,False
+tg_fast,tg_serum,"Oméga-3 (EPA + DHA), 2 g/j",-36.11016949152543,"Wang 2023, J Am Heart Assoc, doi:10.1161/JAHA.123.029512",(a) événement 5,9.55983606557378,0.26474082509685654,non,False
+tg_fast,tg_fast,"Oméga-3 (EPA + DHA), 2 g/j",-36.11016949152543,"Wang 2023, J Am Heart Assoc, doi:10.1161/JAHA.123.029512",(b) événement 15,0.414057467889517,0.011466505799334191,non,False
+hcy,hcy,"Acide folique 0,8 mg/j",-23.0,"Homocysteine Lowering Trialists' Collaboration 2005, Am J Clin Nutr, doi:10.1093/ajcn/82.4.806",(a) événement 29,6.369339092249149,0.2769277866195282,non,False
+hb,hb,Fer oral (femmes réglées),3.8129496402877696,"Low 2016, Cochrane, doi:10.1002/14651858.CD009747.pub2",(b) événement 17,-0.0167850433507088,0.004402115142921742,non,False
+ldl,ldl,Statine (atorvastatine 10 mg/j ou équivalent),-40.0,"Law 2003, BMJ, doi:10.1136/bmj.326.7404.1423",(a) événement 13,1.3600446428571278,0.034001116071428195,non,False
+tg_fast,tg_serum,"Perte de poids de 7 kg (≈ 5-10 %), méta-analyse",-23.728813559322035,"Hasan 2020, J Clin Endocrinol Metab, doi:10.1210/clinem/dgaa673",(a) événement 5,9.55983606557378,0.4028788056206093,non,False
+tg_fast,tg_fast,"Perte de poids de 7 kg (≈ 5-10 %), méta-analyse",-23.728813559322035,"Hasan 2020, J Clin Endocrinol Metab, doi:10.1210/clinem/dgaa673",(b) événement 15,0.414057467889517,0.017449564718201072,non,False
+ldl,ldl,"Perte de poids de 7 kg (≈ 5-10 %), méta-analyse",-7.284552845528456,Hasan 2020,(a) événement 13,1.3600446428571278,0.18670255699936017,non,False
+hdl,hdl,"Perte de poids de 7 kg (≈ 5-10 %), méta-analyse",6.708333333333333,Hasan 2020,(a) événement 13,-2.4499999999999966,0.3652173913043473,non,False
+hdl,hdl,"Perte de poids de 7 kg (≈ 5-10 %), méta-analyse",6.708333333333333,Hasan 2020,(b) événement 14,2.921485479280994,0.4355009410108314,non,False
+alt,alt,"Perte de poids de 7 kg (≈ 5-10 %), méta-analyse",-38.73333333333333,Koutoukidis 2021,(a) événement 5,-13.94333333333332,0.359982788296041,non,False
+alt,alt,"Perte de poids de 7 kg (≈ 5-10 %), méta-analyse",-38.73333333333333,Koutoukidis 2021,"(c) Spain 2019, Biochem Med (Zagreb), doi:10.11613/BM.2019.010701",13.225459548395136,0.3414490416969485,non,False
+glu_fast,glu_serum,"Perte de poids de 5 % (essai unique, petite taille)",-4.1,"Magkos 2016, Cell Metab, doi:10.1016/j.cmet.2016.02.005",(a) événement 5,2.410000000000001,0.5878048780487808,peut masquer,False
+glu_fast,glu_fast,"Perte de poids de 5 % (essai unique, petite taille)",-4.1,"Magkos 2016, Cell Metab, doi:10.1016/j.cmet.2016.02.005",(a) événement 6,1.850207253886027,0.4512700619234213,non,False
+glu_fast,glu_fast,"Perte de poids de 5 % (essai unique, petite taille)",-4.1,"Magkos 2016, Cell Metab, doi:10.1016/j.cmet.2016.02.005",(a) événement 7,1.1595959595959604,0.28282828282828304,non,False
+glu_fast,glu_fast,"Perte de poids de 5 % (essai unique, petite taille)",-4.1,"Magkos 2016, Cell Metab, doi:10.1016/j.cmet.2016.02.005",(a) événement 8,1.7840404040403879,0.4351318058635093,non,False
+glu_fast,glu_fast,"Perte de poids de 5 % (essai unique, petite taille)",-4.1,"Magkos 2016, Cell Metab, doi:10.1016/j.cmet.2016.02.005","(c) Spain 2019, Biochem Med (Zagreb), doi:10.11613/BM.2019.010701",3.2327311482469367,0.7884710117675456,peut imiter ou masquer,False
+insulin,insulin,"Perte de poids de 5 % (essai unique, petite taille)",-13.6,Magkos 2016,(a) événement 9,-22.3028346456693,1.6399143121815662,peut imiter,True
+insulin,insulin,"Perte de poids de 5 % (essai unique, petite taille)",-13.6,Magkos 2016,(a) événement 10,13.069429957550028,0.9609874968786786,peut masquer,False
+insulin,insulin,"Perte de poids de 5 % (essai unique, petite taille)",-13.6,Magkos 2016,(a) événement 11,-10.723653562005286,0.7885039383827416,peut imiter,False
+insulin,insulin,"Perte de poids de 5 % (essai unique, petite taille)",-13.6,Magkos 2016,(a) événement 12,-12.041316536673264,0.8853909218142106,peut imiter,False
+tg_fast,tg_serum,"Perte de poids de 5 % (essai unique, petite taille)",-37.9,Magkos 2016,(a) événement 5,9.55983606557378,0.2522384186167224,non,False
+tg_fast,tg_fast,"Perte de poids de 5 % (essai unique, petite taille)",-37.9,Magkos 2016,(b) événement 15,0.414057467889517,0.010924999152757704,non,False
+hdl,hdl,"Perte de poids de 5 % (essai unique, petite taille)",0.3,Magkos 2016,(a) événement 13,-2.4499999999999966,8.166666666666655,peut masquer,True
+hdl,hdl,"Perte de poids de 5 % (essai unique, petite taille)",0.3,Magkos 2016,(b) événement 14,2.921485479280994,9.738284930936647,peut imiter,True
+alt,alt,"Perte de poids de 5 % (essai unique, petite taille)",-16.7,Magkos 2016,(a) événement 5,-13.94333333333332,0.8349301397205581,peut imiter,False
+alt,alt,"Perte de poids de 5 % (essai unique, petite taille)",-16.7,Magkos 2016,"(c) Spain 2019, Biochem Med (Zagreb), doi:10.11613/BM.2019.010701",13.225459548395136,0.7919436855326429,peut imiter ou masquer,False
+crp,crp_hs,"Perte de poids de 5 % (essai unique, petite taille)",5.1,Magkos 2016,(a) événement 24,2.497368421052637,0.48968008255934065,non,False
+crp,crp_hs,"Perte de poids de 5 % (essai unique, petite taille)",5.1,Magkos 2016,"(c) INSTAND 2019, PLoS One, doi:10.1371/journal.pone.0221426",32.322768228274334,6.337797691818498,peut imiter ou masquer,True

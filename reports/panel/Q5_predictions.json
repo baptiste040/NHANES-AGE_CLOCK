@@ -1,0 +1,218 @@
+{
+  "P1": {
+    "top5": [
+      {
+        "id": "rbc_folate",
+        "evenement": "22",
+        "ratio": 2.83970304084875
+      },
+      {
+        "id": "creat",
+        "evenement": "1",
+        "ratio": 1.0719561284245411
+      },
+      {
+        "id": "alp",
+        "evenement": "5",
+        "ratio": 0.44475433794862385
+      },
+      {
+        "id": "insulin",
+        "evenement": "9",
+        "ratio": 0.4166669911792438
+      },
+      {
+        "id": "albumin",
+        "evenement": "5",
+        "ratio": 0.38904920330911563
+      }
+    ],
+    "n_faible_variabilite": 2,
+    "enzyme_ratio_ge_1": false,
+    "verifiee": false
+  },
+  "P2": {
+    "cas": [
+      {
+        "evenement": "1",
+        "id": "creat",
+        "a": 22.299999999999986,
+        "b": 23.667462234600634,
+        "meme_signe": true
+      },
+      {
+        "evenement": "2",
+        "id": "creat",
+        "a": -3.97777777777778,
+        "b": 4.740764839755562,
+        "meme_signe": false
+      },
+      {
+        "evenement": "5",
+        "id": "albumin",
+        "a": -4.441162790697673,
+        "b": -5.691447801309413,
+        "meme_signe": true
+      },
+      {
+        "evenement": "5",
+        "id": "alp",
+        "a": 9.731834166997434,
+        "b": 14.12712303376149,
+        "meme_signe": true
+      },
+      {
+        "evenement": "5",
+        "id": "ast",
+        "a": -17.84521739130436,
+        "b": -16.72102726804532,
+        "meme_signe": true
+      },
+      {
+        "evenement": "5",
+        "id": "alt",
+        "a": -13.94333333333332,
+        "b": -13.809613674734557,
+        "meme_signe": true
+      },
+      {
+        "evenement": "5",
+        "id": "urea",
+        "a": -3.282857142857143,
+        "b": 0.7754787783530226,
+        "meme_signe": false
+      },
+      {
+        "evenement": "5",
+        "id": "tc_serum",
+        "a": -3.332105263157903,
+        "b": -2.243074678867341,
+        "meme_signe": true
+      },
+      {
+        "evenement": "5",
+        "id": "ck",
+        "a": 5.8250000000000135,
+        "b": -0.7438750264856853,
+        "meme_signe": false
+      },
+      {
+        "evenement": "5",
+        "id": "creat",
+        "a": 3.208536585365862,
+        "b": 1.9802739873116424,
+        "meme_signe": true
+      },
+      {
+        "evenement": "5",
+        "id": "ggt",
+        "a": 9.61000000000003,
+        "b": 9.94862093622575,
+        "meme_signe": true
+      },
+      {
+        "evenement": "5",
+        "id": "iron",
+        "a": 8.27012987012985,
+        "b": 9.87496988246317,
+        "meme_signe": true
+      },
+      {
+        "evenement": "5",
+        "id": "ldh",
+        "a": 14.789682539682536,
+        "b": 22.11078900720498,
+        "meme_signe": true
+      },
+      {
+        "evenement": "5",
+        "id": "bili",
+        "a": -3.190000000000004,
+        "b": -12.624879427509573,
+        "meme_signe": true
+      },
+      {
+        "evenement": "5",
+        "id": "tg_serum",
+        "a": 9.55983606557378,
+        "b": -3.5467006768839626,
+        "meme_signe": false
+      },
+      {
+        "evenement": "9",
+        "id": "insulin",
+        "a": -22.3028346456693,
+        "b": -28.877227360355885,
+        "meme_signe": true
+      },
+      {
+        "evenement": "10",
+        "id": "insulin",
+        "a": 13.069429957550028,
+        "b": 1.822135005307301,
+        "meme_signe": true
+      },
+      {
+        "evenement": "12",
+        "id": "insulin",
+        "a": -12.041316536673264,
+        "b": -16.848655913705812,
+        "meme_signe": true
+      },
+      {
+        "evenement": "18",
+        "id": "ferritin",
+        "a": 7.584518633543502,
+        "b": 10.979309288524131,
+        "meme_signe": true
+      },
+      {
+        "evenement": "20",
+        "id": "b12",
+        "a": 14.721402739264988,
+        "b": 11.13360482174417,
+        "meme_signe": true
+      },
+      {
+        "evenement": "22",
+        "id": "rbc_folate",
+        "a": 84.73122498874804,
+        "b": 81.59060667343606,
+        "meme_signe": true
+      },
+      {
+        "evenement": "25",
+        "id": "apob",
+        "a": -7.699999999999996,
+        "b": -6.565100491117937,
+        "meme_signe": true
+      },
+      {
+        "evenement": "26",
+        "id": "apob",
+        "a": 3.3393258426966055,
+        "b": 4.794121014176023,
+        "meme_signe": true
+      },
+      {
+        "evenement": "31",
+        "id": "u_creat",
+        "a": -3.316742870699374,
+        "b": -4.002100193742486,
+        "meme_signe": true
+      }
+    ],
+    "part_meme_signe": 0.8333333333333334,
+    "verifiee": true
+  },
+  "P3": {
+    "par_marqueur_tg_alt_vitd": {
+      "tg_fast": true,
+      "alt": true,
+      "vitd": false
+    },
+    "marqueurs_avec_decalage_et_intervention": 15,
+    "part_rho_ge_0_5": 0.7333333333333333,
+    "verifiee": false
+  }
+}

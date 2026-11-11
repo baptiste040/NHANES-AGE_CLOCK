@@ -1,0 +1,76 @@
+id,ratio_max,evenement,source,categorie,ratio_entre_labos_c,cd_deux_labos_hausse,cd_meme_labo_hausse
+acr,,,,non estimable,,,
+aip,0.02825449345755444,13,(a),négligeable au regard du bruit,,,
+alb_glob,0.5473015974832411,5,(a),un changement de laboratoire peut créer un faux changement,,,25.773972305043458
+albumin,0.38904920330911563,5,(a),négligeable au regard du bruit,,,12.886472943397198
+alp,0.7741051183320766,4,"(b), empirique",un changement de laboratoire peut créer un faux changement,0.3693701579632995,28.367165895701895,21.881369863382005
+alt,0.21629076237429745,5,(a),négligeable au regard du bruit,0.07290041731591608,189.4832847887236,181.4181596667989
+apob,0.3228143745603735,25,(a),négligeable au regard du bruit,,,31.32444965340637
+ast,0.38487714169704956,5,(a),négligeable au regard du bruit,0.06902448042940192,88.3740701176655,86.44892903641778
+ast_alt,0.10806309443078135,5,(a),négligeable au regard du bruit,,,62.082472419189806
+b12,0.3041369114013497,20,(a),négligeable au regard du bruit,,,48.40386742744984
+baso_pct,0.0536915842080477,17,"(b), empirique",négligeable au regard du bruit,,,
+bili,0.8952937102605838,4,"(b), empirique",un changement de laboratoire peut créer un faux changement,0.10561389377341386,68.56809093947396,65.75110477971786
+ca,0.24393441985173522,5,(a),négligeable au regard du bruit,0.5329553648908408,14.217903899055951,9.518061920610176
+ca_corr,0.06055261333872224,5,(a),négligeable au regard du bruit,,,8.802460110953314
+ck,,,,non estimable,,,
+cl,0.2503034202265901,5,(a),négligeable au regard du bruit,0.24507129497631425,6.824089325457061,6.104192972771849
+creat,1.1887801476364477,4,"(b), empirique",comparaison impossible sans équation de passage,0.20828307637443622,22.933015237791786,20.803090171959184
+crp_hs,0.007106937004963097,24,(a),négligeable au regard du bruit,0.09198317544495235,397.3067986305851,351.3986995112819
+egfr,0.5858243549876534,1,(a),un changement de laboratoire peut créer un faux changement,,,24.77854465525371
+eos_pct,0.0936055067482185,17,"(b), empirique",négligeable au regard du bruit,,,118.82944710356507
+ferritin,0.10007140569414404,19,(a),négligeable au regard du bruit,,,84.28029526061853
+fib4,0.30250093458869454,5,(a),négligeable au regard du bruit,,,61.0453950436852
+ft4,,,,non estimable,,,16.026288604283344
+ggt,0.18032827750906438,5,(a),négligeable au regard du bruit,0.08684719159213802,54.694121455690215,53.291697412886194
+ggt_hdl,0.14062660034168625,5,(a),négligeable au regard du bruit,,,65.01745872350608
+globulin,0.4879498000124444,5,(a),négligeable au regard du bruit,,,17.51351119622622
+glu_fast,0.06296032160676066,6,(a),négligeable au regard du bruit,0.11000594248797466,30.353018885050908,29.386877428010983
+glu_serum,0.08200939367933108,5,(a),négligeable au regard du bruit,,,29.386877428010983
+hb,0.0018115258157962,17,"(b), empirique",négligeable au regard du bruit,,,10.211896784225516
+hba1c,0.1606060537313492,16,"(b), empirique",négligeable au regard du bruit,0.37423790434520326,13.205845772910019,10.398440850086256
+hco3,0.0462606077621387,5,(a),négligeable au regard du bruit,,,37.61299481724676
+hct,0.1394514404529231,17,"(b), empirique",négligeable au regard du bruit,,,10.102152680487375
+hcy,0.13826628225905033,29,(a),négligeable au regard du bruit,,,46.06574349280472
+hdl,0.08192165718464421,13,(a),négligeable au regard du bruit,,,42.666828512486354
+homa_ir,0.3781068191154483,9,(a),négligeable au regard du bruit,,,138.51245039940824
+insulin,0.4166669911792438,9,(a),négligeable au regard du bruit,,,115.17760144223912
+iron,0.06262257014981706,5,(a),négligeable au regard du bruit,,,132.0630860462058
+iron_fe,0.1101826014674571,32,"(b), empirique",négligeable au regard du bruit,,,132.0630860462058
+k,0.10128015012698802,5,(a),négligeable au regard du bruit,0.07998770584199597,16.255304248767622,16.013718166193858
+ldh,,,,non estimable,,,
+ldl,0.02891845672107561,13,(a),négligeable au regard du bruit,,,47.03033277242401
+ldl_hdl,0.05250858235436379,13,(a),négligeable au regard du bruit,,,70.33955310116649
+lymph_pct,0.0754760675311824,17,"(b), empirique",négligeable au regard du bruit,,,47.27436860380778
+magnesium,,,,non estimable,0.3361177895298665,11.469856820806811,9.400833748820968
+mch,0.2812537042583189,17,"(b), empirique",négligeable au regard du bruit,,,4.6778272998799775
+mchc,0.3241493843612077,17,"(b), empirique",négligeable au regard du bruit,,,4.5256093536823805
+mcv,0.0546187635469274,17,"(b), empirique",négligeable au regard du bruit,,,2.730310665008462
+mono_pct,0.1728881690672189,17,"(b), empirique",négligeable au regard du bruit,,,57.40486640588318
+mpv,0.7718484797584984,17,"(b), empirique",un changement de laboratoire peut créer un faux changement,,,13.419936736845628
+na,0.21466679776003858,5,(a),négligeable au regard du bruit,0.24779712761792963,4.162785272669023,3.726705798696761
+neut_pct,0.0115906027959871,17,"(b), empirique",négligeable au regard du bruit,,,43.071907348962114
+non_hdl,0.035742968101362245,13,(a),négligeable au regard du bruit,,,36.44626932022914
+osmo,0.2155264188368118,5,(a),négligeable au regard du bruit,,,3.5170837099102403
+osmo_eff,0.22549225778040347,5,(a),négligeable au regard du bruit,,,3.675317507327125
+phos,0.3999549175660387,4,"(b), empirique",négligeable au regard du bruit,,,29.794922027035287
+plt,0.0238536224923091,17,"(b), empirique",négligeable au regard du bruit,,,34.96795187212081
+protein,0.03471644292399431,5,(a),négligeable au regard du bruit,0.29768328666172283,12.21690042882486,10.36972597648218
+quicki,0.2803850799883844,9,(a),négligeable au regard du bruit,,,13.247114221983304
+rbc,0.1230743800121037,17,"(b), empirique",négligeable au regard du bruit,,,10.226396372824142
+rbc_folate,2.83970304084875,22,(a),comparaison impossible sans équation de passage,,,29.83805833564308
+rdw,0.7930943955306031,17,"(b), empirique",un changement de laboratoire peut créer un faux changement,,,6.909201840648382
+tc,0.0120278991797592,15,"(b), empirique",négligeable au regard du bruit,,,25.964329586151425
+tc_serum,0.1616550137339348,5,(a),négligeable au regard du bruit,,,25.964329586151425
+testo,0.0704888456277442,27,(a),négligeable au regard du bruit,,,55.327902808851846
+tg_fast,0.0037443342782715,15,"(b), empirique",négligeable au regard du bruit,,,110.58239919771664
+tg_hdl,0.017864428532767065,13,(a),négligeable au regard du bruit,,,140.58846286657962
+tg_serum,0.08644988836316708,5,(a),négligeable au regard du bruit,,,110.58239919771664
+tsh,0.1248244797845664,28,"(b), empirique",négligeable au regard du bruit,,,76.88506964353321
+tyg,0.022065025664594173,8,(a),négligeable au regard du bruit,,,
+u_creat,0.04323200955465695,31,(a),négligeable au regard du bruit,,,329.5460507398534
+urate,0.08701902888631877,5,(a),négligeable au regard du bruit,,,29.7917922478248
+urea,0.08119399605235503,5,(a),négligeable au regard du bruit,,,67.87611539427705
+urea_creat,0.5087097859850003,1,(a),un changement de laboratoire peut créer un faux changement,,,67.5468862392033
+vitd,0.270548060274916,23c,(a),négligeable au regard du bruit,,,54.13570301382429
+wbc,0.0581095326856427,17,"(b), empirique",négligeable au regard du bruit,,,45.9080057747254

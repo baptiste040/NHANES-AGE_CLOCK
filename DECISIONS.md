@@ -2870,3 +2870,47 @@ cible passe par plusieurs laboratoires de routine, dont les écarts sont probabl
 Décisions de l'auteur du projet intégrées avant le commit : partie (c) retenue, avec ses critères de
 sélection ; moyennes géométriques ajustées, médiane en sensibilité ; vitamine D traitée en (a) avec
 l'équation de la note NCHS ; partie (d) et prédiction P3 ajoutées.
+
+### Résultat — programme « panel », Q5 (2026-11-11)
+
+Exécution du protocole (`22c38f5`). Rapport : `reports/panel/Q5_METHODES.md`.
+
+**Vérifications.** V2 et V3 réussies. V1 en échec partiel : les valeurs après correction du NCHS
+sont retrouvées exactement (41,5 % et 3,4 %), mais pas les valeurs avant (48,3 % contre 53,7 %).
+À la demande de l'auteur du projet, 36 variantes ont été testées sans changer l'analyse : poids
+WTSAF2YR ou WTMEC2YR, âge minimal 18 ou 20 ans, exclusion des diabétiques connus, jeûne ≥ 8 h.
+Aucune n'explique l'écart, qui reste inexpliqué.
+
+**Règle pré-enregistrée (suivi).**
+- Ratio ≥ 1 : folates érythrocytaires 2007 (+85 %) ; créatinine 1999-2000 (+22 %).
+- Ratio de 0,5 à 1 :
+  - créatinine 2007, DFGe et urée/créatinine 1999, albumine/globulines 2017 ;
+  - en empirique : PAL et bilirubine 1999-2003, RDW et VPM (2012), insuline 2003.
+- Tous les autres marqueurs : < 0,5.
+
+**Classification.** Changement de plateforme de biochimie en 2017 : +26 points sous la limite basse de l'ASAT,
++10 à +14 pour l'ALAT, le chlore, le calcium et la bilirubine (S). Glycémie : +4 à +5 points au
+seuil ADA à chaque changement d'instrument (R). Vitamine D, RIA → LC-MS/MS : −10 points sous
+50 nmol/L.
+
+**(c)** Trois études européennes retenues (EEQ espagnole 2019, EurA1c 2026, INSTAND 2019), deux en
+sensibilité (RfB 2021, Equalis 2019). Le changement détectable entre deux laboratoires vaut 1,02 à
+1,49 fois celui d'un même laboratoire : calcium ×1,49 (ratio 0,53), PAL ×1,30, HbA1c ×1,27. Pour
+les lipides, la NFS, les vitamines et l'insuline, rien trouvé avec ces requêtes : l'écart entre
+laboratoires de routine y reste inconnu.
+
+**(d)** ρ ≥ 0,5 pour 11 marqueurs sur 15 : TG, insuline, HOMA-IR, cholestérol total, HDL,
+glycémie, HbA1c, GGT, ALAT, ASAT et CRP. Pas pour la vitamine D (ρ ≤ 0,15), ni pour le LDL sous
+statine.
+
+**Prédictions.** P1 non vérifiée (2 analytes à faible variabilité parmi les 5 premiers ; aucune
+enzyme ≥ 1). P2 vérifiée (20 sur 24). P3 non vérifiée (vitamine D).
+
+**Écarts.**
+- Régression médiane : moindres carrés repondérés itératifs au lieu de la programmation linéaire,
+  arrêtée faute de temps de calcul, avant toute lecture.
+- Corrigés avant la lecture des ratios :
+  - échelle log (bilirubine, LDL, LDL/HDL) ;
+  - unités des folates dans la classification ;
+  - osmolalité exclue de la classification.
+- Créatinine 2005-2006 : convention de sens opposée entre (a) et (b), signalée dans le rapport.
