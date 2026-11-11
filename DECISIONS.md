@@ -2270,3 +2270,163 @@ son empreinte SHA-256 dans le pré-enregistrement.
 
 CRP : les seuils AHA/CDC 2003 seront ajoutés si l'auteur du projet fournit le texte ; en attendant,
 l'intervalle statistique suffit.
+
+## Programme « panel », Q2 : jeûne et heure du prélèvement (pré-enregistrement, 2026-11-11)
+
+Texte complet, validé par l'auteur du projet avec ses modifications. Écrit avant toute lecture de
+valeurs de marqueurs pour cette question. Code : `src/aging_clock/panel/q2.py`. Rapport :
+`reports/panel/Q2_JEUNE_HEURE.md`.
+
+**Question.** De combien le jeûne, puis l'heure du prélèvement, déplacent-ils chaque marqueur et
+indice, par rapport au changement détectable à 6 mois de Q1 ? Quels marqueurs exigent un
+prélèvement à jeun ou un horaire fixe pour qu'un suivi ait un sens ? Analyse principale : le
+**jeûne**, plus important dans la situation visée (prélèvements surtout le matin, jeûne non
+contrôlé). L'heure vient en second.
+
+### Données et faisabilité
+
+Comptages faits avant l'analyse, sans aucune valeur de marqueur.
+
+**NHANES III, paires des deux examens** (fichiers `lab` et `labse`). Adultes de 20 à 79 ans, hors
+femmes enceintes (`MAPF12R`) : 2 008 personnes.
+- Durée de jeûne (`PHPFAST`, `PHRFAST`, en heures) connue aux deux examens pour **1 206** personnes.
+- Croisement des classes de jeûne (examen 1 en lignes, examen 2 en colonnes : < 4 h, 4-8 h,
+  ≥ 8 h) : 29, 16, 20 / 21, 247, 42 / 28, 70, 733.
+- **48 personnes** sont non à jeun (< 4 h) à un examen et à jeun (≥ 8 h) à l'autre.
+- La séance (`MXPSESSR`, `MXRSESSR`) est identique aux deux examens pour tous.
+- L'heure exacte du prélèvement (`PHPBEST`, `PHRBEST`, au format HH:MM) est connue aux deux examens
+  pour 1 207 personnes ; 51 ont plus de 2 h d'écart.
+
+**NHANES 1999-2018, examen principal.** Durée de jeûne `PHAFSTHR` et séance `PHDSESN` (1 matin,
+2 après-midi, 3 soir), dans les fichiers PH, PH_B, PH_C et FASTQX_D à J. Covariables :
+- `RIDRETH1` et `INDFMPIR` (DEMO) ;
+- `BMXBMI` (BMX) ;
+- `DIQ010` (DIQ ; diabète = 1).
+
+Adultes de 20 à 79 ans, hors femmes enceintes. Marqueurs mesurés quelle que soit la séance :
+- numération ;
+- biochimie, dont la glycémie et les TG sériques non à jeun `LBXSGL` et `LBXSTR`, et la CK
+  (2011-2018) ;
+- HbA1c, cholestérol total, HDL ;
+- CRP standard (1999-2010) ;
+- B12, folates érythrocytaires (1999-2006), 25-OH vitamine D, ferritine ;
+- TSH (1999-2002 et 2007-2012).
+
+Mêmes fichiers et variables que l'inventaire du programme.
+
+**Indices dérivés** (NHANES III seulement : ils demandent la glycémie à jeun, l'insuline ou les TG
+du plasma, mesurés à toutes les séances dans NHANES III) :
+- HOMA-IR = glucose (mg/dL) × insuline (µU/mL) / 405 ;
+- QUICKI = 1 / (log₁₀ insuline + log₁₀ glucose) ;
+- TyG = ln(TG × glucose / 2), en mg/dL, sur l'échelle additive ;
+- LDL calculé :
+  - **Friedewald** : CT − HDL − TG/5 (mg/dL), si TG < 400 mg/dL ;
+  - **Martin-Hopkins** : CT − HDL − TG / facteur, avec le tableau de facteurs de Martin et al.
+    (JAMA 2013), lu dans la source. Si ce tableau ne peut pas être lu, l'indice est déclaré « non
+    estimable ».
+
+### Analyse A : jeûne chez une même personne (NHANES III), analyse principale
+
+- **Modèle principal**, sur les paires avec le jeûne connu aux deux examens :
+  $\ln x_2 - \ln x_1 = \alpha + \beta\,(F_2 - F_1) + \varepsilon$.
+  - $F$ est la durée de jeûne en heures, plafonnée à 24 h.
+  - L'ordonnée à l'origine $\alpha$ absorbe le décalage systématique entre examens.
+  - Les marqueurs sur l'échelle additive dans Q1 (et le TyG) utilisent $x_2 - x_1$.
+- **Effet rapporté** : le contraste « moins de 4 h contre 10 h », calculé à 2 h contre 10 h :
+  $e^{\beta(2-10)} - 1$ en %, ou $\beta \times (2-10)$ sur l'échelle additive.
+  - IC 95 % par bootstrap des personnes (2 000 tirages, graine 2026).
+  - Estimable si au moins 30 paires ont un écart de jeûne d'au moins 4 h.
+- **Sensibilité en classes** : même modèle, avec à la place de $F_2 - F_1$ les différences
+  d'indicatrices des classes < 4 h et 4-8 h (référence ≥ 8 h). Effet rapporté : < 4 h contre ≥ 8 h.
+- **Contraste direct, en appui** : chez les personnes discordantes (< 4 h à un examen, ≥ 8 h à
+  l'autre), moyenne de $\ln x_{\text{non à jeun}} - \ln x_{\text{à jeun}}$, moins le décalage
+  moyen orienté de la même façon chez les personnes de même classe aux deux examens. IC par
+  bootstrap. **Estimable si au moins 30 paires discordantes** ; sinon « non estimable ».
+
+### Analyse B : associations entre personnes
+
+Ces résultats sont présentés comme des **associations**, à confronter à la physiologie connue : les
+personnes vues l'après-midi ou non à jeun diffèrent des autres (âge, santé, emploi).
+
+- **NHANES 1999-2018.** Régression linéaire de $\ln x$ (ou $x$ sur l'échelle additive) sur :
+  - la durée de jeûne en classes (< 2, 2-4, 4-8, 8-12, ≥ 12 h ; référence 8-12 h) ;
+  - la séance (référence : matin) ;
+  - les covariables d'ajustement : âge (spline cubique naturelle, 4 degrés de liberté), sexe,
+    IMC, groupe ethnique (`RIDRETH1`), rapport revenu / seuil de pauvreté, diabète déclaré et
+    cycle.
+
+  Contrastes rapportés :
+  - non à jeun (moyenne des coefficients < 2 h et 2-4 h, pondérée par les effectifs) contre
+    8-12 h ;
+  - après-midi contre matin ; soir contre matin.
+
+  IC par bootstrap des personnes (500 tirages), non pondéré.
+- **NHANES III, examen principal.** Même modèle, avec l'**heure exacte** du prélèvement (spline
+  cubique naturelle, 4 degrés de liberté) à la place de la séance. Covariables :
+  - âge, sexe ;
+  - IMC (`BMPBMI`), groupe ethnique (`DMARETHN`) ;
+  - rapport revenu / seuil de pauvreté (`DMPPIR`) ;
+  - diabète déclaré (`HAD1`).
+
+  Contrastes d'heure, dans cet ordre : **11 h contre 8 h** (prélèvement du matin réaliste), puis
+  16 h contre 9 h. Contraste de jeûne : < 4 h contre 8-12 h.
+- **Heure chez une même personne** (NHANES III, 51 personnes avec plus de 2 h d'écart), en
+  secondaire : régression de $\ln x_2 - \ln x_1$ sur la différence d'heure, avec ordonnée à
+  l'origine. Effet rapporté par heure, avec l'effectif.
+
+### Comparaison au changement détectable et règles
+
+Ratio = |effet| / changement détectable à 6 mois de Q1, du côté de l'effet (20-79 ans, valeur
+principale). Pour les indices dérivés sans valeur dans Q1 (LDL Martin-Hopkins), on reprend celui du
+LDL Friedewald.
+
+| Ratio | Conclusion |
+|---|---|
+| ≥ 1 | **comparaison impossible sans standardiser** |
+| 0,5 à 1 | **à enregistrer et à corriger** |
+| < 0,5 | négligeable |
+
+**Décisions.**
+- **Jeûne** : analyse A, modèle principal, contraste 2 h contre 10 h. Pour un marqueur absent des
+  paires de NHANES III : analyse B (NHANES 1999-2018, non à jeun contre 8-12 h), avec le statut
+  « association ».
+- **Heure** : analyse B. NHANES III, 11 h contre 8 h, pour la décision principale. Si ce contraste
+  n'est pas disponible : NHANES 1999-2018, après-midi contre matin. Le contraste 16 h contre 9 h est
+  rapporté. S'il est ≥ 1, il ajoute la mention « horaire fixe requis si prélèvements
+  l'après-midi ».
+
+### Tableau final
+
+Pour chaque marqueur et indice : effet du jeûne et de l'heure, leurs IC, le ratio au changement
+détectable, et une **catégorie** :
+- **à jeun requis** : ratio du jeûne ≥ 1 ;
+- **horaire fixe requis** : ratio de l'heure ≥ 1 ;
+- **à enregistrer et corriger** : un ratio de 0,5 à 1 ;
+- **indifférent** : ratios < 0,5 ;
+- **non estimable** : aucune estimation disponible.
+
+Si plusieurs catégories s'appliquent, on les rapporte toutes.
+
+### Attentes a priori (physiologie connue, données par l'auteur du projet)
+
+| Marqueur | Attente | Situation |
+|---|---|---|
+| TG, glycémie, insuline (et HOMA-IR, TyG) | hausse | non à jeun |
+| QUICKI | baisse | non à jeun |
+| Fer | baisse dans la journée | heure plus tardive |
+| TSH | baisse | après-midi contre matin |
+| Phosphate | hausse | après-midi |
+| Leucocytes | hausse | après-midi ou soir |
+
+Une attente est **confirmée** si l'effet a le signe attendu et que son IC exclut 0.
+
+### Réserves
+
+- Les discordances de jeûne sont rares dans NHANES III (48 paires < 4 h / ≥ 8 h) : les IC seront
+  larges.
+- La séance ne varie jamais chez une même personne.
+- NHANES est américain ; NHANES III date de 1988-1994.
+- L'effet d'un repas dépend de sa composition, inconnue ici.
+- Le changement détectable de Q1 est une borne basse pour la plupart des marqueurs.
+- Le modèle linéaire en heures de jeûne suppose un effet proportionnel au temps écoulé ; la
+  sensibilité en classes le vérifie.
