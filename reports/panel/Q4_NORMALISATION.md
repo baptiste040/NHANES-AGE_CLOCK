@@ -110,8 +110,8 @@ Dans le tableau :
 | Bilirubine totale | S | 2 % / 11 % | 78 % (n=9) | **60 %** (n=198) | 45 % | 63 % / 0 % | — | anomalie isolée peu informative (un seul jeu) |
 | Calcium | S | 8 % / 15 % | 64 % (n=33) | **66 %** (n=260) | 62 % | 66 % / 50 % | oui | anomalie isolée peu informative (deux jeux) |
 | Chlorure | S | 8 % / 15 % | 67 % (n=33) | **63 %** (n=262) | 63 % | 63 % / 50 % | oui | anomalie isolée peu informative (deux jeux) |
-| Éosinophiles (%) | S | 4 % / 24 % ⚠ | 53 % (n=15) | **58 %** (n=67) | 23 % | 66 % / 18 % | — | anomalie isolée peu informative (un seul jeu) |
-| Bicarbonates | S | 13 % / 35 % ⚠ | 69 % (n=55) | **55 %** (n=627) | 42 % | 54 % / 66 % | non | anomalie isolée peu informative (deux jeux) |
+| Éosinophiles (%) | S | 4 % / 21 % ⚠ | 53 % (n=15) | **65 %** (n=57) | 61 % | 67 % / 0 % | — | anomalie isolée peu informative (un seul jeu) |
+| Bicarbonates | S | 13 % / 33 % ⚠ | 69 % (n=55) | **54 %** (n=572) | 49 % | 54 % / 50 % | non | anomalie isolée peu informative (deux jeux) |
 | Homocystéine | S | 9 % / — | 54 % (n=37) | **—** (n=—) | — | — / — | — | anomalie isolée peu informative (un seul jeu) |
 | Fer sérique | S | 6 % / 6 % | 65 % (n=23) | **62 %** (n=107) | 67 % | 63 % / 33 % | oui | anomalie isolée peu informative (deux jeux) |
 | Potassium | S | 8 % / 8 % | 79 % (n=33) | **61 %** (n=139) | 64 % | 63 % / 0 % | non | anomalie isolée peu informative (deux jeux) |
@@ -131,7 +131,7 @@ Dans le tableau :
 | Insuline (à jeun) | S | 10 % / 8 % | 31 % (n=16) | **36 %** (n=94) | 36 % | 41 % / 16 % | — | confirmer avant de signaler (un seul jeu) |
 | Lymphocytes (%) | S | 8 % / 7 % | 62 % (n=32) | **48 %** (n=128) | 56 % | 49 % / 30 % | non | confirmer avant de signaler (deux jeux) |
 | CCMH | S | 2 % / 6 % | 50 % (n=10) | **49 %** (n=99) | 54 % | 53 % / 20 % | — | confirmer avant de signaler (un seul jeu) |
-| Monocytes (%) | S | 6 % / 41 % ⚠ | 42 % (n=26) | **47 %** (n=116) | 25 % | 48 % / 33 % | oui | confirmer avant de signaler (deux jeux) |
+| Monocytes (%) | S | 6 % / 39 % ⚠ | 42 % (n=26) | **48 %** (n=107) | 55 % | 48 % / — | oui | confirmer avant de signaler (deux jeux) |
 | VPM | S | 5 % / 9 % | 55 % (n=20) | **32 %** (n=157) | 39 % | 35 % / 17 % | non | confirmer avant de signaler (deux jeux) |
 | Neutrophiles (%) | S | 7 % / 11 % | 61 % (n=31) | **40 %** (n=30) | 47 % | 44 % / 0 % | non | confirmer avant de signaler (deux jeux) |
 | Plaquettes | S | 5 % / 8 % | 43 % (n=23) | **32 %** (n=142) | 38 % | 36 % / 19 % | non | confirmer avant de signaler (deux jeux) |
@@ -142,7 +142,7 @@ Dans le tableau :
 | PAL | S | 4 % / 15 % | 44 % (n=18) | **17 %** (n=256) | 19 % | 27 % / 0 % | — | normalisation < 30 % (un seul jeu) |
 | ALAT | S | 6 % / 33 % ⚠ | 36 % (n=25) | **30 %** (n=578) | 29 % | 33 % / 10 % | non | normalisation < 30 % (deux jeux) |
 | Vitamine B12 | S | 4 % / 5 % | 39 % (n=18) | **28 %** (n=46) | 28 % | 41 % / 0 % | — | normalisation < 30 % (un seul jeu) |
-| Basophiles (%) | S | 0 % / 72 % ⚠ | 50 % (n=2) | **18 %** (n=204) | 6 % | 18 % / 22 % | — | normalisation < 30 % (un seul jeu) |
+| Basophiles (%) | S | 0 % / 71 % ⚠ | 50 % (n=2) | **18 %** (n=195) | 59 % | 18 % / 50 % | — | normalisation < 30 % (un seul jeu) |
 | Créatinine | S | 6 % / 22 % ⚠ | 35 % (n=23) | **26 %** (n=391) | 18 % | 31 % / 3 % | non | normalisation < 30 % (deux jeux) |
 | Ferritine | S | 14 % / 17 % ⚠ | 15 % (n=26) | **14 %** (n=162) | 25 % | 18 % / 2 % | oui | normalisation < 30 % (deux jeux) |
 | GGT | S | 5 % / 8 % | 32 % (n=19) | **17 %** (n=117) | 17 % | 34 % / 2 % | — | normalisation < 30 % (un seul jeu) |
@@ -179,11 +179,11 @@ dans les deux jeux.
 
 1. **La normalisation s'explique presque entièrement par le bruit de mesure.** La normalisation
    attendue sous le seul bruit (modèle binormal) est à moins de 10 points de la normalisation
-   observée pour 81 % des couples dans NHANES III (73 % en 2001-2002). L'écart médian est de 0
+   observée pour 87 % des couples dans NHANES III (73 % en 2001-2002). L'écart médian est de 0
    point. Le « retour à la normale » en 2 semaines n'est pas une guérison : c'est la mesure.
 2. **Les anomalies limites se normalisent, les anomalies nettes presque jamais.** Les anomalies
    limites (à moins d'un changement détectable du seuil) redeviennent normales dans 41 % des cas
-   (médiane, NHANES III). Les anomalies nettes, dans 8 % des cas. Seule exception : les
+   (médiane, NHANES III). Les anomalies nettes, dans 5 % des cas. Seule exception : les
    électrolytes et les bicarbonates, dont l'intervalle est très étroit.
 3. **Les seuils de risque ont des taux de normalisation plus faibles** : de 9 à 29 % dans NHANES
    III, et jusqu'à 33 % en 2001-2002 (LDL). Ils classent
@@ -219,6 +219,10 @@ dans les deux jeux.
 - Petits effectifs d'anomalies en 2001-2002 : la règle n'est souvent appliquée qu'à un seul jeu.
 - Vitamine D : 2001-2002 seulement, dosée avant la standardisation LC-MS/MS. CRP de NHANES III
   censurée.
+
+## Correction du 2026-11-11
+
+Un bug de lecture de NHANES III (code « 88 » des champs à 2 chiffres lu comme une valeur) touchait les bicarbonates et la formule leucocytaire manuelle. Après correction, aucune conclusion de la règle ne change. Deux chiffres de synthèse changent : 81 % devient 87 % (écart observé − attendu < 10 points), et 8 % devient 5 % (normalisation des anomalies nettes). Voir `DECISIONS.md`.
 
 ## Écarts au protocole
 

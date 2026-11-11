@@ -30,6 +30,13 @@ def layout(sas_path: Path) -> dict[str, tuple[int, int]]:
     return pos
 
 
+# Resultats de laboratoire codes sur 2 chiffres ou « 88 » signifie « vide mais applicable » (correction
+# du 2026-11-11, DECISIONS.md) : formule leucocytaire manuelle et bicarbonates. Ce code ne peut pas
+# etre une vraie valeur (88 % de basophiles, 88 mmol/L de bicarbonates). Les autres champs a 2 chiffres
+# (age, delai en jours) gardent 88 comme valeur reelle.
+TWO_DIGIT_BLANK = {"MOPDIF", "EOP", "BOP", "C3PSI", "MORDIF", "EOR", "BOR", "C3RSI"}
+
+
 def read_fixed(name: str, columns: list[str]) -> pd.DataFrame:
     """Lit les colonnes demandees du fichier `name` (lab, exam, labse, examse)."""
     pos = layout(RAW / f"{Path(FILES[name]).name}.sas")
@@ -45,6 +52,8 @@ def read_fixed(name: str, columns: list[str]) -> pd.DataFrame:
         s = df[c].str.strip()
         width = pos[c][1] - pos[c][0] + 1
         code = s.str.fullmatch(r"8{3,}|9{3,}") & (s.str.len() == width)
+        if c in TWO_DIGIT_BLANK:                       # champ a 2 chiffres : « 88 » = vide mais applicable
+            code = code | s.str.fullmatch(r"88")
         v = pd.to_numeric(s, errors="coerce")
         out[c] = v.where(~code.fillna(False))
     return out.set_index("SEQN")

@@ -116,7 +116,7 @@ court terme.
 | Sodium | NHANES III | 1757 | 1,3 | **+4 / −4** | +4 / −4 | borne basse (2 semaines) |
 | Potassium | NHANES III | 1757 | 5,4 | **+16 / −14** | +15 / −13 | borne basse (2 semaines) |
 | Chlorure | NHANES III | 1757 | 2,1 | **+6 / −6** | +6 / −6 | borne basse (2 semaines) |
-| Bicarbonates | NHANES III | 1812 | 18,1 | **+65 / −39** | +71 / −42 | extrapolé à 6 mois |
+| Bicarbonates | NHANES III | 1757 | 11,4 | **+38 / −27** | +41 / −29 | extrapolé à 6 mois |
 | CRP | 2001-02 | 412 | 58,7 | **+351 / −78** | +397 / −80 | borne basse (2 semaines) |
 | Vitamine B12 | NHANES III | 894 | 14,3 | **+48 / −33** | +58 / −37 | borne basse (2 semaines) |
 | Folates érythrocytaires | NHANES III | 1176 | 9,4 | **+30 / −23** | +31 / −24 | borne basse (2 semaines) |
@@ -192,9 +192,13 @@ court terme. Les CV_I eux-mêmes ne sont pas reproduits ici (licence de la base 
 | **Bruités** | CRP, insuline, triglycérides, ALAT, fer, LH, FSH, urines | souvent plus de 100 % à la hausse : une valeur isolée ne se compare presque pas |
 
 **Deux points d'attention :**
-- **Bicarbonates.** CV de 18 % dans NHANES III contre 6 % en 2001-2002. C'est probablement un
-  artefact pré-analytique du second examen de NHANES III (perte de CO₂). Interprétation, non
-  testée ; le chiffre pré-enregistré, issu de NHANES III, est rapporté tel quel.
+- **Bicarbonates.** CV de 11 % dans NHANES III contre 6 % en 2001-2002.
+  - **Correction du 2026-11-11.** La première version de ce rapport donnait 18 % et l'attribuait à
+    un artefact pré-analytique (perte de CO₂). C'était en réalité un **bug de lecture** : le code
+    « 88 » (vide mais applicable) des champs à 2 chiffres de NHANES III était lu comme une valeur,
+    sur 1 495 bicarbonates. Voir `DECISIONS.md`.
+  - Après correction, le CV de NHANES III reste deux fois plus grand que celui de 2001-2002. Je n'en
+    connais pas la cause.
 - **Neutrophiles (%).** Dans NHANES III, la formule est faite à la main et ne porte que sur
   272 personnes.
 

@@ -15,3 +15,15 @@ def test_layout_and_missing_codes(tmp_path, monkeypatch):
     assert np.isnan(d.loc[2, "AMPSI"]) and np.isnan(d.loc[2, "CRP"])      # 888 / 88888 -> manquant
     assert d.loc[3, "CRP"] == 25.20 and d.loc[3, "HSSEX"] == 1
     assert nhanes3.seqn_only("lab") == {1, 2, 3}
+
+
+def test_two_digit_blank_code(tmp_path, monkeypatch):
+    """« 88 » est manquant pour les resultats a 2 chiffres declares (formule, bicarbonates),
+    mais reste une vraie valeur pour l'age."""
+    (tmp_path / "lab.sas").write_text(
+        "DATA X;\n INPUT\n   SEQN 1-5\n   BOP 6-7\n   HSAGEIR 8-9\n;\nRUN;\n", encoding="latin1")
+    (tmp_path / "lab.dat").write_text("00001 188\n000028888\n", encoding="latin1")
+    monkeypatch.setattr(nhanes3, "RAW", tmp_path)
+    d = nhanes3.read_fixed("lab", ["BOP", "HSAGEIR"])
+    assert d.loc[1, "BOP"] == 1 and d.loc[1, "HSAGEIR"] == 88
+    assert np.isnan(d.loc[2, "BOP"]) and d.loc[2, "HSAGEIR"] == 88

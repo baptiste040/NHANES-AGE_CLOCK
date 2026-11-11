@@ -2430,3 +2430,79 @@ Une attente est **confirmée** si l'effet a le signe attendu et que son IC exclu
 - Le changement détectable de Q1 est une borne basse pour la plupart des marqueurs.
 - Le modèle linéaire en heures de jeûne suppose un effet proportionnel au temps écoulé ; la
   sensibilité en classes le vérifie.
+
+### Correction de bug — lecture de NHANES III, code « 88 » des champs à 2 chiffres (2026-11-11)
+
+**Découverte** : en Q2, les basophiles de NHANES III donnaient un effet de l'heure de 4,5 points de
+pourcentage pour une valeur moyenne d'environ 0,5 %, ce qui est impossible.
+
+**Cause** : `nhanes3.read_fixed` ne traitait comme manquants que les codes faits de 8 ou de 9 sur au
+moins 3 chiffres. Dans les champs à 2 chiffres, « 88 » (vide mais applicable) était lu comme une
+valeur.
+
+**Portée**, mesurée sur toutes les variables NHANES III du programme :
+- examen principal : formule leucocytaire manuelle (monocytes, éosinophiles, basophiles ;
+  2 276 valeurs « 88 » chacun) et **bicarbonates** (1 495 valeurs) ;
+- second examen : formule manuelle (27 valeurs).
+
+Les seules autres variables à 2 chiffres lues sont l'âge et le délai entre examens, pour lesquels
+88 est une valeur réelle. Elles ne changent pas, et **les analyses gelées des pistes précédentes
+ne sont pas touchées**.
+
+**Correction** : liste explicite `TWO_DIGIT_BLANK` dans `nhanes3.py` (formule manuelle et
+bicarbonates), avec un test (`test_two_digit_blank_code`). Q1, Q4 et Q2 ont été relancées.
+
+**Avant / après**
+
+| Analyse | Avant | Après |
+|---|---|---|
+| Q1, bicarbonates NHANES III : CV observé | 18,1 % (n = 1 812) | 11,4 % (n = 1 757) |
+| Q1, bicarbonates : changement détectable à 6 mois | +65 / −39 % | +38 / −27 % |
+| Q1, formule manuelle NHANES III (écart-type intra, unités) | monocytes 8,6 ; éosinophiles 8,6 ; basophiles 10,4 | 2,6 ; 1,8 ; 0,9 (pas le jeu principal : aucun changement détectable modifié) |
+| Q1, prédictions 1 à 3 | vérifiées (83 %, 80 %, 93 %) | inchangées |
+| Q4, conclusions de la règle | — | inchangées (57 couples) |
+| Q4, écart observé − attendu < 10 points | 81 % des couples | 87 % |
+| Q4, normalisation des anomalies nettes (médiane) | 8 % | 5 % |
+| Q2 | première exécution non interprétée | relancée après correction |
+
+L'explication « artefact pré-analytique (perte de CO₂) » donnée dans le rapport de Q1 pour les
+bicarbonates est **retirée** : c'était ce bug. Après correction, le CV de NHANES III reste deux fois
+celui de 2001-2002, sans explication connue.
+
+### Écart — Q2, codage de la séance (2026-11-11)
+
+Le pré-enregistrement de Q2 indiquait `PHDSESN` codé 1, 2 et 3 (matin, après-midi, soir). La
+documentation NHANES (FASTQX_D, lue) code 0 matin, 1 après-midi, 2 soir.
+- La première exécution excluait donc les personnes vues le matin.
+- Son contraste « après-midi contre matin » était en réalité soir contre après-midi.
+
+Corrigé selon la documentation avant toute interprétation, sans autre changement d'analyse.
+
+### Résultat — programme « panel », Q2 (2026-11-11)
+
+Exécution du protocole (`6404a61`), avec les deux corrections ci-dessus. Rapport :
+`reports/panel/Q2_JEUNE_HEURE.md`.
+
+**Règle pré-enregistrée.** Aucun marqueur n'exige un prélèvement à jeun ou un horaire fixe : tous les
+ratios sont < 0,5. Seule la CK est non estimable (pas de changement détectable dans Q1).
+
+**Jeûne, chez une même personne** (NHANES III ; modèle principal, 2 h contre 10 h) :
+- insuline +11 % [+4 ; +19] ; HOMA-IR +12 % ;
+- TG −0,2 % ; glycémie +1 %.
+
+En classes ou en contraste direct (34 à 44 paires discordantes) : TG +8 %, insuline +18 à +25 %.
+
+**Jeûne, entre personnes (associations)** :
+- TG +23 à +25 %, glycémie +5 à +10 %, insuline +77 %, HOMA-IR +94 %.
+- Avec ces associations, insuline, HOMA-IR et QUICKI passeraient « à enregistrer et corriger »
+  (ratios 0,66 à 0,71).
+
+**Heure** : 11 h contre 8 h, aucun effet ≥ 0,5. Après-midi contre matin : TSH −16 %, leucocytes
++9 %, phosphate +2 %. Le soir : fer −17 %, leucocytes +16 %.
+
+**Attentes physiologiques** :
+- confirmées : insuline, HOMA-IR, QUICKI, TSH, phosphate, leucocytes ;
+- non confirmées chez une même personne : TG, glycémie, TyG (confirmées entre personnes) ;
+- fer : baisse le soir seulement.
+
+**LDL Martin-Hopkins** : non estimable, comme prévu (tableau de facteurs publié en figure).
