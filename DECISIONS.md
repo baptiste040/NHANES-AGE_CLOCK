@@ -2531,3 +2531,342 @@ reste inchangée dans le rapport. Code : `src/aging_clock/panel/q2_secondaire.py
 **Note clinique ajoutée au rapport** : HOMA-IR et QUICKI sont définis à jeun et ne sont pas valides
 sur un prélèvement non à jeun, quel que soit le ratio ; même chose pour une « glycémie à jeun » dont
 le jeûne n'est pas vérifié.
+
+### Q2 : synthèse en deux temps (2026-11-11)
+
+À la demande de l'auteur du projet, la synthèse du rapport de Q2 est formulée en deux temps : le jeûne
+pèse peu pour suivre une personne (effet petit devant le bruit), mais beaucoup pour la classer
+(jusqu'à +31 points au seuil ADA de la glycémie). Conséquence pratique : enregistrer le statut de
+jeûne, et ne pas calculer les indices définis à jeun (HOMA-IR, QUICKI) quand il est inconnu. La
+règle pré-enregistrée et sa conclusion restent inchangées.
+
+### Pré-enregistrement — programme « panel », Q5 : changements de méthode de laboratoire (2026-11-11)
+
+**Question.** De combien un changement de méthode, d'instrument ou de laboratoire déplace-t-il
+chaque marqueur, comparé au changement détectable à 6 mois (Q1) ? Quels marqueurs ne peuvent pas
+être comparés d'un laboratoire à l'autre sans équation de passage ? Et, comme pour le jeûne (Q2),
+combien de personnes changent de classe autour d'un seuil ?
+
+Ce texte est complet : il ne renvoie à aucun brouillon. Toutes les équations ci-dessous viennent de
+la documentation NHANES et de la note analytique du NCHS sur la vitamine D (pages publiques du NCHS, lues et extraites avant ce pré-enregistrement ;
+aucun résultat calculé).
+
+#### Données et population
+
+- NHANES 1999-2018, adultes de 20 à 79 ans, femmes enceintes exclues (D2). Non pondéré (D3), sauf
+  pour la vérification V1 (qui reproduit un chiffre pondéré du NCHS).
+- Fichiers : ceux de Q2 (`q2.G`), plus glycémie et insuline à jeun (`L10AM`, `GLU`, `INS`), TG à
+  jeun (`L13AM`, `TRIGLY`), urines (`LAB16`, `L16`, `ALB_CR`), CRP ultrasensible (`HSCRP`), folates
+  sériques et érythrocytaires (`LAB06`, `L06_B`, `L06NB_C`, `FOLATE`), ApoB (`ApoB`, `APOB`),
+  testostérone (`TST`), thyroïde (`LAB18T4`, `L40T4_B`, `THYROD`), homocystéine (`LAB06`, `L06_B`,
+  `L06MH_C`, `HCY`).
+- Changement détectable : celui de Q1, groupe 20-79 ans (`cd6m_hausse` si le décalage est positif,
+  `cd6m_baisse` s'il est négatif, `cd6m_unites` sur l'échelle additive). Sensibilité : changement
+  empirique de Q1 (`cd6m_hausse_robuste`, et son pendant en baisse quand il existe).
+
+#### Table des événements (figée)
+
+« Nouvelle = f(ancienne) ». Type : L = laboratoire, I = instrument, M = méthode, K = lot ou réactif,
+E = étalonnage par rapport à une méthode de référence. « Diffusion ajustée » : le NCHS a déjà
+corrigé les données publiées, d'après sa documentation.
+
+| # | Marqueur | Transition | Type | Équation ou décalage publié | Source | Diffusion ajustée |
+|---|---|---|---|---|---|---|
+| 1 | Créatinine sérique | 1999-2000 (laboratoire NHANES → référence) | E | réf = 1,013·x + 0,147 mg/dL | LAB18 | non |
+| 2 | Créatinine sérique | 2005-2006 (laboratoire NHANES → référence) | E | réf = 0,978·x − 0,016 mg/dL | BIOPRO_D | non |
+| 3 | Créatinine sérique | 2007 → 2008 (LX-20 → DxC800) | I | nouvelle − ancienne ≈ −0,08 mg/dL (moyenne) | BIOPRO_E | oui |
+| 4 | Biochimie : PAL, créatinine, LDH, phosphore, bilirubine | 2001 → 2002 (changement de laboratoire) | L | équations non publiées dans la page lue | L40_B | oui |
+| 5 | Bilan biochimique (21 analytes) | 2015-2016 → 2017-2018 (Beckman DxC 660i → Roche Cobas 6000) | L, I, M | voir table 5 ci-dessous | BIOPRO_J | non |
+| 6 | Glycémie à jeun | 2003-2004 → 2005-2006 (Cobas Mira → Hitachi 911) | I | 0,9815·x + 3,5707 mg/dL | GLU_D | non |
+| 7 | Glycémie à jeun | 2005-2006 → 2007-2008 (Hitachi 911 → Modular P) | I | x + 1,148 mg/dL | GLU_E | non |
+| 8 | Glycémie à jeun | 2013-2014 → 2015-2016 (Cobas C501 → C311) | I | 1,023·x − 0,5108 mg/dL | GLU_I | données 2015-2016 mises à l'échelle C311 ; pas de correction vers 2013-2014 |
+| 9 | Insuline | 1999-2002 → 2003-2004 (Pharmacia → Tosoh) | M | 1,0027·x − 2,2934 µU/mL | L10AM_C | non |
+| 10 | Insuline | 2003-2004 → 2005-2006 (Tosoh → Mercodia) | M | 0,9501·x + 1,4890 µU/mL | GLU_D | non |
+| 11 | Insuline | 2009-2010 → 2011-2012 (Mercodia → Roche) | M | 0,8868·x + 0,0011·x² − 0,0744 µU/mL | GLU_G | 2010 ajusté vers Mercodia ; 2011-2012 non |
+| 12 | Insuline | 2011-2012 → 2013-2014 (Roche → Tosoh) | M | 10^(1,024·log₁₀x − 0,0802) | INS_H | non |
+| 13 | HDL | 2005-2006 → 2007-2008 (nouveau laboratoire, autre instrument) | L, I | biais par rapport au CDC : +2,0 % → −0,5 %, soit −2,45 % | HDL_D, HDL_E | non |
+| 14 | HDL | 2001-2002 → 2003-2004 (méthode directe) | M | non chiffré | l13_c | 1999-2002 et 2005-2006 corrigés sur contrôles |
+| 15 | Cholestérol total, TG à jeun | 2005-2006 → 2007-2008 (nouveau laboratoire, Modular P) | L, I | non chiffré : « aucun ajustement nécessaire » | TCHOL_E, TRIGLY_E | non |
+| 16 | HbA1c | 2005-2006 → 2007-2008 (glissement vers le haut inexpliqué) | inconnu | non chiffré (équation de 2005 retirée par le NCHS) | GHB_D | non |
+| 17 | NFS (dont RDW, hématocrite, leucocytes) | 2011-2012 → 2013-2014 (Coulter HMX → DxH, en 2012) | I | non chiffré ; moyennes pondérées publiées : RDW 12,84 → 13,55 % ; hématocrite 40,57 → 41,22 % | CBC_H | non |
+| 18 | Ferritine | 2007-2008 → 2009-2010 (Hitachi 912 → E170) | I | 10^(0,989·log₁₀x + 0,049) ng/mL | FERTIN_F | non |
+| 19 | Ferritine | 2009-2010 → 2015-2016 (E170 → e601) | I | 1,079·x + 0,2243 ng/mL | FERTIN_I | données 2015-2016 mises à l'échelle e601 |
+| 20 | Vitamine B12 | 2005-2006 → 2011-2012 (Bio-Rad → Roche) | M | 10^(0,97·log₁₀x + 0,14) pg/mL | VITB12_G | non |
+| 21 | Vitamine B12 | 2013-2014 (dérive de lots) | K | non chiffré | VITB12_H | oui |
+| 22 | Folates érythrocytaires | 1999-2006 → 2007-2008 (radio-essai Bio-Rad → microbiologique) | M | algorithme en 4 étapes (ci-dessous) | FOLATE_E | non |
+| 23a | Vitamine D (25-OH) | 2001-2002 (RIA → LC-MS/MS standardisée) | M, E | 0,95212·x + 6,43435 nmol/L | note analytique NCHS sur la vitamine D | oui (LBDVIDMS) |
+| 23b | Vitamine D (25-OH) | 2003-2004 (RIA → LC-MS/MS standardisée) | M, E | 0,98284·x + 1,72786 nmol/L | idem | oui |
+| 23c | Vitamine D (25-OH) | 2005-2006 → 2007-2008 (RIA DiaSorin → LC-MS/MS) | M, E | 0,97012·x + 8,36753 nmol/L | idem ; VID_E | oui |
+| 24 | CRP ultrasensible | 2015-2016 → 2017-2018 (DxC 660i → Cobas 6000) | L, I, M | 0,8695·x + 0,2954 mg/L (x ≤ 23 mg/L) | HSCRP_J | non |
+| 25 | ApoB | 2005-2006 → 2007-2008 (BN100 → ProSpec, autre laboratoire) | L, I | 0,923·x mg/dL | ApoB_E | non |
+| 26 | ApoB | 2013-2014 → 2015-2016 (ProSpec → Cobas 6000, turbidimétrie) | I, M | 1,001·x + 2,883 mg/dL | APOB_I | non |
+| 27 | Testostérone totale | 2011-2012 → 2013-2014 (LC-MS/MS TST → TST + estradiol) | M | +3,9 % en moyenne ; équation 1,021·x + 0,182 (unité de l'ordonnée à l'origine ambiguë : ng/mL dans le texte, variable en ng/dL) | TST_H | début 2013 mis à l'échelle nouvelle |
+| 28 | T4 libre, TSH | 2009 → 2010 (changement de laboratoire) | L | T4 totale +5 % (corrigée) ; T4 libre et TSH non chiffrées | THYROD_F, THYROD_G | T4 totale seulement |
+| 29 | Homocystéine | 2002 (Abbott IMX → AxSym) | I | 10^(0,983·log₁₀x + 0,0418) µmol/L | LAB06, L06MH_C | non précisé |
+| 30 | Homocystéine | 2005-2006 (réactif reformulé, ≈ +13 %) | K | non publié | HCY_D | oui |
+| 31 | Créatinine urinaire (et donc ACR) | 2005-2006 → 2007-2008 (Modular P → CX3) | I, M | par morceaux : x < 75 : (1,02·√x − 0,36)² ; 75-250 : (1,05·√x − 0,74)² ; ≥ 250 : (1,01·√x − 0,10)² mg/dL | ALB_CR_E | non |
+| 32 | Fer, CTF | 2001 → 2002 (changement de laboratoire) | L | non publié ; CTF corrigée | L40FE_B | CTF seulement |
+
+**Table 5 : bilan biochimique 2017** (BIOPRO_J ; nouvelle = Cobas 6000, ancienne = DxC 660i ;
+« % » = différence moyenne publiée).
+
+| Analyte | Équation (nouvelle = f(ancienne)) | % publié |
+|---|---|---|
+| Albumine (g/dL) | 0,9581·x − 0,0108 | −4,42 |
+| PAL (U/L) | log₁₀ y = 0,9986·log₁₀x + 0,04288 | +9,74 |
+| ASAT (U/L) | 0,9822·x − 3,695 | −18,03 |
+| ALAT (U/L) | 0,9869·x − 2,653 | −15,46 |
+| Urée (mg/dL) | 0,9992·x − 0,4484 | −3,36 |
+| Bicarbonates | ajustement non recommandé | +1,74 |
+| Calcium | ajustement non recommandé | −2,12 |
+| Cholestérol (bilan) | 0,9556·x + 2,105 | −3,21 |
+| CK (U/L) | 1,068·x − 1,131 | +5,91 |
+| Chlore | ajustement non recommandé | −1,44 |
+| Créatinine (mg/dL) | 0,9515·x + 0,06608 | +3,35 |
+| Glucose sérique | ajustement non recommandé | +2,41 |
+| GGT (U/L) | 1,243·x − 2,938 | +7,70 |
+| Fer (µg/dL) | 1,023·x + 4,597 | +10,01 |
+| Potassium | ajustement non recommandé | −1,40 |
+| LDH (U/L) | 1,167·x − 2,407 | +14,86 |
+| Sodium | ajustement non recommandé | +0,80 |
+| Phosphore | ajustement non recommandé | −1,80 |
+| Bilirubine totale | ajustement non recommandé | −3,19 |
+| Protéines totales | ajustement non recommandé | +0,36 |
+| TG (bilan, non à jeun) | 1,036·x + 7,271 | +13,44 |
+| Acide urique (mg/dL) | 1,073·x − 0,2495 | +2,37 |
+
+Globuline et osmolalité sont calculées : leur décalage se déduit de ceux des analytes qui les
+composent, comme les dérivés (rapports, DFG, FIB-4, etc.), recalculés à partir des valeurs
+transformées.
+
+**Événement 22 (folates érythrocytaires), algorithme du NCHS**, avec l'hématocrite (HCT, %) et les
+folates sériques (FOL, nmol/L) de la même personne :
+1. sang total : WBF = RBF·HCT/100 + FOL·(1 − HCT/100) ;
+2. WBF ajusté = 10^(0,2204 + 1,017·log₁₀WBF) ;
+3. FOL ajusté = 10^(0,0188·X³ − 2,7109·X^(−1/2) + 3,8276), avec X = log₁₀FOL ;
+4. RBF ajusté = [WBF ajusté − FOL ajusté·(1 − HCT/100)] / (HCT/100).
+
+**Événements 23a-c (vitamine D).**
+- Source : note analytique du NCHS, « Analytical Note for 25-Hydroxyvitamin D Data Analysis using
+  NHANES III (1988-1994), NHANES 2001-2006, and NHANES 2007-2010 ». Page publique wwwn.cdc.gov, lue
+  en texte complet le 2026-11-11. Étude de passage sur 1 448 sérums réanalysés en LC-MS/MS.
+- 2003-2006 : seules les valeurs converties (LBDVIDMS) sont diffusées. On retrouve la valeur RIA
+  d'origine en inversant l'équation du cycle. C'est exact, puisque la conversion est linéaire.
+- 2001-2002 : les deux variables sont diffusées (LBXVID en ng/mL, valeur RIA ; LBDVIDMS), d'où la
+  vérification V3.
+- L'équation par morceaux de NHANES III n'est pas utilisée : le fichier de laboratoire NHANES III du
+  dépôt ne contient pas la vitamine D.
+
+**Correction de l'inventaire.** L'inventaire indiquait pour la TSH « 2011 : kit reformulé ». La
+documentation (THYROD_G) parle en fait des anticorps anti-thyroglobuline. Aucune reformulation
+n'est documentée pour la TSH.
+
+#### Partie (a) : équations de passage publiées
+
+- Pour chaque événement chiffré, on applique l'équation aux valeurs des adultes du **cycle
+  précédant** le changement (ancienne méthode), telles que diffusées.
+- **Décalage** en % (échelle log) ou en unités (échelle additive, D4), aux centiles 10, 25, 50, 75
+  et 90.
+  - Mesure principale : décalage au **centile 50**.
+  - Sensibilité : plus grand décalage, en valeur absolue, entre les centiles 10 et 90.
+- Quand seule une différence moyenne est publiée (« ajustement non recommandé », événements 3,
+  13 et 27), ce décalage s'applique à tous les centiles. Pour l'événement 3, c'est −0,08 mg/dL
+  converti en % à chaque centile.
+- Événement 27 : décalage principal = +3,9 %. Sensibilité : l'équation, avec l'ordonnée à l'origine
+  lue en ng/dL, puis en ng/mL (×100). Résultats par sexe.
+- Dérivés : on recalcule l'indice à partir des analytes transformés, chez les mêmes personnes, et
+  on prend le décalage au centile 50 de l'indice.
+- Événements non chiffrés (4, 14, 15, 16, 17, 21, 23, 28 sauf T4 totale, 30, 32) : « (a) non
+  estimable », partie (b) seulement.
+
+#### Partie (b) : décalage empirique (différence de différences)
+
+- Pour chaque marqueur : régression de ln(x), ou de x sur l'échelle additive, sur des indicatrices
+  de cycle, ajustée sur l'âge (spline cubique restreinte, 4 ddl, `features.rcs_basis`), le sexe et
+  le groupe ethnique (RIDRETH1).
+- **Saut** J_k = différence entre les coefficients de deux cycles successifs où le marqueur est
+  mesuré.
+- **Saut de référence** : moyenne des sauts aux transitions sans aucun événement de la table pour
+  ce marqueur. Il faut au moins 2 transitions sans événement, sinon la partie (b) est non
+  estimable (le saut brut est rapporté pour information).
+- **Décalage empirique** = J_k − saut de référence. Si le changement tombe en milieu de cycle
+  (événements 3, 11, 17, 29), on compare le cycle d'avant et celui d'après, et on retire deux fois
+  le saut de référence.
+- IC 95 % par bootstrap des personnes dans chaque cycle (500 tirages, graine 2026).
+- **Sensibilité** : ajustement supplémentaire sur l'IMC et le rapport revenu/pauvreté.
+- **Écart au plan** : le plan parlait de médianes standardisées. On prend des moyennes géométriques
+  ajustées, plus stables et faciles à ajuster. La médiane (régression quantile, sans IC) est
+  rapportée en sensibilité.
+- **Lecture** :
+  - si la diffusion est ajustée, (b) mesure le décalage **résiduel**, attendu proche de 0 ; c'est un
+    contrôle ;
+  - sinon, (b) est une estimation indépendante de (a).
+
+#### Règles de décision
+
+Ratio r = |décalage| / changement détectable à 6 mois (Q1), comme dans Q2.
+
+| r | Catégorie de l'événement |
+|---|---|
+| ≥ 1 | **comparaison impossible sans équation de passage** |
+| 0,5 à 1 | **un changement de laboratoire peut créer un faux changement** |
+| < 0,5 | **négligeable au regard du bruit** |
+| — | **non estimable** (pas de changement détectable dans Q1, ou ni (a) ni (b)) |
+
+- Pour l'événement, on prend le ratio de (a) au centile 50. Si (a) n'est pas estimable, on prend
+  (b), en le signalant « empirique ».
+- **Catégorie du marqueur** = la plus défavorable de ses événements. On la rapporte aussi par type
+  d'événement, car un changement de laboratoire et un changement de lot de réactif ne se
+  présentent pas de la même façon dans un suivi.
+- (a) et (b) sont dites « discordantes » si l'une donne r ≥ 0,5 et l'autre r < 0,5 (événements non
+  ajustés dans la diffusion seulement).
+- **Taux de faux changement** (indicateur complémentaire, pas une règle). C'est la probabilité
+  qu'une personne sans changement réel franchisse le changement détectable à cause du décalage δ.
+  - Formule : Φ(−1,96 + δ/s) + Φ(−1,96 − δ/s), sur l'échelle log, avec s = ln(1 + cd6m_hausse)/1,96.
+  - Sans décalage, ce taux vaut 5 %.
+
+#### Effet sur la classification
+
+- Seuils : la table D1 figée (`D1_seuils_cliniques.csv`, seuils R et S). Pour les marqueurs qui
+  n'ont que l'intervalle statistique, ce sont ses limites (`D1_intervalles_statistiques.csv`), par
+  sexe quand il en dépend.
+- Pour chaque événement chiffré de (a) : on transforme les valeurs du cycle précédent. On rapporte
+  la part au-dessus (ou en dessous) du seuil, avant et après, et l'écart en points. Non pondéré,
+  20-79 ans.
+- Glycémie : seuils OMS et ADA, comme dans Q4.
+
+#### Vérifications de l'implémentation (avant toute lecture des résultats)
+
+- **V1** (GLU_I) : on applique l'équation inverse, C501 = 0,9776·x + 0,4994, aux glycémies à jeun
+  de 2015-2016. Population : non enceintes, 18 ans et plus, sans diabète diagnostiqué (DIQ010 ≠ 1),
+  pondération WTSAF2YR.
+  - Attendu : part 100-125 mg/dL de 53,7 % → 41,5 % ; part ≥ 126 de 5,5 % → 3,4 %.
+  - Tolérance : ±1,5 point.
+- **V3** (vitamine D, 2001-2002) : 0,95212·(2,4959·LBXVID) + 6,43435 doit redonner LBDVIDMS.
+  Tolérance : écart absolu médian < 0,5 nmol/L.
+- **V2** (INS_H) : on applique l'équation inverse, 10^(0,9765·log₁₀x + 0,07832), à l'insuline de
+  2013-2014. Moyenne géométrique pondérée (poids à jeun) attendue : 9,20 → 10,46 µU/mL, à ±0,15
+  près.
+- Si une vérification échoue : on cherche l'erreur et on la corrige avant l'analyse, puis on la
+  documente. Si elle reste inexpliquée, l'écart est rapporté, sans changer le protocole.
+
+#### Prédictions (a priori, sans calcul)
+
+- **P1.** Les ratios les plus élevés viendront des analytes **à faible variabilité**, et non des
+  enzymes, même si les enzymes ont les décalages en % les plus grands (ASAT −18 %, ALAT −15 % en
+  2017). Vérifiée si :
+  - au moins 3 des 5 ratios (a) les plus élevés appartiennent à {albumine, protéines, calcium,
+    sodium, chlore, bicarbonates, créatinine, HbA1c, glycémie à jeun, cholestérol total, HDL} ;
+  - et aucune enzyme (ALAT, ASAT, GGT, PAL, CK) n'atteint r ≥ 1.
+- **P2.** Pour les événements non ajustés dans la diffusion où |décalage (a)| ≥ 3 %, (b) a le même
+  signe que (a) dans au moins 75 % des cas.
+
+#### Partie (c) : écarts entre laboratoires de routine (littérature)
+
+Les changements de NHANES ont lieu entre des laboratoires de référence très contrôlés. La population
+cible passe par plusieurs laboratoires de routine, dont les écarts sont probablement plus grands.
+
+**Marqueurs concernés** : ceux du panel de suivi.
+- Hématologie : leucocytes et formule, hématies, hémoglobine, hématocrite, VGM, TCMH, CCMH, RDW,
+  plaquettes, VPM.
+- Glycémie : glycémie à jeun, insuline, HbA1c.
+- Lipides : cholestérol total, LDL, HDL, TG.
+- Foie : ALAT, ASAT, GGT, PAL, bilirubine totale et conjuguée, albumine, protéines totales,
+  globulines.
+- Autres : lipase, créatinine, urée, sodium, potassium, chlore, bicarbonates, osmolalité,
+  CRP ultrasensible, vitamine B12, folates érythrocytaires, vitamine D (25-OH), calcium, magnésium.
+
+**Critères de sélection des études** (fixés ici) :
+1. Évaluation externe de la qualité (EEQ) ou programme d'harmonisation, publiés dans une revue
+   indexée.
+2. Résultat chiffré par marqueur : CV entre laboratoires (CV_inter), ou biais entre laboratoires
+   ou entre méthodes, sur un marqueur du panel de suivi.
+3. Laboratoires de routine : au moins 20, ou un programme national.
+4. Laboratoires européens de préférence. Une étude non européenne n'est retenue que si aucune
+   étude européenne ne couvre le marqueur.
+5. Matériaux commutables de préférence. Avec des matériaux non commutables, l'étude est retenue
+   mais signalée (les effets de matrice gonflent les écarts).
+6. Publiée en 2005 ou après, et lue : texte complet si accessible, sinon résumé, avec la mention TC
+   ou R. Un résumé n'est retenu que s'il donne le chiffre. Pas de page de laboratoire privé.
+
+**Requêtes PubMed** (D6) :
+1. `("external quality assessment"[tiab] OR "proficiency testing"[tiab]) AND ("between-laboratory"[tiab] OR interlaboratory[tiab] OR "inter-laboratory"[tiab]) AND commutable[tiab]`
+2. `("external quality assessment"[tiab] OR EQA[tiab]) AND harmonization[tiab] AND (Europe[tiab] OR European[tiab])`
+3. `(HbA1c[tiab] OR "glycated hemoglobin"[tiab]) AND ("external quality assessment"[tiab] OR EurA1c[tiab]) AND (laboratories[tiab] OR "between-laboratory"[tiab])`
+4. `("external quality assessment"[tiab] OR "proficiency testing"[tiab]) AND (enzymes[tiab] OR ALT[tiab] OR GGT[tiab] OR creatinine[tiab] OR "25-hydroxyvitamin D"[tiab] OR "vitamin B12"[tiab] OR "C-reactive protein"[tiab]) AND ("between-laboratory"[tiab] OR interlaboratory[tiab] OR "inter-laboratory"[tiab])`
+5. `("external quality assessment"[tiab] OR "proficiency testing"[tiab]) AND ("complete blood count"[tiab] OR hematology[tiab] OR haematology[tiab]) AND (laboratories[tiab] OR interlaboratory[tiab])`
+
+**Lecture.**
+- Pour chaque requête : les 20 premiers résultats (tri par pertinence), lus sur titre et résumé.
+  Le texte complet est lu pour les études qui satisfont les critères.
+- Au plus 15 études retenues en tout.
+- **Par marqueur** : l'étude européenne la plus récente sur matériau commutable. À défaut,
+  l'étude la plus récente qui satisfait les critères.
+- Marqueur sans étude : « rien trouvé avec ces requêtes ».
+- Seules les valeurs dérivées et la référence entrent dans le rapport public. Les valeurs extraites
+  (CV_inter) et le détail de la sélection vont dans `private/panel/Q5_litterature/`. Le rapport
+  public donne, par marqueur, le changement détectable entre deux laboratoires, son rapport à
+  celui de Q1 et la référence.
+
+**Calcul** (échelle log, CV converti en σ = √ln(1 + CV²)) :
+- décalage typique entre deux laboratoires : δ_lab = √2·CV_inter ;
+- **changement détectable entre deux laboratoires différents** :
+  hausse = e^{1,96·√2·√(σ_6m² + σ_inter²)} − 1, et la baisse de même. On le compare au changement
+  détectable de Q1 (même laboratoire), par le rapport des deux.
+- Si l'étude ne donne qu'un biais entre méthodes (pas de CV_inter), ce biais est traité comme un
+  décalage δ, avec les règles de la partie (a).
+- Mêmes règles de décision : δ_lab rapporté au changement détectable de Q1.
+
+#### Partie (d) : un changement de laboratoire peut-il imiter ou masquer une intervention ?
+
+- **Effets d'intervention** : ceux de Q1 (`Q1_interventions.csv` et `Q1_secondaire_moyenner.csv`,
+  groupe 20-79 ans), en %.
+- **Décalages** : ceux des parties (a) ou, à défaut, (b), et le δ_lab de (c), en %.
+- Un décalage mesuré sur l'analyte du bilan biochimique (TG, cholestérol, glucose sériques) sert de
+  décalage pour le même analyte : c'est le même dosage, fait dans un autre laboratoire. On le
+  signale.
+- **Rapport** ρ = |décalage| / |effet de l'intervention|, pour chaque couple (marqueur,
+  intervention), avec le plus grand décalage du marqueur et aussi événement par événement.
+- **Signalement** :
+  - **peut imiter** l'intervention : ρ ≥ 0,5 et décalage de même signe que l'effet ;
+  - **peut masquer** l'intervention : ρ ≥ 0,5 et signe opposé ;
+  - ρ ≥ 1 : le changement de laboratoire **suffit** à produire (ou à annuler) l'effet moyen de
+    l'intervention.
+- Pour δ_lab, dont le signe est inconnu (deux laboratoires au hasard), on signale « peut imiter ou
+  masquer ».
+- C'est une comparaison d'effets moyens, sur la même échelle. Le bruit individuel est traité
+  ailleurs, dans le ratio au changement détectable.
+
+#### Prédiction sur la partie (d)
+
+- **P3.** Elle est formulée en connaissant les différences moyennes publiées dans la table des
+  événements, mais sans avoir calculé aucun rapport ρ. Elle est vérifiée si les deux conditions
+  sont remplies :
+  - pour les **TG**, l'**ALAT** et la **vitamine D**, au moins un changement de laboratoire ou de
+    méthode des parties (a) ou (c) atteint ρ ≥ 0,5 face à au moins une intervention de Q1 ;
+  - au moins la moitié des marqueurs qui ont à la fois un décalage estimé et un effet
+    d'intervention dans Q1 ont un ρ ≥ 0,5.
+
+#### Limites (à écrire dans le rapport)
+
+- Les méthodes de NHANES ne sont pas celles des laboratoires de la population cible. On obtient un
+  **ordre de grandeur** des décalages possibles.
+- Les équations de passage sont estimées sur 92 à 773 échantillons ; leur IC n'est pas propagé.
+- La partie (b) ne retire qu'en partie la tendance séculaire et les changements de composition de
+  l'échantillon.
+- Les changements détectables de Q1 sont des bornes basses (remesures à environ 2 semaines).
+- NHANES est américain.
+- Pas de seuil fondé sur le risque propre à Q5 : les seuils viennent de D1 (R ou S, signalés comme
+  tels).
+
+#### Livrables
+
+- Rapport : `reports/panel/Q5_METHODES.md`.
+- Données : `Q5_evenements.csv` (table ci-dessus), `Q5_passage.csv` (a), `Q5_empirique.csv` (b),
+  `Q5_classification.csv`, `Q5_entre_laboratoires.csv` (c), `Q5_interventions.csv` (d),
+  `Q5_synthese.csv`, `Q5_verifications.json`, `Q5_predictions.json`.
+- Code : `src/aging_clock/panel/q5.py`.
+
+Décisions de l'auteur du projet intégrées avant le commit : partie (c) retenue, avec ses critères de
+sélection ; moyennes géométriques ajustées, médiane en sensibilité ; vitamine D traitée en (a) avec
+l'équation de la note NCHS ; partie (d) et prédiction P3 ajoutées.

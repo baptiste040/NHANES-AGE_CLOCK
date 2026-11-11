@@ -25,7 +25,27 @@ un horaire fixe pour qu'un suivi ait un sens ?
 - **Seuils** : Q2 n'en utilise aucun.
 - NHANES est américain ; NHANES III date de 1988-1994. La composition des repas est inconnue.
 
-## Ce qu'il faut retenir
+## Synthèse : le jeûne pèse peu pour suivre, beaucoup pour classer
+
+1. **Pour suivre une personne, le jeûne pèse peu.**
+   - Chez une même personne, l'effet d'un repas récent est petit devant le bruit des marqueurs.
+     Les ratios au changement détectable restent sous 0,5 avec le modèle pré-enregistré, et sous
+     0,2 avec le modèle par morceaux. Exemple : TG +15 % pour un changement détectable de +111 %.
+   - Aucun marqueur n'exige donc un prélèvement à jeun pour juger un changement (règle
+     pré-enregistrée, voir ci-dessous).
+2. **Pour classer une personne, le jeûne pèse beaucoup.**
+   - Le même petit effet moyen fait passer beaucoup de personnes au-dessus d'un seuil, parce que
+     beaucoup ont une valeur proche du seuil.
+   - Glycémie, seuil ADA (5,6 mmol/L) : jusqu'à **+31 points** de personnes classées au-dessus si
+     le prélèvement est non à jeun (+3 à +11 points selon les estimations chez une même personne).
+   - TG : jusqu'à +13 points. HOMA-IR : jusqu'à +39 points (seuil illustratif).
+
+**Conséquence pratique.**
+- **Enregistrer le statut de jeûne** (heures depuis le dernier repas) à chaque prélèvement.
+- **Ne pas calculer les indices définis à jeun (HOMA-IR, QUICKI) quand le jeûne est inconnu**, et ne
+  pas comparer une glycémie au jeûne non vérifié aux seuils de l'OMS ou de l'ADA.
+
+## Ce qu'il faut retenir (règle pré-enregistrée)
 
 1. **Avec la règle pré-enregistrée, aucun marqueur n'exige un prélèvement à jeun ni un horaire
    fixe.**
@@ -193,7 +213,7 @@ teste sur l'analyse A ; pour l'heure, sur NHANES 1999-2018 (après-midi contre m
 | Leucocytes plus hauts l'après-midi ou le soir | **oui** (+9 % et +16 %) |
 | Fer plus bas plus tard dans la journée | **non** l'après-midi (+1,7 %) ; baisse de 17 % le soir |
 
-## Conclusion pratique
+## Conclusion pratique (règle pré-enregistrée)
 
 | Catégorie | Marqueurs |
 |---|---|
@@ -212,6 +232,8 @@ teste sur l'analyse A ; pour l'heure, sur NHANES 1999-2018 (après-midi contre m
   avec ou sans jeûne (Q1).
 - Pour l'insuline, les indices qui en dérivent, et les prélèvements de l'après-midi ou du soir
   (fer, TSH, leucocytes), la prudence voudrait d'enregistrer le jeûne et l'heure.
+
+**Avec les analyses secondaires** : la règle ne change pas pour le suivi. Pour classer, le statut de jeûne doit être enregistré, et les indices définis à jeun ne sont pas calculés sans lui (voir la synthèse en tête du rapport).
 
 ## Écarts et corrections
 
