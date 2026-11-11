@@ -2231,3 +2231,28 @@ Données, indicateurs et règles : voir le brouillon validé, avec ces précisio
 - CRP de NHANES III censurée.
 - Les intervalles statistiques classent anormaux, par construction, 5 % des personnes en bonne
   santé de la population de référence.
+
+### Résultat — programme « panel », Q4 (2026-11-11)
+
+Exécution du protocole (`ce82907`). Rapport : `reports/panel/Q4_NORMALISATION.md`. 57 couples
+marqueur-seuil.
+
+**Conclusions de la règle.**
+- Anomalie isolée peu informative (≥ 50 %) : 14 couples, dont 9 dans les deux jeux (électrolytes,
+  protéines, phosphate, urée, fer).
+- Confirmer avant de signaler (≥ 30 %) : 18, dont 13 dans les deux jeux.
+- Normalisation < 30 % : 25, dont 18 dans les deux jeux. Tous les seuils de risque en font partie.
+
+**Prédiction** (taux de 2001-2002 dans l'IC de NHANES III) : 13 couples sur 40.
+
+**Faits saillants.**
+- La normalisation observée est à moins de 10 points de celle attendue sous le seul bruit pour
+  81 % des couples dans NHANES III.
+- Anomalies limites : 41 % de normalisation ; anomalies nettes : 8 % (médianes).
+- Désaccord OMS / ADA : part d'anormaux de 17 % contre 30 % (glycémie) et de 18 % contre 32 %
+  (HbA1c) dans NHANES III.
+- Intervalles statistiques non transposables à NHANES III pour 11 marqueurs (plus de 15 %
+  d'anormaux).
+
+**Écart.** La signalisation des intervalles non transposables (plus de 15 % d'anormaux) n'était pas
+pré-enregistrée ; c'est une aide à la lecture.
