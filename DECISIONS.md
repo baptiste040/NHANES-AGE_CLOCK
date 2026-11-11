@@ -2256,3 +2256,17 @@ marqueur-seuil.
 
 **Écart.** La signalisation des intervalles non transposables (plus de 15 % d'anormaux) n'était pas
 pré-enregistrée ; c'est une aide à la lecture.
+
+### Faiblesse du pré-enregistrement de Q4, et règle pour la suite (2026-11-11)
+
+Le pré-enregistrement de Q4 (`ce82907`) renvoyait, pour le détail des indicateurs, à un brouillon
+non versionné (`private/panel/Q4_prereg_brouillon.md`). Son contenu ne peut donc pas être vérifié
+depuis le dépôt. Les indicateurs calculés sont ceux décrits dans le rapport et dans le résultat de
+Q4, mais rien ne prouve qu'ils n'ont pas changé entre le brouillon et l'analyse.
+
+**Règle (auteur du projet), applicable dès Q2** : chaque pré-enregistrement est complet au moment du
+commit, sans renvoi à un document non versionné. Un détail qui doit rester privé est représenté par
+son empreinte SHA-256 dans le pré-enregistrement.
+
+CRP : les seuils AHA/CDC 2003 seront ajoutés si l'auteur du projet fournit le texte ; en attendant,
+l'intervalle statistique suffit.
