@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signatures multi-marqueurs</title>
+<style>
+:root {
+  --surface: #ffffff; --plane: #ffffff; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --s1: #2a78d6; --s2: #898781; --accent: #2a78d6; --warn-bg: #f7f6f2;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--plane); color: var(--ink); font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 920px; margin: 0 auto; padding: 32px 16px 64px; }
+h1 { font-size: 26px; margin: 0 0 4px; font-weight: 650; }
+h2 { font-size: 19px; margin: 44px 0 6px; font-weight: 650; }
+h3 { font-size: 15px; margin: 18px 0 6px; font-weight: 650; }
+p, li { color: var(--ink-2); }
+.sub { color: var(--ink-2); margin: 0 0 6px; }
+.note { font-size: 13px; color: var(--muted); }
+.banner { border: 1px solid var(--grid); background: var(--warn-bg); padding: 10px 14px; border-radius: 6px; font-size: 13.5px; color: var(--ink-2); margin: 16px 0 0; }
+.hero { display: flex; gap: 32px; flex-wrap: wrap; margin-top: 14px; }
+.hero .fig { font-size: 52px; font-weight: 650; line-height: 1; }
+.hero .lab { color: var(--ink-2); max-width: 260px; font-size: 14px; margin-top: 6px; }
+.tile { min-width: 200px; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin-top: 8px; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+th { font-weight: 600; color: var(--ink-2); font-size: 12.5px; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.legend { display: flex; gap: 18px; font-size: 13px; color: var(--ink-2); margin: 6px 0 4px; flex-wrap: wrap; }
+.key { display: inline-block; width: 18px; height: 2px; vertical-align: middle; margin-right: 6px; }
+.dotkey { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: middle; margin-right: 6px; }
+svg text { font: 12px system-ui, -apple-system, "Segoe UI", sans-serif; fill: var(--ink-2); }
+.tip { position: fixed; pointer-events: none; background: #fff; border: 1px solid var(--grid); border-radius: 6px; padding: 6px 9px; font-size: 12.5px; color: var(--ink); box-shadow: 0 2px 8px rgba(0,0,0,.08); display: none; }
+.people { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 10px; }
+.card { border: 1px solid var(--grid); border-radius: 8px; padding: 12px 14px; }
+.card h3 { margin: 0 0 2px; }
+.card .ctx { font-size: 12.5px; color: var(--muted); margin-bottom: 8px; }
+.verdict { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; }
+.verdict div { border: 1px solid var(--grid); border-radius: 6px; padding: 8px; font-size: 13px; }
+.verdict b { display: block; font-size: 12px; color: var(--muted); font-weight: 600; margin-bottom: 2px; }
+.small td, .small th { padding: 3px 6px; font-size: 12.5px; }
+.flag { color: var(--ink); font-weight: 600; }
+details summary { cursor: pointer; font-size: 13px; color: var(--ink-2); margin-top: 6px; }
+footer { margin-top: 48px; font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--grid); padding-top: 12px; }
+</style>
+</head>
+<body>
+<main>
+<h1>Détecter l'effet d'une intervention avec plusieurs marqueurs</h1>
+<p class="sub">Visualisation de résultats de recherche : signatures multi-marqueurs sur des paires de prises de sang répétées (NHANES).</p>
+<div class="banner">Ceci n'est pas un outil de décision ni un produit. Les chiffres viennent de données publiques américaines (NHANES),
+d'effets moyens tirés de méta-analyses et d'une simulation pour l'horizon de 6 mois. Les personnes présentées plus bas sont
+<b>fictives</b> (données synthétiques).</div>
+
+<h2>1. Sans rien changer, presque une personne sur deux a un marqueur « significatif »</h2>
+<p>Paires de prises de sang chez des personnes sans intervention (NHANES III), bruit extrapolé à 6 mois, 18 marqueurs
+d'un bilan de suivi, chacun comparé à son changement détectable.</p>
+<div class="hero" id="hero"></div>
+
+<h2>2. Une signature fait mieux qu'un marqueur seul, mais reste loin d'une détection fiable</h2>
+<p>Part des personnes chez qui l'effet moyen d'une intervention est détecté à 6 mois, avec 5 % de fausses alertes calées
+sur d'autres personnes (NHANES 2001-2002). Chaque personne reçoit une part aléatoire de l'effet moyen (en moyenne 100 %,
+écart type 50 %). Les intervalles à 95 % intègrent l'incertitude du calage des seuils.</p>
+<div class="legend"><span><span class="dotkey" style="background:var(--s1)"></span>Signature (filtre adapté)</span>
+<span><span class="dotkey" style="background:var(--s2)"></span>Meilleur marqueur seul</span></div>
+<div id="chart-sig"></div>
+<p class="note" id="fa-note"></p>
+<p class="note">* Réduction de l'alcool : signature non interprétable. Aucune source lue ne chiffre l'effet sur la GGT, et elle repose
+à 93 % sur une <b>baisse</b> du HDL (réduire l'alcool fait baisser le HDL : un affichage naïf montrerait un marqueur « dégradé »).</p>
+<details><summary>Tableau des valeurs</summary><div id="tab-sig"></div></details>
+
+<h2>3. Pièges : contraception, laboratoire, jeûne</h2>
+<p>Part des personnes <b>sans intervention</b> chez qui la signature se déclenche quand un piège survient entre les deux
+bilans (fausses alertes de base : environ 5 %). La « signature insensible aux pièges » est rendue orthogonale aux directions
+des pièges qui la déclenchent au-delà de 10 %.</p>
+<div id="tab-pieges"></div>
+<h3>Ce que coûte la signature insensible aux pièges</h3>
+<div id="tab-corr"></div>
+
+<h2>4. Le levier du bilan de départ</h2>
+<p><b>Recommandation de conception.</b> Sensibilité à 6 mois de la signature selon le nombre de prélèvements au départ
+(à quelques semaines d'intervalle) et de bilans de suivi. Modèle gaussien, effet maintenu, 5 % de fausses alertes.</p>
+<div id="tab-levier"></div>
+<p class="note" id="levier-note"></p>
+
+<h2>5. Cinq personnes fictives suivies sur deux bilans</h2>
+<p>Données <b>synthétiques</b> : valeurs de départ égales aux médianes des 30-55 ans, variation tirée du modèle de bruit à 6 mois,
+plus l'effet ou le piège annoncé. La comparaison naïve signale chaque marqueur qui dépasse son changement détectable ; la signature
+teste seulement le protocole prescrit. Pour chaque cas, la règle de choix du tirage est indiquée.</p>
+<div class="people" id="people"></div>
+
+<h2>6. Limites, en clair</h2>
+<ul>
+<li>Les prises de sang répétées sont à <b>2 semaines</b> d'intervalle. L'horizon de 6 mois est <b>simulé</b> ; la variabilité à long
+terme n'est connue que pour 7 marqueurs sur 18. Les sensibilités à 6 mois sont donc probablement optimistes.</li>
+<li>Les effets d'intervention sont des <b>moyennes de méta-analyses</b>, souvent chez des personnes malades (obésité, stéatose), et
+souvent assemblées à partir d'études différentes. L'effet sur l'ALAT est probablement surestimé pour des personnes en bonne santé.</li>
+<li>La part d'effet reçue par chaque personne est <b>postulée</b>, pas mesurée.</li>
+<li>Une signature dit qu'il y a eu un changement <b>compatible</b> avec l'effet attendu, pas lequel : une perte de poids déclenche aussi
+la signature de l'activité physique dans 28 % des cas.</li>
+<li>Tester toutes les signatures à la fois fait monter les fausses alertes (voir section 2).</li>
+<li>Données américaines, laboratoires des années 1988-2002 ; les écarts réels entre laboratoires de routine sont inconnus pour les
+lipides et la numération.</li>
+<li>Rien ici ne permet de dire, pour une personne, qu'un programme « n'a pas marché » : ne pas détecter n'est pas prouver l'absence d'effet.</li>
+</ul>
+<footer>Programme de recherche « signatures » : rapport complet et protocole pré-enregistré dans le dépôt
+(reports/signatures/SIGNATURES.md, DECISIONS.md). Page générée automatiquement à partir des fichiers de résultats.</footer>
+</main>
+<div class="tip" id="tip"></div>
+<script>
+const D = {"a": {"au_moins_1": 0.4706153250773993, "au_moins_1_ic": [0.4469961300309597, 0.49283581656346753], "au_moins_3": 0.0735990712074303, "indep_1": 0.5473841012448724, "indep_3": 0.0399745006434448, "n": 1292, "cal_1": 0.4459305210918114, "fbn": 0.5055727554179567, "fas": 0.6272445820433437}, "sig": [{"id": "mediterraneen", "nom": "Alimentation méditerranéenne", "meilleur": "hba1c", "sig": 0.5037848297213622, "sig_ic": [0.44726780185758513, 0.5592569659442724], "best": 0.4106424148606811, "best_ic": [0.25865518575851393, 0.44317182662538696], "fa": 0.1050154798761609, "fa_ic": [0.07788951238390092, 0.13829721362229103]}, {"id": "perte_poids", "nom": "Perte de poids (7 kg)", "meilleur": "alt", "sig": 0.4926702786377709, "sig_ic": [0.459921246130031, 0.5342463235294118], "best": 0.2856656346749226, "best_ic": [0.26454198916408667, 0.3052577399380805], "fa": 0.0600309597523219, "fa_ic": [0.04878734520123839, 0.0806195820433436]}, {"id": "arret_tabac", "nom": "Arrêt du tabac", "meilleur": "wbc", "sig": 0.2595356037151702, "sig_ic": [0.20197542569659444, 0.3358571981424148], "best": 0.1086842105263157, "best_ic": [0.07081288699690402, 0.21443904798761604], "fa": 0.039876160990712, "fa_ic": [0.02906965944272446, 0.06531482198142413]}, {"id": "activite_aerobie", "nom": "Activité physique aérobie", "meilleur": "hdl", "sig": 0.1580495356037151, "sig_ic": [0.11724226006191951, 0.22154721362229102], "best": 0.1048452012383901, "best_ic": [0.07328018575851393, 0.14963893188854488], "fa": 0.0566486068111455, "fa_ic": [0.03960448916408669, 0.0894798761609907]}, {"id": "reduction_alcool", "nom": "Réduction de l'alcool*", "meilleur": "hdl", "sig": 0.2878250773993808, "sig_ic": [0.18687306501547987, 0.4106584752321981], "best": 0.1536222910216718, "best_ic": [0.10466544117647059, 0.22603502321981425], "fa": 0.0701857585139318, "fa_ic": [0.044035410216718265, 0.11254469814241484]}], "global_fa": 0.2550386996904025, "global_fa_ic": [0.2295249613003096, 0.31604779411764705], "pieges": [{"piege": "Contraception hormonale", "sens": "début / passage", "iv": "Perte de poids (7 kg)", "taux": 0.0831733746130031, "contrainte": 0.0975580495356037}, {"piege": "Contraception hormonale", "sens": "arrêt / retour", "iv": "Perte de poids (7 kg)", "taux": 0.0412461300309597, "contrainte": 0.0429179566563467}, {"piege": "Contraception hormonale", "sens": "début / passage", "iv": "Alimentation méditerranéenne", "taux": 0.1600309597523219, "contrainte": 0.1061958204334365}, {"piege": "Contraception hormonale", "sens": "arrêt / retour", "iv": "Alimentation méditerranéenne", "taux": 0.0653405572755417, "contrainte": 0.1061958204334365}, {"piege": "Contraception hormonale", "sens": "début / passage", "iv": "Arrêt du tabac", "taux": 0.1544427244582043, "contrainte": 0.0392260061919504}, {"piege": "Contraception hormonale", "sens": "arrêt / retour", "iv": "Arrêt du tabac", "taux": 0.0121091331269349, "contrainte": 0.0392260061919504}, {"piege": "Contraception hormonale", "sens": "début / passage", "iv": "Activité physique aérobie", "taux": 0.1474922600619195, "contrainte": 0.0589086687306501}, {"piege": "Contraception hormonale", "sens": "arrêt / retour", "iv": "Activité physique aérobie", "taux": 0.0231695046439628, "contrainte": 0.0589086687306501}, {"piege": "Contraception hormonale", "sens": "début / passage", "iv": "Réduction de l'alcool*", "taux": 0.0273955108359133, "contrainte": 0.0614551083591331}, {"piege": "Contraception hormonale", "sens": "arrêt / retour", "iv": "Réduction de l'alcool*", "taux": 0.3441021671826625, "contrainte": 0.0614551083591331}, {"piege": "Laboratoire (biochimie)", "sens": "début / passage", "iv": "Perte de poids (7 kg)", "taux": 0.1417685758513931, "contrainte": 0.0648374613003096}, {"piege": "Laboratoire (biochimie)", "sens": "arrêt / retour", "iv": "Perte de poids (7 kg)", "taux": 0.024500773993808, "contrainte": 0.0648374613003096}, {"piege": "Laboratoire (biochimie)", "sens": "début / passage", "iv": "Alimentation méditerranéenne", "taux": 0.097000773993808, "contrainte": 0.1061958204334365}, {"piege": "Laboratoire (biochimie)", "sens": "arrêt / retour", "iv": "Alimentation méditerranéenne", "taux": 0.1113893188854489, "contrainte": 0.1061958204334365}, {"piege": "Laboratoire (biochimie)", "sens": "début / passage", "iv": "Arrêt du tabac", "taux": 0.057859907120743, "contrainte": 0.0606424148606811}, {"piege": "Laboratoire (biochimie)", "sens": "arrêt / retour", "iv": "Arrêt du tabac", "taux": 0.0280224458204334, "contrainte": 0.0261687306501548}, {"piege": "Laboratoire (biochimie)", "sens": "début / passage", "iv": "Activité physique aérobie", "taux": 0.0644814241486068, "contrainte": 0.0664357585139319}, {"piege": "Laboratoire (biochimie)", "sens": "arrêt / retour", "iv": "Activité physique aérobie", "taux": 0.049984520123839, "contrainte": 0.0524767801857585}, {"piege": "Laboratoire (biochimie)", "sens": "début / passage", "iv": "Réduction de l'alcool*", "taux": 0.0478366873065015, "contrainte": 0.0614551083591331}, {"piege": "Laboratoire (biochimie)", "sens": "arrêt / retour", "iv": "Réduction de l'alcool*", "taux": 0.1054566563467492, "contrainte": 0.0614551083591331}, {"piege": "Laboratoire (numération)", "sens": "début / passage", "iv": "Perte de poids (7 kg)", "taux": 0.0530688854489164, "contrainte": 0.0576664086687306}, {"piege": "Laboratoire (numération)", "sens": "arrêt / retour", "iv": "Perte de poids (7 kg)", "taux": 0.0640595975232198, "contrainte": 0.0727438080495356}, {"piege": "Laboratoire (numération)", "sens": "début / passage", "iv": "Alimentation méditerranéenne", "taux": 0.0964938080495356, "contrainte": 0.1061958204334365}, {"piege": "Laboratoire (numération)", "sens": "arrêt / retour", "iv": "Alimentation méditerranéenne", "taux": 0.1120588235294117, "contrainte": 0.1061958204334365}, {"piege": "Laboratoire (numération)", "sens": "début / passage", "iv": "Arrêt du tabac", "taux": 0.0278715170278637, "contrainte": 0.0364976780185758}, {"piege": "Laboratoire (numération)", "sens": "arrêt / retour", "iv": "Arrêt du tabac", "taux": 0.058173374613003, "contrainte": 0.0422678018575851}, {"piege": "Laboratoire (numération)", "sens": "début / passage", "iv": "Activité physique aérobie", "taux": 0.0450773993808049, "contrainte": 0.0583823529411764}, {"piege": "Laboratoire (numération)", "sens": "arrêt / retour", "iv": "Activité physique aérobie", "taux": 0.0712422600619195, "contrainte": 0.0593962848297213}, {"piege": "Laboratoire (numération)", "sens": "début / passage", "iv": "Réduction de l'alcool*", "taux": 0.0865557275541795, "contrainte": 0.0549613003095975}, {"piege": "Laboratoire (numération)", "sens": "arrêt / retour", "iv": "Réduction de l'alcool*", "taux": 0.0568808049535603, "contrainte": 0.0691331269349845}, {"piege": "Prélèvement non à jeun", "sens": "début / passage", "iv": "Perte de poids (7 kg)", "taux": 0.0684404024767801, "contrainte": 0.0714318885448916}, {"piege": "Prélèvement non à jeun", "sens": "arrêt / retour", "iv": "Perte de poids (7 kg)", "taux": 0.0497020123839009, "contrainte": 0.0587113003095975}, {"piege": "Prélèvement non à jeun", "sens": "début / passage", "iv": "Alimentation méditerranéenne", "taux": 0.117360681114551, "contrainte": 0.1061958204334365}, {"piege": "Prélèvement non à jeun", "sens": "arrêt / retour", "iv": "Alimentation méditerranéenne", "taux": 0.0921633126934984, "contrainte": 0.1061958204334365}, {"piege": "Prélèvement non à jeun", "sens": "début / passage", "iv": "Arrêt du tabac", "taux": 0.0359055727554179, "contrainte": 0.034469814241486}, {"piege": "Prélèvement non à jeun", "sens": "arrêt / retour", "iv": "Arrêt du tabac", "taux": 0.0440363777089783, "contrainte": 0.0447484520123839}, {"piege": "Prélèvement non à jeun", "sens": "début / passage", "iv": "Activité physique aérobie", "taux": 0.0536648606811145, "contrainte": 0.056203560371517}, {"piege": "Prélèvement non à jeun", "sens": "arrêt / retour", "iv": "Activité physique aérobie", "taux": 0.0601354489164086, "contrainte": 0.0618111455108359}, {"piege": "Prélèvement non à jeun", "sens": "début / passage", "iv": "Réduction de l'alcool*", "taux": 0.0723529411764705, "contrainte": 0.0678831269349845}, {"piege": "Prélèvement non à jeun", "sens": "arrêt / retour", "iv": "Réduction de l'alcool*", "taux": 0.0679876160990712, "contrainte": 0.0557933436532507}], "corr": [{"iv": "Perte de poids (7 kg)", "orig": 0.4898065015479875, "contr": 0.4866021671826625, "pieges": "labo_biochimie"}, {"iv": "Activité physique aérobie", "orig": 0.1585719814241486, "contr": 0.1626238390092879, "pieges": "pilule"}, {"iv": "Alimentation méditerranéenne", "orig": 0.5027670278637771, "contr": 0.4971942724458204, "pieges": "labo_biochimie, labo_numeration, pilule, non_a_jeun_meme_personne"}, {"iv": "Réduction de l'alcool*", "orig": 0.2890866873065015, "contr": 0.2280534055727554, "pieges": "labo_biochimie, pilule"}, {"iv": "Arrêt du tabac", "orig": 0.2564164086687306, "contr": 0.2420975232198142, "pieges": "pilule"}], "levier": [{"iv": "Perte de poids (7 kg)", "b": 1, "f": 1, "sig": 0.54107819037326, "best": 0.296747969184024}, {"iv": "Perte de poids (7 kg)", "b": 1, "f": 2, "sig": 0.6135151823805499, "best": 0.352904928235234}, {"iv": "Perte de poids (7 kg)", "b": 2, "f": 1, "sig": 0.5882093455957303, "best": 0.3070618172894729}, {"iv": "Perte de poids (7 kg)", "b": 2, "f": 2, "sig": 0.6757276249954967, "best": 0.3691671409767649}, {"iv": "Perte de poids (7 kg)", "b": 3, "f": 1, "sig": 0.607306264239081, "best": 0.3107139830330589}, {"iv": "Perte de poids (7 kg)", "b": 3, "f": 2, "sig": 0.7021423847119688, "best": 0.3750073716738362}, {"iv": "Alimentation méditerranéenne", "b": 1, "f": 1, "sig": 0.5125306464835981, "best": 0.2943069967063995}, {"iv": "Alimentation méditerranéenne", "b": 1, "f": 2, "sig": 0.5856411231365662, "best": 0.3500460536946952}, {"iv": "Alimentation méditerranéenne", "b": 2, "f": 1, "sig": 0.5669908706795901, "best": 0.3500460536946952}, {"iv": "Alimentation méditerranéenne", "b": 2, "f": 2, "sig": 0.6596111146559323, "best": 0.442272232058532}, {"iv": "Alimentation méditerranéenne", "b": 3, "f": 1, "sig": 0.5898032703862708, "best": 0.3753431537813499}, {"iv": "Alimentation méditerranéenne", "b": 3, "f": 2, "sig": 0.6920102054706353, "best": 0.4875019726090565}, {"iv": "Arrêt du tabac", "b": 1, "f": 1, "sig": 0.3491653238953836, "best": 0.2041226283531801}, {"iv": "Arrêt du tabac", "b": 1, "f": 2, "sig": 0.4130916100115538, "best": 0.2412096418873791}, {"iv": "Arrêt du tabac", "b": 2, "f": 1, "sig": 0.4066279868926851, "best": 0.2348988517905602}, {"iv": "Arrêt du tabac", "b": 2, "f": 2, "sig": 0.5028000616215241, "best": 0.2957181108559112}, {"iv": "Arrêt du tabac", "b": 3, "f": 1, "sig": 0.431420856320341, "best": 0.2486703514411454}, {"iv": "Arrêt du tabac", "b": 3, "f": 2, "sig": 0.543602194584229, "best": 0.3227169063013178}], "people": [{"code": "A", "titre": "Sans intervention, programme « perte de poids » prescrit", "intervention": "Perte de poids de 7 kg (5 à 10 %)", "regle": "premier tirage avec au moins 3 marqueurs « significatifs » isolés et une signature muette", "graine": 2049, "marqueurs": [{"id": "tc", "nom": "Cholestérol total", "unite": "mg/dL", "b1": 199.0, "b2": 150.22904468573003, "variation_pct": -24.508017745864308, "naif": "baisse"}, {"id": "hdl", "nom": "HDL", "unite": "mg/dL", "b1": 48.0, "b2": 40.70447948131336, "variation_pct": -15.199001080597164, "naif": ""}, {"id": "tg_serum", "nom": "Triglycérides", "unite": "mg/dL", "b1": 111.0, "b2": 99.18841166920828, "variation_pct": -10.641070568280831, "naif": ""}, {"id": "glu_serum", "nom": "Glycémie", "unite": "mg/dL", "b1": 89.0, "b2": 90.75451349825565, "variation_pct": 1.971363481186117, "naif": ""}, {"id": "hba1c", "nom": "HbA1c", "unite": "%", "b1": 5.3, "b2": 5.335771602443623, "variation_pct": 0.6749358951626983, "naif": ""}, {"id": "alt", "nom": "ALAT", "unite": "U/L", "b1": 23.0, "b2": 17.559853103358318, "variation_pct": -23.652812594094264, "naif": ""}, {"id": "ast", "nom": "ASAT", "unite": "U/L", "b1": 22.0, "b2": 19.14127623937326, "variation_pct": -12.994198911939737, "naif": ""}, {"id": "ggt", "nom": "GGT", "unite": "U/L", "b1": 23.0, "b2": 21.026282830707533, "variation_pct": -8.581378996923771, "naif": ""}, {"id": "alp", "nom": "PAL", "unite": "U/L", "b1": 65.0, "b2": 68.82046017663329, "variation_pct": 5.877631040974296, "naif": ""}, {"id": "albumin", "nom": "Albumine", "unite": "g/dL", "b1": 4.3, "b2": 4.057006824842999, "variation_pct": -5.651004073418631, "naif": ""}, {"id": "creat", "nom": "Créatinine", "unite": "mg/dL", "b1": 0.8, "b2": 0.6319854897618552, "variation_pct": -21.001813779768106, "naif": "baisse"}, {"id": "urea", "nom": "Urée", "unite": "mg/dL", "b1": 13.0, "b2": 9.733158237200598, "variation_pct": -25.12955202153386, "naif": ""}, {"id": "urate", "nom": "Acide urique", "unite": "mg/dL", "b1": 5.2, "b2": 4.985458273109328, "variation_pct": -4.125802440205217, "naif": ""}, {"id": "wbc", "nom": "Leucocytes", "unite": "G/L", "b1": 6.9, "b2": 5.308033315164348, "variation_pct": -23.07198093964713, "naif": ""}, {"id": "hb", "nom": "Hémoglobine", "unite": "g/dL", "b1": 14.5, "b2": 13.593879253762582, "variation_pct": -6.249108594740815, "naif": ""}, {"id": "mcv", "nom": "VGM", "unite": "fL", "b1": 89.8, "b2": 93.6683822794117, "variation_pct": 4.3077753668281815, "naif": "hausse"}, {"id": "rdw", "nom": "RDW", "unite": "%", "b1": 12.4, "b2": 12.707357922966889, "variation_pct": 2.478692927152326, "naif": ""}, {"id": "plt", "nom": "Plaquettes", "unite": "G/L", "b1": 268.0, "b2": 282.91457703503676, "variation_pct": 5.5651406847152085, "naif": ""}], "n_naif": 3, "signature": 1.0644329365642446, "seuil": 1.7691076976844329, "signature_contrainte": 0.9228269020393198, "seuil_contrainte": 1.6925482011354418, "alerte": false, "alerte_contrainte": false}, {"code": "B", "titre": "Perte de poids, réponse moyenne (k = 1)", "intervention": "Perte de poids de 7 kg (5 à 10 %)", "regle": "premier tirage où la signature détecte l'effet", "graine": 2026, "marqueurs": [{"id": "tc", "nom": "Cholestérol total", "unite": "mg/dL", "b1": 199.0, "b2": 174.42679286456732, "variation_pct": -12.348345294187279, "naif": ""}, {"id": "hdl", "nom": "HDL", "unite": "mg/dL", "b1": 48.0, "b2": 51.25481111033432, "variation_pct": 6.780856479863173, "naif": ""}, {"id": "tg_serum", "nom": "Triglycérides", "unite": "mg/dL", "b1": 111.0, "b2": 41.81900471733362, "variation_pct": -62.32522097537512, "naif": "baisse"}, {"id": "glu_serum", "nom": "Glycémie", "unite": "mg/dL", "b1": 89.0, "b2": 96.22227176940297, "variation_pct": 8.114912100452765, "naif": ""}, {"id": "hba1c", "nom": "HbA1c", "unite": "%", "b1": 5.3, "b2": 5.414153587875824, "variation_pct": 2.1538412806759277, "naif": ""}, {"id": "alt", "nom": "ALAT", "unite": "U/L", "b1": 23.0, "b2": 11.828018494793346, "variation_pct": -48.57383263133328, "naif": ""}, {"id": "ast", "nom": "ASAT", "unite": "U/L", "b1": 22.0, "b2": 15.771755886583353, "variation_pct": -28.310200515530216, "naif": ""}, {"id": "ggt", "nom": "GGT", "unite": "U/L", "b1": 23.0, "b2": 22.644587288221818, "variation_pct": -1.5452726599051392, "naif": ""}, {"id": "alp", "nom": "PAL", "unite": "U/L", "b1": 65.0, "b2": 61.42835331040233, "variation_pct": -5.494841060919498, "naif": ""}, {"id": "albumin", "nom": "Albumine", "unite": "g/dL", "b1": 4.3, "b2": 4.210172043912747, "variation_pct": -2.089022234587279, "naif": ""}, {"id": "creat", "nom": "Créatinine", "unite": "mg/dL", "b1": 0.8, "b2": 0.8836863951538242, "variation_pct": 10.460799394228015, "naif": ""}, {"id": "urea", "nom": "Urée", "unite": "mg/dL", "b1": 13.0, "b2": 14.566145948901578, "variation_pct": 12.047276530012141, "naif": ""}, {"id": "urate", "nom": "Acide urique", "unite": "mg/dL", "b1": 5.2, "b2": 5.373654266108373, "variation_pct": 3.3395051174686996, "naif": ""}, {"id": "wbc", "nom": "Leucocytes", "unite": "G/L", "b1": 6.9, "b2": 6.457877286111431, "variation_pct": -6.407575563602452, "naif": ""}, {"id": "hb", "nom": "Hémoglobine", "unite": "g/dL", "b1": 14.5, "b2": 14.39529969155147, "variation_pct": -0.7220710927484775, "naif": ""}, {"id": "mcv", "nom": "VGM", "unite": "fL", "b1": 89.8, "b2": 89.03012710663671, "variation_pct": -0.8573194803600082, "naif": ""}, {"id": "rdw", "nom": "RDW", "unite": "%", "b1": 12.4, "b2": 12.221104452039281, "variation_pct": -1.4427060319412877, "naif": ""}, {"id": "plt", "nom": "Plaquettes", "unite": "G/L", "b1": 268.0, "b2": 276.0978855516904, "variation_pct": 3.021599086451654, "naif": ""}], "n_naif": 1, "signature": 2.704340944938232, "seuil": 1.7691076976844329, "signature_contrainte": 2.5513555111607444, "seuil_contrainte": 1.6925482011354418, "alerte": true, "alerte_contrainte": true}, {"code": "C", "titre": "Perte de poids, réponse faible (k = 0,3)", "intervention": "Perte de poids de 7 kg (5 à 10 %)", "regle": "premier tirage où la signature ne détecte pas l'effet (le cas le plus fréquent)", "graine": 2026, "marqueurs": [{"id": "tc", "nom": "Cholestérol total", "unite": "mg/dL", "b1": 199.0, "b2": 181.58851768731384, "variation_pct": -8.749488599339783, "naif": ""}, {"id": "hdl", "nom": "HDL", "unite": "mg/dL", "b1": 48.0, "b2": 48.97740846366575, "variation_pct": 2.036267632636979, "naif": ""}, {"id": "tg_serum", "nom": "Triglycérides", "unite": "mg/dL", "b1": 111.0, "b2": 50.5500210764556, "variation_pct": -54.45944047166162, "naif": "baisse"}, {"id": "glu_serum", "nom": "Glycémie", "unite": "mg/dL", "b1": 89.0, "b2": 99.08378338243845, "variation_pct": 11.330093688133092, "naif": ""}, {"id": "hba1c", "nom": "HbA1c", "unite": "%", "b1": 5.3, "b2": 5.414153587875824, "variation_pct": 2.1538412806759277, "naif": ""}, {"id": "alt", "nom": "ALAT", "unite": "U/L", "b1": 23.0, "b2": 16.66690723820666, "variation_pct": -27.5351859208406, "naif": ""}, {"id": "ast", "nom": "ASAT", "unite": "U/L", "b1": 22.0, "b2": 18.540721400309298, "variation_pct": -15.723993634957733, "naif": ""}, {"id": "ggt", "nom": "GGT", "unite": "U/L", "b1": 23.0, "b2": 22.644587288221818, "variation_pct": -1.5452726599051392, "naif": ""}, {"id": "alp", "nom": "PAL", "unite": "U/L", "b1": 65.0, "b2": 61.42835331040233, "variation_pct": -5.494841060919498, "naif": ""}, {"id": "albumin", "nom": "Albumine", "unite": "g/dL", "b1": 4.3, "b2": 4.210172043912747, "variation_pct": -2.089022234587279, "naif": ""}, {"id": "creat", "nom": "Créatinine", "unite": "mg/dL", "b1": 0.8, "b2": 0.8836863951538242, "variation_pct": 10.460799394228015, "naif": ""}, {"id": "urea", "nom": "Urée", "unite": "mg/dL", "b1": 13.0, "b2": 14.566145948901578, "variation_pct": 12.047276530012141, "naif": ""}, {"id": "urate", "nom": "Acide urique", "unite": "mg/dL", "b1": 5.2, "b2": 5.373654266108373, "variation_pct": 3.3395051174686996, "naif": ""}, {"id": "wbc", "nom": "Leucocytes", "unite": "G/L", "b1": 6.9, "b2": 6.457877286111431, "variation_pct": -6.407575563602452, "naif": ""}, {"id": "hb", "nom": "Hémoglobine", "unite": "g/dL", "b1": 14.5, "b2": 14.39529969155147, "variation_pct": -0.7220710927484775, "naif": ""}, {"id": "mcv", "nom": "VGM", "unite": "fL", "b1": 89.8, "b2": 89.03012710663671, "variation_pct": -0.8573194803600082, "naif": ""}, {"id": "rdw", "nom": "RDW", "unite": "%", "b1": 12.4, "b2": 12.221104452039281, "variation_pct": -1.4427060319412877, "naif": ""}, {"id": "plt", "nom": "Plaquettes", "unite": "G/L", "b1": 268.0, "b2": 276.0978855516904, "variation_pct": 3.021599086451654, "naif": ""}], "n_naif": 1, "signature": 1.4561034724119368, "seuil": 1.7691076976844329, "signature_contrainte": 1.352247419237381, "seuil_contrainte": 1.6925482011354418, "alerte": false, "alerte_contrainte": false}, {"code": "D", "titre": "Sans intervention, changement de laboratoire (biochimie), programme « perte de poids »", "intervention": "Perte de poids de 7 kg (5 à 10 %)", "regle": "premier tirage où la signature simple se déclenche à tort et la signature insensible aux pièges reste muette", "graine": 2046, "marqueurs": [{"id": "tc", "nom": "Cholestérol total", "unite": "mg/dL", "b1": 199.0, "b2": 188.76890481256834, "variation_pct": -5.141253863030992, "naif": ""}, {"id": "hdl", "nom": "HDL", "unite": "mg/dL", "b1": 48.0, "b2": 50.11498397748744, "variation_pct": 4.406216619765502, "naif": ""}, {"id": "tg_serum", "nom": "Triglycérides", "unite": "mg/dL", "b1": 111.0, "b2": 111.40434641125191, "variation_pct": 0.36427604617288445, "naif": ""}, {"id": "glu_serum", "nom": "Glycémie", "unite": "mg/dL", "b1": 89.0, "b2": 90.09616000404974, "variation_pct": 1.2316404539884696, "naif": ""}, {"id": "hba1c", "nom": "HbA1c", "unite": "%", "b1": 5.3, "b2": 5.102729073895989, "variation_pct": -3.7220929453587015, "naif": ""}, {"id": "alt", "nom": "ALAT", "unite": "U/L", "b1": 23.0, "b2": 10.884166096660383, "variation_pct": -52.67753871017224, "naif": ""}, {"id": "ast", "nom": "ASAT", "unite": "U/L", "b1": 22.0, "b2": 21.319895244813132, "variation_pct": -3.091385250849399, "naif": ""}, {"id": "ggt", "nom": "GGT", "unite": "U/L", "b1": 23.0, "b2": 27.6920662218472, "variation_pct": 20.400287921074778, "naif": ""}, {"id": "alp", "nom": "PAL", "unite": "U/L", "b1": 65.0, "b2": 85.50419410721958, "variation_pct": 31.54491401110704, "naif": "hausse"}, {"id": "albumin", "nom": "Albumine", "unite": "g/dL", "b1": 4.3, "b2": 4.165958230981342, "variation_pct": -3.1172504422943614, "naif": ""}, {"id": "creat", "nom": "Créatinine", "unite": "mg/dL", "b1": 0.8, "b2": 0.8472109603186309, "variation_pct": 5.901370039828846, "naif": ""}, {"id": "urea", "nom": "Urée", "unite": "mg/dL", "b1": 13.0, "b2": 10.64325854866824, "variation_pct": -18.1287803948597, "naif": ""}, {"id": "urate", "nom": "Acide urique", "unite": "mg/dL", "b1": 5.2, "b2": 4.935509797821156, "variation_pct": -5.086350041900845, "naif": ""}, {"id": "wbc", "nom": "Leucocytes", "unite": "G/L", "b1": 6.9, "b2": 7.3483253661261, "variation_pct": 6.4974690742912955, "naif": ""}, {"id": "hb", "nom": "Hémoglobine", "unite": "g/dL", "b1": 14.5, "b2": 15.98469970950132, "variation_pct": 10.23930834138842, "naif": "hausse"}, {"id": "mcv", "nom": "VGM", "unite": "fL", "b1": 89.8, "b2": 91.4698268087369, "variation_pct": 1.8594953326691588, "naif": ""}, {"id": "rdw", "nom": "RDW", "unite": "%", "b1": 12.4, "b2": 12.819989554529087, "variation_pct": 3.3870125365248915, "naif": ""}, {"id": "plt", "nom": "Plaquettes", "unite": "G/L", "b1": 268.0, "b2": 291.4968066608485, "variation_pct": 8.767465171958388, "naif": ""}], "n_naif": 2, "signature": 1.927687104449315, "seuil": 1.7691076976844329, "signature_contrainte": 1.0467699699041448, "seuil_contrainte": 1.6925482011354418, "alerte": true, "alerte_contrainte": false}, {"code": "E", "titre": "Sans intervention, début d'une pilule, programme « arrêt du tabac »", "intervention": "Arrêt du tabac", "regle": "premier tirage où la signature se déclenche à tort", "graine": 2028, "marqueurs": [{"id": "tc", "nom": "Cholestérol total", "unite": "mg/dL", "b1": 199.0, "b2": 206.66636768124354, "variation_pct": 3.852446070976656, "naif": ""}, {"id": "hdl", "nom": "HDL", "unite": "mg/dL", "b1": 48.0, "b2": 60.11794730841305, "variation_pct": 25.245723559193856, "naif": ""}, {"id": "tg_serum", "nom": "Triglycérides", "unite": "mg/dL", "b1": 111.0, "b2": 58.83565378508368, "variation_pct": -46.99490649992462, "naif": ""}, {"id": "glu_serum", "nom": "Glycémie", "unite": "mg/dL", "b1": 89.0, "b2": 75.86860200102606, "variation_pct": -14.754379774128024, "naif": ""}, {"id": "hba1c", "nom": "HbA1c", "unite": "%", "b1": 5.3, "b2": 5.05278851007123, "variation_pct": -4.664367734505093, "naif": ""}, {"id": "alt", "nom": "ALAT", "unite": "U/L", "b1": 23.0, "b2": 27.031252451384834, "variation_pct": 17.527184571238408, "naif": ""}, {"id": "ast", "nom": "ASAT", "unite": "U/L", "b1": 22.0, "b2": 19.016601725788362, "variation_pct": -13.560901246416535, "naif": ""}, {"id": "ggt", "nom": "GGT", "unite": "U/L", "b1": 23.0, "b2": 29.20714865734792, "variation_pct": 26.987602858034432, "naif": ""}, {"id": "alp", "nom": "PAL", "unite": "U/L", "b1": 65.0, "b2": 57.23896303083544, "variation_pct": -11.940056875637783, "naif": ""}, {"id": "albumin", "nom": "Albumine", "unite": "g/dL", "b1": 4.3, "b2": 4.353010874420343, "variation_pct": 1.2328110330312336, "naif": ""}, {"id": "creat", "nom": "Créatinine", "unite": "mg/dL", "b1": 0.8, "b2": 0.8616470996589665, "variation_pct": 7.705887457370797, "naif": ""}, {"id": "urea", "nom": "Urée", "unite": "mg/dL", "b1": 13.0, "b2": 14.82909726796073, "variation_pct": 14.069978984313302, "naif": ""}, {"id": "urate", "nom": "Acide urique", "unite": "mg/dL", "b1": 5.2, "b2": 5.421870774489326, "variation_pct": 4.266745663256266, "naif": ""}, {"id": "wbc", "nom": "Leucocytes", "unite": "G/L", "b1": 6.9, "b2": 4.519851190404759, "variation_pct": -34.494910283989014, "naif": "baisse"}, {"id": "hb", "nom": "Hémoglobine", "unite": "g/dL", "b1": 14.5, "b2": 15.062146750766134, "variation_pct": 3.8768741432147147, "naif": ""}, {"id": "mcv", "nom": "VGM", "unite": "fL", "b1": 89.8, "b2": 91.53713886343036, "variation_pct": 1.9344530773166557, "naif": ""}, {"id": "rdw", "nom": "RDW", "unite": "%", "b1": 12.4, "b2": 12.036979923239057, "variation_pct": -2.927581264201151, "naif": ""}, {"id": "plt", "nom": "Plaquettes", "unite": "G/L", "b1": 268.0, "b2": 277.6098987809635, "variation_pct": 3.585783127225173, "naif": ""}], "n_naif": 1, "signature": 3.188860507718082, "seuil": 1.9924457329508745, "signature_contrainte": 2.250825646781552, "seuil_contrainte": 1.979711863934711, "alerte": true, "alerte_contrainte": true}]};
+const pct = (x, d = 0) => (100 * x).toFixed(d).replace('.', ',') + ' %';
+const fmt = (x) => { const a = Math.abs(x); const d = a >= 100 ? 0 : a >= 10 ? 1 : 2; return x.toFixed(d).replace('.', ','); };
+const el = (t, a = {}, txt) => { const e = document.createElement(t); for (const k in a) e.setAttribute(k, a[k]); if (txt !== undefined) e.textContent = txt; return e; };
+const svgEl = (t, a = {}) => { const e = document.createElementNS('http://www.w3.org/2000/svg', t); for (const k in a) e.setAttribute(k, a[k]); return e; };
+const tip = document.getElementById('tip');
+function showTip(ev, lines) { tip.replaceChildren(...lines.map(l => { const d = el('div'); d.textContent = l; return d; })); tip.style.display = 'block';
+  tip.style.left = Math.min(ev.clientX + 12, innerWidth - 240) + 'px'; tip.style.top = (ev.clientY + 12) + 'px'; }
+function hideTip() { tip.style.display = 'none'; }
+
+// 1. hero
+(function () {
+  const h = document.getElementById('hero'); const a = D.a;
+  const tiles = [[pct(a.au_moins_1), `ont au moins un marqueur sur 18 au-delà de son changement détectable en 6 mois, sans rien changer (${pct(a.indep_1)} attendus si les marqueurs étaient indépendants).`],
+                 [pct(a.au_moins_3, 1), `en ont au moins trois : les faux changements arrivent en grappes (${pct(a.indep_3, 1)} attendus sous indépendance).`],
+                 [pct(a.fbn), `voient au moins une valeur anormale redevenir normale toute seule (« fausse bonne nouvelle »).`]];
+  for (const [f, l] of tiles) { const t = el('div', {class: 'tile'}); t.append(el('div', {class: 'fig'}, f), el('div', {class: 'lab'}, l)); h.append(t); }
+  h.after(el('p', {class: 'note'}, `NHANES III, ${a.n} personnes, paires complètes ; intervalle à 95 % de la première valeur : ${pct(a.au_moins_1_ic[0])} à ${pct(a.au_moins_1_ic[1])}.`));
+})();
+
+// 2. dot-and-interval chart
+(function () {
+  const W = Math.min(880, document.querySelector('main').clientWidth), rowH = 46, top = 10, left = 210, right = 24, H = top + D.sig.length * rowH + 30;
+  const s = svgEl('svg', {width: W, height: H, role: 'img', 'aria-label': 'Sensibilité de la signature et du meilleur marqueur seul par intervention'});
+  const x = v => left + v * (W - left - right);
+  for (const t of [0, .2, .4, .6, .8, 1]) { s.append(svgEl('line', {x1: x(t), x2: x(t), y1: top, y2: H - 24, stroke: 'var(--grid)', 'stroke-width': 1}));
+    const tx = svgEl('text', {x: x(t), y: H - 8, 'text-anchor': 'middle'}); tx.textContent = (t * 100) + ' %'; s.append(tx); }
+  D.sig.forEach((r, i) => {
+    const y = top + i * rowH + rowH / 2;
+    const lab = svgEl('text', {x: 0, y: y + 4}); lab.textContent = r.nom; lab.setAttribute('fill', 'var(--ink)'); s.append(lab);
+    [['best', 'var(--s2)', 7], ['sig', 'var(--s1)', -7]].forEach(([k, c, dy]) => {
+      const ic = r[k + '_ic'];
+      s.append(svgEl('line', {x1: x(ic[0]), x2: x(ic[1]), y1: y + dy, y2: y + dy, stroke: c, 'stroke-width': 2, 'stroke-linecap': 'round'}));
+      const dot = svgEl('circle', {cx: x(r[k]), cy: y + dy, r: 5, fill: c, stroke: 'var(--surface)', 'stroke-width': 2});
+      s.append(dot);
+      const hit = svgEl('rect', {x: x(ic[0]) - 6, y: y + dy - 10, width: Math.max(24, x(ic[1]) - x(ic[0]) + 12), height: 20, fill: 'transparent', tabindex: 0});
+      const lines = [`${k === 'sig' ? 'Signature' : 'Meilleur seul (' + r.meilleur + ')'} : ${pct(r[k])}`, `IC 95 % : ${pct(ic[0])} à ${pct(ic[1])}`, r.nom];
+      hit.addEventListener('pointermove', e => showTip(e, lines)); hit.addEventListener('pointerleave', hideTip);
+      hit.addEventListener('focus', e => { const b = hit.getBoundingClientRect(); showTip({clientX: b.right, clientY: b.top}, lines); }); hit.addEventListener('blur', hideTip);
+      s.append(hit);
+    });
+    const v = svgEl('text', {x: x(r.sig_ic[1]) + 8, y: y - 3}); v.textContent = pct(r.sig); v.setAttribute('fill', 'var(--ink)'); s.append(v);
+  });
+  document.getElementById('chart-sig').append(s);
+  document.getElementById('fa-note').textContent = `Fausses alertes observées sur des personnes non vues au calage : ${D.sig.map(r => r.nom.replace('*', '') + ' ' + pct(r.fa, 1)).join(' ; ')}. ` +
+    `Si l'on teste les 5 signatures à la fois : ${pct(D.global_fa)} (IC 95 % ${pct(D.global_fa_ic[0])} à ${pct(D.global_fa_ic[1])}).`;
+  const t = el('table'); const hd = el('tr'); ['Intervention', 'Signature', 'IC 95 %', 'Meilleur seul', 'IC 95 %', 'Fausses alertes'].forEach((h, j) => hd.append(el('th', j ? {class: 'num'} : {}, h))); t.append(hd);
+  D.sig.forEach(r => { const tr = el('tr'); tr.append(el('td', {}, r.nom), el('td', {class: 'num'}, pct(r.sig)), el('td', {class: 'num'}, pct(r.sig_ic[0]) + ' – ' + pct(r.sig_ic[1])),
+    el('td', {class: 'num'}, pct(r.best) + ' (' + r.meilleur + ')'), el('td', {class: 'num'}, pct(r.best_ic[0]) + ' – ' + pct(r.best_ic[1])), el('td', {class: 'num'}, pct(r.fa, 1))); t.append(tr); });
+  document.getElementById('tab-sig').append(t);
+})();
+
+// 3. pieges
+(function () {
+  const ivs = [...new Set(D.pieges.map(p => p.iv))];
+  const t = el('table'); const hd = el('tr'); hd.append(el('th', {}, 'Piège'), el('th', {}, 'Sens'));
+  ivs.forEach(i => hd.append(el('th', {class: 'num'}, i))); t.append(hd);
+  const keys = [...new Set(D.pieges.map(p => p.piege + '|' + p.sens))];
+  keys.forEach(k => { const [pg, sn] = k.split('|'); const tr = el('tr'); tr.append(el('td', {}, pg), el('td', {}, sn));
+    ivs.forEach(i => { const p = D.pieges.find(q => q.piege === pg && q.sens === sn && q.iv === i);
+      const td = el('td', {class: 'num'}); const v = el('span', p.taux > 0.10 ? {class: 'flag'} : {}, pct(p.taux)); td.append(v);
+      if (p.contrainte !== null && p.taux > 0.10) td.append(el('div', {class: 'note'}, '→ ' + pct(p.contrainte) + ' insensible'));
+      tr.append(td); }); t.append(tr); });
+  document.getElementById('tab-pieges').append(t);
+  document.getElementById('tab-pieges').append(el('p', {class: 'note'}, 'En gras : au-delà de 10 %. « → insensible » : même piège avec la signature insensible aux pièges.'));
+  const c = el('table'); const h2 = el('tr'); ['Intervention', 'Pièges neutralisés', 'Sensibilité, signature', 'Sensibilité, insensible aux pièges'].forEach((h, j) => h2.append(el('th', j > 1 ? {class: 'num'} : {}, h))); c.append(h2);
+  D.corr.forEach(r => { const tr = el('tr'); tr.append(el('td', {}, r.iv), el('td', {}, r.pieges.replaceAll('_', ' ')), el('td', {class: 'num'}, pct(r.orig)), el('td', {class: 'num'}, pct(r.contr))); c.append(tr); });
+  document.getElementById('tab-corr').append(c);
+})();
+
+// 4. levier
+(function () {
+  const ivs = [...new Set(D.levier.map(r => r.iv))];
+  const t = el('table'); const hd = el('tr'); hd.append(el('th', {}, 'Prélèvements au départ'), el('th', {}, 'Bilans de suivi'));
+  ivs.forEach(i => hd.append(el('th', {class: 'num'}, i))); t.append(hd);
+  for (const f of [1, 2]) for (const b of [1, 2, 3]) { const tr = el('tr'); tr.append(el('td', {}, String(b)), el('td', {}, f === 1 ? '1 (6 mois)' : '2 (6 et 12 mois)'));
+    ivs.forEach(i => { const r = D.levier.find(q => q.iv === i && q.b === b && q.f === f); tr.append(el('td', {class: 'num'}, pct(r.sig))); }); t.append(tr); }
+  document.getElementById('tab-levier').append(t);
+  const g = i => { const a = D.levier.find(q => q.iv === i && q.b === 1 && q.f === 1).sig, b = D.levier.find(q => q.iv === i && q.b === 2 && q.f === 1).sig; return [a, b]; };
+  const [a, b] = g(ivs[0]);
+  document.getElementById('levier-note').textContent = `Un deuxième prélèvement au départ, quelques semaines avant le début du programme, fait passer la détection de la perte de poids de ${pct(a)} à ${pct(b)} ; ` +
+    `ajouter en plus un bilan à 12 mois la porte à ${pct(D.levier.find(q => q.iv === ivs[0] && q.b === 2 && q.f === 2).sig)}. Modèle gaussien : les valeurs d'une même ligne sont comparables entre elles, pas avec la section 2.`;
+})();
+
+// 5. personnes
+(function () {
+  const box = document.getElementById('people');
+  D.people.forEach(p => {
+    const c = el('div', {class: 'card'}); c.append(el('h3', {}, 'Personne ' + p.code), el('div', {class: 'ctx'}, p.titre));
+    const v = el('div', {class: 'verdict'});
+    const n1 = el('div'); n1.append(el('b', {}, 'Comparaison naïve'), document.createTextNode(p.n_naif === 0 ? 'Aucun marqueur ne bouge au-delà de son seuil.' : `${p.n_naif} marqueur${p.n_naif > 1 ? 's' : ''} « significatif${p.n_naif > 1 ? 's' : ''} » : ` +
+      p.marqueurs.filter(m => m.naif).map(m => m.nom + (m.naif === 'hausse' ? ' ↑' : ' ↓')).join(', ') + '.'));
+    const n2 = el('div'); n2.append(el('b', {}, 'Signature : ' + p.intervention),
+      document.createTextNode((p.alerte ? 'Changement compatible avec l\'effet attendu.' : 'Pas de changement détectable.') + ` (score ${fmt(p.signature)}, seuil ${fmt(p.seuil)})`));
+    v.append(n1, n2); c.append(v);
+    c.append(el('div', {class: 'note'}, `Signature insensible aux pièges : ${p.alerte_contrainte ? 'se déclenche' : 'ne se déclenche pas'} (score ${fmt(p.signature_contrainte)}, seuil ${fmt(p.seuil_contrainte)}).` +
+      (p.alerte_contrainte && p.titre.startsWith('Sans intervention') ? ' Ici, c\'est le bruit : le piège ne pèse plus sur cette signature, mais 5 % de fausses alertes restent attendues.' : '')));
+    const det = el('details'); det.append(el('summary', {}, 'Les 18 marqueurs'));
+    const t = el('table', {class: 'small'}); const hd = el('tr'); ['Marqueur', 'Bilan 1', 'Bilan 2', 'Variation'].forEach((h, j) => hd.append(el('th', j ? {class: 'num'} : {}, h))); t.append(hd);
+    p.marqueurs.forEach(m => { const tr = el('tr'); tr.append(el('td', m.naif ? {class: 'flag'} : {}, m.nom + ' (' + m.unite + ')'), el('td', {class: 'num'}, fmt(m.b1)), el('td', {class: 'num'}, fmt(m.b2)),
+      el('td', {class: 'num'}, (m.variation_pct > 0 ? '+' : '') + m.variation_pct.toFixed(0) + ' %')); t.append(tr); });
+    det.append(t); c.append(det);
+    c.append(el('div', {class: 'note'}, 'Tirage retenu : ' + p.regle + '.'));
+    box.append(c);
+  });
+})();
+</script>
+</body>
+</html>

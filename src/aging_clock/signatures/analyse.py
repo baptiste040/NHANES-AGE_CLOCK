@@ -70,6 +70,9 @@ def robust_cov(D, robust=True):
     if robust:
         med = np.median(D, 0)
         s = 1.4826 * np.median(np.abs(D - med), 0)
+        # repli si l'ecart absolu median est nul (valeurs arrondies, tirages bootstrap) : IQR, puis ecart type
+        iqr = (np.quantile(D, 0.75, 0) - np.quantile(D, 0.25, 0)) / 1.349
+        s = np.where(s > 0, s, np.where(iqr > 0, iqr, D.std(0, ddof=1)))
         rho = spearmanr(D).correlation
         R = 2 * np.sin(np.pi * rho / 6)
         np.fill_diagonal(R, 1.0)

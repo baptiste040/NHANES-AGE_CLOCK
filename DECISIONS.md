@@ -4062,3 +4062,23 @@ Rapport : `reports/signatures/SIGNATURES.md`. Pré-enregistrement : commit `29ba
 - **Prédictions.** Vérifiées : P1, P2, P3, P4, P6, P11. Non vérifiées : P5, P7, P8, P9, P10.
 - **Écarts.** Effectif d'évaluation (1 292 paires au lieu de 1 288 : le compte préalable incluait la
   CRP). Les IC bootstrap ignorent l'incertitude des seuils.
+
+### Amendement — piste « signatures » (2026-11-12), demandé après les résultats
+
+1. **IC qui intègrent le calage.**
+   - **Méthode.** Chaque tirage bootstrap (500) rééchantillonne les 403 paires de calibration,
+     réestime la covariance robuste, recale les seuils, puis rééchantillonne les personnes
+     d'évaluation. Nombres aléatoires communs.
+   - **Ce qu'ils remplacent.** Les IC initiaux du tableau principal et des fausses alertes.
+   - **Conséquence.** À 6 mois, le gain de la signature n'est plus significatif pour l'activité
+     aérobie (+5 points, IC [−0 ; +12]). P1 reste vérifiée (4 sur 5).
+2. **Levier du bilan de départ.**
+   - **Méthode.** Modèle gaussien : 1, 2 ou 3 prélèvements au départ et 1 ou 2 bilans de suivi.
+     Effet maintenu ; composante à long terme partagée par les prélèvements rapprochés du départ.
+   - **Résultat.** Un deuxième prélèvement au départ apporte +5 à +6 points, autant qu'un deuxième
+     bilan de suivi.
+3. **Repli technique.** Dans la covariance robuste, une échelle nulle se replie sur l'écart
+   interquartile, puis sur l'écart type. L'analyse principale est inchangée.
+4. **Partie C (démo).** `reports/signatures/demo_signatures.html`, page autonome générée à partir des
+   fichiers de résultats. Personnes fictives tirées du modèle de bruit à 6 mois ; la règle de choix
+   de chaque tirage est affichée.

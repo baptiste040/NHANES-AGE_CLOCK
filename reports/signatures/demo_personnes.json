@@ -1,0 +1,892 @@
+[
+ {
+  "code": "A",
+  "titre": "Sans intervention, programme « perte de poids » prescrit",
+  "intervention": "Perte de poids de 7 kg (5 à 10 %)",
+  "regle": "premier tirage avec au moins 3 marqueurs « significatifs » isolés et une signature muette",
+  "graine": 2049,
+  "marqueurs": [
+   {
+    "id": "tc",
+    "nom": "Cholestérol total",
+    "unite": "mg/dL",
+    "b1": 199.0,
+    "b2": 150.22904468573003,
+    "variation_pct": -24.508017745864308,
+    "naif": "baisse"
+   },
+   {
+    "id": "hdl",
+    "nom": "HDL",
+    "unite": "mg/dL",
+    "b1": 48.0,
+    "b2": 40.70447948131336,
+    "variation_pct": -15.199001080597164,
+    "naif": ""
+   },
+   {
+    "id": "tg_serum",
+    "nom": "Triglycérides",
+    "unite": "mg/dL",
+    "b1": 111.0,
+    "b2": 99.18841166920828,
+    "variation_pct": -10.641070568280831,
+    "naif": ""
+   },
+   {
+    "id": "glu_serum",
+    "nom": "Glycémie",
+    "unite": "mg/dL",
+    "b1": 89.0,
+    "b2": 90.75451349825565,
+    "variation_pct": 1.971363481186117,
+    "naif": ""
+   },
+   {
+    "id": "hba1c",
+    "nom": "HbA1c",
+    "unite": "%",
+    "b1": 5.3,
+    "b2": 5.335771602443623,
+    "variation_pct": 0.6749358951626983,
+    "naif": ""
+   },
+   {
+    "id": "alt",
+    "nom": "ALAT",
+    "unite": "U/L",
+    "b1": 23.0,
+    "b2": 17.559853103358318,
+    "variation_pct": -23.652812594094264,
+    "naif": ""
+   },
+   {
+    "id": "ast",
+    "nom": "ASAT",
+    "unite": "U/L",
+    "b1": 22.0,
+    "b2": 19.14127623937326,
+    "variation_pct": -12.994198911939737,
+    "naif": ""
+   },
+   {
+    "id": "ggt",
+    "nom": "GGT",
+    "unite": "U/L",
+    "b1": 23.0,
+    "b2": 21.026282830707533,
+    "variation_pct": -8.581378996923771,
+    "naif": ""
+   },
+   {
+    "id": "alp",
+    "nom": "PAL",
+    "unite": "U/L",
+    "b1": 65.0,
+    "b2": 68.82046017663329,
+    "variation_pct": 5.877631040974296,
+    "naif": ""
+   },
+   {
+    "id": "albumin",
+    "nom": "Albumine",
+    "unite": "g/dL",
+    "b1": 4.3,
+    "b2": 4.057006824842999,
+    "variation_pct": -5.651004073418631,
+    "naif": ""
+   },
+   {
+    "id": "creat",
+    "nom": "Créatinine",
+    "unite": "mg/dL",
+    "b1": 0.8,
+    "b2": 0.6319854897618552,
+    "variation_pct": -21.001813779768106,
+    "naif": "baisse"
+   },
+   {
+    "id": "urea",
+    "nom": "Urée",
+    "unite": "mg/dL",
+    "b1": 13.0,
+    "b2": 9.733158237200598,
+    "variation_pct": -25.12955202153386,
+    "naif": ""
+   },
+   {
+    "id": "urate",
+    "nom": "Acide urique",
+    "unite": "mg/dL",
+    "b1": 5.2,
+    "b2": 4.985458273109328,
+    "variation_pct": -4.125802440205217,
+    "naif": ""
+   },
+   {
+    "id": "wbc",
+    "nom": "Leucocytes",
+    "unite": "G/L",
+    "b1": 6.9,
+    "b2": 5.308033315164348,
+    "variation_pct": -23.07198093964713,
+    "naif": ""
+   },
+   {
+    "id": "hb",
+    "nom": "Hémoglobine",
+    "unite": "g/dL",
+    "b1": 14.5,
+    "b2": 13.593879253762582,
+    "variation_pct": -6.249108594740815,
+    "naif": ""
+   },
+   {
+    "id": "mcv",
+    "nom": "VGM",
+    "unite": "fL",
+    "b1": 89.8,
+    "b2": 93.6683822794117,
+    "variation_pct": 4.3077753668281815,
+    "naif": "hausse"
+   },
+   {
+    "id": "rdw",
+    "nom": "RDW",
+    "unite": "%",
+    "b1": 12.4,
+    "b2": 12.707357922966889,
+    "variation_pct": 2.478692927152326,
+    "naif": ""
+   },
+   {
+    "id": "plt",
+    "nom": "Plaquettes",
+    "unite": "G/L",
+    "b1": 268.0,
+    "b2": 282.91457703503676,
+    "variation_pct": 5.5651406847152085,
+    "naif": ""
+   }
+  ],
+  "n_naif": 3,
+  "signature": 1.0644329365642446,
+  "seuil": 1.7691076976844329,
+  "signature_contrainte": 0.9228269020393198,
+  "seuil_contrainte": 1.6925482011354418,
+  "alerte": false,
+  "alerte_contrainte": false
+ },
+ {
+  "code": "B",
+  "titre": "Perte de poids, réponse moyenne (k = 1)",
+  "intervention": "Perte de poids de 7 kg (5 à 10 %)",
+  "regle": "premier tirage où la signature détecte l'effet",
+  "graine": 2026,
+  "marqueurs": [
+   {
+    "id": "tc",
+    "nom": "Cholestérol total",
+    "unite": "mg/dL",
+    "b1": 199.0,
+    "b2": 174.42679286456732,
+    "variation_pct": -12.348345294187279,
+    "naif": ""
+   },
+   {
+    "id": "hdl",
+    "nom": "HDL",
+    "unite": "mg/dL",
+    "b1": 48.0,
+    "b2": 51.25481111033432,
+    "variation_pct": 6.780856479863173,
+    "naif": ""
+   },
+   {
+    "id": "tg_serum",
+    "nom": "Triglycérides",
+    "unite": "mg/dL",
+    "b1": 111.0,
+    "b2": 41.81900471733362,
+    "variation_pct": -62.32522097537512,
+    "naif": "baisse"
+   },
+   {
+    "id": "glu_serum",
+    "nom": "Glycémie",
+    "unite": "mg/dL",
+    "b1": 89.0,
+    "b2": 96.22227176940297,
+    "variation_pct": 8.114912100452765,
+    "naif": ""
+   },
+   {
+    "id": "hba1c",
+    "nom": "HbA1c",
+    "unite": "%",
+    "b1": 5.3,
+    "b2": 5.414153587875824,
+    "variation_pct": 2.1538412806759277,
+    "naif": ""
+   },
+   {
+    "id": "alt",
+    "nom": "ALAT",
+    "unite": "U/L",
+    "b1": 23.0,
+    "b2": 11.828018494793346,
+    "variation_pct": -48.57383263133328,
+    "naif": ""
+   },
+   {
+    "id": "ast",
+    "nom": "ASAT",
+    "unite": "U/L",
+    "b1": 22.0,
+    "b2": 15.771755886583353,
+    "variation_pct": -28.310200515530216,
+    "naif": ""
+   },
+   {
+    "id": "ggt",
+    "nom": "GGT",
+    "unite": "U/L",
+    "b1": 23.0,
+    "b2": 22.644587288221818,
+    "variation_pct": -1.5452726599051392,
+    "naif": ""
+   },
+   {
+    "id": "alp",
+    "nom": "PAL",
+    "unite": "U/L",
+    "b1": 65.0,
+    "b2": 61.42835331040233,
+    "variation_pct": -5.494841060919498,
+    "naif": ""
+   },
+   {
+    "id": "albumin",
+    "nom": "Albumine",
+    "unite": "g/dL",
+    "b1": 4.3,
+    "b2": 4.210172043912747,
+    "variation_pct": -2.089022234587279,
+    "naif": ""
+   },
+   {
+    "id": "creat",
+    "nom": "Créatinine",
+    "unite": "mg/dL",
+    "b1": 0.8,
+    "b2": 0.8836863951538242,
+    "variation_pct": 10.460799394228015,
+    "naif": ""
+   },
+   {
+    "id": "urea",
+    "nom": "Urée",
+    "unite": "mg/dL",
+    "b1": 13.0,
+    "b2": 14.566145948901578,
+    "variation_pct": 12.047276530012141,
+    "naif": ""
+   },
+   {
+    "id": "urate",
+    "nom": "Acide urique",
+    "unite": "mg/dL",
+    "b1": 5.2,
+    "b2": 5.373654266108373,
+    "variation_pct": 3.3395051174686996,
+    "naif": ""
+   },
+   {
+    "id": "wbc",
+    "nom": "Leucocytes",
+    "unite": "G/L",
+    "b1": 6.9,
+    "b2": 6.457877286111431,
+    "variation_pct": -6.407575563602452,
+    "naif": ""
+   },
+   {
+    "id": "hb",
+    "nom": "Hémoglobine",
+    "unite": "g/dL",
+    "b1": 14.5,
+    "b2": 14.39529969155147,
+    "variation_pct": -0.7220710927484775,
+    "naif": ""
+   },
+   {
+    "id": "mcv",
+    "nom": "VGM",
+    "unite": "fL",
+    "b1": 89.8,
+    "b2": 89.03012710663671,
+    "variation_pct": -0.8573194803600082,
+    "naif": ""
+   },
+   {
+    "id": "rdw",
+    "nom": "RDW",
+    "unite": "%",
+    "b1": 12.4,
+    "b2": 12.221104452039281,
+    "variation_pct": -1.4427060319412877,
+    "naif": ""
+   },
+   {
+    "id": "plt",
+    "nom": "Plaquettes",
+    "unite": "G/L",
+    "b1": 268.0,
+    "b2": 276.0978855516904,
+    "variation_pct": 3.021599086451654,
+    "naif": ""
+   }
+  ],
+  "n_naif": 1,
+  "signature": 2.704340944938232,
+  "seuil": 1.7691076976844329,
+  "signature_contrainte": 2.5513555111607444,
+  "seuil_contrainte": 1.6925482011354418,
+  "alerte": true,
+  "alerte_contrainte": true
+ },
+ {
+  "code": "C",
+  "titre": "Perte de poids, réponse faible (k = 0,3)",
+  "intervention": "Perte de poids de 7 kg (5 à 10 %)",
+  "regle": "premier tirage où la signature ne détecte pas l'effet (le cas le plus fréquent)",
+  "graine": 2026,
+  "marqueurs": [
+   {
+    "id": "tc",
+    "nom": "Cholestérol total",
+    "unite": "mg/dL",
+    "b1": 199.0,
+    "b2": 181.58851768731384,
+    "variation_pct": -8.749488599339783,
+    "naif": ""
+   },
+   {
+    "id": "hdl",
+    "nom": "HDL",
+    "unite": "mg/dL",
+    "b1": 48.0,
+    "b2": 48.97740846366575,
+    "variation_pct": 2.036267632636979,
+    "naif": ""
+   },
+   {
+    "id": "tg_serum",
+    "nom": "Triglycérides",
+    "unite": "mg/dL",
+    "b1": 111.0,
+    "b2": 50.5500210764556,
+    "variation_pct": -54.45944047166162,
+    "naif": "baisse"
+   },
+   {
+    "id": "glu_serum",
+    "nom": "Glycémie",
+    "unite": "mg/dL",
+    "b1": 89.0,
+    "b2": 99.08378338243845,
+    "variation_pct": 11.330093688133092,
+    "naif": ""
+   },
+   {
+    "id": "hba1c",
+    "nom": "HbA1c",
+    "unite": "%",
+    "b1": 5.3,
+    "b2": 5.414153587875824,
+    "variation_pct": 2.1538412806759277,
+    "naif": ""
+   },
+   {
+    "id": "alt",
+    "nom": "ALAT",
+    "unite": "U/L",
+    "b1": 23.0,
+    "b2": 16.66690723820666,
+    "variation_pct": -27.5351859208406,
+    "naif": ""
+   },
+   {
+    "id": "ast",
+    "nom": "ASAT",
+    "unite": "U/L",
+    "b1": 22.0,
+    "b2": 18.540721400309298,
+    "variation_pct": -15.723993634957733,
+    "naif": ""
+   },
+   {
+    "id": "ggt",
+    "nom": "GGT",
+    "unite": "U/L",
+    "b1": 23.0,
+    "b2": 22.644587288221818,
+    "variation_pct": -1.5452726599051392,
+    "naif": ""
+   },
+   {
+    "id": "alp",
+    "nom": "PAL",
+    "unite": "U/L",
+    "b1": 65.0,
+    "b2": 61.42835331040233,
+    "variation_pct": -5.494841060919498,
+    "naif": ""
+   },
+   {
+    "id": "albumin",
+    "nom": "Albumine",
+    "unite": "g/dL",
+    "b1": 4.3,
+    "b2": 4.210172043912747,
+    "variation_pct": -2.089022234587279,
+    "naif": ""
+   },
+   {
+    "id": "creat",
+    "nom": "Créatinine",
+    "unite": "mg/dL",
+    "b1": 0.8,
+    "b2": 0.8836863951538242,
+    "variation_pct": 10.460799394228015,
+    "naif": ""
+   },
+   {
+    "id": "urea",
+    "nom": "Urée",
+    "unite": "mg/dL",
+    "b1": 13.0,
+    "b2": 14.566145948901578,
+    "variation_pct": 12.047276530012141,
+    "naif": ""
+   },
+   {
+    "id": "urate",
+    "nom": "Acide urique",
+    "unite": "mg/dL",
+    "b1": 5.2,
+    "b2": 5.373654266108373,
+    "variation_pct": 3.3395051174686996,
+    "naif": ""
+   },
+   {
+    "id": "wbc",
+    "nom": "Leucocytes",
+    "unite": "G/L",
+    "b1": 6.9,
+    "b2": 6.457877286111431,
+    "variation_pct": -6.407575563602452,
+    "naif": ""
+   },
+   {
+    "id": "hb",
+    "nom": "Hémoglobine",
+    "unite": "g/dL",
+    "b1": 14.5,
+    "b2": 14.39529969155147,
+    "variation_pct": -0.7220710927484775,
+    "naif": ""
+   },
+   {
+    "id": "mcv",
+    "nom": "VGM",
+    "unite": "fL",
+    "b1": 89.8,
+    "b2": 89.03012710663671,
+    "variation_pct": -0.8573194803600082,
+    "naif": ""
+   },
+   {
+    "id": "rdw",
+    "nom": "RDW",
+    "unite": "%",
+    "b1": 12.4,
+    "b2": 12.221104452039281,
+    "variation_pct": -1.4427060319412877,
+    "naif": ""
+   },
+   {
+    "id": "plt",
+    "nom": "Plaquettes",
+    "unite": "G/L",
+    "b1": 268.0,
+    "b2": 276.0978855516904,
+    "variation_pct": 3.021599086451654,
+    "naif": ""
+   }
+  ],
+  "n_naif": 1,
+  "signature": 1.4561034724119368,
+  "seuil": 1.7691076976844329,
+  "signature_contrainte": 1.352247419237381,
+  "seuil_contrainte": 1.6925482011354418,
+  "alerte": false,
+  "alerte_contrainte": false
+ },
+ {
+  "code": "D",
+  "titre": "Sans intervention, changement de laboratoire (biochimie), programme « perte de poids »",
+  "intervention": "Perte de poids de 7 kg (5 à 10 %)",
+  "regle": "premier tirage où la signature simple se déclenche à tort et la signature insensible aux pièges reste muette",
+  "graine": 2046,
+  "marqueurs": [
+   {
+    "id": "tc",
+    "nom": "Cholestérol total",
+    "unite": "mg/dL",
+    "b1": 199.0,
+    "b2": 188.76890481256834,
+    "variation_pct": -5.141253863030992,
+    "naif": ""
+   },
+   {
+    "id": "hdl",
+    "nom": "HDL",
+    "unite": "mg/dL",
+    "b1": 48.0,
+    "b2": 50.11498397748744,
+    "variation_pct": 4.406216619765502,
+    "naif": ""
+   },
+   {
+    "id": "tg_serum",
+    "nom": "Triglycérides",
+    "unite": "mg/dL",
+    "b1": 111.0,
+    "b2": 111.40434641125191,
+    "variation_pct": 0.36427604617288445,
+    "naif": ""
+   },
+   {
+    "id": "glu_serum",
+    "nom": "Glycémie",
+    "unite": "mg/dL",
+    "b1": 89.0,
+    "b2": 90.09616000404974,
+    "variation_pct": 1.2316404539884696,
+    "naif": ""
+   },
+   {
+    "id": "hba1c",
+    "nom": "HbA1c",
+    "unite": "%",
+    "b1": 5.3,
+    "b2": 5.102729073895989,
+    "variation_pct": -3.7220929453587015,
+    "naif": ""
+   },
+   {
+    "id": "alt",
+    "nom": "ALAT",
+    "unite": "U/L",
+    "b1": 23.0,
+    "b2": 10.884166096660383,
+    "variation_pct": -52.67753871017224,
+    "naif": ""
+   },
+   {
+    "id": "ast",
+    "nom": "ASAT",
+    "unite": "U/L",
+    "b1": 22.0,
+    "b2": 21.319895244813132,
+    "variation_pct": -3.091385250849399,
+    "naif": ""
+   },
+   {
+    "id": "ggt",
+    "nom": "GGT",
+    "unite": "U/L",
+    "b1": 23.0,
+    "b2": 27.6920662218472,
+    "variation_pct": 20.400287921074778,
+    "naif": ""
+   },
+   {
+    "id": "alp",
+    "nom": "PAL",
+    "unite": "U/L",
+    "b1": 65.0,
+    "b2": 85.50419410721958,
+    "variation_pct": 31.54491401110704,
+    "naif": "hausse"
+   },
+   {
+    "id": "albumin",
+    "nom": "Albumine",
+    "unite": "g/dL",
+    "b1": 4.3,
+    "b2": 4.165958230981342,
+    "variation_pct": -3.1172504422943614,
+    "naif": ""
+   },
+   {
+    "id": "creat",
+    "nom": "Créatinine",
+    "unite": "mg/dL",
+    "b1": 0.8,
+    "b2": 0.8472109603186309,
+    "variation_pct": 5.901370039828846,
+    "naif": ""
+   },
+   {
+    "id": "urea",
+    "nom": "Urée",
+    "unite": "mg/dL",
+    "b1": 13.0,
+    "b2": 10.64325854866824,
+    "variation_pct": -18.1287803948597,
+    "naif": ""
+   },
+   {
+    "id": "urate",
+    "nom": "Acide urique",
+    "unite": "mg/dL",
+    "b1": 5.2,
+    "b2": 4.935509797821156,
+    "variation_pct": -5.086350041900845,
+    "naif": ""
+   },
+   {
+    "id": "wbc",
+    "nom": "Leucocytes",
+    "unite": "G/L",
+    "b1": 6.9,
+    "b2": 7.3483253661261,
+    "variation_pct": 6.4974690742912955,
+    "naif": ""
+   },
+   {
+    "id": "hb",
+    "nom": "Hémoglobine",
+    "unite": "g/dL",
+    "b1": 14.5,
+    "b2": 15.98469970950132,
+    "variation_pct": 10.23930834138842,
+    "naif": "hausse"
+   },
+   {
+    "id": "mcv",
+    "nom": "VGM",
+    "unite": "fL",
+    "b1": 89.8,
+    "b2": 91.4698268087369,
+    "variation_pct": 1.8594953326691588,
+    "naif": ""
+   },
+   {
+    "id": "rdw",
+    "nom": "RDW",
+    "unite": "%",
+    "b1": 12.4,
+    "b2": 12.819989554529087,
+    "variation_pct": 3.3870125365248915,
+    "naif": ""
+   },
+   {
+    "id": "plt",
+    "nom": "Plaquettes",
+    "unite": "G/L",
+    "b1": 268.0,
+    "b2": 291.4968066608485,
+    "variation_pct": 8.767465171958388,
+    "naif": ""
+   }
+  ],
+  "n_naif": 2,
+  "signature": 1.927687104449315,
+  "seuil": 1.7691076976844329,
+  "signature_contrainte": 1.0467699699041448,
+  "seuil_contrainte": 1.6925482011354418,
+  "alerte": true,
+  "alerte_contrainte": false
+ },
+ {
+  "code": "E",
+  "titre": "Sans intervention, début d'une pilule, programme « arrêt du tabac »",
+  "intervention": "Arrêt du tabac",
+  "regle": "premier tirage où la signature se déclenche à tort",
+  "graine": 2028,
+  "marqueurs": [
+   {
+    "id": "tc",
+    "nom": "Cholestérol total",
+    "unite": "mg/dL",
+    "b1": 199.0,
+    "b2": 206.66636768124354,
+    "variation_pct": 3.852446070976656,
+    "naif": ""
+   },
+   {
+    "id": "hdl",
+    "nom": "HDL",
+    "unite": "mg/dL",
+    "b1": 48.0,
+    "b2": 60.11794730841305,
+    "variation_pct": 25.245723559193856,
+    "naif": ""
+   },
+   {
+    "id": "tg_serum",
+    "nom": "Triglycérides",
+    "unite": "mg/dL",
+    "b1": 111.0,
+    "b2": 58.83565378508368,
+    "variation_pct": -46.99490649992462,
+    "naif": ""
+   },
+   {
+    "id": "glu_serum",
+    "nom": "Glycémie",
+    "unite": "mg/dL",
+    "b1": 89.0,
+    "b2": 75.86860200102606,
+    "variation_pct": -14.754379774128024,
+    "naif": ""
+   },
+   {
+    "id": "hba1c",
+    "nom": "HbA1c",
+    "unite": "%",
+    "b1": 5.3,
+    "b2": 5.05278851007123,
+    "variation_pct": -4.664367734505093,
+    "naif": ""
+   },
+   {
+    "id": "alt",
+    "nom": "ALAT",
+    "unite": "U/L",
+    "b1": 23.0,
+    "b2": 27.031252451384834,
+    "variation_pct": 17.527184571238408,
+    "naif": ""
+   },
+   {
+    "id": "ast",
+    "nom": "ASAT",
+    "unite": "U/L",
+    "b1": 22.0,
+    "b2": 19.016601725788362,
+    "variation_pct": -13.560901246416535,
+    "naif": ""
+   },
+   {
+    "id": "ggt",
+    "nom": "GGT",
+    "unite": "U/L",
+    "b1": 23.0,
+    "b2": 29.20714865734792,
+    "variation_pct": 26.987602858034432,
+    "naif": ""
+   },
+   {
+    "id": "alp",
+    "nom": "PAL",
+    "unite": "U/L",
+    "b1": 65.0,
+    "b2": 57.23896303083544,
+    "variation_pct": -11.940056875637783,
+    "naif": ""
+   },
+   {
+    "id": "albumin",
+    "nom": "Albumine",
+    "unite": "g/dL",
+    "b1": 4.3,
+    "b2": 4.353010874420343,
+    "variation_pct": 1.2328110330312336,
+    "naif": ""
+   },
+   {
+    "id": "creat",
+    "nom": "Créatinine",
+    "unite": "mg/dL",
+    "b1": 0.8,
+    "b2": 0.8616470996589665,
+    "variation_pct": 7.705887457370797,
+    "naif": ""
+   },
+   {
+    "id": "urea",
+    "nom": "Urée",
+    "unite": "mg/dL",
+    "b1": 13.0,
+    "b2": 14.82909726796073,
+    "variation_pct": 14.069978984313302,
+    "naif": ""
+   },
+   {
+    "id": "urate",
+    "nom": "Acide urique",
+    "unite": "mg/dL",
+    "b1": 5.2,
+    "b2": 5.421870774489326,
+    "variation_pct": 4.266745663256266,
+    "naif": ""
+   },
+   {
+    "id": "wbc",
+    "nom": "Leucocytes",
+    "unite": "G/L",
+    "b1": 6.9,
+    "b2": 4.519851190404759,
+    "variation_pct": -34.494910283989014,
+    "naif": "baisse"
+   },
+   {
+    "id": "hb",
+    "nom": "Hémoglobine",
+    "unite": "g/dL",
+    "b1": 14.5,
+    "b2": 15.062146750766134,
+    "variation_pct": 3.8768741432147147,
+    "naif": ""
+   },
+   {
+    "id": "mcv",
+    "nom": "VGM",
+    "unite": "fL",
+    "b1": 89.8,
+    "b2": 91.53713886343036,
+    "variation_pct": 1.9344530773166557,
+    "naif": ""
+   },
+   {
+    "id": "rdw",
+    "nom": "RDW",
+    "unite": "%",
+    "b1": 12.4,
+    "b2": 12.036979923239057,
+    "variation_pct": -2.927581264201151,
+    "naif": ""
+   },
+   {
+    "id": "plt",
+    "nom": "Plaquettes",
+    "unite": "G/L",
+    "b1": 268.0,
+    "b2": 277.6098987809635,
+    "variation_pct": 3.585783127225173,
+    "naif": ""
+   }
+  ],
+  "n_naif": 1,
+  "signature": 3.188860507718082,
+  "seuil": 1.9924457329508745,
+  "signature_contrainte": 2.250825646781552,
+  "seuil_contrainte": 1.979711863934711,
+  "alerte": true,
+  "alerte_contrainte": true
+ }
+]

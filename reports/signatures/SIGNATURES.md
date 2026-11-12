@@ -76,17 +76,21 @@ bruit.
      attendus) : les faux changements arrivent en grappes.
    - Seuils D1 : **40 à 51 %** des personnes ont au moins une valeur qui redevient normale (« fausse
      bonne nouvelle »). **59 à 63 %** à 6 mois en ont au moins une qui devient anormale.
-2. **La signature fait mieux que le meilleur marqueur seul, pour les 5 interventions.**
-   - À 6 mois et à 5 % de fausses alertes, la signature gagne de 5 à 20 points.
+2. **La signature fait mieux que le meilleur marqueur seul**, nettement pour 4 interventions sur 5.
+   - À 6 mois et à 5 % de fausses alertes, la signature gagne de 9 à 21 points. Pour l'activité
+     aérobie, le gain (+5 points) n'est pas significatif.
    - Mais elle reste **loin d'une détection fiable** : au mieux 1 personne sur 2.
+   - **Les IC à 95 % intègrent l'incertitude du calage** : chaque tirage bootstrap (500) rééchantillonne
+     les 403 paires de calibration, réestime la covariance, recale les seuils, puis rééchantillonne
+     les personnes d'évaluation (`signatures_ic_recalage.csv`).
 
-   | Intervention (effet moyen, `k ~ N(1 ; 0,5²)`) | **Signature, 6 mois** | Meilleur marqueur seul, 6 mois | Test global (Mahalanobis) | Signature, 2 semaines |
-   |---|---|---|---|---|
-   | Alimentation méditerranéenne | **50 %** | 41 % (HbA1c) | 11 % | 72 % |
-   | Perte de poids de 7 kg | **49 %** | 29 % (ALAT) | 11 % | 68 % |
-   | Réduction de l'alcool (non interprétable, voir plus bas) | 29 % | 15 % (HDL) | 10 % | 30 % |
-   | Arrêt du tabac | **26 %** | 11 % (leucocytes) | 10 % | 26 % |
-   | Activité physique aérobie | **16 %** | 10 % (HDL) | 10 % | 16 % |
+   | Intervention (effet moyen, `k ~ N(1 ; 0,5²)`) | **Signature, 6 mois [IC 95 %]** | Meilleur marqueur seul [IC 95 %] | Gain [IC 95 %] | Test global (Mahalanobis) | Signature, 2 semaines [IC 95 %] |
+   |---|---|---|---|---|---|
+   | Alimentation méditerranéenne | **50 % [45 ; 56]** | 41 % [26 ; 44] (HbA1c) | +9 [+6 ; +24] | 11 % | 72 % [68 ; 78] |
+   | Perte de poids de 7 kg | **49 % [46 ; 53]** | 29 % [27 ; 31] (ALAT) | +21 [+18 ; +25] | 11 % | 68 % [63 ; 73] |
+   | Réduction de l'alcool (non interprétable, voir plus bas) | 29 % [19 ; 41] | 15 % [11 ; 23] (HDL) | +13 [+6 ; +24] | 10 % | 30 % [22 ; 43] |
+   | Arrêt du tabac | **26 % [20 ; 34]** | 11 % [7 ; 21] (leucocytes) | +15 [+6 ; +21] | 10 % | 26 % [21 ; 37] |
+   | Activité physique aérobie | **16 % [12 ; 22]** | 10 % [7 ; 15] (HDL) | +5 [−0 ; +12] | 10 % | 16 % [12 ; 23] |
 
    - Le test global de Mahalanobis, qui ne vise aucune intervention, ne détecte presque rien
      (10-11 %). C'est la direction connue de l'effet qui fait le gain.
@@ -102,9 +106,10 @@ bruit.
      marqueur dont la méthode diffère entre les deux jeux (voir la réserve sur les fausses alertes).
 4. **Usage ciblé, oui ; usage global, non.**
    - Quand on ne teste que la signature du protocole prescrit, les fausses alertes observées dans
-     NHANES III sont de **4 à 7 %**, sauf pour le méditerranéen (10,4 %, porté par l'HbA1c).
-   - Quand on teste les 5 signatures à la fois, **25 %** des personnes sans intervention déclenchent
-     au moins une alerte.
+     NHANES III sont de **4 à 7 %**, sauf pour le méditerranéen (10,5 %, porté par l'HbA1c). IC avec
+     recalage : de [2,9 ; 6,5] (tabac) à [7,8 ; 13,8] (méditerranéen).
+   - Quand on teste les 5 signatures à la fois, **25 %** [23 ; 32] des personnes sans intervention
+     déclenchent au moins une alerte.
 5. **Les signatures se recouvrent, et certains pièges les déclenchent.**
    - **Déclenchements croisés.** Une perte de poids déclenche la signature de l'activité aérobie et
      celle du méditerranéen dans 28 % des cas.
@@ -245,11 +250,39 @@ variabilité à long terme réduit sa part.
   - tabac 24 % (contre 26 %) ;
   - alcool 23 % (contre 29 %).
 
+## Levier du bilan de départ (recommandation de conception)
+
+Amendement du 2026-11-12, demandé après les résultats (`signatures_levier_depart.csv`).
+
+- **Modèle gaussien, effet maintenu, 5 % de fausses alertes.** Chaque mesure est la vraie valeur, plus
+  une composante à long terme propre à la période, plus un bruit à court terme indépendant.
+  - Les prélèvements rapprochés du départ partagent la composante à long terme.
+  - Les bilans de suivi ont chacun la leur.
+  - `Cov(Δ) = Σ_ct (1/b + 1/f) + (Ω/2)(1 + 1/f)`, avec `Σ_ct = Σ_2sem / 2`.
+- **Les valeurs sont comparables entre elles**, pas avec le tableau principal (empirique).
+
+| Prélèvements au départ | Bilans de suivi | Perte de poids | Méditerranéen | Arrêt du tabac | Aérobie |
+|---|---|---|---|---|---|
+| 1 | 1 (6 mois) | 54 % | 51 % | 35 % | 18 % |
+| 2 | 1 | 59 % | 57 % | 41 % | 22 % |
+| 3 | 1 | 61 % | 59 % | 43 % | 23 % |
+| 1 | 2 (6 et 12 mois) | 61 % | 59 % | 41 % | 22 % |
+| 2 | 2 | 68 % | 66 % | 50 % | 28 % |
+| 3 | 2 | 70 % | 69 % | 54 % | 31 % |
+
+**Recommandation.**
+- **Un deuxième prélèvement au départ** (quelques semaines avant le début du programme) apporte
+  **+5 à +6 points** de détection, autant qu'un deuxième bilan de suivi. Il coûte moins cher, car il
+  n'oblige pas à attendre 12 mois.
+- **Les deux ensemble** donnent +14 à +15 points pour la perte de poids, le méditerranéen et le tabac.
+- **Un troisième prélèvement au départ** n'apporte plus que +2 à +4 points : le bruit à court terme
+  est déjà réduit, et la variabilité à long terme du départ reste.
+
 ## Prédictions pré-enregistrées
 
 | | Énoncé (résumé) | Observé | Vérifiée |
 |---|---|---|---|
-| P1 | Signature > meilleur seul pour au moins 4 interventions sur 5 (6 mois) | 5 sur 5 | **oui** |
+| P1 | Signature > meilleur seul pour au moins 4 interventions sur 5 (6 mois) | 4 sur 5 avec les IC qui intègrent le calage (aérobie : IC du gain [−0 ; +12]) ; 5 sur 5 avec les IC initiaux | **oui** |
 | P2 | Aucune signature à 80 % (6 mois) | maximum 50 % | **oui** |
 | P3 | Perte de poids et méditerranéen en tête, aérobie dernière | 49 %, 50 % ; aérobie 16 % | **oui** |
 | P4 | Fausses alertes ciblées entre 3 et 10 % pour au moins 4 sur 5 ; plus de 15 % avec les 5 | 4 sur 5 (méditerranéen 10,4 %) ; 25 % | **oui** |
@@ -307,10 +340,11 @@ variabilité à long terme réduit sa part.
 - **Hétérogénéité de réponse.** Elle est postulée, pas mesurée.
 - **Taille et précision de la calibration.**
   - 403 paires pour une covariance à 18 dimensions.
-  - **Les IC bootstrap des sensibilités ne tiennent pas compte de l'incertitude des seuils** calés
-    sur 403 paires : ils sont trop étroits.
-  - Les fausses alertes observées dans NHANES III (4 à 10 %) donnent l'ordre de grandeur réel de
-    cette incertitude.
+  - Les IC du rapport intègrent maintenant l'incertitude du calage (amendement du 2026-11-12). Ils
+    sont 2 à 5 fois plus larges que les IC initiaux, qui ne rééchantillonnaient que les personnes
+    d'évaluation.
+  - Les IC des sections « Sensibilités » et « Pièges » restent ceux de la version initiale : ils
+    sont trop étroits.
 - **Méthodes différentes entre les deux jeux.** C'est voulu pour l'indépendance, mais cela crée des
   écarts. Les fausses alertes du méditerranéen et du meilleur marqueur seul (HbA1c, 12,5 %) en
   viennent probablement.
@@ -318,6 +352,15 @@ variabilité à long terme réduit sa part.
   l'effet de l'alimentation et de l'activité.
 - **Pièges.** Ce sont des effets moyens de NHANES. Les vrais écarts entre laboratoires de routine
   sont inconnus pour les lipides et la numération (Q5).
+
+## Amendement du 2026-11-12 (demandé après les résultats)
+
+1. **IC qui intègrent le calage.** Ils remplacent les IC initiaux du tableau principal et des fausses
+   alertes.
+2. **Levier du bilan de départ** (section dédiée).
+3. **Repli technique.** Dans la covariance robuste, si l'écart absolu médian d'un marqueur vaut 0
+   (valeurs arrondies, tirages bootstrap), on se replie sur l'écart interquartile, puis sur l'écart
+   type. Le cas ne se produit pas dans l'analyse principale : ses résultats sont inchangés.
 
 ## Écarts au pré-enregistrement
 
