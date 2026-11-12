@@ -3703,3 +3703,336 @@ Demandée par l'auteur du projet à la validation de la synthèse.
     fragilité), plutôt qu'un risque rénal.
 - **Décision.** Le PDF privé attend la fin de la piste « signatures » ; une synthèse globale unique
   suivra (pistes « suivi », « panel » et « signatures »).
+
+### Pré-enregistrement — piste « signatures d'intervention multi-marqueurs » (2026-11-12)
+
+**Question.** Un marqueur seul ne détecte pas, chez une personne, l'effet d'une intervention d'hygiène
+de vie en 6 mois (Q1). Une combinaison de marqueurs y arrive-t-elle, avec un taux de fausses alertes
+contrôlé ? Elle peut exploiter la forme de l'effet et la structure corrélée du bruit.
+
+Ce texte est complet : il ne renvoie à aucun brouillon.
+- **Ce qui a été fait avant le pré-enregistrement :**
+  - revue de l'étape 0 ;
+  - compte des paires complètes (2001-2002 : 403 ; NHANES III : 1 288) ;
+  - deux paramètres de conversion tirés du premier examen 2001-2002 : médiane des leucocytes à
+    6,9 G/L, écart type de ln CRP à 1,27 chez les 30-55 ans ;
+  - prédictions calculées à partir des seules sorties publiées de Q1.
+- **Rien d'autre.** Aucune variation intra-individuelle, aucune covariance, aucun détecteur n'a été
+  calculé.
+
+#### Revue (étape 0), résumé
+
+- **Les changements de référence (RCV) sont univariés** dans toute la littérature de la variation
+  biologique.
+- **Les approches multivariées** (delta checks, distance de Mahalanobis) servent à repérer des
+  erreurs, pas des effets.
+- **L'analogue le plus proche est le passeport biologique de l'athlète.**
+  - **Ce qui est commun :** un effet de forme connue est cherché dans un profil de plusieurs
+    marqueurs répétés chez une même personne. Il s'appuie sur des scores combinés (OFF-score, ABPS
+    sur 7 paramètres) et un modèle bayésien adaptatif, avec une spécificité d'au moins 99 %.
+  - **Ce qui diffère dans notre cas :**
+    - effets beaucoup plus petits ;
+    - prélèvements rares (deux bilans espacés de 6 mois) ;
+    - plusieurs laboratoires ;
+    - conditions de prélèvement non contrôlées (jeûne, heure).
+- **Rien trouvé sur :**
+  - une signature multi-marqueurs d'intervention d'hygiène de vie ;
+  - un taux de fausses alertes multivarié calé sur de vraies paires ;
+  - la covariance du bruit intra-individuel d'un panel de routine ;
+  - la robustesse d'un détecteur aux pièges.
+
+Revue complète et sources dans le rapport.
+
+#### Données
+
+- **Paires de remesures**, les mêmes personnes à environ 2 semaines, 20-79 ans, non enceintes.
+  Lecture par `remesures.pairs_2001` et `remesures.pairs_nh3`, avec les corrections de Q1.
+  - **Calibration** : NHANES 2001-2002. Covariance du bruit, seuils des détecteurs.
+  - **Évaluation** : NHANES III, indépendant (autres laboratoires, autres méthodes, autre époque).
+- **Panel de la signature (18 marqueurs, mesurables sans jeûne)** :
+  - lipides : cholestérol total, HDL, TG sériques ;
+  - glycémie : glycémie sérique, HbA1c ;
+  - foie : ALAT, ASAT, GGT, PAL, albumine ;
+  - rein : créatinine, urée, acide urique ;
+  - numération : leucocytes, hémoglobine, VGM, RDW, plaquettes.
+- **CRP exclue du panel principal.** Dans NHANES III, 62 % de ses valeurs sont à la limite de
+  détection (3 % en 2001-2002).
+  - Sensibilité : panel à 19 marqueurs avec la CRP, calibré et évalué par validation croisée à deux
+    plis dans 2001-2002 (graine 2026).
+  - Les valeurs de CRP à la limite de détection sont remplacées par limite/√2.
+- **Paires complètes** sur les 18 marqueurs : 403 en 2001-2002, 1 288 dans NHANES III.
+  - La Partie A utilise en plus toutes les paires disponibles marqueur par marqueur.
+  - Sensibilité : imputation impossible ; on rapporte les effectifs par marqueur.
+- **Échelle.** Variation `Δ = ln(x₂) − ln(x₁)` pour tous les marqueurs du panel (tous sur l'échelle
+  log dans Q1).
+
+#### Horizon : 2 semaines et 6 mois (les deux sont rapportés ; 6 mois sert à l'interprétation)
+
+- **2 semaines** : les paires réelles telles quelles.
+- **6 mois (simulé, présenté comme tel).**
+  - À chaque Δ, on ajoute une composante à long terme `L ~ N(0, Ω)`.
+  - `Ω` est diagonale, avec `ω_j = 2 [ln(1 + CV6m_j²) − ln(1 + CVobs_j²)]` (CV de Q1, groupe
+    20-79 ans).
+  - Elle n'est non nulle que pour les marqueurs dont Q1 a extrapolé le CV à 6 mois : ALAT, ASAT,
+    leucocytes, hémoglobine, VGM, RDW, plaquettes.
+  - Ailleurs, `ω = 0` : l'horizon de 6 mois reste une borne basse pour ces marqueurs, et c'est dit.
+- **Corrélation de `L`.**
+  - Principal : indépendante (diagonale).
+  - Sensibilité : corrélation égale à celle du bruit à 2 semaines (`Ω = D R D`).
+- **Réplication de la simulation.** 200 tirages de `L` par paire (graine 2026), réunis pour caler les
+  seuils et mesurer les taux.
+
+#### Partie A : le problème, sur de vraies personnes sans changement
+
+1. **Comptage.** Pour chaque personne : nombre de marqueurs du panel (18, puis 19 avec la CRP en
+   2001-2002) dont |Δ| dépasse le changement détectable de Q1.
+   - Seuil : `cd6m_hausse` ou `cd6m_baisse` selon le sens, groupe 20-79 ans. C'est le seuil à
+     2 semaines quand Q1 n'a pas pu extrapoler.
+   - Deux jeux, deux horizons.
+2. **Proportions.** Personnes avec au moins 1 et au moins 3 marqueurs « significatifs ».
+   - Elles sont comparées à l'attendu si les marqueurs étaient indépendants (calcul à partir des
+     taux marginaux observés, par convolution).
+   - IC 95 % par bootstrap des personnes (1 000 tirages).
+3. **Fausses bonnes nouvelles et fausses alertes.**
+   - Fausse bonne nouvelle : au moins une valeur qui passe d'anormale à normale. Fausse alerte :
+     au moins une valeur qui passe de normale à anormale.
+   - Seuils : intervalles S de D1 (par sexe et tranche d'âge), seuils R applicables (HbA1c ADA et
+     OMS, TG ≥ 150 mg/dL non à jeun).
+   - Mêmes conversions d'unités que Q4.
+   - À 6 mois : sur les valeurs simulées (`x₂ · e^L`).
+
+#### Partie B : les signatures
+
+**B1. Vecteurs d'effet** (`src/aging_clock/signatures/vecteurs.py`).
+- **Format.** Variation relative au scénario fixé, en log. Une composante sans source lue vaut 0.
+- **Conversion des effets absolus.** On les divise par la médiane NHANES des 30-55 ans au premier
+  examen, comme Q1.
+- **Lecture.** R = résumé, TC = texte complet.
+
+| Intervention | Composantes non nulles (effet) | Sources (lecture) et populations | Remarques |
+|---|---|---|---|
+| **Perte de poids de 7 kg (5 à 10 %)** | TG −23,7 %, HDL +6,7 %, CT −5,6 %, ALAT −38,7 %, ASAT −20,6 %, glycémie −4,1 % (CRP −15,6 % en sensibilité) | Hasan 2020 (R, 73 ECR, IMC moyen 36) ; Koutoukidis 2021 (R, stéatose) ; Magkos 2016 (TC, essai unique, 19 contre 14) ; Selvin 2007 (R) | **Assemblage de 4 études.** CT dérivé par Friedewald (aucune pente de CT lue). Glycémie à jeun appliquée à la glycémie sérique. TG à jeun appliqués aux TG non à jeun |
+| **Activité physique aérobie structurée** | CT −2,9 %, HDL +4,4 %, TG −6,8 %, glycémie −2,9 % ; ALAT, ASAT, GGT = 0 sourcé (CRP −20,5 % en sensibilité) | Smart 2025 (R, 148 ECR, toutes formes d'activité) ; Wewege 2018 (R, syndrome métabolique) ; Smart 2018 (R, transaminases et GGT inchangées) ; Wang 2023 (TC, CRP, adultes sains) | **Assemblage de 4 études.** Sous-groupe aérobie non lu. CRP : DMS −0,18 × écart type de ln CRP, par hypothèse |
+| **Alimentation méditerranéenne** | CT −2,8 %, HDL +2,7 %, TG −10,4 %, glycémie −3,2 %, HbA1c −2,8 %, ALAT −37,7 %, GGT −10,9 % (CRP −28,5 % en sensibilité) | Papadaki 2020 (TC, 57 essais contrôlés, adultes) | **Une seule méta-analyse.** ALAT −37,7 % : effet très grand, probablement porté par des études chez des personnes avec stéatose |
+| **Réduction de l'alcool (de 30 g/j à 0)** | HDL −8,3 %, TG −4,8 % ; GGT et VGM = 0 | Rimm 1999 (R, effet de 30 g/j inversé) ; Brien 2011 (R : HDL confirmé, pas d'effet sur les TG) ; Munsterman 2018 (R : baisse de la GGT après 1 mois, sans ampleur) ; Kechagias 2015 (R, essai randomisé de 3 mois, 44 volontaires sains, 16 à 32 g/j de vin contre abstinence : la GGT, le VGM, l'ASAT et l'ALAT ne distinguent pas la consommation de l'abstinence) ; Agarwal 2016 (TC, NHANES 2001-2010, transversal : la GGT augmente avec la dose dès 7 à 14 g/j, mais la pente n'est pas un effet d'intervention et son unité est ambiguë) | **Signature non interprétable comme test de la réduction de l'alcool** : aucune source lue ne chiffre l'effet d'une réduction sur la GGT (marqueur classique), et l'essai chez des sains suggère un effet faible à dose modérée. Composante TG incertaine. Sensibilité illustrative, non sourcée : GGT −15 % |
+| **Arrêt du tabac** | HDL +8,1 %, leucocytes −11,6 % ; CT, TG, CRP = 0 sourcé | Maeda 2003 (R, 27 études prospectives) ; van der Plas 2023 (R, TG) ; King 2017 (TC, 888 fumeurs, leucocytes −0,6 contre +0,2 G/L à 1 an) | **Assemblage de 3 études.** Hémoglobine et VGM non sourcés (0) |
+
+**B2. Covariance du bruit `Σ`**, sur les Δ des paires complètes de 2001-2002 (18 marqueurs).
+- **Robuste.**
+  - Échelles : écart absolu médian × 1,4826.
+  - Corrélations : Spearman converties (`2 sin(π ρ_s / 6)`).
+  - Matrice ramenée à la plus proche définie positive (valeurs propres planchers à 1e-6 × la
+    trace / 18).
+- **Rétrécissement de Ledoit-Wolf** vers la diagonale de `Σ`. Le coefficient est calculé
+  analytiquement sur les Δ standardisés.
+- **Horizon de 6 mois** : `Σ₆ = Σ + Ω`.
+- **Sensibilité** : covariance classique (non robuste), avec le même rétrécissement.
+
+**B3. Détecteurs**, pour une variation `Δ` et la direction `d` de l'intervention prescrite.
+- **Signature (filtre adapté, ou discriminant de Fisher à covariance commune)** :
+  `T = dᵀ Σ⁻¹ Δ / √(dᵀ Σ⁻¹ d)`. Test unilatéral : alerte si `T > s_T`.
+- **Meilleur marqueur seul** : le marqueur `j*` qui maximise `|d_j| / √Σ_jj`, choisi sur 2001-2002.
+  Test unilatéral dans le sens de `d_j*` : `z = sign(d_j*) Δ_j* / √Σ_j*j*`.
+- **Test global de Mahalanobis** : `M = Δᵀ Σ⁻¹ Δ`. Il est omnidirectionnel et ne vise aucune
+  intervention.
+
+**B4. Seuils.** Pour chaque détecteur, chaque intervention et chaque horizon, le seuil est le
+95e centile de la statistique sur les paires de 2001-2002 : paires réelles à 2 semaines, paires plus
+`L` à 6 mois. Cela donne 5 % de fausses alertes en calibration.
+
+**B5. Évaluation sur NHANES III.**
+- **Spécificité.** Taux de fausses alertes observé avec les seuils de 2001-2002, IC bootstrap
+  (1 000 tirages).
+- **Usage ciblé (principal).** On ne teste que la signature de l'intervention prescrite.
+- **Usage global (rapporté).** Taux de fausses alertes quand les 5 signatures sont testées à la
+  fois : au moins une alerte sur 5.
+- **Sensibilité.**
+  - On ajoute `k_i · d` aux Δ réels de NHANES III. `k_i` est l'hétérogénéité de réponse, fixée à
+    l'avance :
+    - principal : `k ~ N(1 ; 0,5²)` ;
+    - sensibilité 1 : 30 % de non-répondeurs (`k = 0`) et 70 % de `N(1 ; 0,3²)` ;
+    - sensibilité 2 : `k = 1`.
+  - 200 tirages de `k` par paire (graine 2026).
+  - On calcule la part détectée par chaque détecteur, aux deux horizons.
+- **Comparaison** signature contre meilleur marqueur seul, au même seuil de 5 % calé sur 2001-2002 :
+  différence de sensibilité, IC bootstrap.
+- **Effet nécessaire.** Multiple de l'effet moyen (`k` fixe) pour atteindre 50 % et 80 % de
+  détection, avec la signature et avec le meilleur marqueur seul.
+
+**B6. Recouvrement entre signatures et pièges.**
+- **Similarité** cosinus dans la métrique du bruit, entre les 5 interventions et les pièges :
+  `cos(a, b) = aᵀ Σ₆⁻¹ b / √(aᵀ Σ₆⁻¹ a · bᵀ Σ₆⁻¹ b)`.
+- **Déclenchement croisé.** Matrice 5 × 5 : part des personnes où la signature j se déclenche quand
+  l'intervention i a eu lieu. Même simulation qu'en B5, à 6 mois.
+
+**B7. Robustesse aux pièges.** On ajoute le vecteur du piège, avec un signe + puis −, aux Δ réels de
+NHANES III sans intervention. On mesure le taux de déclenchement de chaque signature, aux deux
+horizons.
+- **Pièges.**
+  1. **Changement de laboratoire, biochimie** : événement 5 de Q5 (Beckman → Roche, 2017),
+     décalages au centile 50 de la partie (a) de Q5. ALAT −13,9 %, ASAT −17,8 %, GGT +9,6 %, PAL
+     +9,7 %, albumine −4,4 %, créatinine +3,2 %, urée −3,3 %, acide urique +2,6 %, TG +9,6 %,
+     glycémie +2,4 % ; CT, HDL, HbA1c à 0, car dosés dans d'autres fichiers.
+  2. **Changement d'automate de numération** : événement 17 de Q5 (2009-2013), décalages empiriques
+     (b). Leucocytes +2,7 %, RDW +5,5 %, plaquettes −0,6 %, VGM +0,1 %, hémoglobine 0.
+  3. **Changement de laboratoire complet** : 1 + 2.
+  4. **Début d'une contraception hormonale** : décalages « pilule » de Q3 (régression médiane,
+     ensemble) pour les marqueurs du panel ; 0 pour ceux que Q3 n'a pas estimés.
+  5. **Prélèvement non à jeun** : effet du jeûne chez la même personne, Q2 (A). Sensibilité : effet
+     entre personnes, Q2 (B).
+- **Correction proposée si un piège déclenche une signature au-delà de 10 %.**
+  - **Signature contrainte.** On projette `d` orthogonalement aux directions de pièges dans la
+    métrique `Σ₆⁻¹`, puis on recale le seuil.
+  - On mesure ce qu'elle coûte en sensibilité et ce qu'elle rend en spécificité sous piège.
+  - Le garde-fou opérationnel (même laboratoire, jeûne enregistré) est discuté.
+
+**B8. Sensibilités sur les enzymes hépatiques.**
+- **Pourquoi.** Les effets sur l'ALAT (−39 % pour la perte de poids, −38 % pour le méditerranéen) et
+  l'ASAT viennent surtout de populations obèses ou avec stéatose. Ils sont probablement surestimés
+  pour une population en bonne santé.
+- **Deux variantes**, appliquées à toutes les interventions :
+  - **(a)** composantes ALAT, ASAT et GGT multipliées par 0,5 ;
+  - **(b)** composantes ALAT, ASAT et GGT mises à 0.
+- **Ce qu'on rapporte**, pour chaque variante : la sensibilité de la signature et celle du meilleur
+  marqueur seul (recalculé sur le vecteur modifié), et **si le gain de la signature sur le meilleur
+  marqueur seul survit** (IC de la différence au-dessus de 0), aux deux horizons.
+
+**B9. Contributions des marqueurs.**
+- **Poids.** Pour chaque signature, `w = Σ⁻¹ d / √(dᵀ Σ⁻¹ d)`.
+- **Part de chaque marqueur dans le signal attendu.** `c_j = d_j (Σ⁻¹ d)_j / dᵀ Σ⁻¹ d`. La somme vaut
+  1 ; une part négative veut dire que le marqueur sert surtout à retirer du bruit corrélé.
+- **Poids standardisés.** `w_j √Σ_jj`.
+- Ces trois quantités sont rapportées aux deux horizons.
+
+**B10. Plusieurs bilans de suivi (analyse secondaire).**
+- **Modèle, fixé à l'avance.**
+  - Chaque mesure est la vraie valeur plus un bruit gaussien de covariance `Σ_m = Σ₆ / 2`, indépendant
+    d'un bilan à l'autre. La composante à long terme est traitée comme indépendante entre bilans,
+    une hypothèse optimiste.
+  - L'effet est atteint au premier bilan de suivi et maintenu.
+  - L'hétérogénéité `k` est propre à la personne et identique d'un bilan à l'autre.
+- **(i) Bilans à 6 et 12 mois, avec un seul bilan de départ.**
+  - Statistique : la signature appliquée à `Δ̄ = (x₆ + x₁₂)/2 − x₀`, de covariance `0,75 Σ₆`.
+  - Seuil : 95e centile sous l'hypothèse nulle gaussienne.
+  - Sensibilité avec `k ~ N(1 ; 0,5²)`.
+- **(ii) Nombre de bilans pour atteindre 80 % de détection.**
+  - Plan symétrique : `m` bilans avant et `m` après l'intervention, moyennés (covariance `Σ₆ / m`).
+  - Plan asymétrique : un seul bilan de départ et `n` bilans après (covariance `Σ_m (1 + 1/n)`).
+  - Pour chaque signature et pour le meilleur marqueur seul, on cherche le plus petit `m` (ou `n`)
+    qui atteint 80 %. « Jamais » si le plafond, fixé par l'hétérogénéité ou par le bilan de départ
+    unique, reste sous 80 %. On cherche jusqu'à 20 bilans.
+- **Ce n'est pas une calibration empirique.** Le calcul repose sur une loi normale, et il est rapporté
+  comme tel.
+
+**B11. Sensibilités supplémentaires.**
+- Panel avec la CRP (2001-2002, validation croisée).
+- Covariance non robuste.
+- Composante à long terme corrélée.
+- Effet appliqué aux deux examens en sens opposé : non retenu (un seul bilan après intervention).
+
+#### Prédictions
+
+- **D'où viennent les chiffres.** Ils sont calculés avant toute analyse, à partir des CV publiés de
+  Q1 (30-55 ans), en supposant les marqueurs indépendants, et avec l'hétérogénéité principale.
+- **Ce que l'analyse dira.** Elle dira notamment ce que la vraie structure corrélée change.
+- **Sensibilité attendue à 5 % de fausses alertes :**
+
+| Intervention | Signature, 2 semaines | Meilleur seul, 2 semaines | **Signature, 6 mois** | **Meilleur seul, 6 mois** |
+|---|---|---|---|---|
+| Perte de poids | 59 % | 43 % (ALAT) | **46 %** | **25 % (ALAT)** |
+| Activité aérobie | 12 % | 8 % (CT) | **12 %** | **8 % (CT)** |
+| Méditerranéen | 50 % | 42 % (ALAT) | **37 %** | **24 % (ALAT)** |
+| Réduction de l'alcool | 14 % | 13 % (HDL) | **14 %** | **13 % (HDL)** |
+| Arrêt du tabac | 21 % | 17 % (leucocytes) | **20 %** | **16 % (leucocytes)** |
+
+- **P1.** À 6 mois, la signature a une sensibilité plus élevée que le meilleur marqueur seul pour au
+  moins 4 interventions sur 5 (IC de la différence au-dessus de 0).
+- **P2.** À 6 mois, aucune signature n'atteint 80 % de sensibilité pour l'effet moyen (hétérogénéité
+  principale).
+- **P3.** La perte de poids et l'alimentation méditerranéenne sont les deux signatures les mieux
+  détectées, et l'activité aérobie la moins bien détectée.
+- **P4.** Usage ciblé : le taux de fausses alertes observé dans NHANES III reste entre 3 % et 10 %
+  pour au moins 4 signatures sur 5. Usage global : il dépasse 15 % quand les 5 signatures sont
+  testées à la fois.
+- **P5.** Le changement de laboratoire (biochimie, en sens +) déclenche les signatures de la perte de
+  poids et de l'alimentation méditerranéenne au-delà de 10 %, à cause de l'ALAT et de l'ASAT.
+- **P6.** Le début d'une pilule déclenche la signature de l'arrêt du tabac au-delà de 10 %, par le
+  HDL. L'arrêt d'une pilule déclenche celle de la réduction de l'alcool au-delà de 10 %.
+- **P7.** La perte de poids et l'alimentation méditerranéenne ont une similarité cosinus supérieure à
+  0,7. Chacune se déclenche dans plus de 30 % des cas quand l'autre a eu lieu.
+- **P8.** Le prélèvement non à jeun (Q2, même personne) déclenche chaque signature dans moins de 10 %
+  des cas, car ses effets chez une même personne sont petits.
+- **P9.** Variantes hépatiques (B8) :
+  - avec la variante (b), sans les enzymes, le gain de la signature sur le meilleur marqueur seul
+    survit pour la perte de poids et le méditerranéen ;
+  - la sensibilité à 6 mois de ces deux signatures tombe sous 25 %.
+- **P10.** Contributions (B9) : l'ALAT porte plus de 40 % du signal attendu de la perte de poids et du
+  méditerranéen.
+- **P11.** Plusieurs bilans (B10) : avec un seul bilan de départ, aucune signature n'atteint 80 % ;
+  avec le plan symétrique, la perte de poids y arrive en 6 bilans au plus de chaque côté.
+- **P12.** La signature de la réduction de l'alcool n'est pas interprétable : aucune prédiction
+  n'est faite sur sa sensibilité, au-delà du tableau de base.
+
+#### Partie C : démo
+
+- **Forme.** Une page HTML autonome, présentée comme une visualisation de résultats de recherche,
+  pas comme un produit. Aucune mention d'entreprise.
+- **Contenu :**
+  - le chiffre clé de la Partie A ;
+  - la sensibilité de chaque signature contre le meilleur marqueur seul, à 6 mois ;
+  - 4 ou 5 personnes fictives, tirées du modèle de bruit (synthétiques, et dit comme tel), suivies
+    sur deux bilans :
+    - sans intervention ;
+    - perte de poids avec réponse moyenne ;
+    - perte de poids avec faible réponse ;
+    - changement de laboratoire sans intervention ;
+    - début de pilule sans intervention.
+
+#### Rapport et livrables
+
+- **Rapport** : `reports/signatures/SIGNATURES.md`. Il contient la revue de l'étape 0, l'analogie avec
+  le passeport biologique de l'athlète et ses différences, les Parties A et B, les limites et les
+  écarts.
+  - **Note obligatoire.** Réduire l'alcool fait **baisser le HDL**. Un affichage naïf présenterait
+    donc un marqueur « dégradé » après une intervention bénéfique.
+- **Données** :
+  - `signatures_vecteurs.csv`, `signatures_covariance.csv` ;
+  - `signatures_partie_a.csv`, `signatures_detection.csv`, `signatures_pieges.csv`,
+    `signatures_recouvrement.csv` ;
+  - `signatures_predictions.json`.
+- **Démo** : `reports/signatures/demo_signatures.html`.
+- **Code** : `src/aging_clock/signatures/`.
+
+#### Limites (à écrire dans le rapport)
+
+- **Les paires sont à 2 semaines.** Les 6 mois sont simulés, avec une composante à long terme connue
+  pour 7 marqueurs sur 18 ; ailleurs, c'est une borne basse du bruit.
+- **Vecteurs d'effet.**
+  - Ce sont des moyennes de méta-analyses, souvent chez des personnes malades (stéatose, obésité,
+    syndrome métabolique).
+  - Ils sont souvent assemblés à partir d'études différentes.
+  - Plusieurs composantes sont à 0 faute de chiffre lu (GGT et VGM pour l'alcool ; hémoglobine et
+    VGM pour le tabac).
+  - La vraie forme de l'effet chez une personne en bonne santé est inconnue.
+- **Hétérogénéité de réponse.** Elle est postulée, pas mesurée.
+- **CRP.** Elle est hors du panel principal (censure dans NHANES III), alors qu'elle porte une partie
+  de l'effet de l'alimentation et de l'activité.
+- **Indépendance de l'évaluation.** NHANES III et 2001-2002 n'ont pas les mêmes laboratoires. C'est
+  voulu, mais une partie de l'écart de spécificité viendra des méthodes.
+- **Taille de la calibration.** 403 paires pour une covariance à 18 dimensions : le rétrécissement
+  est nécessaire, et l'estimation reste imprécise.
+
+#### Décisions de l'auteur du projet (validation du 2026-11-12)
+
+1. **Horizons.** Seuils calés sur les remesures à 2 semaines et sur le bruit extrapolé à 6 mois. Les
+   deux sont rapportés ; les 6 mois servent à l'interprétation pratique.
+2. **Usage ciblé.** En analyse principale, on ne teste que la signature de l'intervention prescrite.
+   Le taux de fausses alertes avec les 5 signatures à la fois est aussi rapporté.
+3. **Recouvrement.** Cosinus dans la métrique du bruit, et déclenchements croisés.
+4. **Passeport biologique de l'athlète.** L'analogie et ses différences sont dans le rapport.
+5. **Enzymes hépatiques.** Sensibilités ×0,5 et 0 sur l'ALAT, l'ASAT et la GGT (B8).
+6. **Alcool.** Une source chiffrée a été cherchée pour la GGT et le VGM : aucune n'est utilisable. La
+   signature est déclarée non interprétable.
+7. **Contributions des marqueurs** (B9).
+8. **Deux bilans de suivi et nombre de bilans pour 80 %** (B10).
+9. **Note sur le HDL** après réduction de l'alcool.
