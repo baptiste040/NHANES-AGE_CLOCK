@@ -38,7 +38,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 - Forme retenue en validation : en U ou en J ; minimum 14,4 ; zone de risque minimal 11,5–17,3.
 - Seuils HR 1,2 retenus : bas 11,4, haut 18.
 - Comparaison aux bornes D1 : S H bas : intervalle trop large; S H haut : intervalle trop large; S F bas : intervalle trop large; S F haut : intervalle trop large.
-- Après ajustement (tabac, IMC, diabète, revenu) : bas : association indépendante : seuil inchangé après ajustement; haut : association indépendante : seuil inchangé après ajustement.
+- Après ajustement (tabac, alcool, IMC, diabète, revenu) : bas : association indépendante : seuil inchangé après ajustement (alcool compris); haut : association indépendante : seuil inchangé après ajustement (alcool compris).
 - 30-55 ans au-delà du seuil HR 1,2 : bas : 45 %; haut : 7 % ; écart de risque de décès à 10 ans à 45 ans : +0,8 / +0,5 point (hommes / femmes).
 - Interaction avec l'âge répliquée : lire les seuils par tranche d'âge.
 - Figure : `../figures_q6/urea.png`.

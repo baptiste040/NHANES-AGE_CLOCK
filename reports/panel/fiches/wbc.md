@@ -39,6 +39,6 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 - Seuils HR 1,2 retenus : bas 4,14, haut 8,1.
 - Comparaison aux bornes D1 : S H bas : conforme au risque; S H haut : intervalle trop large; S F bas : conforme au risque; S F haut : intervalle trop large.
 - Sans les décès des 3 premières années : côté bas disparaît (marqueur de maladie probable).
-- Après ajustement (tabac, IMC, diabète, revenu) : haut : association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel.
+- Après ajustement (tabac, alcool, IMC, diabète, revenu) : haut : association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel (alcool compris).
 - 30-55 ans au-delà du seuil HR 1,2 : bas : 3 %; haut : 31 % ; écart de risque de décès à 10 ans à 45 ans : +0,8 / +0,5 point (hommes / femmes).
 - Figure : `../figures_q6/wbc.png`.

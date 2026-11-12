@@ -39,7 +39,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 - Forme retenue en validation : descendante ; minimum 4,8 (sur une borne P5/P95) ; zone de risque minimal 4,18–5,1.
 - Seuils HR 1,2 retenus : bas 4,55, haut —.
 - Comparaison aux bornes D1 : S H bas : intervalle trop large; S H haut : intervalle trop strict; S F bas : intervalle trop large; S F haut : intervalle trop strict.
-- Après ajustement (tabac, IMC, diabète, revenu) : bas : association indépendante : seuil inchangé après ajustement.
+- Après ajustement (tabac, alcool, IMC, diabète, revenu) : bas : association indépendante : seuil inchangé après ajustement (alcool compris).
 - 30-55 ans au-delà du seuil HR 1,2 : bas : 78 % ; écart de risque de décès à 10 ans à 45 ans : +0,7 / +0,4 point (hommes / femmes).
 - Interaction avec l'âge répliquée : lire les seuils par tranche d'âge.
 - Figure : `../figures_q6/albumin.png`.

@@ -1,50 +1,50 @@
-id,cote,tient,tient_un_sexe,dans_ic,seuil_principal,seuil_ajuste,classe
-acr,haut,True,True,True,4.666552671180416,5.626636402247842,association indépendante : seuil inchangé après ajustement
-albumin,bas,True,True,True,4.54904418979857,4.517410456329959,association indépendante : seuil inchangé après ajustement
-alp,haut,True,True,True,69.23407221593807,76.20524499757984,association indépendante : seuil inchangé après ajustement
-alt,bas,True,True,False,18.847171960757542,15.465418380174569,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel
-alt,haut,True,True,True,45.05911338078258,47.47240640340569,association indépendante : seuil inchangé après ajustement
-ast,bas,False,True,False,18.80876365040843,16.40495992895684,mixte selon le sexe
-ast,haut,True,True,True,34.55081968965793,33.98861659574463,association indépendante : seuil inchangé après ajustement
-bili,bas,True,True,False,0.711622997685538,0.5773251552589783,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel
-ca,bas,True,True,True,9.014379985439014,9.003562460036486,association indépendante : seuil inchangé après ajustement
-cl,bas,True,True,True,100.69658768786422,100.18700814361166,association indépendante : seuil inchangé après ajustement
-creat,haut,True,True,True,1.090701242675982,1.0571997986668813,association indépendante : seuil inchangé après ajustement
-crp,haut,True,True,True,0.2354240269959337,0.255809309717568,association indépendante : seuil inchangé après ajustement
-egfr,bas,True,True,True,66.42093152367455,66.94946661242949,association indépendante : seuil inchangé après ajustement
-eos_pct,bas,True,True,True,1.3637935993209822,1.3135607809170564,association indépendante : seuil inchangé après ajustement
-ggt,haut,True,True,True,31.223687702859056,33.35466620387452,association indépendante : seuil inchangé après ajustement
-globulin,haut,True,True,True,3.163898510771622,3.263566436067337,association indépendante : seuil inchangé après ajustement
-hb,bas,True,True,True,14.030087096816915,13.907701410027023,association indépendante : seuil inchangé après ajustement
-hco3,bas,True,True,True,22.51567299686332,22.02892469574364,association indépendante : seuil inchangé après ajustement
-hct,bas,True,True,True,40.46737135077954,40.125442287771136,association indépendante : seuil inchangé après ajustement
-hdl,bas,True,True,True,42.66834902889771,39.51868688810939,association indépendante : seuil inchangé après ajustement
-hdl,haut,True,True,True,70.8065410040782,75.28845203523149,association indépendante : seuil inchangé après ajustement
-insulin,bas,True,True,False,5.396759371536805,2.9262831116940085,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel
-insulin,haut,True,True,False,17.169340763530734,20.404876868121743,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel
-iron,bas,True,True,True,73.52673713992858,69.65520344310698,association indépendante : seuil inchangé après ajustement
-k,bas,True,True,True,3.5863712032273205,3.5922561689841057,association indépendante : seuil inchangé après ajustement
-k,haut,True,True,True,4.307566280666437,4.3726809521124,association indépendante : seuil inchangé après ajustement
-lymph_pct,bas,True,True,True,25.202078520458844,24.16549216120461,association indépendante : seuil inchangé après ajustement
-mch,bas,True,True,True,29.74285719178872,29.298815810167817,association indépendante : seuil inchangé après ajustement
-mch,haut,True,True,True,32.44657162926971,32.60438412301377,association indépendante : seuil inchangé après ajustement
-mchc,bas,True,True,True,33.06061334464509,32.85086579831347,association indépendante : seuil inchangé après ajustement
-mcv,bas,True,True,True,86.92193126557522,85.02974246587507,association indépendante : seuil inchangé après ajustement
-mcv,haut,True,True,False,95.04320214142264,95.55000323331252,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel
-mono_pct,bas,True,True,False,5.744737847181318,5.159573965463586,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel
-mono_pct,haut,True,True,True,10.65044577404129,10.263409368159618,association indépendante : seuil inchangé après ajustement
-na,bas,True,True,False,136.91765806973152,136.15745890275235,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel
-neut_pct,haut,True,True,True,64.94723025670632,65.61208602982119,association indépendante : seuil inchangé après ajustement
-phos,haut,True,True,True,4.216319914980146,4.288359338346789,association indépendante : seuil inchangé après ajustement
-plt,bas,True,True,True,188.4835767909261,188.61629272440368,association indépendante : seuil inchangé après ajustement
-plt,haut,True,True,True,285.688970878911,308.5876503243047,association indépendante : seuil inchangé après ajustement
-protein,bas,True,True,True,6.712532420824848,6.690291443264908,association indépendante : seuil inchangé après ajustement
-protein,haut,True,True,True,7.609553870792108,7.662649043661208,association indépendante : seuil inchangé après ajustement
-rbc,bas,True,True,True,4.441995749602534,4.44248536350559,association indépendante : seuil inchangé après ajustement
-rdw,haut,True,True,True,12.40153027010032,12.478074598402012,association indépendante : seuil inchangé après ajustement
-tc,bas,True,True,False,166.41183118578283,159.37691589310825,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel
-urate,bas,True,True,False,4.337773784001097,3.3327961045366776,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel
-urate,haut,True,True,True,6.752151662405113,6.770296108771115,association indépendante : seuil inchangé après ajustement
-urea,bas,True,True,True,11.435062195957782,10.6119526855261,association indépendante : seuil inchangé après ajustement
-urea,haut,True,True,True,18.04202965315013,18.30596339538121,association indépendante : seuil inchangé après ajustement
-wbc,haut,True,True,False,8.098787482617992,9.232522393577794,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel
+id,cote,tient,tient_un_sexe,dans_ic,seuil_principal,seuil_ajuste,classe,seuil_avec_alcool,classe_avec_alcool
+acr,haut,True,True,True,4.666552671180416,5.626636402247842,association indépendante : seuil inchangé après ajustement,5.596849522856663,association indépendante : seuil inchangé après ajustement (alcool compris)
+albumin,bas,True,True,True,4.54904418979857,4.517410456329959,association indépendante : seuil inchangé après ajustement,4.525140252322947,association indépendante : seuil inchangé après ajustement (alcool compris)
+alp,haut,True,True,True,69.23407221593807,76.20524499757984,association indépendante : seuil inchangé après ajustement,78.98412224183222,association indépendante : seuil inchangé après ajustement (alcool compris)
+alt,bas,True,True,False,18.847171960757542,15.465418380174569,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel,15.134615308089836,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel (alcool compris)
+alt,haut,True,True,True,45.05911338078258,47.47240640340569,association indépendante : seuil inchangé après ajustement,48.02389599144382,association indépendante : seuil inchangé après ajustement (alcool compris)
+ast,bas,False,True,False,18.80876365040843,16.40495992895684,mixte selon le sexe,16.31128687226109,mixte selon le sexe
+ast,haut,True,True,True,34.55081968965793,33.98861659574463,association indépendante : seuil inchangé après ajustement,33.83296030673836,association indépendante : seuil inchangé après ajustement (alcool compris)
+bili,bas,True,True,False,0.711622997685538,0.5773251552589783,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel,,"marqueur de risque : l'association passe par le tabac, l'alcool, l'IMC, le diabète ou le revenu"
+ca,bas,True,True,True,9.014379985439014,9.003562460036486,association indépendante : seuil inchangé après ajustement,9.003192340716867,association indépendante : seuil inchangé après ajustement (alcool compris)
+cl,bas,True,True,True,100.69658768786422,100.18700814361166,association indépendante : seuil inchangé après ajustement,100.23692615394398,association indépendante : seuil inchangé après ajustement (alcool compris)
+creat,haut,True,True,True,1.090701242675982,1.0571997986668813,association indépendante : seuil inchangé après ajustement,1.0529973760371836,association indépendante : seuil inchangé après ajustement (alcool compris)
+crp,haut,True,True,True,0.2354240269959337,0.255809309717568,association indépendante : seuil inchangé après ajustement,0.2675728499848029,association indépendante : seuil inchangé après ajustement (alcool compris)
+egfr,bas,True,True,True,66.42093152367455,66.94946661242949,association indépendante : seuil inchangé après ajustement,67.0110595786369,association indépendante : seuil inchangé après ajustement (alcool compris)
+eos_pct,bas,True,True,True,1.3637935993209822,1.3135607809170564,association indépendante : seuil inchangé après ajustement,1.3078794022126023,association indépendante : seuil inchangé après ajustement (alcool compris)
+ggt,haut,True,True,True,31.223687702859056,33.35466620387452,association indépendante : seuil inchangé après ajustement,32.014172571214985,association indépendante : seuil inchangé après ajustement (alcool compris)
+globulin,haut,True,True,True,3.163898510771622,3.263566436067337,association indépendante : seuil inchangé après ajustement,3.2848649913707035,association indépendante : seuil inchangé après ajustement (alcool compris)
+hb,bas,True,True,True,14.030087096816915,13.907701410027023,association indépendante : seuil inchangé après ajustement,13.877090294502263,association indépendante : seuil inchangé après ajustement (alcool compris)
+hco3,bas,True,True,True,22.51567299686332,22.02892469574364,association indépendante : seuil inchangé après ajustement,22.004535445753,association indépendante : seuil inchangé après ajustement (alcool compris)
+hct,bas,True,True,True,40.46737135077954,40.125442287771136,association indépendante : seuil inchangé après ajustement,40.08805338699616,association indépendante : seuil inchangé après ajustement (alcool compris)
+hdl,bas,True,True,True,42.66834902889771,39.51868688810939,association indépendante : seuil inchangé après ajustement,39.98839075167744,association indépendante : seuil inchangé après ajustement (alcool compris)
+hdl,haut,True,True,True,70.8065410040782,75.28845203523149,association indépendante : seuil inchangé après ajustement,75.08772889231157,association indépendante : seuil inchangé après ajustement (alcool compris)
+insulin,bas,True,True,False,5.396759371536805,2.9262831116940085,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel,3.1863888158586526,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel (alcool compris)
+insulin,haut,True,True,False,17.169340763530734,20.404876868121743,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel,20.916208018258857,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel (alcool compris)
+iron,bas,True,True,True,73.52673713992858,69.65520344310698,association indépendante : seuil inchangé après ajustement,69.23499017435546,association indépendante : seuil inchangé après ajustement (alcool compris)
+k,bas,True,True,True,3.5863712032273205,3.5922561689841057,association indépendante : seuil inchangé après ajustement,3.587153888066977,association indépendante : seuil inchangé après ajustement (alcool compris)
+k,haut,True,True,True,4.307566280666437,4.3726809521124,association indépendante : seuil inchangé après ajustement,4.369127515664189,association indépendante : seuil inchangé après ajustement (alcool compris)
+lymph_pct,bas,True,True,True,25.202078520458844,24.16549216120461,association indépendante : seuil inchangé après ajustement,24.39819432489863,association indépendante : seuil inchangé après ajustement (alcool compris)
+mch,bas,True,True,True,29.74285719178872,29.298815810167817,association indépendante : seuil inchangé après ajustement,29.123616976441987,association indépendante : seuil inchangé après ajustement (alcool compris)
+mch,haut,True,True,True,32.44657162926971,32.60438412301377,association indépendante : seuil inchangé après ajustement,32.612277826905405,association indépendante : seuil inchangé après ajustement (alcool compris)
+mchc,bas,True,True,True,33.06061334464509,32.85086579831347,association indépendante : seuil inchangé après ajustement,32.83735183692214,association indépendante : seuil inchangé après ajustement (alcool compris)
+mcv,bas,True,True,True,86.92193126557522,85.02974246587507,association indépendante : seuil inchangé après ajustement,84.304624411124,association indépendante : seuil inchangé après ajustement (alcool compris)
+mcv,haut,True,True,False,95.04320214142264,95.55000323331252,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel,95.5602127930484,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel (alcool compris)
+mono_pct,bas,True,True,False,5.744737847181318,5.159573965463586,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel,5.135750257461915,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel (alcool compris)
+mono_pct,haut,True,True,True,10.65044577404129,10.263409368159618,association indépendante : seuil inchangé après ajustement,10.35088277746489,association indépendante : seuil inchangé après ajustement (alcool compris)
+na,bas,True,True,False,136.91765806973152,136.15745890275235,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel,136.18124609994638,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel (alcool compris)
+neut_pct,haut,True,True,True,64.94723025670632,65.61208602982119,association indépendante : seuil inchangé après ajustement,65.57547700867126,association indépendante : seuil inchangé après ajustement (alcool compris)
+phos,haut,True,True,True,4.216319914980146,4.288359338346789,association indépendante : seuil inchangé après ajustement,4.2960596864815095,association indépendante : seuil inchangé après ajustement (alcool compris)
+plt,bas,True,True,True,188.4835767909261,188.61629272440368,association indépendante : seuil inchangé après ajustement,188.2059630176865,association indépendante : seuil inchangé après ajustement (alcool compris)
+plt,haut,True,True,True,285.688970878911,308.5876503243047,association indépendante : seuil inchangé après ajustement,308.06396434326786,association indépendante : seuil inchangé après ajustement (alcool compris)
+protein,bas,True,True,True,6.712532420824848,6.690291443264908,association indépendante : seuil inchangé après ajustement,6.690095468709391,association indépendante : seuil inchangé après ajustement (alcool compris)
+protein,haut,True,True,True,7.609553870792108,7.662649043661208,association indépendante : seuil inchangé après ajustement,7.680464431486333,association indépendante : seuil inchangé après ajustement (alcool compris)
+rbc,bas,True,True,True,4.441995749602534,4.44248536350559,association indépendante : seuil inchangé après ajustement,4.446340426799424,association indépendante : seuil inchangé après ajustement (alcool compris)
+rdw,haut,True,True,True,12.40153027010032,12.478074598402012,association indépendante : seuil inchangé après ajustement,12.458653419384586,association indépendante : seuil inchangé après ajustement (alcool compris)
+tc,bas,True,True,False,166.41183118578283,159.37691589310825,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel,158.60710334521525,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel (alcool compris)
+urate,bas,True,True,False,4.337773784001097,3.3327961045366776,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel,3.341278110881102,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel (alcool compris)
+urate,haut,True,True,True,6.752151662405113,6.770296108771115,association indépendante : seuil inchangé après ajustement,6.785978497199138,association indépendante : seuil inchangé après ajustement (alcool compris)
+urea,bas,True,True,True,11.435062195957782,10.6119526855261,association indépendante : seuil inchangé après ajustement,10.47660289030724,association indépendante : seuil inchangé après ajustement (alcool compris)
+urea,haut,True,True,True,18.04202965315013,18.30596339538121,association indépendante : seuil inchangé après ajustement,18.297681261676228,association indépendante : seuil inchangé après ajustement (alcool compris)
+wbc,haut,True,True,False,8.098787482617992,9.232522393577794,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel,9.22277839398803,association atténuée : le seuil s'éloigne du minimum mais reste dans l'intervalle usuel (alcool compris)

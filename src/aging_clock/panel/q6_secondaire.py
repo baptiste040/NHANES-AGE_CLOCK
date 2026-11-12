@@ -104,6 +104,69 @@ def adjustment_hold():
     return t, g
 
 
+ALCOOL_MIN = ["ggt", "alt", "ast", "mcv", "tg_fast", "tg_serum", "hdl"]
+
+
+def alcohol(p: pd.DataFrame) -> pd.DataFrame:
+    """Consommation d'alcool (questionnaire ALQ, 20 ans et plus) : verres par semaine, en classes.
+    jamais ou pas dans l'annee / < 7 / 7-14 / > 14 verres par semaine / inconnu."""
+    from .q2 import SUF, _xpt
+    F = []
+    for y in sorted(p.cycle.unique()):
+        x = _xpt("ALQ" + SUF[int(y)], int(y))
+        ever12 = next(c for c in ("ALQ100", "ALD100", "ALQ101") if c in x)
+        freq = x.ALQ120Q.where(x.ALQ120Q < 777)
+        per_week = freq * x.ALQ120U.map({1: 1.0, 2: 12 / 52.0, 3: 1 / 52.0})
+        dpd = x.ALQ130.where(x.ALQ130 < 77)
+        dw = (per_week * dpd).where(freq > 0, 0.0)
+        never = (x[ever12] == 2) & (x.ALQ110 == 2)
+        dw = dw.where(~never, 0.0)
+        F.append(pd.DataFrame({"verres_semaine": dw}, index=x.index))
+    a = pd.concat(F).reindex(p.index)
+    v = a.verres_semaine
+    cls = np.select([v == 0, v < 7, v <= 14, v > 14], ["aucun", "<7", "7-14", ">14"], "inconnu")
+    return pd.DataFrame({"alc_lt7": (cls == "<7").astype(float), "alc_7_14": (cls == "7-14").astype(float),
+                         "alc_gt14": (cls == ">14").astype(float), "alc_inconnu": (cls == "inconnu").astype(float),
+                         "alc_classe": cls}, index=p.index)
+
+
+def alcohol_adjustment(p: pd.DataFrame):
+    """Seuils HR 1,2 apres ajustement sur tabac, IMC, diabete, revenu ET alcool (developpement), compares a
+    l'analyse principale et a la sensibilite 3."""
+    p = p.join(alcohol(p))
+    Z = pd.read_csv(OUT / "Q6_zones.csv").set_index("id")
+    G = pd.read_csv(OUT / "Q6_secondaire_ajustement_par_cote.csv")
+    ids = list(dict.fromkeys(ALCOOL_MIN + G.id.tolist()))
+    rows = []
+    for mid in ids:
+        z = Z.loc[mid]
+        q = p[p[mid].notna()]
+        if mid in A.FAST:
+            q = q[q.WTSAF2YR.notna() & (q.WTSAF2YR > 0)]
+        dv = q[q.dev]
+        spec = M.Spec(dv[mid].to_numpy(float), z.echelle == "log")
+        akn = np.percentile(dv.age, M.KN)
+        bkn = np.percentile(dv.bmi, M.KN)
+        base = dv[["smk_ancien", "smk_actuel", "smk_inconnu", "diab", "pir", "pir_na", "bmi_na"]].to_numpy(float)
+        ex = np.column_stack([base, M.age_basis(dv.bmi.to_numpy(float), bkn),
+                              dv[["alc_lt7", "alc_7_14", "alc_gt14", "alc_inconnu"]].to_numpy(float)])
+        r = M.fit(dv[mid].to_numpy(float), dv.age.to_numpy(float), dv.sex.to_numpy(), dv.t10.to_numpy(float),
+                  dv.e10.to_numpy().astype(bool), spec, akn, extra=ex, keep_curve=False)
+        for side in ("bas", "haut"):
+            ci = _lit(z[f"ic95_seuil12_{side}"])
+            thr = r["seuil_1_2"][side]
+            rows.append({"id": mid, "cote": side, "cote_retenu": z[f"cote_{side}_retenu"] in (True, "True"),
+                         "seuil_principal": z[f"seuil12_{side}"], "seuil_tabac_imc_diabete_revenu_alcool": thr,
+                         "dans_ic_principal": bool(ci and thr is not None and ci[0] <= thr <= ci[1]),
+                         "forme_ajustee": r["forme"], "p_global_ajuste": r["p_global"], "deces": r["deces"],
+                         "part_alcool_inconnu": float(dv.alc_inconnu.mean()), "part_plus_14_verres": float(dv.alc_gt14.mean())})
+    return pd.DataFrame(rows)
+
+
+def _lit(s):
+    return ast.literal_eval(s) if isinstance(s, str) and s.startswith("[") else None
+
+
 def run():
     p, _ = A.prepare()
     R = absolute_risk(p)

@@ -27,7 +27,7 @@ Couverture : Q3 Q4 Q5 Q6.
 - Forme retenue en validation : montante ; minimum 2,49 (sur une borne P5/P95) ; zone de risque minimal 1,13–5,87.
 - Seuils HR 1,2 retenus : bas —, haut 4,67.
 - Comparaison aux bornes D1 : R haut : intervalle trop large.
-- Après ajustement (tabac, IMC, diabète, revenu) : haut : association indépendante : seuil inchangé après ajustement.
+- Après ajustement (tabac, alcool, IMC, diabète, revenu) : haut : association indépendante : seuil inchangé après ajustement (alcool compris).
 - 30-55 ans au-delà du seuil HR 1,2 : haut : 64 % ; écart de risque de décès à 10 ans à 45 ans : +0,7 / +0,4 point (hommes / femmes).
 - Interaction avec l'âge répliquée : lire les seuils par tranche d'âge.
 - Figure : `../figures_q6/acr.png`.

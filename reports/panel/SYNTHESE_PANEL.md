@@ -178,9 +178,12 @@ Résultats par marqueur : `resultats_par_marqueur.csv` et `fiches/`.
     - CRP au-dessus de 2,4 mg/L ;
     - albumine sous 4,55 g/dL ;
     - HDL sous 43 et au-dessus de 71 mg/dL.
-  - Ces seuils tiennent après ajustement sur le tabac, l'IMC, le diabète et le revenu (38 côtés
-    inchangés, 10 atténués). Exclure les décès précoces montre que certains côtés sont des
-    **marqueurs de maladie** : côté bas des leucocytes et de la CRP, côté haut de la bilirubine.
+  - Ces seuils tiennent après ajustement sur le tabac, l'alcool (déclaré), l'IMC, le diabète et le
+    revenu : 38 côtés inchangés, 9 atténués, 1 mixte selon le sexe. Un seul devient un **marqueur
+    de risque** expliqué par ces facteurs : le côté bas de la bilirubine.
+  - L'alcool ne change presque rien, y compris pour la GGT, l'ALAT, l'ASAT et le VGM.
+  - Exclure les décès précoces montre que certains côtés sont des **marqueurs de maladie** : côté bas
+    des leucocytes et de la CRP, côté haut de la bilirubine.
 - **Niveau de preuve : pré-enregistré, répliqué** (développement 1999-2006 et validation 2007-2010).
   Ce sont des **associations**, pas des cibles.
 - **Conséquence pratique.**
@@ -193,12 +196,17 @@ Résultats par marqueur : `resultats_par_marqueur.csv` et `fiches/`.
 - **Chiffre clé.**
   - Au seuil HR 1,2, le risque de décès à 10 ans d'une personne de 45 ans augmente de **+0,8 point
     chez les hommes** (de 4,4 %) et de **+0,5 point chez les femmes** (de 2,7 %).
-  - En moyenne, 20 % des 30-55 ans dépassent un seuil de ce type, et jusqu'à 78 % pour l'albumine.
+  - En moyenne, 20 % des 30-55 ans dépassent un seuil de ce type.
+  - **Un seuil franchi par la majorité des 30-55 ans décrit une pente de risque, pas un signal à
+    afficher** : albumine 78 %, RAC 64 %, DFGe élevé 53 %.
+  - **Le risque au-dessus d'un DFGe de 101 traduit probablement une faible masse musculaire**
+    (créatinine basse, marqueur de fragilité) plutôt qu'un risque rénal. C'est une hypothèse, non
+    testée.
 - **Seuils cliniques.** Les seuils jugés « trop stricts » pour la mortalité (LDL, non-HDL, TG,
   glycémie à jeun 100 mg/dL, vitamine D 30 ng/mL) visent les événements cardiovasculaires ou le
   diabète. La mortalité à 10 ans est un mauvais juge pour eux.
-- **Niveau de preuve.** Risque absolu : analyse secondaire non pré-enregistrée. Seuils cliniques :
-  interprétation.
+- **Niveau de preuve.** Risque absolu : analyse secondaire non pré-enregistrée. Seuils cliniques et
+  DFGe élevé : interprétation.
 - **Conséquence pratique.**
   - Montrer le risque absolu, pas seulement le risque relatif.
   - Ne pas faire d'alerte individuelle à partir d'un seuil franchi par une personne sur cinq.

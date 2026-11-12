@@ -3679,3 +3679,27 @@ Demandées par l'auteur du projet après la validation de Q6.
    jeun 100 mg/dL, vitamine D 30 ng/mL) visent les événements cardiovasculaires ou le diabète. Ils
    ne doivent pas être assouplis sur la base de la mortalité, qui est un mauvais juge pour ces
    marqueurs.
+
+### Analyse secondaire NON pré-enregistrée — programme « panel », Q6 : ajustement sur l'alcool (2026-11-12)
+
+Demandée par l'auteur du projet à la validation de la synthèse.
+
+- **Méthode.**
+  - Consommation d'alcool déclarée (questionnaire ALQ), en classes de verres par semaine : aucun,
+    moins de 7, 7 à 14, plus de 14, inconnu.
+  - Ajoutée au modèle de la sensibilité 3, en développement.
+  - Marqueurs : GGT, ALAT, ASAT, VGM, TG et HDL, et tous les côtés « trop larges ».
+- **Erreur corrigée avant lecture.** Le premier calcul divisait la fréquence par l'unité de temps
+  (33 % à plus de 14 verres par semaine) ; corrigé, le chiffre tombe à 5 %.
+- **Résultat.** L'alcool ne change la classe que du côté bas de la bilirubine, qui devient un
+  « marqueur de risque ».
+  - Les 49 côtés « trop larges » se répartissent ainsi : 38 indépendants, 9 atténués, 1 mixte selon
+    le sexe, 1 marqueur de risque.
+  - GGT, ALAT, ASAT, HDL et VGM gardent leur classe.
+- **Formulations ajoutées au rapport de Q6 et à la synthèse.**
+  - Un seuil HR 1,2 franchi par la majorité des 30-55 ans (albumine 78 %, RAC 64 %, DFGe 53 %)
+    décrit une pente de risque, pas un signal à afficher.
+  - Pour le DFGe élevé, l'hypothèse retenue est une faible masse musculaire (créatinine basse,
+    fragilité), plutôt qu'un risque rénal.
+- **Décision.** Le PDF privé attend la fin de la piste « signatures » ; une synthèse globale unique
+  suivra (pistes « suivi », « panel » et « signatures »).

@@ -96,7 +96,9 @@ relation correspond-elle aux bornes usuelles (D1) ?
    - **Trop large** : RAC ≥ 30 mg/g. Le risque monte dès 4,7 mg/g, comme dans la méta-analyse
      CKD-PC lue (dès 10 mg/g).
    - **Relations en U non signalées** par un seuil R d'un seul côté :
-     - DFGe : risque aussi au-dessus de 101 mL/min/1,73 m², en plus de sous 66 ;
+     - DFGe : risque aussi au-dessus de 101 mL/min/1,73 m², en plus de sous 66. Le côté haut traduit
+       probablement une faible masse musculaire (créatinine basse, fragilité), pas un risque rénal :
+       c'est une hypothèse (voir les analyses secondaires) ;
      - HbA1c : risque aussi sous 4,9 % ;
      - non-HDL : risque aussi sous 124 mg/dL.
 4. **Causalité inverse.** Exclure les décès des 3 premières années fait disparaître plusieurs côtés
@@ -596,7 +598,16 @@ Données : `Q6_secondaire_risque_absolu.csv`, `Q6_secondaire_ajustement.csv`,
     HR 1,5.
   - Certains seuils touchent la majorité des 30-55 ans : albumine sous 4,55 g/dL (78 %), RAC
     au-dessus de 4,7 mg/g (64 %), DFGe au-dessus de 101 (53 %), RDW au-dessus de 12,4 % (48 %).
-  - Un seuil franchi par la moitié de la population ne peut pas servir d'alerte individuelle.
+  - **Un seuil HR 1,2 franchi par la majorité des 30-55 ans décrit une pente de risque, pas un signal
+    à afficher.** C'est le cas de l'albumine (78 %), du RAC (64 %) et du DFGe élevé (53 %). Le risque
+    y monte doucement sur toute la plage des valeurs courantes. Signaler chaque personne au-delà du
+    seuil reviendrait à alerter la majorité d'une population en bonne santé.
+  - **DFGe élevé.** Le risque au-dessus de 101 mL/min/1,73 m² ne signale probablement pas un risque
+    rénal. Le DFGe est calculé à partir de la créatinine : une créatinine basse donne un DFGe élevé.
+    Or une créatinine basse traduit souvent une **faible masse musculaire**, marqueur connu de
+    fragilité et de dénutrition. C'est une hypothèse, non testée ici. Elle va dans le même sens que
+    l'interaction avec l'âge répliquée pour la créatinine et le DFGe. Un DFGe estimé sans créatinine
+    (cystatine C) permettrait de la vérifier ; il n'est pas mesuré dans NHANES 1999-2010.
 
 | Marqueur | Côté | Seuil HR 1,2 | 30-55 ans au-delà | Écart de risque à 45 ans, H / F | Seuil HR 1,5 | 30-55 ans au-delà | Écart à 45 ans, H / F |
 |---|---|---|---|---|---|---|---|
@@ -709,10 +720,57 @@ personnes concernées.
 | Urée | haut | 18 | 18,3 | indépendante (seuil inchangé) |
 | Leucocytes | haut | 8,1 | 9,23 | atténuée (seuil éloigné du minimum) |
 
+### 2 bis. Ajustement sur l'alcool (ajout du 2026-11-12)
+
+- **Variable.** Consommation déclarée dans le questionnaire ALQ de NHANES, en verres par semaine :
+  fréquence sur 12 mois × verres par jour de consommation.
+  - Classes : aucun (jamais, ou pas dans l'année), moins de 7, 7 à 14, plus de 14, inconnu.
+  - Répartition en développement : 39 % aucun, 48 % moins de 7, 8 % de 7 à 14, 5 % plus de 14 ; 0,1 %
+    inconnu.
+- **Modèle.** Celui de la sensibilité 3 (tabac, IMC, diabète, revenu), auquel on ajoute ces classes.
+  Développement seulement.
+- **Marqueurs.** GGT, ALAT, ASAT, VGM, TG et HDL au moins, et tous les côtés « trop larges ».
+- **Une erreur corrigée avant toute lecture.** Le premier calcul divisait la fréquence par l'unité de
+  temps au lieu de la multiplier : 33 % de personnes à plus de 14 verres par semaine, ce qui est
+  invraisemblable. Corrigé, le calcul a été relancé.
+
+| Marqueur | Côté | Seuil HR 1,2 principal | Tabac, IMC, diabète, revenu | + alcool | Dans l'IC principal |
+|---|---|---|---|---|---|
+| GGT | haut | 31,2 | 33,4 | 32 | oui |
+| ALAT | bas | 18,8 | 15,5 | 15,1 | non |
+| ALAT | haut | 45,1 | 47,5 | 48 | oui |
+| ASAT | bas | 18,8 | 16,4 | 16,3 | non |
+| ASAT | haut | 34,6 | 34 | 33,8 | oui |
+| VGM | bas | 86,9 | 85 | 84,3 | oui |
+| VGM | haut | 95 | 95,6 | 95,6 | non |
+| HDL | bas | 42,7 | 39,5 | 40 | oui |
+| HDL | haut | 70,8 | 75,3 | 75,1 | oui |
+| TG à jeun | haut | non retenu en validation | — | 383 (développement) | — |
+| TG sériques | haut | non retenu en validation | — | 306 (développement) | — |
+| Bilirubine totale | bas | 0,712 | 0,577 | — | non |
+| Bilirubine totale | haut | 1,41 | — | 1,43 | oui |
+| DFGe | bas | 66,4 | 66,9 | 67 | oui |
+| DFGe | haut | 101 | — | 117 | non |
+| Leucocytes | bas | 4,14 | — | 4,3 | oui |
+| Leucocytes | haut | 8,1 | 9,23 | 9,22 | non |
+| CRP | bas | 0,0216 | — | 0,0135 | oui |
+| CRP | haut | 0,235 | 0,256 | 0,268 | oui |
+
+- **Résultat : l'alcool ne change presque rien.**
+  - GGT, ALAT, ASAT, HDL et VGM gardent leur classe. Le seuil haut de la GGT passe de 31,2 à 32,0 U/L
+    et reste dans l'IC principal.
+  - Les TG n'avaient pas de côté retenu en validation, et l'ajustement ne change pas cette
+    conclusion.
+- **Seul changement : le côté bas de la bilirubine disparaît.** Il devient un **marqueur de risque**
+  (association qui passe par le tabac, l'alcool, l'IMC, le diabète ou le revenu).
+- **Bilan des 49 côtés « trop larges »** après ajustement complet : 38 indépendants, 9 atténués,
+  1 mixte selon le sexe, 1 marqueur de risque (bilirubine, côté bas).
+- **Limite.** L'alcool est déclaré, mesuré une fois, en classes larges. Un résidu de confusion par
+  l'alcool reste possible, surtout pour la GGT.
+
 **Réserves sur cette distinction :**
-1. **L'alcool n'est pas dans l'ajustement** : pas de variable homogène sur 1999-2010 dans ce
-   protocole. Les associations de la GGT, de l'ALAT, du VGM et du TCMH passent probablement en
-   partie par l'alcool. Elles sont classées « indépendantes » faute de pouvoir l'ajuster.
+1. **L'alcool est ajusté sur une déclaration** (section 2 bis). Un résidu de confusion reste
+   possible pour la GGT, l'ALAT, le VGM et le TCMH.
 2. **Ajuster sur l'IMC et le diabète peut retirer une part de l'effet**, quand ces facteurs sont sur
    le chemin causal. Une association « atténuée » n'est donc pas forcément moins utile.
 3. **Les classes ne disent rien de la causalité.** Un marqueur « indépendant » peut rester le témoin

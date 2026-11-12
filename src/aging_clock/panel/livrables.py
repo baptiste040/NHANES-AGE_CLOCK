@@ -137,7 +137,8 @@ def build() -> pd.DataFrame:
                     keep.append(part)
             r["q6_marqueur_de_maladie"] = "; ".join(keep)
             j = adj[adj.id == mid]
-            r["q6_ajustement"] = "; ".join(f"{w.cote} : {w.classe}" for _, w in j.iterrows())
+            col = "classe_avec_alcool" if "classe_avec_alcool" in j else "classe"
+            r["q6_ajustement"] = "; ".join(f"{w.cote} : {w[col]}" for _, w in j.iterrows())
             k = ra[(ra.id == mid) & (ra.niveau_hr == 1.2)]
             if len(k):
                 r["q6_part_30_55_au_dela_seuil12"] = "; ".join(f"{w.cote} : {100 * w.part_30_55_ponderee:.0f} %" for _, w in k.iterrows())
@@ -253,7 +254,7 @@ def fiche(r) -> str:
         if isinstance(r.get("q6_marqueur_de_maladie"), str) and r.q6_marqueur_de_maladie:
             L.append(f"- Sans les décès des 3 premières années : {r.q6_marqueur_de_maladie} (marqueur de maladie probable).")
         if isinstance(r.get("q6_ajustement"), str) and r.q6_ajustement:
-            L.append(f"- Après ajustement (tabac, IMC, diabète, revenu) : {r.q6_ajustement}.")
+            L.append(f"- Après ajustement (tabac, alcool, IMC, diabète, revenu) : {r.q6_ajustement}.")
         if isinstance(r.get("q6_part_30_55_au_dela_seuil12"), str):
             L.append(f"- 30-55 ans au-delà du seuil HR 1,2 : {r.q6_part_30_55_au_dela_seuil12} ; écart de risque de décès à 10 ans à 45 ans : "
                      f"+{r.q6_ecart_risque_45ans_seuil12_points_H_F.replace('.', ',').replace(' / ', ' / +')} point (hommes / femmes).")
