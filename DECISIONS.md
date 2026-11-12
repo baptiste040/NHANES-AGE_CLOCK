@@ -3222,3 +3222,404 @@ Décision de l'auteur du projet, après lecture des résultats.
     enregistré à chaque bilan et servir à interpréter les changements ;
   - très actifs : le groupe décrit des personnes actives, pas des athlètes de compétition ; la
     question reste ouverte pour eux.
+
+### Pré-enregistrement — programme « panel », Q6 : zones fondées sur le risque (2026-11-12)
+
+**Question.** Pour chaque marqueur, comment le risque de mortalité varie-t-il selon sa valeur ? Cette
+relation correspond-elle aux bornes usuelles (table D1) ? Les zones décrivent un **risque associé**,
+pas des cibles thérapeutiques.
+
+Ce texte est complet : il ne renvoie à aucun brouillon. Les effectifs de décès par marqueur ont été
+comptés avant toute analyse, sans relier un marqueur à la survie. Aucun modèle n'a été ajusté sur les
+données NHANES : le modèle de Cox n'a été vérifié que sur des données simulées
+(`tests/test_q6_cox.py`).
+
+#### Données
+
+- **Source.** NHANES 1999-2010, relié aux Linked Mortality Files 2019 (décès jusqu'au 31/12/2019).
+- **Population.** Adultes de 20 à 79 ans (comme le score : l'âge est plafonné à 85 puis à 80 ans
+  selon les cycles), non enceintes, éligibles au couplage (ELIGSTAT = 1), suivi connu.
+  - Effectif : 27 175 personnes.
+- **Découpage** (comme le score) :
+  - développement : cycles 1999-2006 ;
+  - validation : cycles 2007-2010.
+- **Suivi principal tronqué à 10 ans** (120 mois après l'examen, horizon du score).
+  - Le suivi médian complet est de 192 mois en développement contre 128 en validation. Sans
+    troncature, les deux périodes ne seraient pas comparables, et l'hypothèse de risques
+    proportionnels serait plus fragile sur 20 ans.
+  - Décès à 10 ans : 1 842 en développement, 1 117 en validation.
+  - Le suivi complet est une sensibilité (n° 6).
+- **Issues.**
+  - Principale : décès toutes causes.
+  - Secondaires : décès cardiovasculaires (UCOD_LEADING 1 ou 5, comme le score) et par cancer
+    (UCOD_LEADING 2), modèles par cause, les autres décès étant censurés.
+    - Ils sont ajustés pour **tous** les marqueurs retenus. Le rapport les commente au moins pour
+      les lipides, la glycémie, l'HbA1c, la CRP et le rein.
+    - Même critère de réplication des côtés de risque, sans IC bootstrap des seuils. Décès à 10 ans :
+    cardiovasculaires 544 et 290, cancers 497 et 323 (développement et validation).
+
+#### Changements de méthode (règle de Q5, fixée par marqueur)
+
+Pour chaque événement de Q5 situé entre 1999 et 2010, la règle est la suivante :
+1. une équation publiée existe et les données diffusées ne sont pas déjà corrigées : on l'applique
+   aux cycles antérieurs, en enchaînant jusqu'à la méthode de 2009-2010 ;
+2. sinon, si le décalage empirique de Q5 (b) atteint au moins 0,5 changement détectable : on
+   restreint aux cycles postérieurs ;
+3. sinon : pas de correction.
+
+| Marqueur | Événement Q5 | Choix |
+|---|---|---|
+| Créatinine (et DFGe, urée/créatinine) | 1 (1999), 2 (2005) | équations appliquées à 1999-2000 et à 2005-2006 ; l'événement 3 est déjà corrigé dans les données diffusées |
+| Glycémie à jeun (et HOMA-IR, QUICKI, TyG) | 6, 7 | équations enchaînées : 1999-2004 (6 puis 7), 2005-2006 (7) |
+| Insuline | 9, 10 | équations enchaînées : 1999-2002 (9 puis 10), 2003-2004 (10) |
+| HDL (et rapports) | 13 | −2,45 % appliqué à 1999-2006 ; l'événement 14 vaut 0,07 changement détectable, pas de correction |
+| Folates érythrocytaires | 22 | algorithme du NCHS (radio-essai → méthode microbiologique) sur 1999-2006 ; valeurs sans folates sériques ou sans hématocrite retirées |
+| Créatinine urinaire (RAC) | 31 | équation appliquée à 1999-2006 |
+| PAL, bilirubine | 4 (pas d'équation ; 0,77 et 0,90 changement détectable) | restriction à 2003-2010 |
+| Phosphore | 4 (0,40) | pas de correction |
+| Cholestérol total, TG | 15 (0,01) | pas de correction |
+| HbA1c | 16 (0,16) | pas de correction |
+| Vitamine D | 23a-c | valeurs diffusées, déjà exprimées en équivalent LC-MS/MS (2001-2010 ; absente en 1999-2000) |
+| Autres marqueurs | aucun événement entre 1999 et 2010 | pas de correction |
+
+Le journal des corrections (marqueur, événement, cycles, n) est écrit dans `Q6_methodes.json`.
+
+#### Marqueurs (liste fixée avant analyse)
+
+- **Règle.**
+  - On part des marqueurs du panel (liste de Q1).
+  - On exclut les hormones sexuelles et les PSA (exclues de D1 : elles dépendent du sexe, du cycle
+    ou de l'âge).
+  - On garde les marqueurs présents en 1999-2010 avec **au moins 1 000 décès à 10 ans**.
+  - La **réplication** demande en plus au moins 250 décès dans chaque période.
+- **Indices redondants retirés.** La glycémie moyenne estimée est une fonction affine de l'HbA1c ;
+  l'indice athérogène est le log de TG/HDL. Avec une spline sur l'échelle log, leurs courbes seraient
+  identiques à celles de l'HbA1c et de TG/HDL.
+- **Raw urinaires remplacés.** L'albumine et la créatinine urinaires brutes sont remplacées par leur
+  rapport (RAC), comme dans D1.
+
+**Retenus avec réplication (68 marqueurs ; décès à 10 ans, développement / validation)** :
+- **Numération (20)**, 1 705 / 1 016 décès :
+  - leucocytes ;
+  - neutrophiles, lymphocytes, monocytes, éosinophiles, basophiles (% et nombre) ;
+  - hématies, hémoglobine, hématocrite ;
+  - VGM, TCMH, CCMH, RDW ;
+  - plaquettes, VPM.
+- **Glycémie (4)** : glycémie à jeun (707 / 452), glycémie sérique, insuline à jeun (692 / 445),
+  HbA1c.
+- **Lipides (6)** : cholestérol total, LDL (691 / 445), HDL, TG à jeun (691 / 445), TG sériques,
+  non-HDL.
+- **Foie et protéines (8)** :
+  - ALAT, ASAT, GGT ;
+  - PAL et bilirubine (799 / 1 002, cycles 2003-2010) ;
+  - albumine, protéines totales, globulines.
+- **Rein et électrolytes (11)** :
+  - créatinine, urée, DFGe (CKD-EPI 2021), RAC ;
+  - sodium, potassium, chlorure, bicarbonates, calcium, phosphore ;
+  - osmolalité calculée.
+- **Autres (5)** : CRP, acide urique, fer sérique, folates érythrocytaires, vitamine D
+  (1 238 / 931).
+- **Indices dérivés (14)** :
+  - glycémie et lipides : HOMA-IR, QUICKI, TyG, LDL/HDL, TG/HDL ;
+  - foie : FIB-4, GGT/HDL, ASAT/ALAT ;
+  - protéines et rein : albumine/globulines, urée/créatinine ;
+  - électrolytes : osmolalité effective, calcium corrigé ;
+  - numération : NLR, SII.
+
+**Développement seulement, sans réplication possible** (pas de mesure en 2007-2010) : vitamine B12
+(1 665 décès) et homocystéine (1 251). Leurs courbes sont rapportées comme **non répliquées** ; leur
+catégorie D1 est « non estimable ».
+
+**Exclus** :
+- moins de 1 000 décès à 10 ans :
+  - ferritine (936 ; femmes de moins de 50 ans seulement en 2005-2010) ;
+  - CTF (935) et saturation de la transferrine (504) ;
+  - TSH (963 ; laboratoires différents entre 1999-2002 et 2007-2010) ;
+  - T4 libre (685, validation seulement) ;
+  - ApoB (672) ;
+- absents en 1999-2010 : Lp(a), ApoA1, sélénium, iode urinaire, magnésium, lipase.
+
+#### Modèle
+
+- **Type de modèle.** Cox, temps depuis l'examen, ex aequo de Breslow. Le code est en numpy,
+  identique à lifelines sans ex aequo (test unitaire).
+- **Marqueur.**
+  - Spline cubique restreinte à **4 nœuds, aux centiles 5, 35, 65 et 95** du développement
+    (3 ddl).
+  - Échelle log si Q1 utilise l'échelle log et que toutes les valeurs du développement sont
+    positives ; sinon échelle additive.
+  - Valeurs tronquées aux centiles 0,5 et 99,5 du développement.
+- **Ajustement.** Âge (spline, 4 nœuds aux mêmes centiles) et sexe.
+- **Marqueurs à jeun.** Sous-échantillon à jeun (WTSAF2YR > 0).
+- **Courbe.**
+  - HR par rapport au point de risque minimal, IC 95 % par la méthode delta. **Le minimum n'est
+    cherché qu'entre les centiles 5 et 95** du marqueur (développement).
+  - Chaque courbe est aussi rapportée **par rapport à la médiane** du marqueur (développement).
+  - Tracée sur l'échelle de la variable, entre les centiles 1 et 99 du développement (grille de
+    200 points).
+  - Le point minimal est traité comme fixe : c'est une limite.
+- **Interaction avec le sexe.**
+  - Test du rapport de vraisemblance (3 ddl : spline × sexe), en développement puis en validation.
+  - « Répliquée » si p < 0,01 en développement et p < 0,05 en validation. Les courbes par sexe sont
+    alors rapportées en complément ; les catégories restent celles du modèle commun.
+- **Interaction avec l'âge.**
+  - Même test (spline × âge centré, linéaire), en développement puis en validation.
+  - **Analyse secondaire : courbes séparées pour les 20-59 ans et les 60-79 ans.** Le nombre de
+    décès est rapporté dans chaque tranche.
+    - Ajustement sur 1999-2010 réunis, avec les nœuds et la grille du développement (tous âges).
+    - **Non estimable sous 150 décès à 10 ans** dans la tranche.
+    - Formes et seuils sont rapportés pour chaque tranche, sans réplication.
+  - Le modèle est aussi ajusté chez les **30-55 ans** (population visée), sur 1999-2010 réunis
+    (549 décès à 10 ans). C'est descriptif et non répliqué, avec le même minimum de 150 décès.
+
+#### Définitions fixées à l'avance
+
+- **Point de risque minimal** : valeur de la grille, **entre les centiles 5 et 95**, où le log-HR
+  est le plus bas.
+  - Pour une forme montante ou descendante, on indique si le minimum tombe sur une borne (5e ou 95e
+    centile) : le risque continue alors probablement de baisser au-delà.
+- **Référence médiane** : HR de chaque point par rapport à la médiane du marqueur, avec son IC
+  delta. C'est une lecture complémentaire, qui ne sert pas aux définitions.
+- **Zone de risque minimal** : valeurs contiguës au minimum où la borne basse de l'IC 95 % du HR
+  reste sous 1,1.
+- **Seuils de risque** : de chaque côté du minimum (restreint aux centiles 5-95), première valeur (en s'éloignant du minimum) où le
+  HR (estimation ponctuelle) atteint 1,2, puis 1,5. Interpolation linéaire sur la grille. Pas de
+  seuil si le HR n'atteint pas le niveau entre les centiles 1 et 99.
+- **Formes** :
+  - **plate** : aucun seuil 1,2 ;
+  - **montante** : seuil 1,2 du côté haut seulement ;
+  - **descendante** : seuil 1,2 du côté bas seulement ;
+  - **en U** : seuil 1,2 des deux côtés, et 1,5 des deux côtés ou d'aucun ;
+  - **en J** : seuil 1,2 des deux côtés, 1,5 d'un seul côté.
+  - Relation en U au sens de la question : un seuil 1,2 existe des deux côtés (U ou J).
+- **IC des seuils** : bootstrap des personnes en développement, **500 tirages** (calcul parallélisé),
+  graine 2026. Si le temps de calcul ne le permet pas, on passe à 200 tirages et on le signale. Percentiles
+  2,5 et 97,5 parmi les tirages où le seuil existe (au moins 20 tirages). La part des tirages où il
+  existe est rapportée.
+
+#### Réplication (critères fixés à l'avance)
+
+On garde la forme du développement (nœuds, troncature, grille), et on ajuste le même modèle en
+validation.
+
+1. **Association retenue** si p global (3 ddl) < 0,05 en développement **et** en validation.
+2. **Côté de risque retenu** si le seuil 1,2 existe de ce côté en développement **et** en validation,
+   et que l'association est retenue.
+3. **Relation en U retenue** si les deux côtés sont retenus.
+4. **Valeur de seuil retenue** si le seuil 1,2 de validation tombe dans l'IC 95 % bootstrap du seuil
+   de développement.
+5. **Forme retenue** : celle qui découle des côtés retenus. Sans association retenue : « non
+   répliquée ».
+
+Tous les marqueurs sont rapportés, retenus ou non.
+
+#### Catégories (comparaison aux bornes D1)
+
+- **Bornes.**
+  - Intervalles S de D1 par sexe. Si D1 a partitionné par âge, on prend la tranche 40-59 ans, au
+    centre de la population visée.
+  - Seuils R de D1 dans le sens du seuil : glycémie à jeun 100 (ADA) et 110 (OMS) mg/dL ; HbA1c 5,7
+    et 6,0 % ; LDL 116 ; non-HDL 130 ; TG à jeun 150 mg/dL ; DFGe 60 ; RAC 30 mg/g ; vitamine D 20
+    et 30 ng/mL, convertis en nmol/L (×2,4959).
+- **Seuils utilisés.** Seuls comptent les seuils 1,2 retenus en validation. On prend leur estimation
+  de développement et son IC bootstrap.
+- **Catégorie par côté**, pour une borne b de D1 :
+  - **conforme au risque** : b est dans l'IC 95 % du seuil 1,2 ;
+  - **intervalle trop large** : l'IC du seuil 1,2 est entièrement du côté normal de b. Des valeurs
+    jugées normales sont déjà associées à un HR ≥ 1,2 ;
+  - **intervalle trop strict** : l'IC du seuil 1,2 est entièrement au-delà de b, ou aucun seuil n'est
+    retenu de ce côté alors que b est entre les centiles 1 et 99. Des valeurs signalées anormales
+    n'ont pas de HR ≥ 1,2 ;
+  - **non estimable** : b est hors des centiles 1 à 99, marqueur sans réplication, ou méthode
+    différente de celle de D1.
+    - C'est le cas des folates érythrocytaires : D1 est en radio-essai 2003-2006 et en ng/mL, alors
+      que Q6 est harmonisé vers la méthode microbiologique.
+- **Catégorie du marqueur** :
+  - **« relation en U non signalée »** si la relation en U est retenue mais que la référence D1 n'a
+    qu'un côté (seuil R) ;
+  - sinon, la liste des catégories par côté et par sexe, par exemple « trop large (haut, H et F) ;
+    trop strict (bas, F) ».
+- **Indices dérivés sans borne D1.** Seules la courbe et les zones sont rapportées.
+
+#### Sensibilités (contre la causalité inverse et la confusion)
+
+Chaque sensibilité est ajustée sur le développement et comparée à l'analyse principale de
+développement.
+
+1. Exclusion des décès des 3 premières années (36 mois).
+2. Population sans maladie connue : critères complets de la population de référence D1.
+   - Cotinine < 3 ng/mL et IMC de 18,5 à 30.
+   - Sans diabète, maladie cardiovasculaire, hépatique, rénale ni cancer déclarés.
+   - Sans antidiabétique, antihypertenseur ni hypolipémiant.
+3. Ajustement supplémentaire :
+   - tabac (jamais, ancien, actuel, inconnu ; SMQ020 et SMQ040) ;
+   - IMC (spline, 4 nœuds) ;
+   - diabète déclaré (DIQ010) ;
+   - revenu (INDFMPIR, avec indicatrice de donnée manquante).
+4. Lipides et glycémie seulement : ajustement sur les traitements déclarés.
+   - Hypolipémiant (BPQ100D), antihypertenseur (BPQ050A), antidiabétique (DIQ050 ou DIQ070).
+   - Marqueurs concernés : cholestérol total, LDL, HDL, TG, non-HDL, LDL/HDL, TG/HDL, TyG, glycémies,
+     HbA1c, insuline, HOMA-IR, QUICKI.
+5. Poids d'enquête : WTMEC2YR, ou WTSAF2YR pour les marqueurs à jeun. Estimations ponctuelles
+   seulement.
+6. Suivi complet (jusqu'à 2019), sans troncature à 10 ans.
+
+- **Ce qu'on appelle un changement net de forme.** Par rapport à l'analyse principale de
+  développement :
+  - un côté de risque (seuil 1,2) apparaît ou disparaît ;
+  - ou le seuil 1,2 sort de l'IC 95 % bootstrap principal.
+- **Interprétation pré-enregistrée.** Un marqueur dont la forme change nettement aux sensibilités 1 ou
+  2 est signalé comme **marqueur de maladie probable plutôt que facteur de risque**. Sa zone reflète
+  alors au moins en partie des maladies présentes à l'examen.
+
+#### Prédictions (formes attendues, d'après des sources lues)
+
+- **Ce qui est lu.** La colonne « Base » le dit pour chaque prédiction :
+  - **« résumé seulement »** : seul le résumé a été lu, même quand le texte intégral a été
+    téléchargé ;
+  - **« texte intégral, passages »** : des passages du texte intégral ont été lus.
+
+  Toutes les prédictions reposent sur un résumé seulement, sauf celle des lymphocytes (Zidar 2019).
+- **Recherches.** Les requêtes PubMed sont dans `private/panel/Q6_litterature/recherches.json` (40
+  requêtes, une ou plusieurs par marqueur).
+- **Marqueurs sans source.** Un marqueur sans source lue n'a pas de prédiction.
+- **Vérification.** Une prédiction est vérifiée si les côtés de risque **retenus en validation**
+  correspondent aux côtés prévus. Elle est aussi rapportée sur le développement seul.
+
+| Marqueur | Forme attendue (côtés de risque) | Source lue | Base |
+|---|---|---|---|
+| ALAT | descendante (ALAT basse) | Liu 2014, méta-analyse : ALAT basse associée à une mortalité plus élevée chez les plus âgés ; association jugée incohérente | résumé seulement |
+| GGT | montante | Cho 2023, Corée, 9,7 millions | résumé seulement |
+| PAL | montante | Yan 2023, NHANES 1999-2014 ; Li 2014, méta-analyse | résumé seulement |
+| Bilirubine | montante | Chen 2021, NHANES 1999-2014 : association positive, linéaire, avec la mortalité toutes causes | résumé seulement |
+| Albumine | descendante | Di Castelnuovo 2024, Moli-sani : association inverse, nette seulement à 65 ans et plus | résumé seulement |
+| HDL | en U | Huang 2020 : risque aux deux extrêmes (≤ 30 et > 70 mg/dL) | résumé seulement |
+| LDL | en U | Johannesen 2020, Copenhague | résumé seulement |
+| Cholestérol total | en U | Yi 2019, Corée, 12,8 millions | résumé seulement |
+| TG à jeun | plate | Fang 2022, NHANES : pas d'association chez les personnes à jeun | résumé seulement |
+| TG sériques (non à jeun) | montante | Fang 2022 | résumé seulement |
+| RDW | montante | Patel 2010, méta-analyse de personnes âgées | résumé seulement |
+| VGM, TCMH | en U | Li 2024, NHANES 1999-2008 | résumé seulement |
+| CCMH | descendante | Li 2024 : courbe en L | résumé seulement |
+| Leucocytes | montante | Wang 2018, Guangzhou | résumé seulement |
+| NLR | montante | Song 2021, NHANES | résumé seulement |
+| Lymphocytes (nombre) | descendante | Zidar 2019, NHANES | texte intégral, passages |
+| Sodium | en U | Mohan 2013, NHANES 1999-2004 ; côté bas aussi chez Zhang 2026 | résumé seulement |
+| Potassium | montante | Zhang 2026, NHANES ; Liu 2021, Chine | résumé seulement |
+| Chlorure | descendante | Mavragani 2023, NHANES : courbe en L | résumé seulement |
+| DFGe | descendante | Matsushita 2010, méta-analyse CKD-PC : risque plat entre 75 et 105, croissant en dessous | résumé seulement |
+| RAC | montante | Matsushita 2010 | résumé seulement |
+| Acide urique | en U | Zhao 2025, NHANES 1999-2010 | résumé seulement |
+| Glycémie à jeun | en U ou en J | Zhou 2019, Chine | résumé seulement |
+| HbA1c | en U ou en J | Li 2019, HRS ; Inoue 2021, NHANES, pour le côté bas | résumé seulement |
+| Insuline à jeun | plate | Zhang 2017, méta-analyse : RR 1,13, non significatif | résumé seulement |
+| HOMA-IR | montante | Zhang 2017 | résumé seulement |
+| CRP | montante | Emerging Risk Factors Collaboration 2010 | résumé seulement |
+| Vitamine D | descendante | Garland 2014, méta-analyse | résumé seulement |
+| Phosphore | montante | Li 2014 | résumé seulement |
+| Bicarbonates | descendante | Raphael 2013, NHANES III : risque sous 22 mmol/L | résumé seulement |
+| Urée | montante | Hong 2023, NHANES 1999-2006 | résumé seulement |
+| Urée/créatinine | en U | Shen 2022, NHANES | résumé seulement |
+| FIB-4 | montante | Anstee 2024, personnes obèses ou diabétiques : indirect | résumé seulement |
+| Homocystéine (développement seulement) | montante | Fan 2017, méta-analyse | résumé seulement |
+
+- **Sans source lue, donc sans prédiction** :
+  - numération : neutrophiles (% et nombre), lymphocytes (%), monocytes, éosinophiles, basophiles,
+    hématies, hématocrite, VPM, SII ;
+  - glycémie et lipides : glycémie sérique, non-HDL, QUICKI, TyG, LDL/HDL, TG/HDL ;
+  - foie et protéines : ASAT, protéines totales, globulines, albumine/globulines, GGT/HDL, ASAT/ALAT ;
+  - rein et électrolytes : créatinine, calcium, calcium corrigé, osmolalités ;
+  - autres : fer, folates érythrocytaires, B12.
+- **Rien trouvé avec ces requêtes** pour l'hémoglobine et les plaquettes en population générale :
+  les études trouvées portaient sur des patients.
+- **Écart avec les exemples de l'auteur.** Il citait le potassium en U ; les sources lues ne décrivent
+  que le côté haut. La prédiction suit les sources.
+
+Références (DOI) :
+- Liu 2014, 10.1371/journal.pone.0091410 ;
+- Jensen 2020, 10.2147/CLEP.S241292 (lu, non utilisé : issues de morbidité) ;
+- Cho 2023, 10.1038/s41598-022-25970-0 ;
+- Yan 2023, 10.3389/fendo.2023.1217369 ;
+- Li 2014, 10.1371/journal.pone.0102276 ;
+- Chen 2021, 10.3389/fcvm.2021.670768 ;
+- Di Castelnuovo 2024, 10.1016/j.eclinm.2024.102627 ;
+- Huang 2020, 10.2147/CIA.S271528 ;
+- Johannesen 2020, 10.1136/bmj.m4266 ;
+- Yi 2019, 10.1038/s41598-018-38461-y ;
+- Fang 2022, 10.1002/hsr2.642 ;
+- Patel 2010, 10.1093/gerona/glp163 ;
+- Li 2024, 10.1371/journal.pone.0307609 ;
+- Wang 2018, 10.1186/s12889-018-6073-6 ;
+- Song 2021, 10.1038/s41598-020-79431-7 ;
+- Zidar 2019, 10.1001/jamanetworkopen.2019.16526 ;
+- Mohan 2013, 10.1016/j.amjmed.2013.07.021 ;
+- Zhang 2026, 10.1002/cdt3.70041 ;
+- Liu 2021, 10.1007/s11606-021-07111-x ;
+- Mavragani 2023, 10.2196/49291 ;
+- Matsushita 2010, 10.1016/S0140-6736(10)60674-5 ;
+- Zhao 2025, 10.3389/fnut.2025.1569798 ;
+- Zhou 2019, 10.1016/j.cdtm.2018.08.001 ;
+- Li 2019, 10.1210/jc.2018-02536 ;
+- Inoue 2021, 10.1093/ije/dyaa263 ;
+- Zhang 2017, 10.1042/BSR20170947 ;
+- Emerging Risk Factors Collaboration 2010, 10.1016/S0140-6736(09)61717-7 ;
+- Garland 2014, 10.2105/AJPH.2014.302034 ;
+- Raphael 2013, 10.1093/ndt/gfs609 ;
+- Hong 2023, 10.3390/nu15020461 ;
+- Shen 2022, 10.1080/0886022X.2022.2030359 ;
+- Anstee 2024, 10.1016/j.lanepe.2023.100780 ;
+- Fan 2017, 10.1038/s41598-017-05205-3 ;
+- Stack 2014, 10.1093/qjmed/hcu045 (lu ; saturation de la transferrine, marqueur exclu) ;
+- Xu 2023, 10.1016/S2213-8587(23)00227-9 (lu ; TSH, marqueur exclu).
+
+#### Livrables
+
+- Rapport : `reports/panel/Q6_ZONES.md`, avec une figure par marqueur dans `reports/panel/figures_q6/`.
+  Chaque figure montre :
+  - la courbe de HR de développement (IC 95 %) et la courbe de validation ;
+  - les intervalles S de D1 par sexe et les seuils R ;
+  - les lignes HR = 1,2 et 1,5.
+- Données :
+  - `Q6_marqueurs.csv` (liste, décès, échelle, choix de méthode) et `Q6_methodes.json` ;
+  - `Q6_courbes.csv` (HR et IC sur la grille, développement et validation) ;
+  - `Q6_zones.csv` (minimum, zone, seuils, IC bootstrap, forme, réplication, catégories D1,
+    interactions) ;
+  - `Q6_causes.csv` (cardiovasculaire, cancer) ;
+  - `Q6_sensibilites.csv` (6 sensibilités, changement net de forme) ;
+  - `Q6_30_55.csv` ;
+  - `Q6_predictions.json`.
+- Ajout des résultats à `resultats_par_marqueur.csv` et aux fiches (livrables finaux).
+- Code : `src/aging_clock/panel/q6.py` (données, méthodes, analyses) et
+  `src/aging_clock/panel/q6_modele.py` (Cox, courbes, seuils).
+
+#### Limites (section du rapport)
+
+- **Association, pas causalité.** Une zone ne dit pas qu'amener un marqueur dans la zone réduit le
+  risque. Les sensibilités 1 à 4 ne corrigent qu'en partie la causalité inverse et la confusion.
+- **Mortalité seule.** Pas de morbidité, de qualité de vie ni d'événements non mortels.
+- **Population américaine**, mesurée en 1999-2010, aux méthodes de laboratoire de l'époque. Les
+  traitements ont changé depuis, notamment les statines plus répandues.
+- **Traitements.** Les personnes traitées ont des valeurs modifiées par leur traitement. La
+  sensibilité 4 ne s'applique qu'aux lipides et à la glycémie, et les traitements sont déclarés.
+- **Une mesure unique.** Le bruit de mesure (Q1) atténue les pentes et élargit les zones.
+- **Nombre de tests.** Les seuils p sont fixés, mais 68 marqueurs et plusieurs issues multiplient
+  les tests : la réplication en validation sert de garde-fou.
+- **Point minimal.** Il est traité comme fixe dans l'IC delta ; le bootstrap des seuils en tient
+  compte. Sa recherche est limitée aux centiles 5-95 : hors de cette plage, la courbe est trop
+  incertaine pour servir de référence.
+- **Effectifs.** Les marqueurs à jeun ont moitié moins de décès. L'analyse des 30-55 ans
+  (549 décès) est descriptive.
+
+#### Décisions de l'auteur du projet (validation du 2026-11-12)
+
+1. **Ajouts validés.** Troncature à 10 ans ; 1 000 décès à 10 ans et 250 par période ;
+   interaction avec le sexe ; comparaison aux bornes D1 des 40-59 ans.
+2. **Point de référence.** Le minimum est cherché entre les centiles 5 et 95. Les courbes sont aussi
+   rapportées par rapport à la médiane. On signale un minimum tombé sur une borne pour les formes
+   montantes ou descendantes.
+3. **Âge.** Courbes 20-59 et 60-79 ans en analyse secondaire, avec le nombre de décès ; non estimable
+   sous 150 décès.
+4. **Causes.** Mortalité cardiovasculaire et par cancer en analyse secondaire, au moins pour les
+   lipides, la glycémie, l'HbA1c, la CRP et le rein (ici : tous les marqueurs).
+5. **Bootstrap.** 500 tirages, parallélisés ; 200 en repli signalé.
+6. **Prédictions.** Celles qui reposent sur un résumé seulement sont marquées.
