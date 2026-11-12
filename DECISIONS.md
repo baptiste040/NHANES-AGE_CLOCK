@@ -4036,3 +4036,29 @@ horizons.
 7. **Contributions des marqueurs** (B9).
 8. **Deux bilans de suivi et nombre de bilans pour 80 %** (B10).
 9. **Note sur le HDL** après réduction de l'alcool.
+
+### Résultat — piste « signatures », parties A et B (2026-11-12)
+
+Rapport : `reports/signatures/SIGNATURES.md`. Pré-enregistrement : commit `29ba1ce`.
+
+- **Partie A.** À 6 mois, sans intervention :
+  - 45 à 47 % des personnes ont au moins un marqueur sur 18 au-delà de son changement détectable, et
+    7 à 8 % en ont au moins trois (attendu sous indépendance : 54-55 % et 4 %) ;
+  - 40 à 51 % ont au moins une « fausse bonne nouvelle » autour des seuils D1.
+- **Partie B.** Sensibilité à 6 mois, à 5 % de fausses alertes, signature contre meilleur marqueur
+  seul :
+  - méditerranéen 50 % contre 41 % ;
+  - perte de poids 49 % contre 29 % ;
+  - tabac 26 % contre 11 % ;
+  - aérobie 16 % contre 10 % ;
+  - alcool (non interprétable) 29 % contre 15 %.
+- **Fausses alertes.** 4 à 10 % en usage ciblé ; 25 % avec les 5 signatures testées à la fois.
+- **Enzymes à 0.** Le gain tient pour la perte de poids (+18 points), pas pour le méditerranéen.
+- **Plusieurs bilans.** Avec un seul bilan de départ, jamais 80 %. Avec un plan symétrique, 4 bilans
+  de chaque côté pour la perte de poids et le méditerranéen.
+- **Pièges.** L'arrêt d'une pilule déclenche la signature de l'alcool dans 34 % des cas. Le début
+  d'une pilule déclenche le tabac, l'aérobie et le méditerranéen dans 15-16 % des cas. Le
+  laboratoire de biochimie déclenche la perte de poids dans 14 % des cas.
+- **Prédictions.** Vérifiées : P1, P2, P3, P4, P6, P11. Non vérifiées : P5, P7, P8, P9, P10.
+- **Écarts.** Effectif d'évaluation (1 292 paires au lieu de 1 288 : le compte préalable incluait la
+  CRP). Les IC bootstrap ignorent l'incertitude des seuils.

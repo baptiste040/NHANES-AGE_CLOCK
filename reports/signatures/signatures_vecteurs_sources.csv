@@ -1,0 +1,33 @@
+intervention,id,effet_pct,source,population,lu,note
+perte_poids,tg_serum,-23.728813559322035,"Hasan 2020, J Clin Endocrinol Metab, doi:10.1210/clinem/dgaa673","73 ECR, surpoids ou obésité (IMC moyen 36)",R,"−4,0 mg/dL par kg (TG à jeun) × 7 kg ; appliqué aux TG non à jeun"
+perte_poids,hdl,6.708333333333333,Hasan 2020,"73 ECR, surpoids ou obésité",R,"+0,46 mg/dL par kg × 7 kg"
+perte_poids,tc,-5.586206896551724,Hasan 2020 (dérivé),"73 ECR, surpoids ou obésité",R,dérivé par Friedewald : ΔLDL + ΔHDL + ΔTG/5 (pas de pente du cholestérol total lue)
+perte_poids,alt,-38.733333333333334,"Koutoukidis 2021, Metabolism, doi:10.1016/j.metabol.2020.154455",stéatose (NAFLD),R,"−0,83 U/L par kg × 7 kg ; autre étude que les lipides"
+perte_poids,ast,-20.631578947368418,Koutoukidis 2021,stéatose (NAFLD),R,"−2,8 U/L pour 5 kg, mis à l'échelle de 7 kg"
+perte_poids,glu_serum,-4.1,"Magkos 2016, Cell Metab, doi:10.1016/j.cmet.2016.02.005","obèses non diabétiques, n = 19 contre 14",TC,"essai unique, perte de 5 % ; glycémie à jeun appliquée à la glycémie sérique"
+perte_poids,crp,-15.555555555555555,"Selvin 2007, Arch Intern Med, doi:10.1001/archinte.167.1.31","33 études, interventions sur le mode de vie",R,"pente des interventions sur le mode de vie, 0,06 mg/L par kg × 7 kg (sensibilité avec CRP)"
+activite_aerobie,tc,-2.906,"Smart 2025, Sports Med, doi:10.1007/s40279-024-02115-z","148 ECR, adultes",R,toutes formes d'activité (sous-groupe aérobie non lu)
+activite_aerobie,hdl,4.396,Smart 2025,"148 ECR, adultes",R,idem
+activite_aerobie,tg_serum,-6.788,Smart 2025,"148 ECR, adultes",R,TG à jeun ; appliqué aux TG non à jeun
+activite_aerobie,glu_serum,-2.919,"Wewege 2018, Atherosclerosis, doi:10.1016/j.atherosclerosis.2018.05.002",syndrome métabolique,R,glycémie à jeun ; autre étude que les lipides
+activite_aerobie,alt,0.0,"Smart 2018, Br J Sports Med, doi:10.1136/bjsports-2016-096197",surpoids ou stéatose,R,"ALAT, ASAT, GGT « non significativement modifiées » : 0 sourcé"
+activite_aerobie,ast,0.0,Smart 2018,surpoids ou stéatose,R,0 sourcé
+activite_aerobie,ggt,0.0,Smart 2018,surpoids ou stéatose,R,0 sourcé
+activite_aerobie,crp,-20.49259309091499,"Wang 2023, Front Psychol, doi:10.3389/fpsyg.2023.1253329","38 ECR, adultes en bonne santé",TC,"DMS −0,18 × écart type de ln CRP (1,27, 30-55 ans) ; conversion par hypothèse"
+mediterraneen,tc,-2.808,"Papadaki 2020, Nutrients, doi:10.3390/nu12113342","adultes, 57 essais contrôlés",TC,
+mediterraneen,hdl,2.708,"Papadaki 2020, Nutrients, doi:10.3390/nu12113342","adultes, 57 essais contrôlés",TC,
+mediterraneen,tg_serum,-10.424,"Papadaki 2020, Nutrients, doi:10.3390/nu12113342","adultes, 57 essais contrôlés",TC,TG à jeun ; appliqué aux TG non à jeun
+mediterraneen,glu_serum,-3.222,"Papadaki 2020, Nutrients, doi:10.3390/nu12113342","adultes, 57 essais contrôlés",TC,glycémie à jeun ; appliquée à la glycémie sérique
+mediterraneen,hba1c,-2.83,"Papadaki 2020, Nutrients, doi:10.3390/nu12113342","adultes, 57 essais contrôlés",TC,
+mediterraneen,alt,-37.733,"Papadaki 2020, Nutrients, doi:10.3390/nu12113342","adultes, 57 essais contrôlés",TC,"−5,66 U/L sur une médiane de 15 : effet très grand, probablement porté par des études chez des personnes avec stéatose"
+mediterraneen,ggt,-10.913,"Papadaki 2020, Nutrients, doi:10.3390/nu12113342","adultes, 57 essais contrôlés",TC,
+mediterraneen,crp,-28.519,"Papadaki 2020, Nutrients, doi:10.3390/nu12113342","adultes, 57 essais contrôlés",TC,sensibilité avec CRP
+reduction_alcool,hdl,-8.3125,"Rimm 1999, BMJ, doi:10.1136/bmj.319.7224.1523",adultes sans maladie chronique ni dépendance,R,effet de +30 g/j inversé (arrêt de 30 g/j) ; Brien 2011 (R) confirme le HDL
+reduction_alcool,tg_serum,-4.822033898305085,Rimm 1999,adultes sans maladie chronique ni dépendance,R,effet inversé ; Brien 2011 (R) ne trouve pas d'effet sur les TG : composante incertaine
+reduction_alcool,ggt,0.0,"Munsterman 2018, Alcohol Alcohol, doi:10.1093/alcalc/agy031 ; Kechagias 2015, Alcohol Alcohol, doi:10.1093/alcalc/agv038","buveurs modérés en bonne santé ; 44 volontaires sains (essai randomisé, 3 mois)",R,aucun chiffre d'intervention lu ; l'essai chez des sains ne voit pas la GGT distinguer 16-32 g/j de l'abstinence : 0 ; signature non interprétable (sensibilité illustrative non sourcée : GGT −15 %)
+reduction_alcool,mcv,0.0,Kechagias 2015,"44 volontaires sains (essai randomisé, 3 mois)",R,le VGM ne distingue pas la consommation modérée de l'abstinence : 0
+arret_tabac,hdl,8.05625,"Maeda 2003, Prev Med, doi:10.1016/s0091-7435(03)00110-5",27 études prospectives de fumeurs abstinents,R,"+0,100 mmol/L ; TC, LDL et TG inchangés (0 sourcé)"
+arret_tabac,tc,0.0,Maeda 2003,27 études prospectives,R,0 sourcé (non significatif)
+arret_tabac,tg_serum,0.0,"Maeda 2003 ; van der Plas 2023, Toxicol Rep, doi:10.1016/j.toxrep.2023.03.001",fumeurs abstinents,R,0 sourcé (non significatif à 1 an)
+arret_tabac,wbc,-11.594202898550725,"King 2017, Arterioscler Thromb Vasc Biol, doi:10.1161/ATVBAHA.116.308728","888 fumeurs tentant d'arrêter, essai et soins courants",TC,"−0,6 contre +0,2 G/L à 1 an (abstinents contre fumeurs) ; étude unique"
+arret_tabac,crp,0.0,King 2017,fumeurs tentant d'arrêter,TC,CRP non modifiée à 1 an : 0 sourcé (sensibilité avec CRP)
