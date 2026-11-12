@@ -3655,3 +3655,27 @@ Rapport : `reports/panel/Q6_ZONES.md`. Pré-enregistrement : commit `705e3d7`.
     signal n'est pas utilisé pour classer (interprétation non pré-enregistrée).
   - Figures redessinées après analyse (présentation seulement).
   - Le bootstrap de 500 tirages a été fait.
+
+### Analyses secondaires NON pré-enregistrées — programme « panel », Q6 (2026-11-12)
+
+Demandées par l'auteur du projet après la validation de Q6.
+
+1. **Risque absolu.**
+   - Pour une personne de 45 ans, l'écart de risque de décès à 10 ans entre le point de risque
+     minimal et le seuil vaut, en médiane :
+     - au seuil HR 1,2 : +0,8 point chez les hommes et +0,5 point chez les femmes ;
+     - au seuil HR 1,5 : +2,1 et +1,3 points.
+     - Risque de base : 4,4 % et 2,7 %.
+   - Part des 30-55 ans au-delà d'un seuil HR 1,2 retenu : 20 % en moyenne, et jusqu'à 78 %
+     (albumine).
+2. **Tenue des seuils « trop larges » après ajustement** (tabac, IMC, diabète, revenu) :
+   - 38 côtés inchangés ;
+   - 10 atténués ;
+   - 1 mixte selon le sexe ;
+   - aucun entièrement expliqué.
+   - Le côté haut du LDL et celui de l'hématocrite disparaissent après ajustement.
+   - L'alcool n'est pas ajusté.
+3. **Seuils cliniques.** Les seuils « trop stricts pour la mortalité » (LDL, non-HDL, TG, glycémie à
+   jeun 100 mg/dL, vitamine D 30 ng/mL) visent les événements cardiovasculaires ou le diabète. Ils
+   ne doivent pas être assouplis sur la base de la mortalité, qui est un mauvais juge pour ces
+   marqueurs.

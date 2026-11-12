@@ -90,8 +90,9 @@ relation correspond-elle aux bornes usuelles (D1) ?
      - non-HDL ≥ 130 mg/dL : le risque ne monte qu'au-dessus de 205 mg/dL ;
      - TG ≥ 150 mg/dL : pas d'association répliquée ;
      - vitamine D < 75 nmol/L.
-     Ces seuils visent l'événement cardiovasculaire ou le diabète, pas la mortalité toutes causes à
-     10 ans (voir les causes plus bas).
+     Ces seuils visent les événements cardiovasculaires ou le diabète, pas la mortalité toutes causes
+     à 10 ans. **Ils ne doivent pas être assouplis sur la base de la mortalité**, qui est un mauvais
+     juge pour ces marqueurs (voir les analyses secondaires).
    - **Trop large** : RAC ≥ 30 mg/g. Le risque monte dès 4,7 mg/g, comme dans la méta-analyse
      CKD-PC lue (dès 10 mg/g).
    - **Relations en U non signalées** par un seuil R d'un seul côté :
@@ -566,6 +567,181 @@ si un côté de risque apparaît ou disparaît, ou si le seuil HR 1,2 sort de l'
    personnes âgées. Ils ne doivent pas être présentés comme des cibles.
 4. **Pour les 30-55 ans, les formes sont proches de celles de l'ensemble.** Le rein, l'albumine et
    la GGT dépendent de l'âge : leurs seuils doivent être lus par âge.
+
+## Analyses secondaires NON pré-enregistrées (2026-11-12)
+
+Elles ont été demandées après la validation de Q6. Code : `src/aging_clock/panel/q6_secondaire.py`.
+Données : `Q6_secondaire_risque_absolu.csv`, `Q6_secondaire_ajustement.csv`,
+`Q6_secondaire_ajustement_par_cote.csv`.
+
+### 1. Risque absolu : un HR de 1,2 à 45 ans est une petite différence
+
+- **Méthode.**
+  - Risque de décès à 10 ans tiré du modèle de développement (âge, sexe, marqueur), avec le risque de
+    base de Breslow, vérifié contre lifelines.
+  - Il est calculé pour une personne de 45 ans, au point de risque minimal puis au seuil.
+  - La proportion des 30-55 ans de NHANES 1999-2010 au-delà du seuil est pondérée par les poids
+    d'examen (poids à jeun pour les marqueurs à jeun).
+  - Seuils : côtés de risque retenus en validation, estimations de développement.
+- **Ordre de grandeur, médiane sur les marqueurs.**
+  - Au point de risque minimal, le risque de décès à 10 ans à 45 ans est d'environ **4,4 % chez les
+    hommes** et **2,7 % chez les femmes**.
+  - Au seuil HR 1,2, l'écart est de **+0,8 point chez les hommes** et **+0,5 point chez les
+    femmes**.
+  - Au seuil HR 1,5, il est de **+2,1 points** et **+1,3 point**.
+- **Ce que cela veut dire.** Un HR de 1,2 à 45 ans, c'est moins d'un décès de plus pour 100 personnes
+  en 10 ans.
+- **Mais beaucoup de personnes sont concernées.**
+  - En moyenne, **20 %** des 30-55 ans dépassent un seuil HR 1,2 retenu, et **8 %** un seuil
+    HR 1,5.
+  - Certains seuils touchent la majorité des 30-55 ans : albumine sous 4,55 g/dL (78 %), RAC
+    au-dessus de 4,7 mg/g (64 %), DFGe au-dessus de 101 (53 %), RDW au-dessus de 12,4 % (48 %).
+  - Un seuil franchi par la moitié de la population ne peut pas servir d'alerte individuelle.
+
+| Marqueur | Côté | Seuil HR 1,2 | 30-55 ans au-delà | Écart de risque à 45 ans, H / F | Seuil HR 1,5 | 30-55 ans au-delà | Écart à 45 ans, H / F |
+|---|---|---|---|---|---|---|---|
+| Leucocytes | bas | 4,14 | 3 % | +0,8 / +0,5 pt | — | — | — |
+| Leucocytes | haut | 8,1 | 31 % | +0,8 / +0,5 pt | 9,35 | 15 % | +2,1 / +1,3 pt |
+| RDW | haut | 12,4 | 48 % | +0,7 / +0,4 pt | 12,8 | 30 % | +1,7 / +1,0 pt |
+| CRP | bas | 0,0216 | 6 % | +0,8 / +0,4 pt | — | — | — |
+| CRP | haut | 0,235 | 42 % | +0,8 / +0,4 pt | 0,44 | 24 % | +1,9 / +1,1 pt |
+| GGT | haut | 31,2 | 27 % | +0,8 / +0,5 pt | 48,2 | 12 % | +1,9 / +1,2 pt |
+| PAL | haut | 69,2 | 37 % | +0,7 / +0,4 pt | 86,3 | 14 % | +1,9 / +1,1 pt |
+| Albumine | bas | 4,55 | 78 % | +0,7 / +0,4 pt | 4,05 | 19 % | +1,8 / +1,0 pt |
+| ALAT | bas | 18,8 | 32 % | +0,8 / +0,5 pt | 14,8 | 12 % | +2,1 / +1,2 pt |
+| ALAT | haut | 45,1 | 10 % | +0,8 / +0,5 pt | 61,7 | 4 % | +2,1 / +1,2 pt |
+| HDL | bas | 42,7 | 33 % | +0,8 / +0,5 pt | 31,7 | 7 % | +2,0 / +1,3 pt |
+| HDL | haut | 70,8 | 11 % | +0,8 / +0,5 pt | 83 | 4 % | +2,0 / +1,3 pt |
+| LDL | bas | 112 | 41 % | +0,9 / +0,5 pt | 83,2 | 12 % | +2,2 / +1,2 pt |
+| Cholestérol total | bas | 166 | 17 % | +0,9 / +0,6 pt | 149 | 7 % | +2,2 / +1,4 pt |
+| Cholestérol total | haut | 261 | 8 % | +0,9 / +0,6 pt | 315 | 1 % | +2,2 / +1,4 pt |
+| HbA1c | bas | 4,94 | 14 % | +0,9 / +0,6 pt | 4,73 | 5 % | +2,2 / +1,4 pt |
+| HbA1c | haut | 5,94 | 9 % | +0,9 / +0,6 pt | 6,9 | 4 % | +2,2 / +1,4 pt |
+| Glycémie à jeun | haut | 122 | 7 % | +0,9 / +0,5 pt | 158 | 3 % | +2,3 / +1,2 pt |
+| DFGe CKD-EPI 2021 | bas | 66,4 | 2 % | +0,8 / +0,5 pt | 57,7 | 1 % | +2,0 / +1,2 pt |
+| DFGe CKD-EPI 2021 | haut | 101 | 53 % | +0,8 / +0,5 pt | 112 | 23 % | +2,0 / +1,2 pt |
+| RAC urinaire | haut | 4,67 | 64 % | +0,7 / +0,4 pt | 7,88 | 33 % | +1,7 / +1,0 pt |
+| Sodium | bas | 137 | 11 % | +0,9 / +0,6 pt | 135 | 5 % | +2,3 / +1,4 pt |
+| Potassium | bas | 3,59 | 7 % | +0,9 / +0,6 pt | 3,35 | 1 % | +2,2 / +1,4 pt |
+| Potassium | haut | 4,31 | 13 % | +0,9 / +0,6 pt | 4,53 | 5 % | +2,2 / +1,4 pt |
+| Acide urique | bas | 4,34 | 27 % | +0,8 / +0,5 pt | 3,08 | 3 % | +2,0 / +1,3 pt |
+| Acide urique | haut | 6,75 | 16 % | +0,8 / +0,5 pt | 7,46 | 7 % | +2,0 / +1,3 pt |
+| Vitamine D 25-OH | bas | 49,7 | 28 % | +0,8 / +0,5 pt | 39,5 | 15 % | +2,0 / +1,2 pt |
+| Hémoglobine | bas | 14 | 37 % | +0,9 / +0,5 pt | 13,2 | 18 % | +2,2 / +1,1 pt |
+| Hémoglobine | haut | 16,8 | 5 % | +0,9 / +0,5 pt | — | — | — |
+| Plaquettes | bas | 188 | 8 % | +0,9 / +0,5 pt | 164 | 3 % | +2,1 / +1,3 pt |
+| Plaquettes | haut | 286 | 36 % | +0,9 / +0,5 pt | 401 | 4 % | +2,1 / +1,3 pt |
+
+Lecture : l'écart de risque est presque le même d'un marqueur à l'autre, parce qu'il découle de la
+définition du seuil (HR 1,2 ou 1,5) et du risque de base à 45 ans. Ce qui varie, c'est la proportion de
+personnes concernées.
+
+### 2. Les seuils « trop larges » tiennent-ils après ajustement ?
+
+- **Ce qui est comparé.** Pour chaque comparaison « intervalle trop large », on prend le seuil HR 1,2
+  de la sensibilité 3 (ajustement sur tabac, IMC, diabète et revenu). Il est comparé à la borne D1 et
+  à l'IC bootstrap du seuil principal.
+- **Classes**, par marqueur et par côté :
+  - **indépendante** : le seuil ajusté reste du côté normal de la borne, dans l'IC du seuil
+    principal ;
+  - **atténuée** : il reste du côté normal de la borne, mais s'éloigne du minimum, hors de l'IC ;
+  - **marqueur de risque** : le côté disparaît ou passe au-delà de la borne. L'association passe
+    alors par les facteurs ajustés.
+- **Résultat : aucun côté « trop large » n'est entièrement expliqué** par le tabac, l'IMC, le diabète
+  ou le revenu.
+  - 38 côtés gardent un seuil inchangé.
+  - 10 sont atténués : leucocytes (haut, de 8,1 à 9,2 G/L), insuline (bas et haut), ALAT et
+    bilirubine (bas), monocytes (bas), sodium (bas), cholestérol total (bas), acide urique (bas),
+    VGM (haut).
+  - 1 est mixte selon le sexe (ASAT, bas).
+- **Hors de la liste « trop large »,** l'ajustement fait disparaître le côté haut du LDL et le côté
+  haut de l'hématocrite (sensibilité 3 de Q6). Ce sont des marqueurs de risque au sens ci-dessus.
+
+| Marqueur | Côté | Seuil HR 1,2 principal | Après ajustement | Classe |
+|---|---|---|---|---|
+| RAC urinaire | haut | 4,67 | 5,63 | indépendante (seuil inchangé) |
+| Albumine | bas | 4,55 | 4,52 | indépendante (seuil inchangé) |
+| PAL | haut | 69,2 | 76,2 | indépendante (seuil inchangé) |
+| ALAT | bas | 18,8 | 15,5 | atténuée (seuil éloigné du minimum) |
+| ALAT | haut | 45,1 | 47,5 | indépendante (seuil inchangé) |
+| ASAT | bas | 18,8 | 16,4 | mixte selon le sexe |
+| ASAT | haut | 34,6 | 34 | indépendante (seuil inchangé) |
+| Bilirubine totale | bas | 0,712 | 0,577 | atténuée (seuil éloigné du minimum) |
+| Calcium | bas | 9,01 | 9 | indépendante (seuil inchangé) |
+| Chlorure | bas | 101 | 100 | indépendante (seuil inchangé) |
+| Créatinine | haut | 1,09 | 1,06 | indépendante (seuil inchangé) |
+| CRP | haut | 0,235 | 0,256 | indépendante (seuil inchangé) |
+| DFGe CKD-EPI 2021 | bas | 66,4 | 66,9 | indépendante (seuil inchangé) |
+| Éosinophiles | bas | 1,36 | 1,31 | indépendante (seuil inchangé) |
+| GGT | haut | 31,2 | 33,4 | indépendante (seuil inchangé) |
+| Globulines | haut | 3,16 | 3,26 | indépendante (seuil inchangé) |
+| Hémoglobine | bas | 14 | 13,9 | indépendante (seuil inchangé) |
+| Bicarbonates | bas | 22,5 | 22 | indépendante (seuil inchangé) |
+| Hématocrite | bas | 40,5 | 40,1 | indépendante (seuil inchangé) |
+| HDL | bas | 42,7 | 39,5 | indépendante (seuil inchangé) |
+| HDL | haut | 70,8 | 75,3 | indépendante (seuil inchangé) |
+| Insuline à jeun | bas | 5,4 | 2,93 | atténuée (seuil éloigné du minimum) |
+| Insuline à jeun | haut | 17,2 | 20,4 | atténuée (seuil éloigné du minimum) |
+| Fer sérique | bas | 73,5 | 69,7 | indépendante (seuil inchangé) |
+| Potassium | bas | 3,59 | 3,59 | indépendante (seuil inchangé) |
+| Potassium | haut | 4,31 | 4,37 | indépendante (seuil inchangé) |
+| Lymphocytes | bas | 25,2 | 24,2 | indépendante (seuil inchangé) |
+| TCMH | bas | 29,7 | 29,3 | indépendante (seuil inchangé) |
+| TCMH | haut | 32,4 | 32,6 | indépendante (seuil inchangé) |
+| CCMH | bas | 33,1 | 32,9 | indépendante (seuil inchangé) |
+| VGM | bas | 86,9 | 85 | indépendante (seuil inchangé) |
+| VGM | haut | 95 | 95,6 | atténuée (seuil éloigné du minimum) |
+| Monocytes | bas | 5,74 | 5,16 | atténuée (seuil éloigné du minimum) |
+| Monocytes | haut | 10,7 | 10,3 | indépendante (seuil inchangé) |
+| Sodium | bas | 137 | 136 | atténuée (seuil éloigné du minimum) |
+| Neutrophiles | haut | 64,9 | 65,6 | indépendante (seuil inchangé) |
+| Phosphore | haut | 4,22 | 4,29 | indépendante (seuil inchangé) |
+| Plaquettes | bas | 188 | 189 | indépendante (seuil inchangé) |
+| Plaquettes | haut | 286 | 309 | indépendante (seuil inchangé) |
+| Protéines totales | bas | 6,71 | 6,69 | indépendante (seuil inchangé) |
+| Protéines totales | haut | 7,61 | 7,66 | indépendante (seuil inchangé) |
+| Hématies | bas | 4,44 | 4,44 | indépendante (seuil inchangé) |
+| RDW | haut | 12,4 | 12,5 | indépendante (seuil inchangé) |
+| Cholestérol total | bas | 166 | 159 | atténuée (seuil éloigné du minimum) |
+| Acide urique | bas | 4,34 | 3,33 | atténuée (seuil éloigné du minimum) |
+| Acide urique | haut | 6,75 | 6,77 | indépendante (seuil inchangé) |
+| Urée | bas | 11,4 | 10,6 | indépendante (seuil inchangé) |
+| Urée | haut | 18 | 18,3 | indépendante (seuil inchangé) |
+| Leucocytes | haut | 8,1 | 9,23 | atténuée (seuil éloigné du minimum) |
+
+**Réserves sur cette distinction :**
+1. **L'alcool n'est pas dans l'ajustement** : pas de variable homogène sur 1999-2010 dans ce
+   protocole. Les associations de la GGT, de l'ALAT, du VGM et du TCMH passent probablement en
+   partie par l'alcool. Elles sont classées « indépendantes » faute de pouvoir l'ajuster.
+2. **Ajuster sur l'IMC et le diabète peut retirer une part de l'effet**, quand ces facteurs sont sur
+   le chemin causal. Une association « atténuée » n'est donc pas forcément moins utile.
+3. **Les classes ne disent rien de la causalité.** Un marqueur « indépendant » peut rester le témoin
+   d'une maladie non mesurée.
+
+En pratique, pour un produit de suivi :
+- les marqueurs dont l'association passe par le tabac, l'alcool ou l'obésité sont **des marqueurs de
+  risque, utiles pour repérer** ;
+- ceux dont l'association reste après ajustement apportent une information **en plus** de ces
+  facteurs. Ni les uns ni les autres ne sont des cibles démontrées.
+
+### 3. Les seuils cliniques « trop stricts pour la mortalité » ne doivent pas être assouplis
+
+- **Ce qui est visé.** Les seuils jugés « trop stricts » au regard de la mortalité toutes causes à
+  10 ans sont : LDL ≥ 116 mg/dL, non-HDL ≥ 130 mg/dL, TG ≥ 150 mg/dL, glycémie à jeun ≥ 100 mg/dL
+  (ADA), vitamine D < 30 ng/mL.
+- **Ces seuils ne visent pas la mortalité toutes causes à 10 ans.** Ils visent les **événements
+  cardiovasculaires** (lipides), le **diabète** et ses complications (glycémie), ou un statut osseux
+  (vitamine D). Ces issues surviennent souvent sans décès, sur des décennies, et elles sont réduites
+  par les traitements que ces seuils déclenchent.
+- **La mortalité toutes causes à 10 ans est un mauvais juge pour ces marqueurs.** Trois raisons :
+  - le côté bas du LDL et du cholestérol est gonflé par la causalité inverse (cancer, personnes
+    âgées) ;
+  - les personnes au-dessus des seuils sont souvent traitées, et le traitement réduit leur risque
+    observé ;
+  - 10 ans est trop court pour l'athérosclérose d'une personne de 45 ans.
+- **Conclusion : ces seuils ne doivent pas être assouplis sur la base de Q6.**
+  - Pour la mortalité **cardiovasculaire**, le LDL garde un côté haut répliqué.
+  - La glycémie à jeun garde aussi un côté haut répliqué pour cette cause.
 
 ## Limites
 
