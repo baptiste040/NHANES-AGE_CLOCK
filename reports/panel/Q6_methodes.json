@@ -1,0 +1,145 @@
+[
+ {
+  "id": "creat",
+  "evenement": "1",
+  "action": "équation de passage",
+  "cycles": [
+   1999
+  ],
+  "n": 6230
+ },
+ {
+  "id": "creat",
+  "evenement": "2",
+  "action": "équation de passage",
+  "cycles": [
+   2005
+  ],
+  "n": 6434
+ },
+ {
+  "id": "glu_fast",
+  "evenement": "6",
+  "action": "équation de passage",
+  "cycles": [
+   1999,
+   2001,
+   2003
+  ],
+  "n": 9645
+ },
+ {
+  "id": "glu_fast",
+  "evenement": "7",
+  "action": "équation de passage",
+  "cycles": [
+   1999,
+   2001,
+   2003,
+   2005
+  ],
+  "n": 12773
+ },
+ {
+  "id": "insulin",
+  "evenement": "9",
+  "action": "équation de passage",
+  "cycles": [
+   1999,
+   2001
+  ],
+  "n": 6365
+ },
+ {
+  "id": "insulin",
+  "evenement": "10",
+  "action": "équation de passage",
+  "cycles": [
+   1999,
+   2001,
+   2003
+  ],
+  "n": 9501
+ },
+ {
+  "id": "hdl",
+  "evenement": "13",
+  "action": "équation de passage",
+  "cycles": [
+   1999,
+   2001,
+   2003,
+   2005
+  ],
+  "n": 30844
+ },
+ {
+  "id": "ferritin",
+  "evenement": "18",
+  "action": "équation de passage",
+  "cycles": [
+   1999,
+   2001,
+   2005,
+   2007
+  ],
+  "n": 22178
+ },
+ {
+  "id": "apob",
+  "evenement": "25",
+  "action": "équation de passage",
+  "cycles": [
+   2005
+  ],
+  "n": 3106
+ },
+ {
+  "id": "u_creat",
+  "evenement": "31",
+  "action": "équation de passage",
+  "cycles": [
+   1999,
+   2001,
+   2003,
+   2005
+  ],
+  "n": 31562
+ },
+ {
+  "id": "rbc_folate",
+  "evenement": "22",
+  "action": "algorithme NCHS (BR -> MA)",
+  "cycles": [
+   1999,
+   2001,
+   2003,
+   2005
+  ],
+  "n": 32132
+ },
+ {
+  "id": "alp",
+  "evenement": "4",
+  "action": "restriction de cycles",
+  "cycles": [
+   2003,
+   2005,
+   2007,
+   2009
+  ],
+  "n_retires": 13121
+ },
+ {
+  "id": "bili",
+  "evenement": "4",
+  "action": "restriction de cycles",
+  "cycles": [
+   2003,
+   2005,
+   2007,
+   2009
+  ],
+  "n_retires": 13120
+ }
+]

@@ -1,0 +1,180 @@
+id,type,sexe,cote,borne,seuil_1_2,ic95,categorie,motif
+wbc,S,H,bas,3.8,4.141729122779371,"[3.492520693712107, 4.752929007123993]",conforme au risque,
+wbc,S,H,haut,10.617499999999971,8.098787482617992,"[7.420711040552644, 8.703621640730578]",intervalle trop large,
+wbc,S,F,bas,3.5850000000000004,4.141729122779371,"[3.492520693712107, 4.752929007123993]",conforme au risque,
+wbc,S,F,haut,10.314999999999998,8.098787482617992,"[7.420711040552644, 8.703621640730578]",intervalle trop large,
+neut_pct,S,H,bas,38.765,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+neut_pct,S,H,haut,74.1,64.94723025670632,"[62.7411643768408, 66.00599871247442]",intervalle trop large,
+neut_pct,S,F,bas,36.955,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+neut_pct,S,F,haut,74.1,64.94723025670632,"[62.7411643768408, 66.00599871247442]",intervalle trop large,
+lymph_pct,S,H,bas,16.9,25.202078520458844,"[22.81771704924586, 27.727337125311205]",intervalle trop large,
+lymph_pct,S,H,haut,47.4525,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+lymph_pct,S,F,bas,17.31,25.202078520458844,"[22.81771704924586, 27.727337125311205]",intervalle trop large,
+lymph_pct,S,F,haut,49.545,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+mono_pct,S,H,bas,4.6,5.744737847181318,"[5.335734215043373, 6.385547581926732]",intervalle trop large,
+mono_pct,S,H,haut,13.4,10.65044577404129,"[9.748874534402576, 11.997794575741972]",intervalle trop large,
+mono_pct,S,F,bas,4.1,5.744737847181318,"[5.335734215043373, 6.385547581926732]",intervalle trop large,
+mono_pct,S,F,haut,11.9,10.65044577404129,"[9.748874534402576, 11.997794575741972]",conforme au risque,
+eos_pct,S,H,bas,0.6,1.3637935993209822,"[1.14671377387892, 1.5617333252748227]",intervalle trop large,
+eos_pct,S,H,haut,8.917499999999974,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+eos_pct,S,F,bas,0.6,1.3637935993209822,"[1.14671377387892, 1.5617333252748227]",intervalle trop large,
+eos_pct,S,F,haut,7.9,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+baso_pct,S,H,bas,0.1,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+baso_pct,S,H,haut,1.917499999999973,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+baso_pct,S,F,bas,0.1,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+baso_pct,S,F,haut,1.8,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+rbc,S,H,bas,4.2495,4.441995749602534,"[4.30595342336436, 4.638009269657084]",intervalle trop large,
+rbc,S,H,haut,5.74525,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+rbc,S,F,bas,3.76,4.441995749602534,"[4.30595342336436, 4.638009269657084]",intervalle trop large,
+rbc,S,F,haut,5.14,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+hb,S,H,bas,13.3,14.030087096816915,"[13.492627706901345, 14.327502912113571]",intervalle trop large,
+hb,S,H,haut,17.1,16.828131788652428,"[16.20159853487119, 17.417157572036867]",conforme au risque,
+hb,S,F,bas,10.4,14.030087096816915,"[13.492627706901345, 14.327502912113571]",intervalle trop large,
+hb,S,F,haut,15.214999999999998,16.828131788652428,"[16.20159853487119, 17.417157572036867]",intervalle trop strict,
+hct,S,H,bas,38.9475,40.46737135077954,"[39.09287586957955, 41.71298075434219]",intervalle trop large,
+hct,S,H,haut,50.3525,50.69507308694493,"[47.95443683941493, 51.53022331888675]",conforme au risque,
+hct,S,F,bas,31.5,40.46737135077954,"[39.09287586957955, 41.71298075434219]",intervalle trop large,
+hct,S,F,haut,45.015,50.69507308694493,"[47.95443683941493, 51.53022331888675]",intervalle trop strict,
+mcv,S,H,bas,80.385,86.92193126557522,"[82.15460378259601, 88.80664029383827]",intervalle trop large,
+mcv,S,H,haut,98.205,95.04320214142263,"[94.65670997952516, 95.49416272480902]",intervalle trop large,
+mcv,S,F,bas,73.9,86.92193126557522,"[82.15460378259601, 88.80664029383827]",intervalle trop large,
+mcv,S,F,haut,97.49249999999998,95.04320214142263,"[94.65670997952516, 95.49416272480902]",intervalle trop large,
+mch,S,H,bas,26.595,29.74285719178872,"[28.66271620406065, 30.180673599995494]",intervalle trop large,
+mch,S,H,haut,33.8,32.44657162926971,"[32.311414033544224, 32.62584091731851]",intervalle trop large,
+mch,S,F,bas,23.6075,29.74285719178872,"[28.66271620406065, 30.180673599995494]",intervalle trop large,
+mch,S,F,haut,33.79249999999997,32.44657162926971,"[32.311414033544224, 32.62584091731851]",intervalle trop large,
+mchc,S,H,bas,32.3,33.06061334464509,"[32.71187692473162, 33.45767495934952]",intervalle trop large,
+mchc,S,H,haut,35.8,,,non estimable,borne hors des centiles 1-99
+mchc,S,F,bas,31.9,33.06061334464509,"[32.71187692473162, 33.45767495934952]",intervalle trop large,
+mchc,S,F,haut,35.8,,,non estimable,borne hors des centiles 1-99
+rdw,S,H,bas,11.5,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+rdw,S,H,haut,14.1,12.40153027010032,"[11.967615853453248, 12.620956782912147]",intervalle trop large,
+rdw,S,F,bas,11.4,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+rdw,S,F,haut,16.5,12.40153027010032,"[11.967615853453248, 12.620956782912147]",intervalle trop large,
+plt,S,H,bas,150.0,188.48357679092607,"[180.2096743499345, 194.68390790000439]",intervalle trop large,
+plt,S,H,haut,369.0,285.688970878911,"[267.2842894873175, 329.55949520346405]",intervalle trop large,
+plt,S,F,bas,164.075,188.48357679092607,"[180.2096743499345, 194.68390790000439]",intervalle trop large,
+plt,S,F,haut,415.0,285.688970878911,"[267.2842894873175, 329.55949520346405]",intervalle trop large,
+mpv,S,H,bas,6.3475,,,non estimable,borne hors des centiles 1-99
+mpv,S,H,haut,9.8,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+mpv,S,F,bas,6.4,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+mpv,S,F,haut,10.0,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+glu_fast,R OMS,H+F,haut,110.0,122.13263184671786,"[107.49903458078336, 147.7910125414241]",conforme au risque,
+glu_fast,R ADA,H+F,haut,100.0,122.13263184671786,"[107.49903458078336, 147.7910125414241]",intervalle trop strict,
+insulin,S,H,bas,2.25025,5.396759371536805,"[3.858205122308883, 7.401919642820788]",intervalle trop large,
+insulin,S,H,haut,28.39724999999999,17.169340763530734,"[13.963456156450167, 19.071437370358627]",intervalle trop large,
+insulin,S,F,bas,2.22075,5.396759371536805,"[3.858205122308883, 7.401919642820788]",intervalle trop large,
+insulin,S,F,haut,23.51925,17.169340763530734,"[13.963456156450167, 19.071437370358627]",intervalle trop large,
+hba1c,R OMS,H+F,haut,6.0,5.936573913868313,"[5.661710159385621, 6.48522960134186]",conforme au risque,
+hba1c,R ADA,H+F,haut,5.7,5.936573913868313,"[5.661710159385621, 6.48522960134186]",conforme au risque,
+hba1c,R,H+F,les deux,,,,relation en U non signalée,
+tc,S,H,bas,148.525,166.41183118578283,"[160.12010308386294, 176.7692509172952]",intervalle trop large,
+tc,S,H,haut,289.475,261.4557881144911,"[244.69803234811704, 293.1869040663314]",conforme au risque,
+tc,S,F,bas,140.0,166.41183118578283,"[160.12010308386294, 176.7692509172952]",intervalle trop large,
+tc,S,F,haut,287.0,261.4557881144911,"[244.69803234811704, 293.1869040663314]",conforme au risque,
+ldl,R,H+F,haut,116.0,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+hdl,S,H,bas,28.90000000000001,42.66834902889771,"[37.41267079498647, 46.515590249100185]",intervalle trop large,
+hdl,S,H,haut,82.0,70.8065410040782,"[67.52294673463621, 76.88141747417319]",intervalle trop large,
+hdl,S,F,bas,36.0,42.66834902889771,"[37.41267079498647, 46.515590249100185]",intervalle trop large,
+hdl,S,F,haut,97.0,70.8065410040782,"[67.52294673463621, 76.88141747417319]",intervalle trop large,
+tg_fast,R,H+F,haut,150.0,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+tg_serum,R,H+F,haut,150.0,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+non_hdl,R,H+F,haut,130.0,204.98521881712622,"[195.0037962056086, 227.65958030425398]",intervalle trop strict,
+non_hdl,R,H+F,les deux,,,,relation en U non signalée,
+alt,S,H,bas,15.0,18.847171960757542,"[16.70867942153968, 21.457024060368344]",intervalle trop large,
+alt,S,H,haut,74.57499999999993,45.05911338078258,"[40.46136821466832, 54.659296167974325]",intervalle trop large,
+alt,S,F,bas,10.875,18.847171960757542,"[16.70867942153968, 21.457024060368344]",intervalle trop large,
+alt,S,F,haut,49.0,45.05911338078258,"[40.46136821466832, 54.659296167974325]",conforme au risque,
+ast,S,H,bas,17.0,18.80876365040843,"[17.65884490706078, 20.177191987275755]",intervalle trop large,
+ast,S,H,haut,57.57499999999993,34.55081968965793,"[31.644962397837805, 36.45991089388919]",intervalle trop large,
+ast,S,F,bas,15.0,18.80876365040843,"[17.65884490706078, 20.177191987275755]",intervalle trop large,
+ast,S,F,haut,40.0,34.55081968965793,"[31.644962397837805, 36.45991089388919]",intervalle trop large,
+ggt,S,H,bas,9.0,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+ggt,S,H,haut,108.0,31.223687702859056,"[23.97006054040512, 39.10398705520716]",intervalle trop large,
+ggt,S,F,bas,7.0,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+ggt,S,F,haut,67.125,31.223687702859056,"[23.97006054040512, 39.10398705520716]",intervalle trop large,
+alp,S,H,bas,38.0,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+alp,S,H,haut,112.22499999999992,69.23407221593807,"[48.406598730892874, 83.75924760315547]",intervalle trop large,
+alp,S,F,bas,33.0,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+alp,S,F,haut,112.125,69.23407221593807,"[48.406598730892874, 83.75924760315547]",intervalle trop large,
+bili,S,H,bas,0.4,0.711622997685538,"[0.6453316272090802, 0.7778532549889567]",intervalle trop large,
+bili,S,H,haut,1.7,1.410294263549286,"[1.1612664429753332, 1.7286986457188427]",conforme au risque,
+bili,S,F,bas,0.3,0.711622997685538,"[0.6453316272090802, 0.7778532549889567]",intervalle trop large,
+bili,S,F,haut,1.3,1.410294263549286,"[1.1612664429753332, 1.7286986457188427]",conforme au risque,
+albumin,S,H,bas,3.9,4.54904418979857,"[4.084479536659483, 4.683449456048027]",intervalle trop large,
+albumin,S,H,haut,4.9,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+albumin,S,F,bas,3.7,4.54904418979857,"[4.084479536659483, 4.683449456048027]",intervalle trop large,
+albumin,S,F,haut,4.7,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+protein,S,H,bas,6.5,6.712532420824848,"[6.5560029188557705, 6.800528003459412]",intervalle trop large,
+protein,S,H,haut,8.1,7.609553870792108,"[7.4583533605132075, 7.796281846141753]",intervalle trop large,
+protein,S,F,bas,6.4,6.712532420824848,"[6.5560029188557705, 6.800528003459412]",intervalle trop large,
+protein,S,F,haut,8.1,7.609553870792108,"[7.4583533605132075, 7.796281846141753]",intervalle trop large,
+globulin,S,H,bas,2.2,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+globulin,S,H,haut,3.7,3.163898510771622,"[2.912847234017684, 3.3119020061261137]",intervalle trop large,
+globulin,S,F,bas,2.2,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+globulin,S,F,haut,3.8,3.163898510771622,"[2.912847234017684, 3.3119020061261137]",intervalle trop large,
+creat,S,H,bas,0.7,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+creat,S,H,haut,1.32,1.090701242675982,"[1.0135200324150326, 1.1390298476564964]",intervalle trop large,
+creat,S,F,bas,0.5,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+creat,S,F,haut,1.02,1.090701242675982,"[1.0135200324150326, 1.1390298476564964]",conforme au risque,
+urea,S,H,bas,7.0,11.435062195957782,"[10.34821660113373, 12.101363619605468]",intervalle trop large,
+urea,S,H,haut,21.0,18.04202965315013,"[17.525253013274874, 18.48920850871022]",intervalle trop large,
+urea,S,F,bas,6.0,11.435062195957782,"[10.34821660113373, 12.101363619605468]",intervalle trop large,
+urea,S,F,haut,19.0,18.04202965315013,"[17.525253013274874, 18.48920850871022]",intervalle trop large,
+egfr,R,H+F,bas,60.0,66.42093152367455,"[64.52256759763745, 69.85407365027432]",intervalle trop large,
+egfr,R,H+F,les deux,,,,relation en U non signalée,
+acr,R,H+F,haut,30.0,4.666552671180416,"[3.4436397563815055, 6.7985977439535965]",intervalle trop large,
+na,S,H,bas,135.0,136.91765806973152,"[136.26667479093433, 138.0884781413241]",intervalle trop large,
+na,S,H,haut,143.0,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+na,S,F,bas,135.0,136.91765806973152,"[136.26667479093433, 138.0884781413241]",intervalle trop large,
+na,S,F,haut,143.0,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+k,S,H,bas,3.4,3.5863712032273205,"[3.414736352695447, 3.6841565618850396]",intervalle trop large,
+k,S,H,haut,4.6,4.307566280666437,"[4.169829108893514, 4.393359404212561]",intervalle trop large,
+k,S,F,bas,3.4,3.5863712032273205,"[3.414736352695447, 3.6841565618850396]",intervalle trop large,
+k,S,F,haut,4.5,4.307566280666437,"[4.169829108893514, 4.393359404212561]",intervalle trop large,
+cl,S,H,bas,99.0,100.69658768786422,"[100.03386464753366, 101.73508426637896]",intervalle trop large,
+cl,S,H,haut,108.0,107.87210443660955,"[106.35245422157766, 108.83911610716464]",conforme au risque,
+cl,S,F,bas,100.0,100.69658768786422,"[100.03386464753366, 101.73508426637896]",intervalle trop large,
+cl,S,F,haut,109.0,,,non estimable,borne hors des centiles 1-99
+hco3,S,H,bas,22.0,22.515672996863316,"[21.85670969180481, 23.292429655221333]",conforme au risque,
+hco3,S,H,haut,29.0,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+hco3,S,F,bas,21.0,22.515672996863316,"[21.85670969180481, 23.292429655221333]",intervalle trop large,
+hco3,S,F,haut,29.0,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+ca,S,H,bas,8.8,9.014379985439014,"[8.910817348466784, 9.09294206231906]",intervalle trop large,
+ca,S,H,haut,10.05,10.051556544774838,"[9.676426990206414, 10.406406944037862]",conforme au risque,
+ca,S,F,bas,8.8,9.014379985439014,"[8.910817348466784, 9.09294206231906]",intervalle trop large,
+ca,S,F,haut,10.1,10.051556544774838,"[9.676426990206414, 10.406406944037862]",conforme au risque,
+phos,S,H,bas,2.7,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+phos,S,H,haut,4.7,4.216319914980146,"[4.041873628917933, 4.334488963123644]",intervalle trop large,
+phos,S,F,bas,2.9,,,intervalle trop strict,"aucun seuil 1,2 retenu de ce côté"
+phos,S,F,haut,4.9,4.216319914980146,"[4.041873628917933, 4.334488963123644]",intervalle trop large,
+osmo,S,H,bas,270.0,,,non estimable,D1 : osmolalité mesurée ; Q6 : osmolalité calculée
+osmo,S,H,haut,287.0,,,non estimable,D1 : osmolalité mesurée ; Q6 : osmolalité calculée
+osmo,S,F,bas,269.0,,,non estimable,D1 : osmolalité mesurée ; Q6 : osmolalité calculée
+osmo,S,F,haut,284.0,,,non estimable,D1 : osmolalité mesurée ; Q6 : osmolalité calculée
+crp,S,H,bas,0.01,,,non estimable,borne hors des centiles 1-99
+crp,S,H,haut,1.083499999999998,0.23542402699593373,"[0.1811323016736206, 0.3100247204135955]",intervalle trop large,
+crp,S,F,bas,0.01,,,non estimable,borne hors des centiles 1-99
+crp,S,F,haut,1.28375,0.23542402699593373,"[0.1811323016736206, 0.3100247204135955]",intervalle trop large,
+urate,S,H,bas,3.8,4.337773784001097,"[3.7017190308379413, 4.847032209790741]",conforme au risque,
+urate,S,H,haut,8.2,6.752151662405113,"[6.545504136388306, 6.912439163997422]",intervalle trop large,
+urate,S,F,bas,2.8,4.337773784001097,"[3.7017190308379413, 4.847032209790741]",intervalle trop large,
+urate,S,F,haut,6.2,6.752151662405113,"[6.545504136388306, 6.912439163997422]",intervalle trop strict,
+iron,S,H,bas,41.0,73.52673713992858,"[65.09902020784665, 78.79065238860827]",intervalle trop large,
+iron,S,H,haut,174.0,143.249009172641,"[129.80151568970538, 179.14160224624524]",conforme au risque,
+iron,S,F,bas,20.875,73.52673713992858,"[65.09902020784665, 78.79065238860827]",intervalle trop large,
+iron,S,F,haut,161.0,143.249009172641,"[129.80151568970538, 179.14160224624524]",conforme au risque,
+rbc_folate,S,H,bas,129.65,,,non estimable,méthode et unités différentes de D1 (Q6 harmonisé vers la méthode microbiologique)
+rbc_folate,S,H,haut,518.0,,,non estimable,méthode et unités différentes de D1 (Q6 harmonisé vers la méthode microbiologique)
+rbc_folate,S,F,bas,135.025,,,non estimable,méthode et unités différentes de D1 (Q6 harmonisé vers la méthode microbiologique)
+rbc_folate,S,F,haut,543.6999999999996,,,non estimable,méthode et unités différentes de D1 (Q6 harmonisé vers la méthode microbiologique)
+vitd,R,H+F,bas,49.91799999999999,49.72758301063907,"[43.81030910389838, 56.80921421897627]",conforme au risque,
+vitd,R sensibilité 30,H+F,bas,74.877,49.72758301063907,"[43.81030910389838, 56.80921421897627]",intervalle trop strict,
+b12,S,H,bas,202.8,,,non estimable,pas de validation
+b12,S,H,haut,1130.0,,,non estimable,pas de validation
+b12,S,F,bas,215.75,,,non estimable,pas de validation
+b12,S,F,haut,1435.0,,,non estimable,pas de validation
+hcy,S,H,bas,5.559,,,non estimable,pas de validation
+hcy,S,H,haut,14.133999999999997,,,non estimable,pas de validation
+hcy,S,F,bas,4.46875,,,non estimable,pas de validation
+hcy,S,F,haut,11.106749999999998,,,non estimable,pas de validation

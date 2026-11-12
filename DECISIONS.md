@@ -3623,3 +3623,35 @@ Références (DOI) :
    lipides, la glycémie, l'HbA1c, la CRP et le rein (ici : tous les marqueurs).
 5. **Bootstrap.** 500 tirages, parallélisés ; 200 en repli signalé.
 6. **Prédictions.** Celles qui reposent sur un résumé seulement sont marquées.
+
+### Résultat — programme « panel », Q6 (2026-11-12)
+
+Rapport : `reports/panel/Q6_ZONES.md`. Pré-enregistrement : commit `705e3d7`.
+
+- **Formes.** 68 marqueurs testables. Après réplication :
+  - 37 en U ou en J ;
+  - 14 montants ;
+  - 11 descendants ;
+  - 6 non répliqués : basophiles (% et nombre), VPM, TG à jeun, TG sériques, TG/HDL.
+- **Comparaison aux bornes D1** (179 comparaisons par sexe et par côté) :
+  - 90 « trop larges » ;
+  - 42 « trop strictes » ;
+  - 22 « conformes » ;
+  - 22 « non estimables » ;
+  - 3 relations en U non signalées : DFGe, HbA1c, non-HDL.
+- **Seuils R.**
+  - Conformes : glycémie à jeun 110 mg/dL (OMS), HbA1c 5,7 et 6,0 %, vitamine D 20 ng/mL.
+  - Trop stricts pour la mortalité : glycémie à jeun 100 mg/dL (ADA), LDL 116, non-HDL 130, TG 150,
+    vitamine D 30 ng/mL.
+  - Trop large : RAC 30 mg/g (risque dès 4,7 mg/g).
+- **Prédictions.** 17 sur 34 vérifiées.
+- **Marqueurs de maladie probables** (sensibilité 1) : côtés bas des leucocytes, des neutrophiles,
+  de la CRP, du phosphore et du calcium corrigé ; côtés hauts de la bilirubine, du chlorure et des
+  bicarbonates.
+- **Écarts.**
+  - Minimum de 100 décès (sensibilité 2 et causes) fixé dans le code mais absent du texte
+    pré-enregistré.
+  - La sensibilité 2 (138 décès) manque de puissance : la règle signale 54 marqueurs sur 58. Ce
+    signal n'est pas utilisé pour classer (interprétation non pré-enregistrée).
+  - Figures redessinées après analyse (présentation seulement).
+  - Le bootstrap de 500 tirages a été fait.

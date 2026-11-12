@@ -1,0 +1,597 @@
+[
+ {
+  "id": "alt",
+  "attendu": {
+   "bas": 1,
+   "haut": 0
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": false,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "ggt",
+  "attendu": {
+   "bas": 0,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 0,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 0,
+   "haut": 1
+  },
+  "verifiee": true,
+  "verifiee_developpement": true
+ },
+ {
+  "id": "alp",
+  "attendu": {
+   "bas": 0,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 0,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 0,
+   "haut": 1
+  },
+  "verifiee": true,
+  "verifiee_developpement": true
+ },
+ {
+  "id": "bili",
+  "attendu": {
+   "bas": 0,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": false,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "albumin",
+  "attendu": {
+   "bas": 1,
+   "haut": 0
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 0
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 0
+  },
+  "verifiee": true,
+  "verifiee_developpement": true
+ },
+ {
+  "id": "hdl",
+  "attendu": {
+   "bas": 1,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": true,
+  "verifiee_developpement": true
+ },
+ {
+  "id": "ldl",
+  "attendu": {
+   "bas": 1,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 0
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": false,
+  "verifiee_developpement": true
+ },
+ {
+  "id": "tc",
+  "attendu": {
+   "bas": 1,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": true,
+  "verifiee_developpement": true
+ },
+ {
+  "id": "tg_fast",
+  "attendu": {
+   "bas": 0,
+   "haut": 0
+  },
+  "retenu_validation": {
+   "bas": 0,
+   "haut": 0
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": true,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "tg_serum",
+  "attendu": {
+   "bas": 0,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 0,
+   "haut": 0
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": false,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "rdw",
+  "attendu": {
+   "bas": 0,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 0,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 0,
+   "haut": 1
+  },
+  "verifiee": true,
+  "verifiee_developpement": true
+ },
+ {
+  "id": "mcv",
+  "attendu": {
+   "bas": 1,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": true,
+  "verifiee_developpement": true
+ },
+ {
+  "id": "mch",
+  "attendu": {
+   "bas": 1,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": true,
+  "verifiee_developpement": true
+ },
+ {
+  "id": "mchc",
+  "attendu": {
+   "bas": 1,
+   "haut": 0
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 0
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": true,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "wbc",
+  "attendu": {
+   "bas": 0,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": false,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "nlr",
+  "attendu": {
+   "bas": 0,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 0,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": true,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "lymph_n",
+  "attendu": {
+   "bas": 1,
+   "haut": 0
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": false,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "na",
+  "attendu": {
+   "bas": 1,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 0
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 0
+  },
+  "verifiee": false,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "k",
+  "attendu": {
+   "bas": 0,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": false,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "cl",
+  "attendu": {
+   "bas": 1,
+   "haut": 0
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": false,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "egfr",
+  "attendu": {
+   "bas": 1,
+   "haut": 0
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": false,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "acr",
+  "attendu": {
+   "bas": 0,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 0,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 0,
+   "haut": 1
+  },
+  "verifiee": true,
+  "verifiee_developpement": true
+ },
+ {
+  "id": "urate",
+  "attendu": {
+   "bas": 1,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": true,
+  "verifiee_developpement": true
+ },
+ {
+  "id": "glu_fast",
+  "attendu": {
+   "bas": 1,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 0,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": false,
+  "verifiee_developpement": true
+ },
+ {
+  "id": "hba1c",
+  "attendu": {
+   "bas": 1,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": true,
+  "verifiee_developpement": true
+ },
+ {
+  "id": "insulin",
+  "attendu": {
+   "bas": 0,
+   "haut": 0
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": false,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "homa_ir",
+  "attendu": {
+   "bas": 0,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": false,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "crp",
+  "attendu": {
+   "bas": 0,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": false,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "vitd",
+  "attendu": {
+   "bas": 1,
+   "haut": 0
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 0
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": true,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "phos",
+  "attendu": {
+   "bas": 0,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 0,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": true,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "hco3",
+  "attendu": {
+   "bas": 1,
+   "haut": 0
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 0
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": true,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "urea",
+  "attendu": {
+   "bas": 0,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": false,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "urea_creat",
+  "attendu": {
+   "bas": 1,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 0
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": false,
+  "verifiee_developpement": true
+ },
+ {
+  "id": "fib4",
+  "attendu": {
+   "bas": 0,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 1,
+   "haut": 1
+  },
+  "developpement": {
+   "bas": 1,
+   "haut": 1
+  },
+  "verifiee": false,
+  "verifiee_developpement": false
+ },
+ {
+  "id": "hcy",
+  "attendu": {
+   "bas": 0,
+   "haut": 1
+  },
+  "retenu_validation": {
+   "bas": 0,
+   "haut": 0
+  },
+  "developpement": {
+   "bas": 0,
+   "haut": 1
+  },
+  "verifiee": null,
+  "verifiee_developpement": true
+ }
+]

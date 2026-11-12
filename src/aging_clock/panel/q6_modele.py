@@ -13,7 +13,8 @@ from ..features import rcs_basis
 KN = [5, 35, 65, 95]          # centiles des noeuds (Harrell, 4 noeuds) : marqueur et age
 GRID = (1, 99)                 # courbes entre les centiles 1 et 99 du developpement
 WINSOR = (0.5, 99.5)           # valeurs tronquees aux centiles 0,5 et 99,5 du developpement
-B_BOOT, SEED = 200, 2026
+MIN_RANGE = (5, 95)            # le minimum de risque n'est cherche qu'entre ces centiles
+B_BOOT, SEED = 500, 2026
 
 
 def cox_fit(X, t, e, w=None, iters=50, tol=1e-9):
@@ -76,6 +77,10 @@ class Spec:
         g0, g1 = np.percentile(x_dev, GRID)
         self.grid = np.exp(np.linspace(np.log(g0), np.log(g1), 200)) if log else np.linspace(g0, g1, 200)
         self.k = 1 + len(KN) - 2
+        p5, p95 = np.percentile(x_dev, MIN_RANGE)
+        self.search = np.where((self.grid >= p5) & (self.grid <= p95))[0]  # recherche du minimum
+        self.median = float(np.median(x_dev))
+        self.i_med = int(np.argmin(np.abs(self.grid - self.median)))
 
     def tr(self, x):
         x = np.clip(np.asarray(x, float), *self.clip)
@@ -102,11 +107,15 @@ def curve(spec, b, cov):
     Bg = spec.basis(spec.grid)
     k = spec.k
     f = Bg @ b[:k]
-    i0 = int(np.argmin(f))
-    D = Bg - Bg[i0]
-    se = np.sqrt(np.maximum(np.einsum("ij,jk,ik->i", D, cov[:k, :k], D), 0))
-    lhr = f - f[i0]
-    return {"xmin": float(spec.grid[i0]), "i0": i0, "hr": np.exp(lhr), "lo": np.exp(lhr - 1.96 * se), "hi": np.exp(lhr + 1.96 * se)}
+    s = spec.search
+    i0 = int(s[np.argmin(f[s])])
+    out = {"xmin": float(spec.grid[i0]), "i0": i0, "min_sur_borne": i0 in (int(s[0]), int(s[-1]))}
+    for lab, ref in (("", i0), ("_med", spec.i_med)):
+        D = Bg - Bg[ref]
+        se = np.sqrt(np.maximum(np.einsum("ij,jk,ik->i", D, cov[:k, :k], D), 0))
+        lhr = f - f[ref]
+        out |= {"hr" + lab: np.exp(lhr), "lo" + lab: np.exp(lhr - 1.96 * se), "hi" + lab: np.exp(lhr + 1.96 * se)}
+    return out
 
 
 def thresholds(spec, c, level):
@@ -153,6 +162,7 @@ def fit(m, age, sex, t, e, spec, age_kn, extra=None, w=None, keep_curve=True):
     c = curve(spec, b, cov)
     t12, t15 = thresholds(spec, c, 1.2), thresholds(spec, c, 1.5)
     out = {"n": int(len(t)), "deces": int(np.sum(e)), "p_global": float(chi2.sf(2 * (ll - ll0), spec.k)), "xmin": c["xmin"],
+           "min_sur_borne": c["min_sur_borne"],
            "zone_min": min_zone(spec, c), "seuil_1_2": t12, "seuil_1_5": t15, "forme": shape(t12, t15)}
     if keep_curve:
         out["_curve"] = c
@@ -173,7 +183,7 @@ def boot_thresholds(m, age, sex, t, e, spec, age_kn, B=B_BOOT, seed=SEED):
     res = {k: [] for k in ("bas", "haut", "bas15", "haut15")}
     for _ in range(B):
         ix = rng.integers(0, len(t), len(t))
-        b, cov, _ = cox_fit(X[ix], t[ix], e[ix], iters=25, tol=1e-7)
+        b, cov, _ = cox_fit(X[ix], t[ix], e[ix], iters=25, tol=1e-6)
         c = curve(spec, b, cov)
         t12, t15 = thresholds(spec, c, 1.2), thresholds(spec, c, 1.5)
         for s in ("bas", "haut"):
