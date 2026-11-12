@@ -1,4 +1,4 @@
-# Q3 allégée — urines absentes au second bilan
+# Q3 allégée — scénario : pas d'urines au suivi
 
 Protocole pré-enregistré (`DECISIONS.md`, « Suivi, Q3 allégée », commit `ca1c2af`) ; calage
 2001-2002 (n = 388), test sur les paires de NHANES III (n = 781) et sur la validation 2007-2010

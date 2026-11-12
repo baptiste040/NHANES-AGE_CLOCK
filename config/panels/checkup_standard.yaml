@@ -1,6 +1,6 @@
 # Panel « check-up de prevention standard ».
 #
-# Decrit ce que la cohorte cible mesure, independamment de la source.
+# Decrit les mesures d'un check-up de prevention type, independamment de la source.
 # Les unites sont les unites canoniques attendues en entree du score ;
 # alt_units donne le facteur multiplicatif vers l'unite canonique.
 #

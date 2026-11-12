@@ -10,7 +10,7 @@
  },
  "description": "Score de vieillissement biologique par système, conçu pour être appliqué à des cohortes de check-up de prévention. Âge biologique = âge auquel le risque de décès à 10 ans de la population de référence (même sexe) égale le risque prédit.",
  "warnings": [
-  "Un âge biologique absolu n'est interprétable que si les dosages de la cohorte cible sont comparables à ceux du développement (section reference_lab_methods) ou harmonisés. Un changement d'automate peut décaler l'âge biologique de plusieurs années sans changer le classement des personnes (validation secondaire 2015-2018).",
+  "Un âge biologique absolu n'est interprétable que si les dosages de la cohorte d'application sont comparables à ceux du développement (section reference_lab_methods) ou harmonisés. Un changement d'automate peut décaler l'âge biologique de plusieurs années sans changer le classement des personnes (validation secondaire 2015-2018).",
   "Le score décrit un risque de mortalité toutes causes, pas l'effet protecteur des traitements ; ce n'est pas un outil de diagnostic.",
   "Le risque absolu est surestimé chez les groupes favorisés (revenu élevé, diplôme universitaire) : sans recalibrage local, l'âge biologique d'une cohorte de check-up de prévention sera probablement surestimé ; le classement reste valide.",
   "Domaine de validité : adultes de 20 à 79 ans ; valeurs dans les plages de variables[*].range ; unités canoniques de variables[*].unit."

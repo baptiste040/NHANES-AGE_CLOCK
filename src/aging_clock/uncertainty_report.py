@@ -270,7 +270,7 @@ rejetées), en % des tirages :
 
 ## Limites
 
-- Les CV viennent de populations et de protocoles différents de la cohorte cible ; plusieurs sont
+- Les CV viennent de populations et de protocoles différents de la cohorte d'application ; plusieurs sont
   des approximations ou des valeurs de travail (lymphocytes %, RDW %, ACR, fréquence cardiaque,
   IMC, tour de taille). La sensibilité aux bornes encadre cette incertitude.
 - Bruit indépendant entre marqueurs : les variations corrélées (hémodilution, repas, inflammation

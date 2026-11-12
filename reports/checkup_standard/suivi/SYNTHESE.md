@@ -1,8 +1,9 @@
 # Ce qu'un score de santé peut affirmer d'un bilan à l'autre
 
 Synthèse de la piste « suivi ». Contexte générique : un check-up de prévention fait un bilan
-complet au départ, puis une prise de sang tous les 6 mois. Le panel est réduit, sans urines, sans
-tension ni mensurations, et on ne contrôle ni l'heure ni le jeûne. Les protocoles, prédictions et
+complet au départ, puis une prise de sang tous les 6 mois. Scénario étudié : un panel plus court
+que le bilan de départ (ici sans urines ni mesures physiques), et on ne contrôle ni l'heure ni le
+jeûne. Les protocoles, prédictions et
 résultats sont datés dans `DECISIONS.md`. Le détail est dans les rapports de chaque étape (liste
 en fin de document).
 
@@ -77,7 +78,7 @@ Stabilité entre deux prises de sang à 2 semaines, sans aucun changement de san
   - « votre premier facteur est Y ».
 - Le VGM et les leucocytes sont « à interpréter par le médecin », jamais des moteurs actionnables.
 
-### 3. Remesurer seulement les anomalies fabrique une amélioration (Q2)
+### 3. Si l'on ne remesure que les marqueurs anormaux, on fabrique une amélioration (Q2)
 
 Sans aucun effet réel, après retrait du décalage entre examens :
 
@@ -146,7 +147,7 @@ Sans aucun effet réel, après retrait du décalage entre examens :
   avec le modèle contraint ;
 - `Q2_REGRESSION_MOYENNE.md` : régression vers la moyenne et groupe contrôle, y compris l'analyse
   secondaire ;
-- `Q3_URINES.md` : urines absentes au second bilan ;
+- `Q3_URINES.md` : scénario sans urines au suivi ;
 - `Q4_AGREGATION.md` : agrégation en une note globale.
 
 Gel des analyses : 2026-11-10 (`DECISIONS.md`).

@@ -411,7 +411,7 @@ les valeurs dérivées.
   - numération (NFS) ;
   - vitamines (B12, folates, vitamine D) ;
   - insuline ;
-  - albumine, urée, bicarbonates, lipase, bilirubine conjuguée, globulines, osmolalité.
+  - albumine, urée, bicarbonates, globulines, osmolalité.
 
   Pour ces marqueurs, **l'écart entre laboratoires de routine reste inconnu**. Il ne peut être
   mesuré que sur des données réelles venant de plusieurs laboratoires.

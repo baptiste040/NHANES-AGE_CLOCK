@@ -460,7 +460,7 @@ de réplication des côtés, sans IC bootstrap.
     répliqué.
 - **Acide urique.** Côté haut pour la mortalité cardiovasculaire ; en U pour le cancer.
 
-## Âge (analyse secondaire) et population visée
+## Âge (analyse secondaire) et tranche d'âge moyen
 
 - **Ce qui est ajusté.** Courbes séparées pour les 20-59 ans et les 60-79 ans, et pour les 30-55 ans,
   sur 1999-2010 réunis (non répliquées).

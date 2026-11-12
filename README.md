@@ -37,7 +37,7 @@ Les données sont publiques et téléchargées automatiquement dans `data/raw/` 
 
 ## Méthode
 
-1. **Panel configurable.** Un fichier YAML décrit ce que mesure la cohorte cible (variables,
+1. **Panel configurable.** Un fichier YAML décrit les mesures d'un check-up de prévention type (variables,
    unités, système, transformations, plages acceptées) ; un second fait la correspondance avec
    NHANES, cycle par cycle (noms de variables, conversions, recalibrations recommandées).
    Panel actuel « check-up de prévention standard » : 24 variables (`docs/specification_entrees.md`).
@@ -101,8 +101,9 @@ entre marqueurs : un intervalle gaussien n'est pas adapté
 ## Suivi d'un bilan à l'autre
 
 Ce qu'un score de santé peut affirmer entre deux bilans, dans le cas d'un check-up de prévention
-avec un bilan complet au départ, puis une prise de sang tous les 6 mois. Le panel de suivi est
-réduit : ni urines, ni tension, ni mensurations, et ni l'heure ni le jeûne ne sont contrôlés.
+avec un bilan complet au départ, puis une prise de sang tous les 6 mois. Scénario étudié :
+un panel plus court que le bilan de départ (ici sans urines ni mesures physiques) ; l'heure et le
+jeûne ne sont pas contrôlés.
 Chaque question a été pré-enregistrée dans `DECISIONS.md` avant d'être évaluée. Synthèse :
 [`SYNTHESE.md`](reports/checkup_standard/suivi/SYNTHESE.md).
 

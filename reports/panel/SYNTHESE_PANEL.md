@@ -1,7 +1,7 @@
 # Programme « panel » : synthèse
 
 **Contexte.** Les marqueurs d'un bilan de check-up sont suivis tous les 6 mois, dans plusieurs
-laboratoires, sans contrôle du jeûne ni de l'heure, chez des adultes de 30 à 55 ans souvent
+laboratoires, sans contrôle du jeûne ni de l'heure, chez des adultes d'âge moyen souvent
 favorisés. Six questions ont été traitées sur NHANES (États-Unis, 1988-2018), chacune avec un
 pré-enregistrement dans `DECISIONS.md` et un rapport :
 - Q1 : bruit et changement détectable ;

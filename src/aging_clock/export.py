@@ -25,7 +25,7 @@ MODEL_VERSION = "1.0.0"
 SHORT_HORIZONS = [12, 24, 36, 60, 120]
 
 WARNINGS = [
-    "Un âge biologique absolu n'est interprétable que si les dosages de la cohorte cible sont "
+    "Un âge biologique absolu n'est interprétable que si les dosages de la cohorte d'application sont "
     "comparables à ceux du développement (section reference_lab_methods) ou harmonisés. Un "
     "changement d'automate peut décaler l'âge biologique de plusieurs années sans changer le "
     "classement des personnes (validation secondaire 2015-2018).",

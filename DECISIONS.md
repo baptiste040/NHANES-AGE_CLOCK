@@ -1155,10 +1155,9 @@ Nouvelle piste demandée par l'auteur du projet : ce qu'un produit de check-up d
 honnêtement affirmer d'un bilan à l'autre (contexte générique, aucune entreprise). Conditions
 visées :
 - bilan complet au départ, puis une prise de sang tous les 6 mois ;
-- panel de suivi réduit, sans les urines ;
-- variantes de panel et de laboratoire ;
-- ni heure de prélèvement ni jeûne enregistrés ;
-- **ni tension ni mensurations**, et un pouls seulement via un objet connecté optionnel.
+- scénario étudié : un panel plus court que le bilan de départ (ici sans urines ni mesures
+  physiques), dans plusieurs laboratoires ;
+- ni heure de prélèvement ni jeûne enregistrés.
 
 Le gel des analyses du 2026-11-10 est levé par l'auteur du projet pour cette piste.
 
@@ -1887,19 +1886,16 @@ Arrondi corrigé : la note globale moyenne du sous-groupe « un seul système tr
 
 **Nature.** Programme de recherche sur le comportement des biomarqueurs et des populations,
 pas un produit. Contexte générique :
-- bilan large au départ, puis un panel de suivi tous les 6 mois ;
+- bilan large au départ, puis une prise de sang tous les 6 mois ;
 - ni heure ni jeûne enregistrés ;
 - plusieurs laboratoires ;
-- adultes surtout de 30 à 55 ans, plus favorisés et en meilleure santé que la moyenne, dont des
-  athlètes.
+- adultes d'âge moyen, plutôt en bonne santé, dont des sportifs.
 
 Aucune entreprise n'est nommée. La correspondance avec un panel précis reste hors du dépôt.
 
-**Inventaire** (étape 1, sans analyse de valeurs) :
-- 78 marqueurs mesurés et 21 indices dérivés ;
-- 67 marqueurs présents dans NHANES 1999-2018 avec mortalité, 51 avec une remesure en 2001-2002,
-  54 dans NHANES III (examen principal et second examen) ;
-- 9 marqueurs absents de toutes les sources.
+**Inventaire** (étape 1, sans analyse de valeurs) : un panel large de marqueurs courants de
+check-up et d'indices dérivés ; la plupart sont présents dans NHANES avec mortalité et remesures ;
+quelques-uns ne figurent dans aucune source publique.
 
 **Questions, dans l'ordre validé** :
 1. Q1 : changement détectable à 6 mois ;
@@ -2763,24 +2759,18 @@ Ratio r = |décalage| / changement détectable à 6 mois (Q1), comme dans Q2.
 
 #### Partie (c) : écarts entre laboratoires de routine (littérature)
 
-Les changements de NHANES ont lieu entre des laboratoires de référence très contrôlés. La population
-cible passe par plusieurs laboratoires de routine, dont les écarts sont probablement plus grands.
+Les changements de NHANES ont lieu entre des laboratoires de référence très contrôlés. Un check-up
+de prévention passe par plusieurs laboratoires de routine, dont les écarts sont probablement plus
+grands.
 
-**Marqueurs concernés** : ceux du panel de suivi.
-- Hématologie : leucocytes et formule, hématies, hémoglobine, hématocrite, VGM, TCMH, CCMH, RDW,
-  plaquettes, VPM.
-- Glycémie : glycémie à jeun, insuline, HbA1c.
-- Lipides : cholestérol total, LDL, HDL, TG.
-- Foie : ALAT, ASAT, GGT, PAL, bilirubine totale et conjuguée, albumine, protéines totales,
-  globulines.
-- Autres : lipase, créatinine, urée, sodium, potassium, chlore, bicarbonates, osmolalité,
-  CRP ultrasensible, vitamine B12, folates érythrocytaires, vitamine D (25-OH), calcium, magnésium.
+**Marqueurs concernés** : marqueurs courants d'un bilan de suivi (numération, glycémie, lipides,
+enzymes hépatiques, rein et électrolytes, inflammation, vitamines).
 
 **Critères de sélection des études** (fixés ici) :
 1. Évaluation externe de la qualité (EEQ) ou programme d'harmonisation, publiés dans une revue
    indexée.
 2. Résultat chiffré par marqueur : CV entre laboratoires (CV_inter), ou biais entre laboratoires
-   ou entre méthodes, sur un marqueur du panel de suivi.
+   ou entre méthodes, sur l'un de ces marqueurs courants.
 3. Laboratoires de routine : au moins 20, ou un programme national.
 4. Laboratoires européens de préférence. Une étude non européenne n'est retenue que si aucune
    étude européenne ne couvre le marqueur.
@@ -3369,7 +3359,7 @@ catégorie D1 est « non estimable ».
     - Ajustement sur 1999-2010 réunis, avec les nœuds et la grille du développement (tous âges).
     - **Non estimable sous 150 décès à 10 ans** dans la tranche.
     - Formes et seuils sont rapportés pour chaque tranche, sans réplication.
-  - Le modèle est aussi ajusté chez les **30-55 ans** (population visée), sur 1999-2010 réunis
+  - Le modèle est aussi ajusté chez les **30-55 ans** (tranche d'âge moyen), sur 1999-2010 réunis
     (549 décès à 10 ans). C'est descriptif et non répliqué, avec le même minimum de 150 décès.
 
 #### Définitions fixées à l'avance
@@ -3417,7 +3407,7 @@ Tous les marqueurs sont rapportés, retenus ou non.
 
 - **Bornes.**
   - Intervalles S de D1 par sexe. Si D1 a partitionné par âge, on prend la tranche 40-59 ans, au
-    centre de la population visée.
+    centre de la tranche d'âge moyen.
   - Seuils R de D1 dans le sens du seuil : glycémie à jeun 100 (ADA) et 110 (OMS) mg/dL ; HbA1c 5,7
     et 6,0 % ; LDL 116 ; non-HDL 130 ; TG à jeun 150 mg/dL ; DFGe 60 ; RAC 30 mg/g ; vitamine D 20
     et 30 ng/mL, convertis en nmol/L (×2,4959).

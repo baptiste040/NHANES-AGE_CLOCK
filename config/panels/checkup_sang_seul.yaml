@@ -1,10 +1,10 @@
 # Panel « sang seul » : variante du panel standard SANS mesures physiques (tension, pouls,
-# IMC, tour de taille), pour un produit qui ne les mesure pas. Memes transformations et memes
+# IMC, tour de taille), pour un scenario sans mesures physiques. Memes transformations et memes
 # hyperparametres que checkup_standard (DECISIONS.md, piste suivi, etape 0). Urines (ACR) gardees.
 #
 # Panel « check-up de prevention standard » (description d'origine ci-dessous).
 #
-# Decrit ce que la cohorte cible mesure, independamment de la source.
+# Decrit les mesures d'un check-up de prevention type, independamment de la source.
 # Les unites sont les unites canoniques attendues en entree du score ;
 # alt_units donne le facteur multiplicatif vers l'unite canonique.
 #
