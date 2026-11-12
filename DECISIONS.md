@@ -3200,3 +3200,25 @@ Rapport : `reports/panel/Q3_POPULATIONS.md`. Pré-enregistrement : commit `daba7
     moindres carrés) ;
   - ferritine mesurée seulement chez les femmes de moins de 50 ans, CK absente en 2003-2010 ;
   - analyses non pré-enregistrées signalées dans le rapport.
+
+### Amendement d'interprétation — programme « panel », Q3 (2026-11-12)
+
+Décision de l'auteur du projet, après lecture des résultats.
+
+- **Portée de la règle.** La règle des faux signaux n'a de sens que pour les intervalles de
+  référence statistiques (S).
+- **Seuils fondés sur le risque (R).** Pour un seuil de décision clinique comme la glycémie à jeun
+  ≥ 6,1 mmol/L, dépasser le seuil n'est pas un faux signal, même chez une personne « saine » :
+  c'est un risque réel.
+- **Glycémie à jeun après la ménopause.** Le classement « inadapté » est requalifié en « risque
+  réellement plus élevé, seuil à conserver ».
+- **Ferritine après la ménopause.** Elle reste « inadaptée », car c'est un intervalle statistique.
+- **Conséquence pour la suite.** Toute règle de faux signaux appliquée à un seuil R sera désormais
+  lue ainsi.
+- **Données.** Les fichiers de données gardent la sortie brute de la règle pré-enregistrée.
+- **Ajouts au rapport :**
+  - contraception : un début ou un arrêt entre deux bilans fait bouger les marqueurs comme une
+    intervention, et une CRP doublée peut mimer une inflammation. Le statut contraceptif doit être
+    enregistré à chaque bilan et servir à interpréter les changements ;
+  - très actifs : le groupe décrit des personnes actives, pas des athlètes de compétition ; la
+    question reste ouverte pour eux.

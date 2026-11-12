@@ -31,19 +31,34 @@ centile « population générale » flatte-t-il une population favorisée et en 
 - **« Sains »** : membres de la population de référence D1 (non-fumeurs, IMC 18,5-30, sans maladie ni
   traitement chronique déclarés).
 
+## Amendement d'interprétation (2026-11-12)
+
+- **Portée de la règle des faux signaux.** Elle n'a de sens que pour les intervalles de référence
+  statistiques (S).
+- **Seuils fondés sur le risque (R).** Pour un seuil de décision clinique comme la glycémie à jeun
+  ≥ 6,1 mmol/L, dépasser le seuil n'est pas un faux signal, même chez une personne « saine » :
+  c'est un risque réel.
+- **Glycémie à jeun après la ménopause : requalifiée.** Le classement « inadapté » produit par la
+  règle pré-enregistrée devient **« risque réellement plus élevé, seuil à conserver »**.
+- **Ferritine après la ménopause : reste « inadaptée »**, car c'est un intervalle statistique.
+
+Les fichiers de données gardent la sortie brute de la règle pré-enregistrée. La requalification est
+une décision d'interprétation, datée, consignée dans `DECISIONS.md`.
+
 ## Ce qu'il faut retenir
 
-1. **Les seuils usuels restent utilisables pour ces groupes, à trois exceptions près.** Sur
-   l'ensemble des groupes principaux, un seul décalage atteint le changement détectable : la
-   ferritine après la ménopause. Une seule autre règle de taux est franchie, chez les femmes très
-   actives. Les trois exceptions sont :
+1. **Les seuils usuels restent utilisables pour ces groupes, à deux exceptions près, plus un seuil de
+   risque à conserver.** Sur l'ensemble des groupes principaux, un seul décalage atteint le
+   changement détectable : la ferritine après la ménopause. Les cas sont les suivants :
    - **ferritine après la ménopause** : +196 % [+113 ; +288] face aux femmes réglées du même âge,
      soit 2,1 fois le changement détectable. Ce n'est mesuré qu'entre 45 et 49 ans : NHANES ne dose
      la ferritine que chez les femmes de moins de 50 ans en 2005-2010. Un intervalle « femme » unique
      ne convient pas : il mélange deux populations, avant et après l'arrêt des règles ;
    - **glycémie à jeun après la ménopause**, seuil OMS ≥ 6,1 mmol/L : 11,8 % des ménopausées saines
      sont au-dessus, contre 5,1 % des femmes de référence de 45 à 59 ans. Le décalage médian est
-     pourtant nul (+1,3 %, IC incluant 0) : c'est la queue haute de la distribution qui s'épaissit ;
+     pourtant nul (+1,3 %, IC incluant 0) : c'est la queue haute de la distribution qui s'épaissit.
+     C'est un seuil fondé sur le risque, donc un **risque réellement plus élevé, seuil à conserver**
+     (amendement du 2026-11-12), et non un faux signal ;
    - **protéines totales et globulines basses chez les femmes très actives** : 10,4 % et 12,5 % des
      48 femmes saines sont sous la limite basse S, contre environ 2,5 % attendus. Cela ne représente
      que 5 et 6 personnes, et le décalage médian est petit (−1,4 % et −3,6 %). C'est un signal
@@ -224,7 +239,7 @@ sexes :
 | Neutrophiles/lymphocytes | 661 | −15,9 % [−20,8 ; −8,5] | −11,6 | 45,6 | 0,35 | décalé, sous le changement détectable |
 | Indice SII | 661 | −16,7 % [−23,4 ; −8,6] | −16,8 | 49,2 | 0,34 | décalé, sous le changement détectable |
 | Folates érythrocytaires | 242 | −7,5 % [−16,3 ; +3,6] | −1,3 | 23,9 | 0,31 | sans différence |
-| Glycémie à jeun (plasma) | 292 | +1,3 % [−2,7 ; +3,8] | +2,7 | 24,2 | 0,05 | **inadapté** (taux : ≥ 6,1 mmol/L, OMS) |
+| Glycémie à jeun (plasma) | 292 | +1,3 % [−2,7 ; +3,8] | +2,7 | 24,2 | 0,05 | risque réellement plus élevé, seuil à conserver (seuil R ≥ 6,1 mmol/L, OMS ; règle brute : « inadapté ») |
 
 - **Le décalage est ajusté sur l'âge** (spline, dans l'intervalle 45-59 ans).
 - **Ferritine.** Ménopausées : 60 femmes ; comparaison : 401 femmes réglées, toutes de 45 à 49 ans.
@@ -270,7 +285,7 @@ Ce tableau liste les cas où le taux du groupe atteint au moins 10 % et 1,5 fois
 | Groupe | Sexe | Marqueur | Seuil | Sains du groupe (n) | Taux, groupe | Taux, référence D1 | Rapport | Règle |
 |---|---|---|---|---|---|---|---|---|
 | Injectable | F | Vitamine D | < 20 ng/mL (50 nmol/L) | 35 | 57,1 % | 34,5 % | ×1,66 | non |
-| Ménopause | F | Glycémie à jeun | ≥ 6,1 mmol/L (110 mg/dL), OMS | 68 | 11,8 % | 5,1 % | ×2,33 | **inadapté** |
+| Ménopause | F | Glycémie à jeun | ≥ 6,1 mmol/L (110 mg/dL), OMS | 68 | 11,8 % | 5,1 % | ×2,33 | risque réel (seuil R), seuil à conserver |
 | Ménopause | F | HbA1c | ≥ 5,7 %, ADA | 144 | 29,2 % | 18,8 % | ×1,55 | non |
 | Pilule | F | Triglycérides (à jeun) | ≥ 1,7 mmol/L (150 mg/dL) | 129 | 19,4 % | 10,6 % | ×1,83 | non |
 | Très actifs | F | Globulines | bas (S) | 48 | 12,5 % | 2,3 % | ×5,42 | **inadapté** |
@@ -424,12 +439,14 @@ Revues lues (texte intégral) :
 
 ## Conséquences pour le programme
 
-1. **Noter le statut hormonal à chaque prélèvement** : pilule (et laquelle), injectable, ménopause,
-   traitement de la ménopause.
+1. **Enregistrer le statut contraceptif à chaque bilan, et s'en servir pour interpréter les
+   changements.** Il faut noter la pilule (et laquelle), l'injectable, la ménopause et son
+   traitement.
+   - Une personne qui commence ou arrête une contraception hormonale entre deux bilans verra ses
+     marqueurs bouger comme sous l'effet d'une intervention.
    - La pilule déplace la CRP (×2), la vitamine D (+46 %), les TG, la B12, la CTF, la PAL et le DFGe
      d'une fraction importante du changement détectable.
-   - Dans une cohorte de femmes, un début ou un arrêt de pilule entre deux bilans imite donc un
-     changement d'inflammation, de statut vitaminique ou de fonction rénale.
+   - **Une CRP doublée peut mimer une inflammation.**
 2. **Pour les femmes, prévoir des repères distincts avant et après la ménopause**, au moins pour la
    ferritine, la PAL et la glycémie.
 3. **Ne pas présenter un centile « population générale » comme une norme** à une population affluente
@@ -437,9 +454,11 @@ Revues lues (texte intégral) :
    personne médiane d'une population favorisée et saine se situe vers le 30e centile général pour
    le métabolisme, le foie et l'inflammation.
 4. **Chez les personnes très actives (au sens de l'accéléromètre), les seuils usuels de créatinine,
-   de DFGe, d'ASAT et d'hémoglobine ne produisent pas d'excès de faux signaux.** Pour des athlètes de
-   compétition ou des pratiquants de musculation, la question reste ouverte : la créatinine est plus
-   haute quand l'activité vient du questionnaire.
+   de DFGe, d'ASAT et d'hémoglobine ne produisent pas d'excès de faux signaux.**
+   - Ce groupe décrit des personnes actives, **pas des athlètes de compétition**.
+   - Pour les athlètes de compétition, la question reste ouverte. Il en va de même pour les
+     pratiquants de musculation : la créatinine est plus haute quand l'activité vient du
+     questionnaire.
 
 ## Limites
 
