@@ -246,6 +246,11 @@ dans les deux jeux.
 
 ## Limites
 
+- **Limite connue : créatinine de 2005-2006 non recalibrée dans la table D1.** La table des seuils
+  D1 (intervalles statistiques, NHANES 2003-2010, `intervalles.py`) n'applique pas la recalibration
+  recommandée de la créatinine de 2005-2006 (0,978 x − 0,016 mg/dL), alors que le pipeline principal
+  l'applique. L'effet est limité à la créatinine et au DFGe, dans les questions qui utilisent D1
+  (Q3, Q4, Q6). Signalée par l'audit indépendant du 2026-11-12, non corrigée (analyses gelées).
 - Remesures à 2 semaines ; NHANES III date de 1988-1994 et utilise d'autres méthodes.
 - Intervalles statistiques calculés sur une population américaine, avec des méthodes de
   2003-2010.

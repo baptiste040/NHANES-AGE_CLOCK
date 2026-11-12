@@ -159,6 +159,15 @@ dans un système (Q5) n'ont pas été traités.
   décès non retrouvés après un retour à l'étranger).
 - **Suivi** : les seuils et taux de stabilité viennent de remesures à environ 2 semaines. Ce sont
   des bornes basses pour un suivi à 6 mois. Les évaluations de cette piste ne sont pas aveugles.
+- **Limite connue : créatinine de 2005-2006 non recalibrée dans la table D1.** La table des seuils
+  D1 (intervalles statistiques, NHANES 2003-2010, `intervalles.py`) n'applique pas la recalibration
+  recommandée de la créatinine de 2005-2006 (0,978 x − 0,016 mg/dL), alors que le pipeline principal
+  l'applique. L'effet est limité à la créatinine et au DFGe, dans les questions qui utilisent D1
+  (Q3, Q4, Q6). Signalée par l'audit indépendant du 2026-11-12, non corrigée (analyses gelées).
+- **Seuil de changement du score rénal.** Le seuil publié (**5,52 ans**, 2001-2002 et NHANES III
+  regroupés) inclut les 388 personnes de 2001-2002 dont le premier examen a servi au développement.
+  L'estimation indépendante de l'audit (NHANES III seul, sans CRP > 10 mg/L) est de **6,0 ans**. Les
+  deux valeurs sont données ; la valeur du modèle (`models/seuils_changement_v1.json`) reste 5,52.
 - Non fait à ce stade : analyses pondérées, imputation multiple, transposition à une cohorte non
   américaine (recalibrage, alignement des distributions), fiabilité à 6 mois, marqueurs manquants
   dans un système (Q5).

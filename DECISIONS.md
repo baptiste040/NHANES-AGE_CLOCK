@@ -4374,3 +4374,15 @@ construction.
 - Rapports : Q1 à Q5, `SYNTHESE_PANEL.md`, `SIGNATURES.md`, démo, fiches, README, fiche du modèle,
   `FIABILITE.md`.
 - Non modifiés : pré-enregistrements (ce texte les amende), Q6, piste « suivi ».
+
+### Validation des corrections et gel des analyses (2026-11-13)
+
+- **Corrections C1 à C7 validées** par l'auteur du projet.
+- **Limites connues, signalées sans correction** (README, rapports Q3, Q4 et Q6, fiche du modèle) :
+  - la recalibration de la créatinine de 2005-2006 (0,978 x − 0,016 mg/dL) n'est pas appliquée dans
+    la table D1 (`intervalles.py`) ; effet limité à la créatinine et au DFGe, dans Q3, Q4 et Q6 ;
+  - seuil de changement du score rénal : deux valeurs affichées, 5,52 ans (publié, 2001-2002 et
+    NHANES III regroupés, inclut des personnes du développement) et 6,0 ans (estimation indépendante
+    de l'audit, NHANES III seul, sans CRP > 10 mg/L). La valeur du modèle reste 5,52.
+- **Gel des analyses (décision de l'auteur du projet).** Plus aucune nouvelle analyse. La suite se
+  limite à la rédaction et à la relecture.

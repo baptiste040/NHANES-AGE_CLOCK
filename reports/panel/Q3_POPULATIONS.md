@@ -494,6 +494,11 @@ Revues lues (texte intégral) :
 
 ## Limites
 
+- **Limite connue : créatinine de 2005-2006 non recalibrée dans la table D1.** La table des seuils
+  D1 (intervalles statistiques, NHANES 2003-2010, `intervalles.py`) n'applique pas la recalibration
+  recommandée de la créatinine de 2005-2006 (0,978 x − 0,016 mg/dL), alors que le pipeline principal
+  l'applique. L'effet est limité à la créatinine et au DFGe, dans les questions qui utilisent D1
+  (Q3, Q4, Q6). Signalée par l'audit indépendant du 2026-11-12, non corrigée (analyses gelées).
 - **Les proxys sont imparfaits.**
   - « Très actif » n'est pas « athlète de compétition ».
   - L'accéléromètre de hanche capte mal le vélo et la natation, et ne capte pas la musculation.
