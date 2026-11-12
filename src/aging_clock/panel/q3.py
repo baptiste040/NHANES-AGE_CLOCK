@@ -24,6 +24,7 @@ from .q5 import _with_derived
 from .remesures import OUT
 
 SEED, B = 2026, 500
+VITD_NG_TO_NMOL = 2.4959
 SUF = {2003: "_C", 2005: "_D", 2007: "_E", 2009: "_F"}
 FILES = {  # id : ({cycle: fichier}, variable)
     **{k: (intervalles.LAB["cbc"][0], v) for v, k in intervalles.LAB["cbc"][1].items()},
@@ -53,7 +54,7 @@ DERIVED_IDS = ["egfr", "non_hdl", "ldl", "acr", "homa_ir", "quicki", "tyg", "tg_
 # ordonnances (RXQ_RX, 30 derniers jours)
 COC = r"ETHINYL ESTRADIOL|MESTRANOL"
 PATCH_RING = r"NORELGESTROMIN|ETONOGESTREL"
-POP = r"^(NORETHINDRONE|NORGESTREL)$"
+POP = r"^(?:NORETHINDRONE|NORGESTREL)$"
 HRT_RX = r"ESTRADIOL|ESTROGEN|ESTROPIPATE|ESTRIOL|MEDROXYPROGESTERONE|^PROGESTERONE|NORETHINDRONE"
 
 
@@ -253,7 +254,7 @@ def shifts(d, G, cd, ids, primary_only=False):
                 if mid in FASTING:
                     s = sub[sub.WTSAF2YR.notna() & (sub.WTSAF2YR > 0)]
                 jobs.append((k, lab, mid, s[["age", "sex", "grp", mid]], scale(mid, cd), len(sx) == 2))
-    out = Parallel(n_jobs=-1, verbose=0)(delayed(_shift_one)(s, mid, sc, both) for (_, _, mid, s, sc, both) in jobs)
+    out = Parallel(n_jobs=4, verbose=0)(delayed(_shift_one)(s, mid, sc, both) for (_, _, mid, s, sc, both) in jobs)
     rows = []
     for (k, lab, mid, _, sc, both), r in zip(jobs, out):
         rows.append({"groupe": k, "sexe": lab, "id": mid, "echelle": sc, "ajuste_sexe": both, **r})
@@ -310,7 +311,9 @@ def rates(d, G, S, R):
                         out = (p[mid] < lo) if side == "bas" else (p[mid] > hi)
                         ok = lo.notna()
                     else:
-                        out = (p[mid] < r.seuil) if side == "bas" else (p[mid] >= r.seuil)
+                        # LBXVIDMS est en nmol/L, les seuils D1 de la vitamine D en ng/mL (comme Q5)
+                        thr = r.seuil * VITD_NG_TO_NMOL if mid == "vitd" else r.seuil
+                        out = (p[mid] < thr) if side == "bas" else (p[mid] >= thr)
                         ok = pd.Series(True, index=p.index)
                     vals.append((int(ok.sum()), float(out[ok].mean()) if ok.sum() else np.nan))
                 (ng, tg), (nr, tr) = vals
@@ -430,6 +433,26 @@ def predictions(T):
     return {"P1": {"enonce": "Au moins un couple (très actifs, marqueur) « inadapté » par la règle du taux : créatinine (haut S), "
                              "DFGe (< 60), ASAT (haut S) ou hémoglobine (bas S).",
                    "verifiee": bool(hits), "couples": hits}}
+
+
+def run_after_shifts():
+    """Recalcule taux, centiles, synthese et predictions a partir de Q3_decalages.csv (sans refaire le bootstrap)."""
+    import ast
+    q = questionnaire()
+    G = groups(q)
+    d = markers(q)
+    S = pd.read_csv(OUT / "D1_intervalles_statistiques.csv")
+    R = pd.read_csv(OUT / "D1_seuils_cliniques.csv")
+    cd = q1_cd()
+    Sh = pd.read_csv(OUT / "Q3_decalages.csv")
+    Sh["ic95"] = Sh.ic95.apply(lambda s: ast.literal_eval(s) if isinstance(s, str) else s)
+    T = rates(d, G, S, R)
+    T.to_csv(OUT / "Q3_faux_signaux.csv", index=False)
+    Sy = synthese(Sh, T, cd)
+    Sy.to_csv(OUT / "Q3_synthese.csv", index=False)
+    (OUT / "Q3_attentes.json").write_text(json.dumps(expectations(Sh), indent=1, ensure_ascii=False, default=float), encoding="utf-8")
+    (OUT / "Q3_predictions.json").write_text(json.dumps(predictions(T), indent=1, ensure_ascii=False), encoding="utf-8")
+    return Sh, T, Sy
 
 
 def run(only_groups=False):

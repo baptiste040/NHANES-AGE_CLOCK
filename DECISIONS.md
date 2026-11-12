@@ -3173,3 +3173,30 @@ Recherches PubMed (filtre « pubmed pmc », revues et méta-analyses) :
    groupe.
 6. **Accéléromètre et hormones.** Abandon de l'accéléromètre 2011-2014 validé. Exclusion des hormones
    validée, avec la limite de la SHBG sous pilule écrite dans le rapport.
+
+### Résultat — programme « panel », Q3 (2026-11-12)
+
+Rapport : `reports/panel/Q3_POPULATIONS.md`. Pré-enregistrement : commit `daba713`.
+
+- **« Inadapté »** :
+  - ferritine après la ménopause (+196 %, 2,1 fois le changement détectable ; femmes de 45 à
+    49 ans seulement) ;
+  - glycémie à jeun ≥ 6,1 mmol/L après la ménopause (11,8 % contre 5,1 %) ;
+  - protéines totales et globulines basses chez les femmes très actives (5 et 6 femmes sur 48).
+- **Ailleurs, les décalages restent sous le changement détectable**, souvent entre 0,3 et 0,9 fois.
+  Les plus forts : pilule (CRP ×2, vitamine D +46 %, TG +27 %) ; très actifs (CRP, GGT, insuline) ;
+  favorisée (GGT, CRP, TG/HDL, HOMA-IR).
+- **P1 non vérifiée.** Chez les très actifs, aucun excès de faux signaux pour la créatinine, le
+  DFGe, l'ASAT ou l'hémoglobine.
+- **Centile « population générale »** : la personne médiane du groupe favorisé et sain est à au
+  moins 10 points du 50e centile pour 56 couples (marqueur, sexe) sur 133, et jusqu'à 26 points.
+- **Attentes confirmées** : pilule 7/7 ; ménopause 6/9 ; très actifs 5/14 (2 non estimables,
+  2 contredites sous réserve de la créatinine arrondie).
+- **Écarts** :
+  - seuils de vitamine D convertis en nmol/L (erreur d'unité repérée à la lecture des premiers
+    résultats, taux recalculés ; décalages inchangés) ;
+  - relance sur 4 processus après un arrêt pour manque de mémoire ;
+  - régression médiane peu fiable pour la créatinine arrondie à 0,1 mg/dL (lecture par les
+    moindres carrés) ;
+  - ferritine mesurée seulement chez les femmes de moins de 50 ans, CK absente en 2003-2010 ;
+  - analyses non pré-enregistrées signalées dans le rapport.

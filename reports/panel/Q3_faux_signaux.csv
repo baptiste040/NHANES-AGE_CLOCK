@@ -1,0 +1,1415 @@
+groupe,sexe,ages,id,type,cote,seuil,variante,n_sains_groupe,taux_groupe,n_reference,taux_reference,rapport,regle_taux,estimable
+tres_actifs,H,30-55,wbc,S,bas,bas (S),,44,0.022727272727272728,1239,0.025020177562550445,0.908357771260997,False,True
+tres_actifs,H,30-55,wbc,S,haut,haut (S),,44,0.022727272727272728,1239,0.01937046004842615,1.1732954545454546,False,True
+tres_actifs,H,30-55,neut_pct,S,bas,bas (S),,44,0.045454545454545456,1239,0.025020177562550445,1.816715542521994,False,True
+tres_actifs,H,30-55,neut_pct,S,haut,haut (S),,44,0.09090909090909091,1239,0.020177562550443905,4.505454545454546,False,True
+tres_actifs,H,30-55,lymph_pct,S,bas,bas (S),,44,0.06818181818181818,1239,0.021791767554479417,3.128787878787879,False,True
+tres_actifs,H,30-55,lymph_pct,S,haut,haut (S),,44,0.06818181818181818,1239,0.023405972558514933,2.9130094043887143,False,True
+tres_actifs,H,30-55,mono_pct,S,bas,bas (S),,44,0.0,1239,0.026634382566585957,0.0,False,True
+tres_actifs,H,30-55,mono_pct,S,haut,haut (S),,44,0.06818181818181818,1239,0.020984665052461663,3.2491258741258737,False,True
+tres_actifs,H,30-55,eos_pct,S,bas,bas (S),,44,0.0,1239,0.013720742534301856,0.0,False,True
+tres_actifs,H,30-55,eos_pct,S,haut,haut (S),,44,0.045454545454545456,1239,0.031476997578692496,1.444055944055944,False,True
+tres_actifs,H,30-55,baso_pct,S,bas,bas (S),,44,0.022727272727272728,1239,0.010492332526230832,2.1660839160839163,False,True
+tres_actifs,H,30-55,baso_pct,S,haut,haut (S),,44,0.0,1239,0.023405972558514933,0.0,False,True
+tres_actifs,H,30-55,rbc,S,bas,bas (S),,44,0.0,1239,0.031476997578692496,0.0,False,True
+tres_actifs,H,30-55,rbc,S,haut,haut (S),,44,0.045454545454545456,1239,0.02824858757062147,1.6090909090909091,False,True
+tres_actifs,H,30-55,hb,S,bas,bas (S),,44,0.022727272727272728,1239,0.02824858757062147,0.8045454545454546,False,True
+tres_actifs,H,30-55,hb,S,haut,haut (S),,44,0.022727272727272728,1239,0.01694915254237288,1.340909090909091,False,True
+tres_actifs,H,30-55,hct,S,bas,bas (S),,44,0.0,1239,0.025020177562550445,0.0,False,True
+tres_actifs,H,30-55,hct,S,haut,haut (S),,44,0.06818181818181818,1239,0.020984665052461663,3.2491258741258737,False,True
+tres_actifs,H,30-55,mcv,S,bas,bas (S),,44,0.022727272727272728,1239,0.02824858757062147,0.8045454545454546,False,True
+tres_actifs,H,30-55,mcv,S,haut,haut (S),,44,0.045454545454545456,1239,0.026634382566585957,1.7066115702479339,False,True
+tres_actifs,H,30-55,mch,S,bas,bas (S),,44,0.022727272727272728,1239,0.02824858757062147,0.8045454545454546,False,True
+tres_actifs,H,30-55,mch,S,haut,haut (S),,44,0.022727272727272728,1239,0.021791767554479417,1.042929292929293,False,True
+tres_actifs,H,30-55,mchc,S,bas,bas (S),,44,0.0,1239,0.022598870056497175,0.0,False,True
+tres_actifs,H,30-55,mchc,S,haut,haut (S),,44,0.0,1239,0.03066989507667474,0.0,False,True
+tres_actifs,H,30-55,rdw,S,bas,bas (S),,44,0.045454545454545456,1239,0.01937046004842615,2.346590909090909,False,True
+tres_actifs,H,30-55,rdw,S,haut,haut (S),,44,0.0,1239,0.022598870056497175,0.0,False,True
+tres_actifs,H,30-55,plt,S,bas,bas (S),,44,0.0,1239,0.023405972558514933,0.0,False,True
+tres_actifs,H,30-55,plt,S,haut,haut (S),,44,0.0,1239,0.01937046004842615,0.0,False,True
+tres_actifs,H,30-55,mpv,S,bas,bas (S),,44,0.045454545454545456,1239,0.020984665052461663,2.1660839160839163,False,True
+tres_actifs,H,30-55,mpv,S,haut,haut (S),,44,0.022727272727272728,1239,0.020177562550443905,1.1263636363636365,False,True
+tres_actifs,H,30-55,insulin,S,bas,bas (S),,17,0.11764705882352941,558,0.023297491039426525,5.049773755656108,False,False
+tres_actifs,H,30-55,insulin,S,haut,haut (S),,17,0.0,558,0.014336917562724014,0.0,False,False
+tres_actifs,H,30-55,tc,S,bas,bas (S),,44,0.0,1241,0.018533440773569703,0.0,False,True
+tres_actifs,H,30-55,tc,S,haut,haut (S),,44,0.045454545454545456,1241,0.031426269137792104,1.4463869463869463,False,True
+tres_actifs,H,30-55,hdl,S,bas,bas (S),,44,0.0,1241,0.029008863819500404,0.0,False,True
+tres_actifs,H,30-55,hdl,S,haut,haut (S),,44,0.022727272727272728,1241,0.024174053182917002,0.9401515151515152,False,True
+tres_actifs,H,30-55,alt,S,bas,bas (S),,44,0.022727272727272728,1236,0.013754045307443365,1.6524064171122996,False,True
+tres_actifs,H,30-55,alt,S,haut,haut (S),,44,0.045454545454545456,1236,0.029935275080906147,1.5184275184275187,False,True
+tres_actifs,H,30-55,ast,S,bas,bas (S),,44,0.022727272727272728,1236,0.016181229773462782,1.4045454545454548,False,True
+tres_actifs,H,30-55,ast,S,haut,haut (S),,44,0.045454545454545456,1236,0.02669902912621359,1.7024793388429753,False,True
+tres_actifs,H,30-55,ggt,S,bas,bas (S),,44,0.0,1239,0.012106537530266344,0.0,False,True
+tres_actifs,H,30-55,ggt,S,haut,haut (S),,44,0.045454545454545456,1239,0.031476997578692496,1.444055944055944,False,True
+tres_actifs,H,30-55,alp,S,bas,bas (S),,44,0.022727272727272728,1239,0.026634382566585957,0.8533057851239669,False,True
+tres_actifs,H,30-55,alp,S,haut,haut (S),,44,0.06818181818181818,1239,0.01937046004842615,3.5198863636363633,False,True
+tres_actifs,H,30-55,bili,S,bas,bas (S),,44,0.022727272727272728,1238,0.012116316639741519,1.8757575757575757,False,True
+tres_actifs,H,30-55,bili,S,haut,haut (S),,44,0.0,1238,0.022617124394184167,0.0,False,True
+tres_actifs,H,30-55,albumin,S,bas,bas (S),,44,0.0,1239,0.0258272800645682,0.0,False,True
+tres_actifs,H,30-55,albumin,S,haut,haut (S),,44,0.0,1239,0.011299435028248588,0.0,False,True
+tres_actifs,H,30-55,protein,S,bas,bas (S),,44,0.0,1234,0.02025931928687196,0.0,False,True
+tres_actifs,H,30-55,protein,S,haut,haut (S),,44,0.022727272727272728,1234,0.023500810372771474,0.9670846394984327,False,True
+tres_actifs,H,30-55,globulin,S,bas,bas (S),,44,0.022727272727272728,1234,0.02106969205834684,1.0786713286713288,False,True
+tres_actifs,H,30-55,globulin,S,haut,haut (S),,44,0.045454545454545456,1234,0.024311183144246355,1.8696969696969696,False,True
+tres_actifs,H,30-55,creat,S,bas,bas (S),,44,0.045454545454545456,1239,0.026634382566585957,1.7066115702479339,False,True
+tres_actifs,H,30-55,creat,S,haut,haut (S),,44,0.022727272727272728,1239,0.0258272800645682,0.8799715909090909,False,True
+tres_actifs,H,30-55,urea,S,bas,bas (S),,44,0.022727272727272728,1239,0.01775625504439064,1.2799586776859504,False,True
+tres_actifs,H,30-55,urea,S,haut,haut (S),,44,0.0,1239,0.018563357546408393,0.0,False,True
+tres_actifs,H,30-55,na,S,bas,bas (S),,44,0.0,1239,0.016142050040355124,0.0,False,True
+tres_actifs,H,30-55,na,S,haut,haut (S),,44,0.0,1239,0.013720742534301856,0.0,False,True
+tres_actifs,H,30-55,k,S,bas,bas (S),,44,0.0,1239,0.004035512510088781,0.0,False,True
+tres_actifs,H,30-55,k,S,haut,haut (S),,44,0.045454545454545456,1239,0.014527845036319613,3.128787878787879,False,True
+tres_actifs,H,30-55,cl,S,bas,bas (S),,44,0.0,1239,0.01533494753833737,0.0,False,True
+tres_actifs,H,30-55,cl,S,haut,haut (S),,44,0.045454545454545456,1239,0.01533494753833737,2.964114832535885,False,True
+tres_actifs,H,30-55,hco3,S,bas,bas (S),,44,0.045454545454545456,1236,0.025080906148867314,1.812316715542522,False,True
+tres_actifs,H,30-55,hco3,S,haut,haut (S),,44,0.022727272727272728,1236,0.019417475728155338,1.1704545454545456,False,True
+tres_actifs,H,30-55,osmo,S,bas,bas (S),,44,0.0,1239,0.0016142050040355124,0.0,False,True
+tres_actifs,H,30-55,osmo,S,haut,haut (S),,44,0.75,1239,0.7651331719128329,0.9802215189873418,False,True
+tres_actifs,H,30-55,ca,S,bas,bas (S),,44,0.0,1239,0.020177562550443905,0.0,False,True
+tres_actifs,H,30-55,ca,S,haut,haut (S),,44,0.045454545454545456,1239,0.020984665052461663,2.1660839160839163,False,True
+tres_actifs,H,30-55,iron,S,bas,bas (S),,44,0.06818181818181818,1239,0.01775625504439064,3.8398760330578505,False,True
+tres_actifs,H,30-55,iron,S,haut,haut (S),,44,0.022727272727272728,1239,0.021791767554479417,1.042929292929293,False,True
+tres_actifs,H,30-55,urate,S,bas,bas (S),,44,0.045454545454545456,1239,0.01937046004842615,2.346590909090909,False,True
+tres_actifs,H,30-55,urate,S,haut,haut (S),,44,0.022727272727272728,1239,0.02744148506860371,0.8282085561497327,False,True
+tres_actifs,H,30-55,phos,S,bas,bas (S),,44,0.045454545454545456,1239,0.026634382566585957,1.7066115702479339,False,True
+tres_actifs,H,30-55,phos,S,haut,haut (S),,44,0.0,1239,0.01937046004842615,0.0,False,True
+tres_actifs,H,30-55,crp,S,bas,bas (S),,44,0.0,1242,0.0,,False,True
+tres_actifs,H,30-55,crp,S,haut,haut (S),,44,0.045454545454545456,1242,0.026570048309178744,1.7107438016528926,False,True
+tres_actifs,H,30-55,b12,S,bas,bas (S),,43,0.06976744186046512,544,0.022058823529411766,3.1627906976744184,False,True
+tres_actifs,H,30-55,b12,S,haut,haut (S),,43,0.046511627906976744,544,0.03308823529411765,1.4056847545219637,False,True
+tres_actifs,H,30-55,rbc_folate,S,bas,bas (S),,44,0.0,550,0.025454545454545455,0.0,False,True
+tres_actifs,H,30-55,rbc_folate,S,haut,haut (S),,44,0.0,550,0.023636363636363636,0.0,False,True
+tres_actifs,H,30-55,ferritin,S,bas,bas (S),,0,,0,,,False,False
+tres_actifs,H,30-55,ferritin,S,haut,haut (S),,0,,0,,,False,False
+tres_actifs,H,30-55,tibc,S,bas,bas (S),,0,,0,,,False,False
+tres_actifs,H,30-55,tibc,S,haut,haut (S),,0,,0,,,False,False
+tres_actifs,H,30-55,tsat,S,bas,bas (S),,0,,0,,,False,False
+tres_actifs,H,30-55,tsat,S,haut,haut (S),,0,,0,,,False,False
+tres_actifs,H,30-55,hcy,S,bas,bas (S),,44,0.045454545454545456,552,0.018115942028985508,2.5090909090909093,False,True
+tres_actifs,H,30-55,hcy,S,haut,haut (S),,44,0.045454545454545456,552,0.02717391304347826,1.6727272727272728,False,True
+tres_actifs,H,30-55,apob,S,bas,bas (S),,11,0.0,497,0.018108651911468814,0.0,False,False
+tres_actifs,H,30-55,apob,S,haut,haut (S),,11,0.0,497,0.03822937625754527,0.0,False,False
+tres_actifs,H,30-55,glu_fast,R,haut,"≥ 6,1 mmol/L (110 mg/dL) [OMS]",OMS,17,0.058823529411764705,562,0.13345195729537365,0.4407843137254902,False,False
+tres_actifs,H,30-55,glu_fast,R,haut,"≥ 5,6 mmol/L (100 mg/dL) [ADA]",ADA,17,0.29411764705882354,562,0.47153024911032027,0.6237513873473919,False,False
+tres_actifs,H,30-55,hba1c,R,haut,"≥ 6,0 % [OMS]",OMS,44,0.0,1239,0.04600484261501211,0.0,False,True
+tres_actifs,H,30-55,hba1c,R,haut,"≥ 5,7 % [ADA]",ADA,44,0.18181818181818182,1239,0.1791767554479419,1.0147420147420148,False,True
+tres_actifs,H,30-55,ldl,R,haut,"≥ 3,0 mmol/L (116 mg/dL), objectif du risque faible",,17,0.5294117647058824,562,0.6103202846975089,0.8674326873606586,False,False
+tres_actifs,H,30-55,non_hdl,R,haut,"≥ 3,4 mmol/L (130 mg/dL), objectif du risque modéré",,44,0.7045454545454546,1241,0.734085414987913,0.9597595050394172,False,True
+tres_actifs,H,30-55,tg_fast,R,haut,"≥ 1,7 mmol/L (150 mg/dL)",,17,0.11764705882352941,562,0.30782918149466193,0.38218293097585854,False,False
+tres_actifs,H,30-55,egfr,R,bas,"< 60 mL/min/1,73 m² (G3a et au-delà)",,44,0.0,1239,0.00887812752219532,0.0,False,True
+tres_actifs,H,30-55,acr,R,haut,"≥ 3 mg/mmol (30 mg/g), A2",,43,0.046511627906976744,1229,0.028478437754271765,1.6332225913621263,False,True
+tres_actifs,H,30-55,vitd,R,bas,< 20 ng/mL (50 nmol/L),,44,0.3181818181818182,1181,0.2972057578323455,1.0705775705775704,False,True
+tres_actifs,H,30-55,vitd,R,bas,< 30 ng/mL (75 nmol/L) [sensibilité 30],sensibilité 30,44,0.75,1181,0.7620660457239627,0.9841666666666666,False,True
+tres_actifs,F,30-55,wbc,S,bas,bas (S),,47,0.06382978723404255,1386,0.025252525252525252,2.527659574468085,False,True
+tres_actifs,F,30-55,wbc,S,haut,haut (S),,47,0.0425531914893617,1386,0.02813852813852814,1.5122749590834696,False,True
+tres_actifs,F,30-55,neut_pct,S,bas,bas (S),,47,0.0,1381,0.024619840695148443,0.0,False,True
+tres_actifs,F,30-55,neut_pct,S,haut,haut (S),,47,0.06382978723404255,1381,0.02389572773352643,2.6711798839458414,False,True
+tres_actifs,F,30-55,lymph_pct,S,bas,bas (S),,47,0.06382978723404255,1381,0.026792179580014484,2.3824036802760205,False,True
+tres_actifs,F,30-55,lymph_pct,S,haut,haut (S),,47,0.0,1381,0.025343953656770456,0.0,False,True
+tres_actifs,F,30-55,mono_pct,S,bas,bas (S),,47,0.02127659574468085,1381,0.02389572773352643,0.8903932946486138,False,True
+tres_actifs,F,30-55,mono_pct,S,haut,haut (S),,47,0.0,1381,0.01882693700217234,0.0,False,True
+tres_actifs,F,30-55,eos_pct,S,bas,bas (S),,47,0.0,1381,0.024619840695148443,0.0,False,True
+tres_actifs,F,30-55,eos_pct,S,haut,haut (S),,47,0.0,1381,0.024619840695148443,0.0,False,True
+tres_actifs,F,30-55,baso_pct,S,bas,bas (S),,47,0.02127659574468085,1381,0.0065170166545981175,3.264775413711584,False,True
+tres_actifs,F,30-55,baso_pct,S,haut,haut (S),,47,0.0,1381,0.024619840695148443,0.0,False,True
+tres_actifs,F,30-55,rbc,S,bas,bas (S),,47,0.02127659574468085,1386,0.02958152958152958,0.7192527244421381,False,True
+tres_actifs,F,30-55,rbc,S,haut,haut (S),,47,0.0851063829787234,1386,0.022366522366522368,3.8050789293067946,False,True
+tres_actifs,F,30-55,hb,S,bas,bas (S),,47,0.02127659574468085,1386,0.027417027417027416,0.7760358342665173,False,True
+tres_actifs,F,30-55,hb,S,haut,haut (S),,47,0.02127659574468085,1386,0.023809523809523808,0.8936170212765958,False,True
+tres_actifs,F,30-55,hct,S,bas,bas (S),,47,0.02127659574468085,1386,0.025974025974025976,0.8191489361702127,False,True
+tres_actifs,F,30-55,hct,S,haut,haut (S),,47,0.0425531914893617,1386,0.025252525252525252,1.6851063829787234,False,True
+tres_actifs,F,30-55,mcv,S,bas,bas (S),,47,0.0425531914893617,1386,0.02886002886002886,1.474468085106383,False,True
+tres_actifs,F,30-55,mcv,S,haut,haut (S),,47,0.02127659574468085,1386,0.024531024531024532,0.867334167709637,False,True
+tres_actifs,F,30-55,mch,S,bas,bas (S),,47,0.0425531914893617,1386,0.02886002886002886,1.474468085106383,False,True
+tres_actifs,F,30-55,mch,S,haut,haut (S),,47,0.02127659574468085,1386,0.025252525252525252,0.8425531914893617,False,True
+tres_actifs,F,30-55,mchc,S,bas,bas (S),,47,0.0425531914893617,1386,0.023809523809523808,1.7872340425531916,False,True
+tres_actifs,F,30-55,mchc,S,haut,haut (S),,47,0.0,1386,0.025974025974025976,0.0,False,True
+tres_actifs,F,30-55,rdw,S,bas,bas (S),,47,0.0425531914893617,1386,0.01875901875901876,2.2684124386252043,False,True
+tres_actifs,F,30-55,rdw,S,haut,haut (S),,47,0.0,1386,0.020923520923520924,0.0,False,True
+tres_actifs,F,30-55,plt,S,bas,bas (S),,47,0.0,1386,0.023088023088023088,0.0,False,True
+tres_actifs,F,30-55,plt,S,haut,haut (S),,47,0.0,1386,0.023809523809523808,0.0,False,True
+tres_actifs,F,30-55,mpv,S,bas,bas (S),,47,0.0,1386,0.017316017316017316,0.0,False,True
+tres_actifs,F,30-55,mpv,S,haut,haut (S),,47,0.0,1386,0.024531024531024532,0.0,False,True
+tres_actifs,F,30-55,insulin,S,bas,bas (S),,21,0.09523809523809523,646,0.02321981424148607,4.101587301587301,False,False
+tres_actifs,F,30-55,insulin,S,haut,haut (S),,21,0.047619047619047616,646,0.01393188854489164,3.417989417989418,False,False
+tres_actifs,F,30-55,tc,S,bas,bas (S),,48,0.041666666666666664,1388,0.02089337175792507,1.9942528735632183,False,True
+tres_actifs,F,30-55,tc,S,haut,haut (S),,48,0.020833333333333332,1388,0.024495677233429394,0.8504901960784313,False,True
+tres_actifs,F,30-55,hdl,S,bas,bas (S),,48,0.020833333333333332,1388,0.023054755043227664,0.9036458333333334,False,True
+tres_actifs,F,30-55,hdl,S,haut,haut (S),,48,0.08333333333333333,1388,0.02521613832853026,3.3047619047619046,False,True
+tres_actifs,F,30-55,alt,S,bas,bas (S),,48,0.0,1387,0.01946647440519106,0.0,False,True
+tres_actifs,F,30-55,alt,S,haut,haut (S),,48,0.0,1387,0.026676279740447006,0.0,False,True
+tres_actifs,F,30-55,ast,S,bas,bas (S),,48,0.020833333333333332,1387,0.01802451333813987,1.1558333333333333,False,True
+tres_actifs,F,30-55,ast,S,haut,haut (S),,48,0.020833333333333332,1387,0.026676279740447006,0.7809684684684685,False,True
+tres_actifs,F,30-55,ggt,S,bas,bas (S),,48,0.0,1388,0.015129682997118156,0.0,False,True
+tres_actifs,F,30-55,ggt,S,haut,haut (S),,48,0.0,1388,0.027377521613832854,0.0,False,True
+tres_actifs,F,30-55,alp,S,bas,bas (S),,48,0.0,1388,0.027377521613832854,0.0,False,True
+tres_actifs,F,30-55,alp,S,haut,haut (S),,48,0.041666666666666664,1388,0.0223342939481268,1.8655913978494623,False,True
+tres_actifs,F,30-55,bili,S,bas,bas (S),,48,0.0,1387,0.005046863734679163,0.0,False,True
+tres_actifs,F,30-55,bili,S,haut,haut (S),,48,0.020833333333333332,1387,0.026676279740447006,0.7809684684684685,False,True
+tres_actifs,F,30-55,albumin,S,bas,bas (S),,48,0.041666666666666664,1388,0.021613832853025938,1.9277777777777776,False,True
+tres_actifs,F,30-55,albumin,S,haut,haut (S),,48,0.0,1388,0.01440922190201729,0.0,False,True
+tres_actifs,F,30-55,protein,S,bas,bas (S),,48,0.10416666666666667,1388,0.025936599423631124,4.016203703703704,True,True
+tres_actifs,F,30-55,protein,S,haut,haut (S),,48,0.0,1388,0.016570605187319884,0.0,False,True
+tres_actifs,F,30-55,globulin,S,bas,bas (S),,48,0.125,1388,0.023054755043227664,5.421875,True,True
+tres_actifs,F,30-55,globulin,S,haut,haut (S),,48,0.0,1388,0.02089337175792507,0.0,False,True
+tres_actifs,F,30-55,creat,S,bas,bas (S),,48,0.020833333333333332,1388,0.01729106628242075,1.204861111111111,False,True
+tres_actifs,F,30-55,creat,S,haut,haut (S),,48,0.08333333333333333,1388,0.0223342939481268,3.7311827956989245,False,True
+tres_actifs,F,30-55,urea,S,bas,bas (S),,48,0.0,1388,0.010086455331412104,0.0,False,True
+tres_actifs,F,30-55,urea,S,haut,haut (S),,48,0.0,1388,0.019452449567723344,0.0,False,True
+tres_actifs,F,30-55,na,S,bas,bas (S),,48,0.020833333333333332,1388,0.010806916426512969,1.9277777777777776,False,True
+tres_actifs,F,30-55,na,S,haut,haut (S),,48,0.0,1388,0.011527377521613832,0.0,False,True
+tres_actifs,F,30-55,k,S,bas,bas (S),,48,0.041666666666666664,1388,0.0223342939481268,1.8655913978494623,False,True
+tres_actifs,F,30-55,k,S,haut,haut (S),,48,0.041666666666666664,1388,0.018731988472622477,2.2243589743589745,False,True
+tres_actifs,F,30-55,cl,S,bas,bas (S),,48,0.0,1388,0.01440922190201729,0.0,False,True
+tres_actifs,F,30-55,cl,S,haut,haut (S),,48,0.020833333333333332,1388,0.012247838616714697,1.7009803921568627,False,True
+tres_actifs,F,30-55,hco3,S,bas,bas (S),,48,0.020833333333333332,1387,0.018745493871665464,1.111378205128205,False,True
+tres_actifs,F,30-55,hco3,S,haut,haut (S),,48,0.0,1387,0.010093727469358327,0.0,False,True
+tres_actifs,F,30-55,osmo,S,bas,bas (S),,48,0.0,1388,0.0007204610951008645,0.0,False,True
+tres_actifs,F,30-55,osmo,S,haut,haut (S),,48,0.6458333333333334,1388,0.8112391930835735,0.7961071640023683,False,True
+tres_actifs,F,30-55,ca,S,bas,bas (S),,48,0.020833333333333332,1388,0.027377521613832854,0.7609649122807016,False,True
+tres_actifs,F,30-55,ca,S,haut,haut (S),,48,0.0,1388,0.019452449567723344,0.0,False,True
+tres_actifs,F,30-55,iron,S,bas,bas (S),,48,0.0625,1387,0.025234318673395817,2.4767857142857146,False,True
+tres_actifs,F,30-55,iron,S,haut,haut (S),,48,0.020833333333333332,1387,0.02595529920692141,0.8026620370370371,False,True
+tres_actifs,F,30-55,urate,S,bas,bas (S),,48,0.0625,1388,0.02881844380403458,2.16875,False,True
+tres_actifs,F,30-55,urate,S,haut,haut (S),,48,0.020833333333333332,1388,0.020172910662824207,1.0327380952380951,False,True
+tres_actifs,F,30-55,phos,S,bas,bas (S),,48,0.0,1388,0.024495677233429394,0.0,False,True
+tres_actifs,F,30-55,phos,S,haut,haut (S),,48,0.0,1388,0.018011527377521614,0.0,False,True
+tres_actifs,F,30-55,crp,S,bas,bas (S),,48,0.0,1389,0.0,,False,True
+tres_actifs,F,30-55,crp,S,haut,haut (S),,48,0.041666666666666664,1389,0.022318214542836574,1.8669354838709675,False,True
+tres_actifs,F,30-55,b12,S,bas,bas (S),,47,0.02127659574468085,569,0.019332161687170474,1.1005802707930368,False,True
+tres_actifs,F,30-55,b12,S,haut,haut (S),,47,0.02127659574468085,569,0.033391915641476276,0.6371780515117581,False,True
+tres_actifs,F,30-55,rbc_folate,S,bas,bas (S),,46,0.021739130434782608,568,0.01584507042253521,1.3719806763285025,False,True
+tres_actifs,F,30-55,rbc_folate,S,haut,haut (S),,46,0.0,568,0.02992957746478873,0.0,False,True
+tres_actifs,F,30-55,ferritin,S,bas,bas (S),,20,0.0,944,0.013771186440677966,0.0,False,False
+tres_actifs,F,30-55,ferritin,S,haut,haut (S),,20,0.05,944,0.03283898305084746,1.5225806451612902,False,False
+tres_actifs,F,30-55,tibc,S,bas,bas (S),,48,0.041666666666666664,573,0.029668411867364748,1.4044117647058822,False,True
+tres_actifs,F,30-55,tibc,S,haut,haut (S),,48,0.041666666666666664,573,0.019197207678883072,2.1704545454545454,False,True
+tres_actifs,F,30-55,tsat,S,bas,bas (S),,48,0.0625,573,0.027923211169284468,2.23828125,False,True
+tres_actifs,F,30-55,tsat,S,haut,haut (S),,48,0.020833333333333332,573,0.02268760907504363,0.9182692307692307,False,True
+tres_actifs,F,30-55,hcy,S,bas,bas (S),,48,0.0625,572,0.033216783216783216,1.881578947368421,False,True
+tres_actifs,F,30-55,hcy,S,haut,haut (S),,48,0.020833333333333332,572,0.022727272727272728,0.9166666666666666,False,True
+tres_actifs,F,30-55,apob,S,bas,bas (S),,9,0.0,548,0.023722627737226276,0.0,False,False
+tres_actifs,F,30-55,apob,S,haut,haut (S),,9,0.0,548,0.021897810218978103,0.0,False,False
+tres_actifs,F,30-55,glu_fast,R,haut,"≥ 6,1 mmol/L (110 mg/dL) [OMS]",OMS,21,0.0,651,0.029185867895545316,0.0,False,False
+tres_actifs,F,30-55,glu_fast,R,haut,"≥ 5,6 mmol/L (100 mg/dL) [ADA]",ADA,21,0.09523809523809523,651,0.19508448540706605,0.4881889763779527,False,False
+tres_actifs,F,30-55,hba1c,R,haut,"≥ 6,0 % [OMS]",OMS,48,0.020833333333333332,1379,0.01885424220449601,1.1049679487179487,False,True
+tres_actifs,F,30-55,hba1c,R,haut,"≥ 5,7 % [ADA]",ADA,48,0.0625,1379,0.08846990572878898,0.7064549180327869,False,True
+tres_actifs,F,30-55,ldl,R,haut,"≥ 3,0 mmol/L (116 mg/dL), objectif du risque faible",,21,0.47619047619047616,650,0.4153846153846154,1.1463844797178129,False,False
+tres_actifs,F,30-55,non_hdl,R,haut,"≥ 3,4 mmol/L (130 mg/dL), objectif du risque modéré",,48,0.4375,1388,0.5072046109510087,0.8625710227272727,False,True
+tres_actifs,F,30-55,tg_fast,R,haut,"≥ 1,7 mmol/L (150 mg/dL)",,21,0.09523809523809523,650,0.11538461538461539,0.8253968253968254,False,False
+tres_actifs,F,30-55,egfr,R,bas,"< 60 mL/min/1,73 m² (G3a et au-delà)",,48,0.0,1388,0.006484149855907781,0.0,False,True
+tres_actifs,F,30-55,acr,R,haut,"≥ 3 mg/mmol (30 mg/g), A2",,48,0.0625,1386,0.05772005772005772,1.0828125,False,True
+tres_actifs,F,30-55,vitd,R,bas,< 20 ng/mL (50 nmol/L),,48,0.1875,1325,0.3041509433962264,0.6164702233250621,False,True
+tres_actifs,F,30-55,vitd,R,bas,< 30 ng/mL (75 nmol/L) [sensibilité 30],sensibilité 30,48,0.6666666666666666,1325,0.7124528301886792,0.9357344632768362,False,True
+tres_actifs_seuil_global,H,30-55,wbc,S,bas,bas (S),,63,0.015873015873015872,1239,0.025020177562550445,0.6344086021505376,False,True
+tres_actifs_seuil_global,H,30-55,wbc,S,haut,haut (S),,63,0.015873015873015872,1239,0.01937046004842615,0.8194444444444443,False,True
+tres_actifs_seuil_global,H,30-55,neut_pct,S,bas,bas (S),,63,0.047619047619047616,1239,0.025020177562550445,1.9032258064516128,False,True
+tres_actifs_seuil_global,H,30-55,neut_pct,S,haut,haut (S),,63,0.06349206349206349,1239,0.020177562550443905,3.1466666666666665,False,True
+tres_actifs_seuil_global,H,30-55,lymph_pct,S,bas,bas (S),,63,0.06349206349206349,1239,0.021791767554479417,2.9135802469135803,False,True
+tres_actifs_seuil_global,H,30-55,lymph_pct,S,haut,haut (S),,63,0.06349206349206349,1239,0.023405972558514933,2.7126436781609193,False,True
+tres_actifs_seuil_global,H,30-55,mono_pct,S,bas,bas (S),,63,0.0,1239,0.026634382566585957,0.0,False,True
+tres_actifs_seuil_global,H,30-55,mono_pct,S,haut,haut (S),,63,0.047619047619047616,1239,0.020984665052461663,2.269230769230769,False,True
+tres_actifs_seuil_global,H,30-55,eos_pct,S,bas,bas (S),,63,0.0,1239,0.013720742534301856,0.0,False,True
+tres_actifs_seuil_global,H,30-55,eos_pct,S,haut,haut (S),,63,0.031746031746031744,1239,0.031476997578692496,1.0085470085470085,False,True
+tres_actifs_seuil_global,H,30-55,baso_pct,S,bas,bas (S),,63,0.015873015873015872,1239,0.010492332526230832,1.5128205128205128,False,True
+tres_actifs_seuil_global,H,30-55,baso_pct,S,haut,haut (S),,63,0.0,1239,0.023405972558514933,0.0,False,True
+tres_actifs_seuil_global,H,30-55,rbc,S,bas,bas (S),,63,0.015873015873015872,1239,0.031476997578692496,0.5042735042735043,False,True
+tres_actifs_seuil_global,H,30-55,rbc,S,haut,haut (S),,63,0.031746031746031744,1239,0.02824858757062147,1.1238095238095238,False,True
+tres_actifs_seuil_global,H,30-55,hb,S,bas,bas (S),,63,0.031746031746031744,1239,0.02824858757062147,1.1238095238095238,False,True
+tres_actifs_seuil_global,H,30-55,hb,S,haut,haut (S),,63,0.047619047619047616,1239,0.01694915254237288,2.8095238095238093,False,True
+tres_actifs_seuil_global,H,30-55,hct,S,bas,bas (S),,63,0.0,1239,0.025020177562550445,0.0,False,True
+tres_actifs_seuil_global,H,30-55,hct,S,haut,haut (S),,63,0.07936507936507936,1239,0.020984665052461663,3.782051282051282,False,True
+tres_actifs_seuil_global,H,30-55,mcv,S,bas,bas (S),,63,0.015873015873015872,1239,0.02824858757062147,0.5619047619047619,False,True
+tres_actifs_seuil_global,H,30-55,mcv,S,haut,haut (S),,63,0.06349206349206349,1239,0.026634382566585957,2.3838383838383836,False,True
+tres_actifs_seuil_global,H,30-55,mch,S,bas,bas (S),,63,0.031746031746031744,1239,0.02824858757062147,1.1238095238095238,False,True
+tres_actifs_seuil_global,H,30-55,mch,S,haut,haut (S),,63,0.031746031746031744,1239,0.021791767554479417,1.4567901234567902,False,True
+tres_actifs_seuil_global,H,30-55,mchc,S,bas,bas (S),,63,0.015873015873015872,1239,0.022598870056497175,0.7023809523809523,False,True
+tres_actifs_seuil_global,H,30-55,mchc,S,haut,haut (S),,63,0.0,1239,0.03066989507667474,0.0,False,True
+tres_actifs_seuil_global,H,30-55,rdw,S,bas,bas (S),,63,0.047619047619047616,1239,0.01937046004842615,2.458333333333333,False,True
+tres_actifs_seuil_global,H,30-55,rdw,S,haut,haut (S),,63,0.0,1239,0.022598870056497175,0.0,False,True
+tres_actifs_seuil_global,H,30-55,plt,S,bas,bas (S),,63,0.0,1239,0.023405972558514933,0.0,False,True
+tres_actifs_seuil_global,H,30-55,plt,S,haut,haut (S),,63,0.015873015873015872,1239,0.01937046004842615,0.8194444444444443,False,True
+tres_actifs_seuil_global,H,30-55,mpv,S,bas,bas (S),,63,0.031746031746031744,1239,0.020984665052461663,1.5128205128205128,False,True
+tres_actifs_seuil_global,H,30-55,mpv,S,haut,haut (S),,63,0.031746031746031744,1239,0.020177562550443905,1.5733333333333333,False,True
+tres_actifs_seuil_global,H,30-55,insulin,S,bas,bas (S),,29,0.06896551724137931,558,0.023297491039426525,2.9602122015915118,False,False
+tres_actifs_seuil_global,H,30-55,insulin,S,haut,haut (S),,29,0.0,558,0.014336917562724014,0.0,False,False
+tres_actifs_seuil_global,H,30-55,tc,S,bas,bas (S),,63,0.0,1241,0.018533440773569703,0.0,False,True
+tres_actifs_seuil_global,H,30-55,tc,S,haut,haut (S),,63,0.047619047619047616,1241,0.031426269137792104,1.5152625152625152,False,True
+tres_actifs_seuil_global,H,30-55,hdl,S,bas,bas (S),,63,0.0,1241,0.029008863819500404,0.0,False,True
+tres_actifs_seuil_global,H,30-55,hdl,S,haut,haut (S),,63,0.031746031746031744,1241,0.024174053182917002,1.313227513227513,False,True
+tres_actifs_seuil_global,H,30-55,alt,S,bas,bas (S),,63,0.015873015873015872,1236,0.013754045307443365,1.1540616246498598,False,True
+tres_actifs_seuil_global,H,30-55,alt,S,haut,haut (S),,63,0.06349206349206349,1236,0.029935275080906147,2.120978120978121,False,True
+tres_actifs_seuil_global,H,30-55,ast,S,bas,bas (S),,63,0.031746031746031744,1236,0.016181229773462782,1.961904761904762,False,True
+tres_actifs_seuil_global,H,30-55,ast,S,haut,haut (S),,63,0.06349206349206349,1236,0.02669902912621359,2.378066378066378,False,True
+tres_actifs_seuil_global,H,30-55,ggt,S,bas,bas (S),,63,0.0,1239,0.012106537530266344,0.0,False,True
+tres_actifs_seuil_global,H,30-55,ggt,S,haut,haut (S),,63,0.047619047619047616,1239,0.031476997578692496,1.5128205128205126,False,True
+tres_actifs_seuil_global,H,30-55,alp,S,bas,bas (S),,63,0.031746031746031744,1239,0.026634382566585957,1.1919191919191918,False,True
+tres_actifs_seuil_global,H,30-55,alp,S,haut,haut (S),,63,0.047619047619047616,1239,0.01937046004842615,2.458333333333333,False,True
+tres_actifs_seuil_global,H,30-55,bili,S,bas,bas (S),,63,0.015873015873015872,1238,0.012116316639741519,1.31005291005291,False,True
+tres_actifs_seuil_global,H,30-55,bili,S,haut,haut (S),,63,0.0,1238,0.022617124394184167,0.0,False,True
+tres_actifs_seuil_global,H,30-55,albumin,S,bas,bas (S),,63,0.0,1239,0.0258272800645682,0.0,False,True
+tres_actifs_seuil_global,H,30-55,albumin,S,haut,haut (S),,63,0.0,1239,0.011299435028248588,0.0,False,True
+tres_actifs_seuil_global,H,30-55,protein,S,bas,bas (S),,63,0.015873015873015872,1234,0.02025931928687196,0.7834920634920635,False,True
+tres_actifs_seuil_global,H,30-55,protein,S,haut,haut (S),,63,0.015873015873015872,1234,0.023500810372771474,0.675424192665572,False,True
+tres_actifs_seuil_global,H,30-55,globulin,S,bas,bas (S),,63,0.015873015873015872,1234,0.02106969205834684,0.7533577533577533,False,True
+tres_actifs_seuil_global,H,30-55,globulin,S,haut,haut (S),,63,0.031746031746031744,1234,0.024311183144246355,1.3058201058201058,False,True
+tres_actifs_seuil_global,H,30-55,creat,S,bas,bas (S),,63,0.06349206349206349,1239,0.026634382566585957,2.3838383838383836,False,True
+tres_actifs_seuil_global,H,30-55,creat,S,haut,haut (S),,63,0.015873015873015872,1239,0.0258272800645682,0.6145833333333334,False,True
+tres_actifs_seuil_global,H,30-55,urea,S,bas,bas (S),,63,0.015873015873015872,1239,0.01775625504439064,0.8939393939393938,False,True
+tres_actifs_seuil_global,H,30-55,urea,S,haut,haut (S),,63,0.0,1239,0.018563357546408393,0.0,False,True
+tres_actifs_seuil_global,H,30-55,na,S,bas,bas (S),,63,0.0,1239,0.016142050040355124,0.0,False,True
+tres_actifs_seuil_global,H,30-55,na,S,haut,haut (S),,63,0.0,1239,0.013720742534301856,0.0,False,True
+tres_actifs_seuil_global,H,30-55,k,S,bas,bas (S),,63,0.0,1239,0.004035512510088781,0.0,False,True
+tres_actifs_seuil_global,H,30-55,k,S,haut,haut (S),,63,0.031746031746031744,1239,0.014527845036319613,2.185185185185185,False,True
+tres_actifs_seuil_global,H,30-55,cl,S,bas,bas (S),,63,0.0,1239,0.01533494753833737,0.0,False,True
+tres_actifs_seuil_global,H,30-55,cl,S,haut,haut (S),,63,0.031746031746031744,1239,0.01533494753833737,2.070175438596491,False,True
+tres_actifs_seuil_global,H,30-55,hco3,S,bas,bas (S),,63,0.031746031746031744,1236,0.025080906148867314,1.2657450076804915,False,True
+tres_actifs_seuil_global,H,30-55,hco3,S,haut,haut (S),,63,0.015873015873015872,1236,0.019417475728155338,0.8174603174603174,False,True
+tres_actifs_seuil_global,H,30-55,osmo,S,bas,bas (S),,63,0.0,1239,0.0016142050040355124,0.0,False,True
+tres_actifs_seuil_global,H,30-55,osmo,S,haut,haut (S),,63,0.746031746031746,1239,0.7651331719128329,0.9750351617440225,False,True
+tres_actifs_seuil_global,H,30-55,ca,S,bas,bas (S),,63,0.0,1239,0.020177562550443905,0.0,False,True
+tres_actifs_seuil_global,H,30-55,ca,S,haut,haut (S),,63,0.031746031746031744,1239,0.020984665052461663,1.5128205128205128,False,True
+tres_actifs_seuil_global,H,30-55,iron,S,bas,bas (S),,63,0.047619047619047616,1239,0.01775625504439064,2.6818181818181817,False,True
+tres_actifs_seuil_global,H,30-55,iron,S,haut,haut (S),,63,0.031746031746031744,1239,0.021791767554479417,1.4567901234567902,False,True
+tres_actifs_seuil_global,H,30-55,urate,S,bas,bas (S),,63,0.031746031746031744,1239,0.01937046004842615,1.6388888888888886,False,True
+tres_actifs_seuil_global,H,30-55,urate,S,haut,haut (S),,63,0.015873015873015872,1239,0.02744148506860371,0.5784313725490197,False,True
+tres_actifs_seuil_global,H,30-55,phos,S,bas,bas (S),,63,0.031746031746031744,1239,0.026634382566585957,1.1919191919191918,False,True
+tres_actifs_seuil_global,H,30-55,phos,S,haut,haut (S),,63,0.015873015873015872,1239,0.01937046004842615,0.8194444444444443,False,True
+tres_actifs_seuil_global,H,30-55,crp,S,bas,bas (S),,63,0.0,1242,0.0,,False,True
+tres_actifs_seuil_global,H,30-55,crp,S,haut,haut (S),,63,0.031746031746031744,1242,0.026570048309178744,1.1948051948051948,False,True
+tres_actifs_seuil_global,H,30-55,b12,S,bas,bas (S),,60,0.06666666666666667,544,0.022058823529411766,3.022222222222222,False,True
+tres_actifs_seuil_global,H,30-55,b12,S,haut,haut (S),,60,0.06666666666666667,544,0.03308823529411765,2.0148148148148146,False,True
+tres_actifs_seuil_global,H,30-55,rbc_folate,S,bas,bas (S),,63,0.0,550,0.025454545454545455,0.0,False,True
+tres_actifs_seuil_global,H,30-55,rbc_folate,S,haut,haut (S),,63,0.0,550,0.023636363636363636,0.0,False,True
+tres_actifs_seuil_global,H,30-55,ferritin,S,bas,bas (S),,0,,0,,,False,False
+tres_actifs_seuil_global,H,30-55,ferritin,S,haut,haut (S),,0,,0,,,False,False
+tres_actifs_seuil_global,H,30-55,tibc,S,bas,bas (S),,0,,0,,,False,False
+tres_actifs_seuil_global,H,30-55,tibc,S,haut,haut (S),,0,,0,,,False,False
+tres_actifs_seuil_global,H,30-55,tsat,S,bas,bas (S),,0,,0,,,False,False
+tres_actifs_seuil_global,H,30-55,tsat,S,haut,haut (S),,0,,0,,,False,False
+tres_actifs_seuil_global,H,30-55,hcy,S,bas,bas (S),,63,0.031746031746031744,552,0.018115942028985508,1.7523809523809522,False,True
+tres_actifs_seuil_global,H,30-55,hcy,S,haut,haut (S),,63,0.031746031746031744,552,0.02717391304347826,1.1682539682539683,False,True
+tres_actifs_seuil_global,H,30-55,apob,S,bas,bas (S),,21,0.047619047619047616,497,0.018108651911468814,2.6296296296296293,False,False
+tres_actifs_seuil_global,H,30-55,apob,S,haut,haut (S),,21,0.0,497,0.03822937625754527,0.0,False,False
+tres_actifs_seuil_global,H,30-55,glu_fast,R,haut,"≥ 6,1 mmol/L (110 mg/dL) [OMS]",OMS,29,0.034482758620689655,562,0.13345195729537365,0.2583908045977012,False,False
+tres_actifs_seuil_global,H,30-55,glu_fast,R,haut,"≥ 5,6 mmol/L (100 mg/dL) [ADA]",ADA,29,0.3103448275862069,562,0.47153024911032027,0.6581652569941445,False,False
+tres_actifs_seuil_global,H,30-55,hba1c,R,haut,"≥ 6,0 % [OMS]",OMS,62,0.0,1239,0.04600484261501211,0.0,False,True
+tres_actifs_seuil_global,H,30-55,hba1c,R,haut,"≥ 5,7 % [ADA]",ADA,62,0.14516129032258066,1239,0.1791767554479419,0.810156931124673,False,True
+tres_actifs_seuil_global,H,30-55,ldl,R,haut,"≥ 3,0 mmol/L (116 mg/dL), objectif du risque faible",,29,0.6206896551724138,562,0.6103202846975089,1.0169900472504274,False,False
+tres_actifs_seuil_global,H,30-55,non_hdl,R,haut,"≥ 3,4 mmol/L (130 mg/dL), objectif du risque modéré",,63,0.7142857142857143,1241,0.734085414987913,0.9730280696252156,False,True
+tres_actifs_seuil_global,H,30-55,tg_fast,R,haut,"≥ 1,7 mmol/L (150 mg/dL)",,29,0.2413793103448276,562,0.30782918149466193,0.7841339445883995,False,False
+tres_actifs_seuil_global,H,30-55,egfr,R,bas,"< 60 mL/min/1,73 m² (G3a et au-delà)",,63,0.0,1239,0.00887812752219532,0.0,False,True
+tres_actifs_seuil_global,H,30-55,acr,R,haut,"≥ 3 mg/mmol (30 mg/g), A2",,62,0.04838709677419355,1229,0.028478437754271765,1.6990783410138248,False,True
+tres_actifs_seuil_global,H,30-55,vitd,R,bas,< 20 ng/mL (50 nmol/L),,63,0.30158730158730157,1181,0.2972057578323455,1.0147424591869034,False,True
+tres_actifs_seuil_global,H,30-55,vitd,R,bas,< 30 ng/mL (75 nmol/L) [sensibilité 30],sensibilité 30,63,0.7777777777777778,1181,0.7620660457239627,1.0206172839506173,False,True
+tres_actifs_seuil_global,F,30-55,wbc,S,bas,bas (S),,18,0.05555555555555555,1386,0.025252525252525252,2.1999999999999997,False,False
+tres_actifs_seuil_global,F,30-55,wbc,S,haut,haut (S),,18,0.0,1386,0.02813852813852814,0.0,False,False
+tres_actifs_seuil_global,F,30-55,neut_pct,S,bas,bas (S),,18,0.0,1381,0.024619840695148443,0.0,False,False
+tres_actifs_seuil_global,F,30-55,neut_pct,S,haut,haut (S),,18,0.1111111111111111,1381,0.02389572773352643,4.64983164983165,False,False
+tres_actifs_seuil_global,F,30-55,lymph_pct,S,bas,bas (S),,18,0.05555555555555555,1381,0.026792179580014484,2.073573573573573,False,False
+tres_actifs_seuil_global,F,30-55,lymph_pct,S,haut,haut (S),,18,0.0,1381,0.025343953656770456,0.0,False,False
+tres_actifs_seuil_global,F,30-55,mono_pct,S,bas,bas (S),,18,0.05555555555555555,1381,0.02389572773352643,2.324915824915825,False,False
+tres_actifs_seuil_global,F,30-55,mono_pct,S,haut,haut (S),,18,0.0,1381,0.01882693700217234,0.0,False,False
+tres_actifs_seuil_global,F,30-55,eos_pct,S,bas,bas (S),,18,0.0,1381,0.024619840695148443,0.0,False,False
+tres_actifs_seuil_global,F,30-55,eos_pct,S,haut,haut (S),,18,0.0,1381,0.024619840695148443,0.0,False,False
+tres_actifs_seuil_global,F,30-55,baso_pct,S,bas,bas (S),,18,0.05555555555555555,1381,0.0065170166545981175,8.524691358024691,False,False
+tres_actifs_seuil_global,F,30-55,baso_pct,S,haut,haut (S),,18,0.0,1381,0.024619840695148443,0.0,False,False
+tres_actifs_seuil_global,F,30-55,rbc,S,bas,bas (S),,18,0.05555555555555555,1386,0.02958152958152958,1.8780487804878048,False,False
+tres_actifs_seuil_global,F,30-55,rbc,S,haut,haut (S),,18,0.1111111111111111,1386,0.022366522366522368,4.96774193548387,False,False
+tres_actifs_seuil_global,F,30-55,hb,S,bas,bas (S),,18,0.05555555555555555,1386,0.027417027417027416,2.026315789473684,False,False
+tres_actifs_seuil_global,F,30-55,hb,S,haut,haut (S),,18,0.05555555555555555,1386,0.023809523809523808,2.3333333333333335,False,False
+tres_actifs_seuil_global,F,30-55,hct,S,bas,bas (S),,18,0.05555555555555555,1386,0.025974025974025976,2.138888888888889,False,False
+tres_actifs_seuil_global,F,30-55,hct,S,haut,haut (S),,18,0.05555555555555555,1386,0.025252525252525252,2.1999999999999997,False,False
+tres_actifs_seuil_global,F,30-55,mcv,S,bas,bas (S),,18,0.05555555555555555,1386,0.02886002886002886,1.9249999999999998,False,False
+tres_actifs_seuil_global,F,30-55,mcv,S,haut,haut (S),,18,0.0,1386,0.024531024531024532,0.0,False,False
+tres_actifs_seuil_global,F,30-55,mch,S,bas,bas (S),,18,0.05555555555555555,1386,0.02886002886002886,1.9249999999999998,False,False
+tres_actifs_seuil_global,F,30-55,mch,S,haut,haut (S),,18,0.0,1386,0.025252525252525252,0.0,False,False
+tres_actifs_seuil_global,F,30-55,mchc,S,bas,bas (S),,18,0.05555555555555555,1386,0.023809523809523808,2.3333333333333335,False,False
+tres_actifs_seuil_global,F,30-55,mchc,S,haut,haut (S),,18,0.0,1386,0.025974025974025976,0.0,False,False
+tres_actifs_seuil_global,F,30-55,rdw,S,bas,bas (S),,18,0.0,1386,0.01875901875901876,0.0,False,False
+tres_actifs_seuil_global,F,30-55,rdw,S,haut,haut (S),,18,0.0,1386,0.020923520923520924,0.0,False,False
+tres_actifs_seuil_global,F,30-55,plt,S,bas,bas (S),,18,0.0,1386,0.023088023088023088,0.0,False,False
+tres_actifs_seuil_global,F,30-55,plt,S,haut,haut (S),,18,0.0,1386,0.023809523809523808,0.0,False,False
+tres_actifs_seuil_global,F,30-55,mpv,S,bas,bas (S),,18,0.0,1386,0.017316017316017316,0.0,False,False
+tres_actifs_seuil_global,F,30-55,mpv,S,haut,haut (S),,18,0.0,1386,0.024531024531024532,0.0,False,False
+tres_actifs_seuil_global,F,30-55,insulin,S,bas,bas (S),,8,0.0,646,0.02321981424148607,0.0,False,False
+tres_actifs_seuil_global,F,30-55,insulin,S,haut,haut (S),,8,0.125,646,0.01393188854489164,8.972222222222223,False,False
+tres_actifs_seuil_global,F,30-55,tc,S,bas,bas (S),,18,0.0,1388,0.02089337175792507,0.0,False,False
+tres_actifs_seuil_global,F,30-55,tc,S,haut,haut (S),,18,0.05555555555555555,1388,0.024495677233429394,2.2679738562091503,False,False
+tres_actifs_seuil_global,F,30-55,hdl,S,bas,bas (S),,18,0.05555555555555555,1388,0.023054755043227664,2.4097222222222223,False,False
+tres_actifs_seuil_global,F,30-55,hdl,S,haut,haut (S),,18,0.1111111111111111,1388,0.02521613832853026,4.406349206349206,False,False
+tres_actifs_seuil_global,F,30-55,alt,S,bas,bas (S),,18,0.0,1387,0.01946647440519106,0.0,False,False
+tres_actifs_seuil_global,F,30-55,alt,S,haut,haut (S),,18,0.0,1387,0.026676279740447006,0.0,False,False
+tres_actifs_seuil_global,F,30-55,ast,S,bas,bas (S),,18,0.0,1387,0.01802451333813987,0.0,False,False
+tres_actifs_seuil_global,F,30-55,ast,S,haut,haut (S),,18,0.0,1387,0.026676279740447006,0.0,False,False
+tres_actifs_seuil_global,F,30-55,ggt,S,bas,bas (S),,18,0.0,1388,0.015129682997118156,0.0,False,False
+tres_actifs_seuil_global,F,30-55,ggt,S,haut,haut (S),,18,0.0,1388,0.027377521613832854,0.0,False,False
+tres_actifs_seuil_global,F,30-55,alp,S,bas,bas (S),,18,0.0,1388,0.027377521613832854,0.0,False,False
+tres_actifs_seuil_global,F,30-55,alp,S,haut,haut (S),,18,0.05555555555555555,1388,0.0223342939481268,2.487455197132616,False,False
+tres_actifs_seuil_global,F,30-55,bili,S,bas,bas (S),,18,0.0,1387,0.005046863734679163,0.0,False,False
+tres_actifs_seuil_global,F,30-55,bili,S,haut,haut (S),,18,0.0,1387,0.026676279740447006,0.0,False,False
+tres_actifs_seuil_global,F,30-55,albumin,S,bas,bas (S),,18,0.05555555555555555,1388,0.021613832853025938,2.57037037037037,False,False
+tres_actifs_seuil_global,F,30-55,albumin,S,haut,haut (S),,18,0.0,1388,0.01440922190201729,0.0,False,False
+tres_actifs_seuil_global,F,30-55,protein,S,bas,bas (S),,18,0.0,1388,0.025936599423631124,0.0,False,False
+tres_actifs_seuil_global,F,30-55,protein,S,haut,haut (S),,18,0.0,1388,0.016570605187319884,0.0,False,False
+tres_actifs_seuil_global,F,30-55,globulin,S,bas,bas (S),,18,0.0,1388,0.023054755043227664,0.0,False,False
+tres_actifs_seuil_global,F,30-55,globulin,S,haut,haut (S),,18,0.0,1388,0.02089337175792507,0.0,False,False
+tres_actifs_seuil_global,F,30-55,creat,S,bas,bas (S),,18,0.05555555555555555,1388,0.01729106628242075,3.2129629629629624,False,False
+tres_actifs_seuil_global,F,30-55,creat,S,haut,haut (S),,18,0.05555555555555555,1388,0.0223342939481268,2.487455197132616,False,False
+tres_actifs_seuil_global,F,30-55,urea,S,bas,bas (S),,18,0.0,1388,0.010086455331412104,0.0,False,False
+tres_actifs_seuil_global,F,30-55,urea,S,haut,haut (S),,18,0.0,1388,0.019452449567723344,0.0,False,False
+tres_actifs_seuil_global,F,30-55,na,S,bas,bas (S),,18,0.0,1388,0.010806916426512969,0.0,False,False
+tres_actifs_seuil_global,F,30-55,na,S,haut,haut (S),,18,0.0,1388,0.011527377521613832,0.0,False,False
+tres_actifs_seuil_global,F,30-55,k,S,bas,bas (S),,18,0.05555555555555555,1388,0.0223342939481268,2.487455197132616,False,False
+tres_actifs_seuil_global,F,30-55,k,S,haut,haut (S),,18,0.05555555555555555,1388,0.018731988472622477,2.965811965811966,False,False
+tres_actifs_seuil_global,F,30-55,cl,S,bas,bas (S),,18,0.0,1388,0.01440922190201729,0.0,False,False
+tres_actifs_seuil_global,F,30-55,cl,S,haut,haut (S),,18,0.0,1388,0.012247838616714697,0.0,False,False
+tres_actifs_seuil_global,F,30-55,hco3,S,bas,bas (S),,18,0.0,1387,0.018745493871665464,0.0,False,False
+tres_actifs_seuil_global,F,30-55,hco3,S,haut,haut (S),,18,0.0,1387,0.010093727469358327,0.0,False,False
+tres_actifs_seuil_global,F,30-55,osmo,S,bas,bas (S),,18,0.0,1388,0.0007204610951008645,0.0,False,False
+tres_actifs_seuil_global,F,30-55,osmo,S,haut,haut (S),,18,0.7222222222222222,1388,0.8112391930835735,0.8902703769488849,False,False
+tres_actifs_seuil_global,F,30-55,ca,S,bas,bas (S),,18,0.0,1388,0.027377521613832854,0.0,False,False
+tres_actifs_seuil_global,F,30-55,ca,S,haut,haut (S),,18,0.0,1388,0.019452449567723344,0.0,False,False
+tres_actifs_seuil_global,F,30-55,iron,S,bas,bas (S),,18,0.05555555555555555,1387,0.025234318673395817,2.2015873015873018,False,False
+tres_actifs_seuil_global,F,30-55,iron,S,haut,haut (S),,18,0.0,1387,0.02595529920692141,0.0,False,False
+tres_actifs_seuil_global,F,30-55,urate,S,bas,bas (S),,18,0.1111111111111111,1388,0.02881844380403458,3.8555555555555556,False,False
+tres_actifs_seuil_global,F,30-55,urate,S,haut,haut (S),,18,0.05555555555555555,1388,0.020172910662824207,2.753968253968254,False,False
+tres_actifs_seuil_global,F,30-55,phos,S,bas,bas (S),,18,0.0,1388,0.024495677233429394,0.0,False,False
+tres_actifs_seuil_global,F,30-55,phos,S,haut,haut (S),,18,0.0,1388,0.018011527377521614,0.0,False,False
+tres_actifs_seuil_global,F,30-55,crp,S,bas,bas (S),,18,0.0,1389,0.0,,False,False
+tres_actifs_seuil_global,F,30-55,crp,S,haut,haut (S),,18,0.0,1389,0.022318214542836574,0.0,False,False
+tres_actifs_seuil_global,F,30-55,b12,S,bas,bas (S),,17,0.058823529411764705,569,0.019332161687170474,3.0427807486631018,False,False
+tres_actifs_seuil_global,F,30-55,b12,S,haut,haut (S),,17,0.058823529411764705,569,0.033391915641476276,1.761609907120743,False,False
+tres_actifs_seuil_global,F,30-55,rbc_folate,S,bas,bas (S),,17,0.058823529411764705,568,0.01584507042253521,3.712418300653595,False,False
+tres_actifs_seuil_global,F,30-55,rbc_folate,S,haut,haut (S),,17,0.0,568,0.02992957746478873,0.0,False,False
+tres_actifs_seuil_global,F,30-55,ferritin,S,bas,bas (S),,5,0.0,944,0.013771186440677966,0.0,False,False
+tres_actifs_seuil_global,F,30-55,ferritin,S,haut,haut (S),,5,0.0,944,0.03283898305084746,0.0,False,False
+tres_actifs_seuil_global,F,30-55,tibc,S,bas,bas (S),,18,0.05555555555555555,573,0.029668411867364748,1.872549019607843,False,False
+tres_actifs_seuil_global,F,30-55,tibc,S,haut,haut (S),,18,0.0,573,0.019197207678883072,0.0,False,False
+tres_actifs_seuil_global,F,30-55,tsat,S,bas,bas (S),,18,0.05555555555555555,573,0.027923211169284468,1.9895833333333333,False,False
+tres_actifs_seuil_global,F,30-55,tsat,S,haut,haut (S),,18,0.0,573,0.02268760907504363,0.0,False,False
+tres_actifs_seuil_global,F,30-55,hcy,S,bas,bas (S),,18,0.1111111111111111,572,0.033216783216783216,3.345029239766082,False,False
+tres_actifs_seuil_global,F,30-55,hcy,S,haut,haut (S),,18,0.0,572,0.022727272727272728,0.0,False,False
+tres_actifs_seuil_global,F,30-55,apob,S,bas,bas (S),,3,0.0,548,0.023722627737226276,0.0,False,False
+tres_actifs_seuil_global,F,30-55,apob,S,haut,haut (S),,3,0.0,548,0.021897810218978103,0.0,False,False
+tres_actifs_seuil_global,F,30-55,glu_fast,R,haut,"≥ 6,1 mmol/L (110 mg/dL) [OMS]",OMS,8,0.0,651,0.029185867895545316,0.0,False,False
+tres_actifs_seuil_global,F,30-55,glu_fast,R,haut,"≥ 5,6 mmol/L (100 mg/dL) [ADA]",ADA,8,0.0,651,0.19508448540706605,0.0,False,False
+tres_actifs_seuil_global,F,30-55,hba1c,R,haut,"≥ 6,0 % [OMS]",OMS,18,0.0,1379,0.01885424220449601,0.0,False,False
+tres_actifs_seuil_global,F,30-55,hba1c,R,haut,"≥ 5,7 % [ADA]",ADA,18,0.05555555555555555,1379,0.08846990572878898,0.627959927140255,False,False
+tres_actifs_seuil_global,F,30-55,ldl,R,haut,"≥ 3,0 mmol/L (116 mg/dL), objectif du risque faible",,8,0.625,650,0.4153846153846154,1.5046296296296295,False,False
+tres_actifs_seuil_global,F,30-55,non_hdl,R,haut,"≥ 3,4 mmol/L (130 mg/dL), objectif du risque modéré",,18,0.6111111111111112,1388,0.5072046109510087,1.2048611111111112,False,False
+tres_actifs_seuil_global,F,30-55,tg_fast,R,haut,"≥ 1,7 mmol/L (150 mg/dL)",,8,0.125,650,0.11538461538461539,1.0833333333333333,False,False
+tres_actifs_seuil_global,F,30-55,egfr,R,bas,"< 60 mL/min/1,73 m² (G3a et au-delà)",,18,0.0,1388,0.006484149855907781,0.0,False,False
+tres_actifs_seuil_global,F,30-55,acr,R,haut,"≥ 3 mg/mmol (30 mg/g), A2",,18,0.16666666666666666,1386,0.05772005772005772,2.8874999999999997,False,False
+tres_actifs_seuil_global,F,30-55,vitd,R,bas,< 20 ng/mL (50 nmol/L),,18,0.2777777777777778,1325,0.3041509433962264,0.9132892197408328,False,False
+tres_actifs_seuil_global,F,30-55,vitd,R,bas,< 30 ng/mL (75 nmol/L) [sensibilité 30],sensibilité 30,18,0.6666666666666666,1325,0.7124528301886792,0.9357344632768362,False,False
+tres_actifs_questionnaire,H,30-55,wbc,S,bas,bas (S),,118,0.00847457627118644,1239,0.025020177562550445,0.3387096774193548,False,True
+tres_actifs_questionnaire,H,30-55,wbc,S,haut,haut (S),,118,0.0,1239,0.01937046004842615,0.0,False,True
+tres_actifs_questionnaire,H,30-55,neut_pct,S,bas,bas (S),,118,0.025423728813559324,1239,0.025020177562550445,1.0161290322580645,False,True
+tres_actifs_questionnaire,H,30-55,neut_pct,S,haut,haut (S),,118,0.01694915254237288,1239,0.020177562550443905,0.8400000000000001,False,True
+tres_actifs_questionnaire,H,30-55,lymph_pct,S,bas,bas (S),,118,0.00847457627118644,1239,0.021791767554479417,0.3888888888888889,False,True
+tres_actifs_questionnaire,H,30-55,lymph_pct,S,haut,haut (S),,118,0.0423728813559322,1239,0.023405972558514933,1.8103448275862066,False,True
+tres_actifs_questionnaire,H,30-55,mono_pct,S,bas,bas (S),,118,0.025423728813559324,1239,0.026634382566585957,0.9545454545454546,False,True
+tres_actifs_questionnaire,H,30-55,mono_pct,S,haut,haut (S),,118,0.03389830508474576,1239,0.020984665052461663,1.6153846153846154,False,True
+tres_actifs_questionnaire,H,30-55,eos_pct,S,bas,bas (S),,118,0.03389830508474576,1239,0.013720742534301856,2.4705882352941178,False,True
+tres_actifs_questionnaire,H,30-55,eos_pct,S,haut,haut (S),,118,0.025423728813559324,1239,0.031476997578692496,0.8076923076923077,False,True
+tres_actifs_questionnaire,H,30-55,baso_pct,S,bas,bas (S),,118,0.0,1239,0.010492332526230832,0.0,False,True
+tres_actifs_questionnaire,H,30-55,baso_pct,S,haut,haut (S),,118,0.05084745762711865,1239,0.023405972558514933,2.1724137931034484,False,True
+tres_actifs_questionnaire,H,30-55,rbc,S,bas,bas (S),,118,0.059322033898305086,1239,0.031476997578692496,1.8846153846153846,False,True
+tres_actifs_questionnaire,H,30-55,rbc,S,haut,haut (S),,118,0.03389830508474576,1239,0.02824858757062147,1.2,False,True
+tres_actifs_questionnaire,H,30-55,hb,S,bas,bas (S),,118,0.05084745762711865,1239,0.02824858757062147,1.8,False,True
+tres_actifs_questionnaire,H,30-55,hb,S,haut,haut (S),,118,0.03389830508474576,1239,0.01694915254237288,2.0,False,True
+tres_actifs_questionnaire,H,30-55,hct,S,bas,bas (S),,118,0.0423728813559322,1239,0.025020177562550445,1.693548387096774,False,True
+tres_actifs_questionnaire,H,30-55,hct,S,haut,haut (S),,118,0.025423728813559324,1239,0.020984665052461663,1.2115384615384617,False,True
+tres_actifs_questionnaire,H,30-55,mcv,S,bas,bas (S),,118,0.0423728813559322,1239,0.02824858757062147,1.5,False,True
+tres_actifs_questionnaire,H,30-55,mcv,S,haut,haut (S),,118,0.025423728813559324,1239,0.026634382566585957,0.9545454545454546,False,True
+tres_actifs_questionnaire,H,30-55,mch,S,bas,bas (S),,118,0.0423728813559322,1239,0.02824858757062147,1.5,False,True
+tres_actifs_questionnaire,H,30-55,mch,S,haut,haut (S),,118,0.03389830508474576,1239,0.021791767554479417,1.5555555555555556,False,True
+tres_actifs_questionnaire,H,30-55,mchc,S,bas,bas (S),,118,0.05084745762711865,1239,0.022598870056497175,2.25,False,True
+tres_actifs_questionnaire,H,30-55,mchc,S,haut,haut (S),,118,0.06779661016949153,1239,0.03066989507667474,2.2105263157894735,False,True
+tres_actifs_questionnaire,H,30-55,rdw,S,bas,bas (S),,118,0.01694915254237288,1239,0.01937046004842615,0.875,False,True
+tres_actifs_questionnaire,H,30-55,rdw,S,haut,haut (S),,118,0.025423728813559324,1239,0.022598870056497175,1.125,False,True
+tres_actifs_questionnaire,H,30-55,plt,S,bas,bas (S),,118,0.025423728813559324,1239,0.023405972558514933,1.0862068965517242,False,True
+tres_actifs_questionnaire,H,30-55,plt,S,haut,haut (S),,118,0.01694915254237288,1239,0.01937046004842615,0.875,False,True
+tres_actifs_questionnaire,H,30-55,mpv,S,bas,bas (S),,118,0.00847457627118644,1239,0.020984665052461663,0.40384615384615385,False,True
+tres_actifs_questionnaire,H,30-55,mpv,S,haut,haut (S),,118,0.01694915254237288,1239,0.020177562550443905,0.8400000000000001,False,True
+tres_actifs_questionnaire,H,30-55,insulin,S,bas,bas (S),,53,0.05660377358490566,558,0.023297491039426525,2.4296081277213353,False,True
+tres_actifs_questionnaire,H,30-55,insulin,S,haut,haut (S),,53,0.018867924528301886,558,0.014336917562724014,1.3160377358490565,False,True
+tres_actifs_questionnaire,H,30-55,tc,S,bas,bas (S),,118,0.00847457627118644,1241,0.018533440773569703,0.4572586588061901,False,True
+tres_actifs_questionnaire,H,30-55,tc,S,haut,haut (S),,118,0.03389830508474576,1241,0.031426269137792104,1.0786614515428075,False,True
+tres_actifs_questionnaire,H,30-55,hdl,S,bas,bas (S),,118,0.03389830508474576,1241,0.029008863819500404,1.1685499058380413,False,True
+tres_actifs_questionnaire,H,30-55,hdl,S,haut,haut (S),,118,0.059322033898305086,1241,0.024174053182917002,2.453954802259887,False,True
+tres_actifs_questionnaire,H,30-55,alt,S,bas,bas (S),,117,0.0,1236,0.013754045307443365,0.0,False,True
+tres_actifs_questionnaire,H,30-55,alt,S,haut,haut (S),,117,0.017094017094017096,1236,0.029935275080906147,0.5710325710325711,False,True
+tres_actifs_questionnaire,H,30-55,ast,S,bas,bas (S),,117,0.008547008547008548,1236,0.016181229773462782,0.5282051282051283,False,True
+tres_actifs_questionnaire,H,30-55,ast,S,haut,haut (S),,117,0.017094017094017096,1236,0.02669902912621359,0.6402486402486404,False,True
+tres_actifs_questionnaire,H,30-55,ggt,S,bas,bas (S),,118,0.025423728813559324,1239,0.012106537530266344,2.1,False,True
+tres_actifs_questionnaire,H,30-55,ggt,S,haut,haut (S),,118,0.01694915254237288,1239,0.031476997578692496,0.5384615384615384,False,True
+tres_actifs_questionnaire,H,30-55,alp,S,bas,bas (S),,118,0.03389830508474576,1239,0.026634382566585957,1.2727272727272727,False,True
+tres_actifs_questionnaire,H,30-55,alp,S,haut,haut (S),,118,0.01694915254237288,1239,0.01937046004842615,0.875,False,True
+tres_actifs_questionnaire,H,30-55,bili,S,bas,bas (S),,118,0.0,1238,0.012116316639741519,0.0,False,True
+tres_actifs_questionnaire,H,30-55,bili,S,haut,haut (S),,118,0.025423728813559324,1238,0.022617124394184167,1.1240920096852303,False,True
+tres_actifs_questionnaire,H,30-55,albumin,S,bas,bas (S),,118,0.01694915254237288,1239,0.0258272800645682,0.65625,False,True
+tres_actifs_questionnaire,H,30-55,albumin,S,haut,haut (S),,118,0.03389830508474576,1239,0.011299435028248588,3.0,False,True
+tres_actifs_questionnaire,H,30-55,protein,S,bas,bas (S),,117,0.008547008547008548,1234,0.02025931928687196,0.4218803418803419,False,True
+tres_actifs_questionnaire,H,30-55,protein,S,haut,haut (S),,117,0.05128205128205128,1234,0.023500810372771474,2.1821396993810787,False,True
+tres_actifs_questionnaire,H,30-55,globulin,S,bas,bas (S),,117,0.02564102564102564,1234,0.02106969205834684,1.2169625246548323,False,True
+tres_actifs_questionnaire,H,30-55,globulin,S,haut,haut (S),,117,0.03418803418803419,1234,0.024311183144246355,1.4062678062678062,False,True
+tres_actifs_questionnaire,H,30-55,creat,S,bas,bas (S),,118,0.03389830508474576,1239,0.026634382566585957,1.2727272727272727,False,True
+tres_actifs_questionnaire,H,30-55,creat,S,haut,haut (S),,118,0.06779661016949153,1239,0.0258272800645682,2.625,False,True
+tres_actifs_questionnaire,H,30-55,urea,S,bas,bas (S),,118,0.01694915254237288,1239,0.01775625504439064,0.9545454545454545,False,True
+tres_actifs_questionnaire,H,30-55,urea,S,haut,haut (S),,118,0.00847457627118644,1239,0.018563357546408393,0.4565217391304348,False,True
+tres_actifs_questionnaire,H,30-55,na,S,bas,bas (S),,118,0.025423728813559324,1239,0.016142050040355124,1.5750000000000002,False,True
+tres_actifs_questionnaire,H,30-55,na,S,haut,haut (S),,118,0.0,1239,0.013720742534301856,0.0,False,True
+tres_actifs_questionnaire,H,30-55,k,S,bas,bas (S),,118,0.00847457627118644,1239,0.004035512510088781,2.1,False,True
+tres_actifs_questionnaire,H,30-55,k,S,haut,haut (S),,118,0.01694915254237288,1239,0.014527845036319613,1.1666666666666665,False,True
+tres_actifs_questionnaire,H,30-55,cl,S,bas,bas (S),,118,0.025423728813559324,1239,0.01533494753833737,1.6578947368421053,False,True
+tres_actifs_questionnaire,H,30-55,cl,S,haut,haut (S),,118,0.0,1239,0.01533494753833737,0.0,False,True
+tres_actifs_questionnaire,H,30-55,hco3,S,bas,bas (S),,117,0.017094017094017096,1236,0.025080906148867314,0.6815550041356494,False,True
+tres_actifs_questionnaire,H,30-55,hco3,S,haut,haut (S),,117,0.02564102564102564,1236,0.019417475728155338,1.3205128205128205,False,True
+tres_actifs_questionnaire,H,30-55,osmo,S,bas,bas (S),,118,0.00847457627118644,1239,0.0016142050040355124,5.25,False,True
+tres_actifs_questionnaire,H,30-55,osmo,S,haut,haut (S),,118,0.7966101694915254,1239,0.7651331719128329,1.0411392405063291,False,True
+tres_actifs_questionnaire,H,30-55,ca,S,bas,bas (S),,118,0.01694915254237288,1239,0.020177562550443905,0.8400000000000001,False,True
+tres_actifs_questionnaire,H,30-55,ca,S,haut,haut (S),,118,0.025423728813559324,1239,0.020984665052461663,1.2115384615384617,False,True
+tres_actifs_questionnaire,H,30-55,iron,S,bas,bas (S),,118,0.00847457627118644,1239,0.01775625504439064,0.47727272727272724,False,True
+tres_actifs_questionnaire,H,30-55,iron,S,haut,haut (S),,118,0.01694915254237288,1239,0.021791767554479417,0.7777777777777778,False,True
+tres_actifs_questionnaire,H,30-55,urate,S,bas,bas (S),,118,0.01694915254237288,1239,0.01937046004842615,0.875,False,True
+tres_actifs_questionnaire,H,30-55,urate,S,haut,haut (S),,118,0.00847457627118644,1239,0.02744148506860371,0.3088235294117647,False,True
+tres_actifs_questionnaire,H,30-55,phos,S,bas,bas (S),,118,0.00847457627118644,1239,0.026634382566585957,0.3181818181818182,False,True
+tres_actifs_questionnaire,H,30-55,phos,S,haut,haut (S),,118,0.00847457627118644,1239,0.01937046004842615,0.4375,False,True
+tres_actifs_questionnaire,H,30-55,crp,S,bas,bas (S),,118,0.0,1242,0.0,,False,True
+tres_actifs_questionnaire,H,30-55,crp,S,haut,haut (S),,118,0.01694915254237288,1242,0.026570048309178744,0.637904468412943,False,True
+tres_actifs_questionnaire,H,30-55,b12,S,bas,bas (S),,41,0.0,544,0.022058823529411766,0.0,False,True
+tres_actifs_questionnaire,H,30-55,b12,S,haut,haut (S),,41,0.024390243902439025,544,0.03308823529411765,0.7371273712737128,False,True
+tres_actifs_questionnaire,H,30-55,rbc_folate,S,bas,bas (S),,39,0.0,550,0.025454545454545455,0.0,False,True
+tres_actifs_questionnaire,H,30-55,rbc_folate,S,haut,haut (S),,39,0.0,550,0.023636363636363636,0.0,False,True
+tres_actifs_questionnaire,H,30-55,ferritin,S,bas,bas (S),,0,,0,,,False,False
+tres_actifs_questionnaire,H,30-55,ferritin,S,haut,haut (S),,0,,0,,,False,False
+tres_actifs_questionnaire,H,30-55,tibc,S,bas,bas (S),,0,,0,,,False,False
+tres_actifs_questionnaire,H,30-55,tibc,S,haut,haut (S),,0,,0,,,False,False
+tres_actifs_questionnaire,H,30-55,tsat,S,bas,bas (S),,0,,0,,,False,False
+tres_actifs_questionnaire,H,30-55,tsat,S,haut,haut (S),,0,,0,,,False,False
+tres_actifs_questionnaire,H,30-55,hcy,S,bas,bas (S),,41,0.0,552,0.018115942028985508,0.0,False,True
+tres_actifs_questionnaire,H,30-55,hcy,S,haut,haut (S),,41,0.024390243902439025,552,0.02717391304347826,0.8975609756097561,False,True
+tres_actifs_questionnaire,H,30-55,apob,S,bas,bas (S),,55,0.0,497,0.018108651911468814,0.0,False,True
+tres_actifs_questionnaire,H,30-55,apob,S,haut,haut (S),,55,0.01818181818181818,497,0.03822937625754527,0.4755980861244019,False,True
+tres_actifs_questionnaire,H,30-55,glu_fast,R,haut,"≥ 6,1 mmol/L (110 mg/dL) [OMS]",OMS,54,0.018518518518518517,562,0.13345195729537365,0.13876543209876543,False,True
+tres_actifs_questionnaire,H,30-55,glu_fast,R,haut,"≥ 5,6 mmol/L (100 mg/dL) [ADA]",ADA,54,0.4444444444444444,562,0.47153024911032027,0.9425576519916142,False,True
+tres_actifs_questionnaire,H,30-55,hba1c,R,haut,"≥ 6,0 % [OMS]",OMS,118,0.01694915254237288,1239,0.04600484261501211,0.3684210526315789,False,True
+tres_actifs_questionnaire,H,30-55,hba1c,R,haut,"≥ 5,7 % [ADA]",ADA,118,0.11016949152542373,1239,0.1791767554479419,0.6148648648648648,False,True
+tres_actifs_questionnaire,H,30-55,ldl,R,haut,"≥ 3,0 mmol/L (116 mg/dL), objectif du risque faible",,54,0.5740740740740741,562,0.6103202846975089,0.9406111651009611,False,True
+tres_actifs_questionnaire,H,30-55,non_hdl,R,haut,"≥ 3,4 mmol/L (130 mg/dL), objectif du risque modéré",,118,0.6610169491525424,1241,0.734085414987913,0.9004632644328266,False,True
+tres_actifs_questionnaire,H,30-55,tg_fast,R,haut,"≥ 1,7 mmol/L (150 mg/dL)",,54,0.25925925925925924,562,0.30782918149466193,0.8422179404838364,False,True
+tres_actifs_questionnaire,H,30-55,egfr,R,bas,"< 60 mL/min/1,73 m² (G3a et au-delà)",,118,0.01694915254237288,1239,0.00887812752219532,1.909090909090909,False,True
+tres_actifs_questionnaire,H,30-55,acr,R,haut,"≥ 3 mg/mmol (30 mg/g), A2",,117,0.0,1229,0.028478437754271765,0.0,False,True
+tres_actifs_questionnaire,H,30-55,vitd,R,bas,< 20 ng/mL (50 nmol/L),,112,0.25,1181,0.2972057578323455,0.8411680911680911,False,True
+tres_actifs_questionnaire,H,30-55,vitd,R,bas,< 30 ng/mL (75 nmol/L) [sensibilité 30],sensibilité 30,112,0.7232142857142857,1181,0.7620660457239627,0.9490178571428571,False,True
+tres_actifs_questionnaire,F,30-55,wbc,S,bas,bas (S),,85,0.03529411764705882,1386,0.025252525252525252,1.3976470588235295,False,True
+tres_actifs_questionnaire,F,30-55,wbc,S,haut,haut (S),,85,0.047058823529411764,1386,0.02813852813852814,1.6723981900452487,False,True
+tres_actifs_questionnaire,F,30-55,neut_pct,S,bas,bas (S),,84,0.023809523809523808,1381,0.024619840695148443,0.9670868347338936,False,True
+tres_actifs_questionnaire,F,30-55,neut_pct,S,haut,haut (S),,84,0.05952380952380952,1381,0.02389572773352643,2.490981240981241,False,True
+tres_actifs_questionnaire,F,30-55,lymph_pct,S,bas,bas (S),,84,0.03571428571428571,1381,0.026792179580014484,1.333011583011583,False,True
+tres_actifs_questionnaire,F,30-55,lymph_pct,S,haut,haut (S),,84,0.023809523809523808,1381,0.025343953656770456,0.9394557823129251,False,True
+tres_actifs_questionnaire,F,30-55,mono_pct,S,bas,bas (S),,84,0.047619047619047616,1381,0.02389572773352643,1.9927849927849928,False,True
+tres_actifs_questionnaire,F,30-55,mono_pct,S,haut,haut (S),,84,0.023809523809523808,1381,0.01882693700217234,1.2646520146520144,False,True
+tres_actifs_questionnaire,F,30-55,eos_pct,S,bas,bas (S),,84,0.03571428571428571,1381,0.024619840695148443,1.4506302521008403,False,True
+tres_actifs_questionnaire,F,30-55,eos_pct,S,haut,haut (S),,84,0.011904761904761904,1381,0.024619840695148443,0.4835434173669468,False,True
+tres_actifs_questionnaire,F,30-55,baso_pct,S,bas,bas (S),,84,0.011904761904761904,1381,0.0065170166545981175,1.8267195767195765,False,True
+tres_actifs_questionnaire,F,30-55,baso_pct,S,haut,haut (S),,84,0.011904761904761904,1381,0.024619840695148443,0.4835434173669468,False,True
+tres_actifs_questionnaire,F,30-55,rbc,S,bas,bas (S),,85,0.0,1386,0.02958152958152958,0.0,False,True
+tres_actifs_questionnaire,F,30-55,rbc,S,haut,haut (S),,85,0.0,1386,0.022366522366522368,0.0,False,True
+tres_actifs_questionnaire,F,30-55,hb,S,bas,bas (S),,85,0.023529411764705882,1386,0.027417027417027416,0.8582043343653251,False,True
+tres_actifs_questionnaire,F,30-55,hb,S,haut,haut (S),,85,0.011764705882352941,1386,0.023809523809523808,0.49411764705882355,False,True
+tres_actifs_questionnaire,F,30-55,hct,S,bas,bas (S),,85,0.03529411764705882,1386,0.025974025974025976,1.3588235294117645,False,True
+tres_actifs_questionnaire,F,30-55,hct,S,haut,haut (S),,85,0.011764705882352941,1386,0.025252525252525252,0.46588235294117647,False,True
+tres_actifs_questionnaire,F,30-55,mcv,S,bas,bas (S),,85,0.023529411764705882,1386,0.02886002886002886,0.8152941176470588,False,True
+tres_actifs_questionnaire,F,30-55,mcv,S,haut,haut (S),,85,0.047058823529411764,1386,0.024531024531024532,1.9183391003460206,False,True
+tres_actifs_questionnaire,F,30-55,mch,S,bas,bas (S),,85,0.023529411764705882,1386,0.02886002886002886,0.8152941176470588,False,True
+tres_actifs_questionnaire,F,30-55,mch,S,haut,haut (S),,85,0.03529411764705882,1386,0.025252525252525252,1.3976470588235295,False,True
+tres_actifs_questionnaire,F,30-55,mchc,S,bas,bas (S),,85,0.03529411764705882,1386,0.023809523809523808,1.4823529411764707,False,True
+tres_actifs_questionnaire,F,30-55,mchc,S,haut,haut (S),,85,0.011764705882352941,1386,0.025974025974025976,0.4529411764705882,False,True
+tres_actifs_questionnaire,F,30-55,rdw,S,bas,bas (S),,85,0.023529411764705882,1386,0.01875901875901876,1.2542986425339366,False,True
+tres_actifs_questionnaire,F,30-55,rdw,S,haut,haut (S),,85,0.011764705882352941,1386,0.020923520923520924,0.5622718052738337,False,True
+tres_actifs_questionnaire,F,30-55,plt,S,bas,bas (S),,85,0.0,1386,0.023088023088023088,0.0,False,True
+tres_actifs_questionnaire,F,30-55,plt,S,haut,haut (S),,85,0.047058823529411764,1386,0.023809523809523808,1.9764705882352942,False,True
+tres_actifs_questionnaire,F,30-55,mpv,S,bas,bas (S),,85,0.0,1386,0.017316017316017316,0.0,False,True
+tres_actifs_questionnaire,F,30-55,mpv,S,haut,haut (S),,85,0.0,1386,0.024531024531024532,0.0,False,True
+tres_actifs_questionnaire,F,30-55,insulin,S,bas,bas (S),,31,0.03225806451612903,646,0.02321981424148607,1.389247311827957,False,True
+tres_actifs_questionnaire,F,30-55,insulin,S,haut,haut (S),,31,0.0,646,0.01393188854489164,0.0,False,True
+tres_actifs_questionnaire,F,30-55,tc,S,bas,bas (S),,86,0.011627906976744186,1388,0.02089337175792507,0.5565356856455493,False,True
+tres_actifs_questionnaire,F,30-55,tc,S,haut,haut (S),,86,0.03488372093023256,1388,0.024495677233429394,1.424076607387141,False,True
+tres_actifs_questionnaire,F,30-55,hdl,S,bas,bas (S),,86,0.0,1388,0.023054755043227664,0.0,False,True
+tres_actifs_questionnaire,F,30-55,hdl,S,haut,haut (S),,86,0.09302325581395349,1388,0.02521613832853026,3.6890365448504983,False,True
+tres_actifs_questionnaire,F,30-55,alt,S,bas,bas (S),,86,0.0,1387,0.01946647440519106,0.0,False,True
+tres_actifs_questionnaire,F,30-55,alt,S,haut,haut (S),,86,0.011627906976744186,1387,0.026676279740447006,0.4358893777498429,False,True
+tres_actifs_questionnaire,F,30-55,ast,S,bas,bas (S),,86,0.023255813953488372,1387,0.01802451333813987,1.2902325581395349,False,True
+tres_actifs_questionnaire,F,30-55,ast,S,haut,haut (S),,86,0.011627906976744186,1387,0.026676279740447006,0.4358893777498429,False,True
+tres_actifs_questionnaire,F,30-55,ggt,S,bas,bas (S),,86,0.011627906976744186,1388,0.015129682997118156,0.7685492801771872,False,True
+tres_actifs_questionnaire,F,30-55,ggt,S,haut,haut (S),,86,0.03488372093023256,1388,0.027377521613832854,1.274173806609547,False,True
+tres_actifs_questionnaire,F,30-55,alp,S,bas,bas (S),,86,0.03488372093023256,1388,0.027377521613832854,1.274173806609547,False,True
+tres_actifs_questionnaire,F,30-55,alp,S,haut,haut (S),,86,0.0,1388,0.0223342939481268,0.0,False,True
+tres_actifs_questionnaire,F,30-55,bili,S,bas,bas (S),,86,0.0,1387,0.005046863734679163,0.0,False,True
+tres_actifs_questionnaire,F,30-55,bili,S,haut,haut (S),,86,0.05813953488372093,1387,0.026676279740447006,2.179446888749214,False,True
+tres_actifs_questionnaire,F,30-55,albumin,S,bas,bas (S),,86,0.011627906976744186,1388,0.021613832853025938,0.537984496124031,False,True
+tres_actifs_questionnaire,F,30-55,albumin,S,haut,haut (S),,86,0.03488372093023256,1388,0.01440922190201729,2.4209302325581397,False,True
+tres_actifs_questionnaire,F,30-55,protein,S,bas,bas (S),,86,0.023255813953488372,1388,0.025936599423631124,0.896640826873385,False,True
+tres_actifs_questionnaire,F,30-55,protein,S,haut,haut (S),,86,0.046511627906976744,1388,0.016570605187319884,2.806875631951466,False,True
+tres_actifs_questionnaire,F,30-55,globulin,S,bas,bas (S),,86,0.023255813953488372,1388,0.023054755043227664,1.0087209302325582,False,True
+tres_actifs_questionnaire,F,30-55,globulin,S,haut,haut (S),,86,0.011627906976744186,1388,0.02089337175792507,0.5565356856455493,False,True
+tres_actifs_questionnaire,F,30-55,creat,S,bas,bas (S),,86,0.011627906976744186,1388,0.01729106628242075,0.6724806201550387,False,True
+tres_actifs_questionnaire,F,30-55,creat,S,haut,haut (S),,86,0.03488372093023256,1388,0.0223342939481268,1.5618904726181546,False,True
+tres_actifs_questionnaire,F,30-55,urea,S,bas,bas (S),,86,0.0,1388,0.010086455331412104,0.0,False,True
+tres_actifs_questionnaire,F,30-55,urea,S,haut,haut (S),,86,0.046511627906976744,1388,0.019452449567723344,2.391042204995693,False,True
+tres_actifs_questionnaire,F,30-55,na,S,bas,bas (S),,86,0.05813953488372093,1388,0.010806916426512969,5.37984496124031,False,True
+tres_actifs_questionnaire,F,30-55,na,S,haut,haut (S),,86,0.0,1388,0.011527377521613832,0.0,False,True
+tres_actifs_questionnaire,F,30-55,k,S,bas,bas (S),,86,0.0,1388,0.0223342939481268,0.0,False,True
+tres_actifs_questionnaire,F,30-55,k,S,haut,haut (S),,86,0.023255813953488372,1388,0.018731988472622477,1.2415026833631486,False,True
+tres_actifs_questionnaire,F,30-55,cl,S,bas,bas (S),,86,0.03488372093023256,1388,0.01440922190201729,2.4209302325581397,False,True
+tres_actifs_questionnaire,F,30-55,cl,S,haut,haut (S),,86,0.011627906976744186,1388,0.012247838616714697,0.9493844049247606,False,True
+tres_actifs_questionnaire,F,30-55,hco3,S,bas,bas (S),,86,0.023255813953488372,1387,0.018745493871665464,1.240608228980322,False,True
+tres_actifs_questionnaire,F,30-55,hco3,S,haut,haut (S),,86,0.0,1387,0.010093727469358327,0.0,False,True
+tres_actifs_questionnaire,F,30-55,osmo,S,bas,bas (S),,86,0.0,1388,0.0007204610951008645,0.0,False,True
+tres_actifs_questionnaire,F,30-55,osmo,S,haut,haut (S),,86,0.7558139534883721,1388,0.8112391930835735,0.9316783014581353,False,True
+tres_actifs_questionnaire,F,30-55,ca,S,bas,bas (S),,86,0.06976744186046512,1388,0.027377521613832854,2.548347613219094,False,True
+tres_actifs_questionnaire,F,30-55,ca,S,haut,haut (S),,86,0.011627906976744186,1388,0.019452449567723344,0.5977605512489232,False,True
+tres_actifs_questionnaire,F,30-55,iron,S,bas,bas (S),,86,0.023255813953488372,1387,0.025234318673395817,0.9215946843853821,False,True
+tres_actifs_questionnaire,F,30-55,iron,S,haut,haut (S),,86,0.03488372093023256,1387,0.02595529920692141,1.3439922480620157,False,True
+tres_actifs_questionnaire,F,30-55,urate,S,bas,bas (S),,86,0.046511627906976744,1388,0.02881844380403458,1.613953488372093,False,True
+tres_actifs_questionnaire,F,30-55,urate,S,haut,haut (S),,86,0.03488372093023256,1388,0.020172910662824207,1.7292358803986712,False,True
+tres_actifs_questionnaire,F,30-55,phos,S,bas,bas (S),,86,0.03488372093023256,1388,0.024495677233429394,1.424076607387141,False,True
+tres_actifs_questionnaire,F,30-55,phos,S,haut,haut (S),,86,0.023255813953488372,1388,0.018011527377521614,1.2911627906976744,False,True
+tres_actifs_questionnaire,F,30-55,crp,S,bas,bas (S),,86,0.0,1389,0.0,,False,True
+tres_actifs_questionnaire,F,30-55,crp,S,haut,haut (S),,86,0.011627906976744186,1389,0.022318214542836574,0.5210052513128282,False,True
+tres_actifs_questionnaire,F,30-55,b12,S,bas,bas (S),,40,0.0,569,0.019332161687170474,0.0,False,True
+tres_actifs_questionnaire,F,30-55,b12,S,haut,haut (S),,40,0.075,569,0.033391915641476276,2.246052631578947,False,True
+tres_actifs_questionnaire,F,30-55,rbc_folate,S,bas,bas (S),,40,0.0,568,0.01584507042253521,0.0,False,True
+tres_actifs_questionnaire,F,30-55,rbc_folate,S,haut,haut (S),,40,0.0,568,0.02992957746478873,0.0,False,True
+tres_actifs_questionnaire,F,30-55,ferritin,S,bas,bas (S),,61,0.0,944,0.013771186440677966,0.0,False,True
+tres_actifs_questionnaire,F,30-55,ferritin,S,haut,haut (S),,61,0.01639344262295082,944,0.03283898305084746,0.49920676890534105,False,True
+tres_actifs_questionnaire,F,30-55,tibc,S,bas,bas (S),,40,0.025,573,0.029668411867364748,0.8426470588235294,False,True
+tres_actifs_questionnaire,F,30-55,tibc,S,haut,haut (S),,40,0.05,573,0.019197207678883072,2.6045454545454545,False,True
+tres_actifs_questionnaire,F,30-55,tsat,S,bas,bas (S),,40,0.0,573,0.027923211169284468,0.0,False,True
+tres_actifs_questionnaire,F,30-55,tsat,S,haut,haut (S),,40,0.025,573,0.02268760907504363,1.101923076923077,False,True
+tres_actifs_questionnaire,F,30-55,hcy,S,bas,bas (S),,40,0.0,572,0.033216783216783216,0.0,False,True
+tres_actifs_questionnaire,F,30-55,hcy,S,haut,haut (S),,40,0.0,572,0.022727272727272728,0.0,False,True
+tres_actifs_questionnaire,F,30-55,apob,S,bas,bas (S),,27,0.037037037037037035,548,0.023722627737226276,1.5612535612535612,False,False
+tres_actifs_questionnaire,F,30-55,apob,S,haut,haut (S),,27,0.037037037037037035,548,0.021897810218978103,1.6913580246913578,False,False
+tres_actifs_questionnaire,F,30-55,glu_fast,R,haut,"≥ 6,1 mmol/L (110 mg/dL) [OMS]",OMS,31,0.0,651,0.029185867895545316,0.0,False,True
+tres_actifs_questionnaire,F,30-55,glu_fast,R,haut,"≥ 5,6 mmol/L (100 mg/dL) [ADA]",ADA,31,0.25806451612903225,651,0.19508448540706605,1.3228346456692914,False,True
+tres_actifs_questionnaire,F,30-55,hba1c,R,haut,"≥ 6,0 % [OMS]",OMS,85,0.011764705882352941,1379,0.01885424220449601,0.6239819004524887,False,True
+tres_actifs_questionnaire,F,30-55,hba1c,R,haut,"≥ 5,7 % [ADA]",ADA,85,0.047058823529411764,1379,0.08846990572878898,0.5319189971070395,False,True
+tres_actifs_questionnaire,F,30-55,ldl,R,haut,"≥ 3,0 mmol/L (116 mg/dL), objectif du risque faible",,31,0.41935483870967744,650,0.4153846153846154,1.009557945041816,False,True
+tres_actifs_questionnaire,F,30-55,non_hdl,R,haut,"≥ 3,4 mmol/L (130 mg/dL), objectif du risque modéré",,86,0.45348837209302323,1388,0.5072046109510087,0.8940935517970401,False,True
+tres_actifs_questionnaire,F,30-55,tg_fast,R,haut,"≥ 1,7 mmol/L (150 mg/dL)",,31,0.12903225806451613,650,0.11538461538461539,1.118279569892473,False,True
+tres_actifs_questionnaire,F,30-55,egfr,R,bas,"< 60 mL/min/1,73 m² (G3a et au-delà)",,86,0.011627906976744186,1388,0.006484149855907781,1.79328165374677,False,True
+tres_actifs_questionnaire,F,30-55,acr,R,haut,"≥ 3 mg/mmol (30 mg/g), A2",,86,0.046511627906976744,1386,0.05772005772005772,0.805813953488372,False,True
+tres_actifs_questionnaire,F,30-55,vitd,R,bas,< 20 ng/mL (50 nmol/L),,79,0.12658227848101267,1325,0.3041509433962264,0.4161824292489871,False,True
+tres_actifs_questionnaire,F,30-55,vitd,R,bas,< 30 ng/mL (75 nmol/L) [sensibilité 30],sensibilité 30,79,0.569620253164557,1325,0.7124528301886792,0.7995199527998285,False,True
+pilule,F,20-49,wbc,S,bas,bas (S),,292,0.0273972602739726,1860,0.023118279569892472,1.1850907932462567,False,True
+pilule,F,20-49,wbc,S,haut,haut (S),,292,0.03767123287671233,1860,0.025268817204301075,1.4908190032060622,False,True
+pilule,F,20-49,neut_pct,S,bas,bas (S),,292,0.0136986301369863,1856,0.025323275862068964,0.5409501603031186,False,True
+pilule,F,20-49,neut_pct,S,haut,haut (S),,292,0.03424657534246575,1856,0.025323275862068964,1.3523754007577966,False,True
+pilule,F,20-49,lymph_pct,S,bas,bas (S),,292,0.04794520547945205,1856,0.02747844827586207,1.744829438624765,False,True
+pilule,F,20-49,lymph_pct,S,haut,haut (S),,292,0.017123287671232876,1856,0.02478448275862069,0.6908874329958308,False,True
+pilule,F,20-49,mono_pct,S,bas,bas (S),,292,0.023972602739726026,1856,0.02209051724137931,1.0851987971934514,False,True
+pilule,F,20-49,mono_pct,S,haut,haut (S),,292,0.010273972602739725,1856,0.01939655172413793,0.5296803652968036,False,True
+pilule,F,20-49,eos_pct,S,bas,bas (S),,292,0.023972602739726026,1856,0.023168103448275863,1.0347244345332907,False,True
+pilule,F,20-49,eos_pct,S,haut,haut (S),,292,0.0136986301369863,1856,0.024245689655172414,0.5649923896499238,False,True
+pilule,F,20-49,baso_pct,S,bas,bas (S),,292,0.00684931506849315,1856,0.009159482758620689,0.7477840451248993,False,True
+pilule,F,20-49,baso_pct,S,haut,haut (S),,292,0.017123287671232876,1856,0.02478448275862069,0.6908874329958308,False,True
+pilule,F,20-49,rbc,S,bas,bas (S),,292,0.010273972602739725,1860,0.020967741935483872,0.4899894625922023,False,True
+pilule,F,20-49,rbc,S,haut,haut (S),,292,0.0136986301369863,1860,0.020967741935483872,0.6533192834562697,False,True
+pilule,F,20-49,hb,S,bas,bas (S),,292,0.00684931506849315,1860,0.026344086021505377,0.25999440872239304,False,True
+pilule,F,20-49,hb,S,haut,haut (S),,292,0.04452054794520548,1860,0.02258064516129032,1.971624266144814,False,True
+pilule,F,20-49,hct,S,bas,bas (S),,292,0.003424657534246575,1860,0.025806451612903226,0.1327054794520548,False,True
+pilule,F,20-49,hct,S,haut,haut (S),,292,0.03424657534246575,1860,0.023118279569892472,1.4813634915578209,False,True
+pilule,F,20-49,mcv,S,bas,bas (S),,292,0.0136986301369863,1860,0.02795698924731183,0.4899894625922023,False,True
+pilule,F,20-49,mcv,S,haut,haut (S),,292,0.017123287671232876,1860,0.021505376344086023,0.7962328767123287,False,True
+pilule,F,20-49,mch,S,bas,bas (S),,292,0.00684931506849315,1860,0.027419354838709678,0.249798549556809,False,True
+pilule,F,20-49,mch,S,haut,haut (S),,292,0.030821917808219176,1860,0.02043010752688172,1.508651766402307,False,True
+pilule,F,20-49,mchc,S,bas,bas (S),,292,0.00684931506849315,1860,0.023118279569892472,0.29627269831156416,False,True
+pilule,F,20-49,mchc,S,haut,haut (S),,292,0.03424657534246575,1860,0.01935483870967742,1.7694063926940637,False,True
+pilule,F,20-49,rdw,S,bas,bas (S),,292,0.030821917808219176,1860,0.02043010752688172,1.508651766402307,False,True
+pilule,F,20-49,rdw,S,haut,haut (S),,292,0.0136986301369863,1860,0.025268817204301075,0.5421160011658408,False,True
+pilule,F,20-49,plt,S,bas,bas (S),,292,0.02054794520547945,1860,0.024193548387096774,0.8493150684931506,False,True
+pilule,F,20-49,plt,S,haut,haut (S),,292,0.02054794520547945,1860,0.026881720430107527,0.7643835616438356,False,True
+pilule,F,20-49,mpv,S,bas,bas (S),,292,0.0136986301369863,1860,0.017204301075268817,0.7962328767123287,False,True
+pilule,F,20-49,mpv,S,haut,haut (S),,292,0.02054794520547945,1860,0.024731182795698924,0.8308516974389517,False,True
+pilule,F,20-49,insulin,S,bas,bas (S),,129,0.031007751937984496,834,0.02158273381294964,1.4366925064599483,False,True
+pilule,F,20-49,insulin,S,haut,haut (S),,129,0.015503875968992248,834,0.016786570743405275,0.9235880398671097,False,True
+pilule,F,20-49,tc,S,bas,bas (S),,294,0.023809523809523808,1861,0.026329930145083287,0.9042759961127308,False,True
+pilule,F,20-49,tc,S,haut,haut (S),,294,0.023809523809523808,1861,0.02095647501343364,1.136141636141636,False,True
+pilule,F,20-49,hdl,S,bas,bas (S),,294,0.017006802721088437,1861,0.022568511552928532,0.7535633300939424,False,True
+pilule,F,20-49,hdl,S,haut,haut (S),,294,0.030612244897959183,1861,0.019881783987103708,1.5397131825703254,False,True
+pilule,F,20-49,alt,S,bas,bas (S),,294,0.003401360544217687,1855,0.018867924528301886,0.18027210884353742,False,True
+pilule,F,20-49,alt,S,haut,haut (S),,294,0.01020408163265306,1855,0.022102425876010783,0.46167247386759575,False,True
+pilule,F,20-49,ast,S,bas,bas (S),,294,0.027210884353741496,1855,0.02425876010781671,1.1216931216931216,False,True
+pilule,F,20-49,ast,S,haut,haut (S),,294,0.017006802721088437,1855,0.02371967654986523,0.7169913419913421,False,True
+pilule,F,20-49,ggt,S,bas,bas (S),,294,0.017006802721088437,1857,0.014539579967689823,1.1696900982615268,False,True
+pilule,F,20-49,ggt,S,haut,haut (S),,294,0.027210884353741496,1857,0.023155627355950458,1.1751305173232083,False,True
+pilule,F,20-49,alp,S,bas,bas (S),,294,0.04081632653061224,1857,0.025309639203015617,1.612679114198871,False,True
+pilule,F,20-49,alp,S,haut,haut (S),,294,0.006802721088435374,1857,0.021540118470651588,0.31581632653061226,False,True
+pilule,F,20-49,bili,S,bas,bas (S),,294,0.006802721088435374,1856,0.007543103448275862,0.9018464528668609,False,True
+pilule,F,20-49,bili,S,haut,haut (S),,294,0.006802721088435374,1856,0.02478448275862069,0.274475007394262,False,True
+pilule,F,20-49,albumin,S,bas,bas (S),,294,0.04421768707482993,1857,0.01992460958535272,2.219249862107005,False,True
+pilule,F,20-49,albumin,S,haut,haut (S),,294,0.017006802721088437,1857,0.01992460958535272,0.853557639271925,False,True
+pilule,F,20-49,protein,S,bas,bas (S),,293,0.020477815699658702,1856,0.01993534482758621,1.02721151185315,False,True
+pilule,F,20-49,protein,S,haut,haut (S),,293,0.0034129692832764505,1856,0.018318965517241378,0.18630797028709095,False,True
+pilule,F,20-49,globulin,S,bas,bas (S),,293,0.020477815699658702,1856,0.022629310344827586,0.9049244271087274,False,True
+pilule,F,20-49,globulin,S,haut,haut (S),,293,0.0,1856,0.023706896551724137,0.0,False,True
+pilule,F,20-49,creat,S,bas,bas (S),,294,0.013605442176870748,1857,0.01938610662358643,0.7018140589569161,False,True
+pilule,F,20-49,creat,S,haut,haut (S),,294,0.034013605442176874,1857,0.023155627355950458,1.4689131466540106,False,True
+pilule,F,20-49,urea,S,bas,bas (S),,294,0.01020408163265306,1857,0.012385568120624663,0.823868677905945,False,True
+pilule,F,20-49,urea,S,haut,haut (S),,294,0.013605442176870748,1857,0.01884760366182014,0.7218658892128279,False,True
+pilule,F,20-49,na,S,bas,bas (S),,294,0.027210884353741496,1857,0.010770059235325794,2.526530612244898,False,True
+pilule,F,20-49,na,S,haut,haut (S),,294,0.003401360544217687,1857,0.012385568120624663,0.27462289263531503,False,True
+pilule,F,20-49,k,S,bas,bas (S),,294,0.027210884353741496,1857,0.021540118470651588,1.263265306122449,False,True
+pilule,F,20-49,k,S,haut,haut (S),,294,0.01020408163265306,1857,0.015078082929456112,0.6767492711370262,False,True
+pilule,F,20-49,cl,S,bas,bas (S),,294,0.01020408163265306,1857,0.010770059235325794,0.9474489795918367,False,True
+pilule,F,20-49,cl,S,haut,haut (S),,294,0.006802721088435374,1857,0.012385568120624663,0.5492457852706301,False,True
+pilule,F,20-49,hco3,S,bas,bas (S),,294,0.023809523809523808,1855,0.022102425876010783,1.0772357723577235,False,True
+pilule,F,20-49,hco3,S,haut,haut (S),,294,0.003401360544217687,1855,0.007547169811320755,0.45068027210884354,False,True
+pilule,F,20-49,osmo,S,bas,bas (S),,294,0.0,1857,0.0005385029617662897,0.0,False,True
+pilule,F,20-49,osmo,S,haut,haut (S),,294,0.7551020408163265,1857,0.8061389337641357,0.9366897059424972,False,True
+pilule,F,20-49,ca,S,bas,bas (S),,294,0.030612244897959183,1857,0.02207862143241788,1.3865107018417122,False,True
+pilule,F,20-49,ca,S,haut,haut (S),,294,0.013605442176870748,1857,0.015616585891222402,0.8712174524982407,False,True
+pilule,F,20-49,iron,S,bas,bas (S),,294,0.003401360544217687,1856,0.02693965517241379,0.12625850340136055,False,True
+pilule,F,20-49,iron,S,haut,haut (S),,294,0.05782312925170068,1856,0.026400862068965518,2.1901985283909484,False,True
+pilule,F,20-49,urate,S,bas,bas (S),,294,0.03741496598639456,1857,0.026386645126548196,1.4179508538109122,False,True
+pilule,F,20-49,urate,S,haut,haut (S),,294,0.013605442176870748,1857,0.01830910070005385,0.7430972388955582,False,True
+pilule,F,20-49,phos,S,bas,bas (S),,294,0.05782312925170068,1857,0.024232633279483037,2.386167800453515,False,True
+pilule,F,20-49,phos,S,haut,haut (S),,294,0.006802721088435374,1857,0.01938610662358643,0.35090702947845803,False,True
+pilule,F,20-49,crp,S,bas,bas (S),,294,0.0,1864,0.0,,False,True
+pilule,F,20-49,crp,S,haut,haut (S),,294,0.05102040816326531,1864,0.024141630901287552,2.113378684807256,False,True
+pilule,F,20-49,b12,S,bas,bas (S),,123,0.056910569105691054,783,0.02554278416347382,2.228048780487805,False,True
+pilule,F,20-49,b12,S,haut,haut (S),,123,0.008130081300813009,783,0.0280970625798212,0.2893569844789357,False,True
+pilule,F,20-49,rbc_folate,S,bas,bas (S),,123,0.0,785,0.024203821656050957,0.0,False,True
+pilule,F,20-49,rbc_folate,S,haut,haut (S),,123,0.016260162601626018,785,0.025477707006369428,0.6382113821138212,False,True
+pilule,F,20-49,ferritin,S,bas,bas (S),,232,0.01293103448275862,1469,0.014295439074200136,0.9045566502463054,False,True
+pilule,F,20-49,ferritin,S,haut,haut (S),,232,0.03879310344827586,1469,0.02518720217835262,1.5401910531220877,False,True
+pilule,F,20-49,tibc,S,bas,bas (S),,124,0.0,790,0.017721518987341773,0.0,False,True
+pilule,F,20-49,tibc,S,haut,haut (S),,124,0.056451612903225805,790,0.02531645569620253,2.2298387096774195,False,True
+pilule,F,20-49,tsat,S,bas,bas (S),,124,0.0,790,0.026582278481012658,0.0,False,True
+pilule,F,20-49,tsat,S,haut,haut (S),,124,0.04032258064516129,790,0.027848101265822784,1.4479472140762464,False,True
+pilule,F,20-49,hcy,S,bas,bas (S),,124,0.024193548387096774,788,0.030456852791878174,0.7943548387096774,False,True
+pilule,F,20-49,hcy,S,haut,haut (S),,124,0.008064516129032258,788,0.02284263959390863,0.35304659498207885,False,True
+pilule,F,20-49,apob,S,bas,bas (S),,104,0.009615384615384616,703,0.02844950213371266,0.33798076923076925,False,True
+pilule,F,20-49,apob,S,haut,haut (S),,104,0.009615384615384616,703,0.01991465149359886,0.4828296703296704,False,True
+pilule,F,20-49,glu_fast,R,haut,"≥ 6,1 mmol/L (110 mg/dL) [OMS]",OMS,129,0.0,841,0.019024970273483946,0.0,False,True
+pilule,F,20-49,glu_fast,R,haut,"≥ 5,6 mmol/L (100 mg/dL) [ADA]",ADA,129,0.07751937984496124,841,0.15101070154577884,0.5133369956662394,False,True
+pilule,F,20-49,hba1c,R,haut,"≥ 6,0 % [OMS]",OMS,294,0.003401360544217687,1854,0.01348435814455232,0.25224489795918364,False,True
+pilule,F,20-49,hba1c,R,haut,"≥ 5,7 % [ADA]",ADA,294,0.02040816326530612,1854,0.06040992448759439,0.3378279883381924,False,True
+pilule,F,20-49,ldl,R,haut,"≥ 3,0 mmol/L (116 mg/dL), objectif du risque faible",,129,0.32558139534883723,839,0.33134684147794996,0.9825999665383972,False,True
+pilule,F,20-49,non_hdl,R,haut,"≥ 3,4 mmol/L (130 mg/dL), objectif du risque modéré",,294,0.4217687074829932,1861,0.4046211714132187,1.0423792358909036,False,True
+pilule,F,20-49,tg_fast,R,haut,"≥ 1,7 mmol/L (150 mg/dL)",,129,0.1937984496124031,839,0.10607866507747318,1.8269314519641147,False,True
+pilule,F,20-49,egfr,R,bas,"< 60 mL/min/1,73 m² (G3a et au-delà)",,294,0.0,1857,0.003769520732364028,0.0,False,True
+pilule,F,20-49,acr,R,haut,"≥ 3 mg/mmol (30 mg/g), A2",,293,0.06484641638225255,1856,0.06088362068965517,1.0650880425262013,False,True
+pilule,F,20-49,vitd,R,bas,< 20 ng/mL (50 nmol/L),,282,0.16666666666666666,1785,0.3445378151260504,0.48373983739837395,False,True
+pilule,F,20-49,vitd,R,bas,< 30 ng/mL (75 nmol/L) [sensibilité 30],sensibilité 30,282,0.4787234042553192,1785,0.7176470588235294,0.6670735960934775,False,True
+pilule_oestroprogestative,F,20-49,wbc,S,bas,bas (S),,186,0.03225806451612903,1860,0.023118279569892472,1.3953488372093024,False,True
+pilule_oestroprogestative,F,20-49,wbc,S,haut,haut (S),,186,0.03225806451612903,1860,0.025268817204301075,1.2765957446808511,False,True
+pilule_oestroprogestative,F,20-49,neut_pct,S,bas,bas (S),,186,0.010752688172043012,1856,0.025323275862068964,0.4246167924959964,False,True
+pilule_oestroprogestative,F,20-49,neut_pct,S,haut,haut (S),,186,0.021505376344086023,1856,0.025323275862068964,0.8492335849919928,False,True
+pilule_oestroprogestative,F,20-49,lymph_pct,S,bas,bas (S),,186,0.03763440860215054,1856,0.02747844827586207,1.369597301286106,False,True
+pilule_oestroprogestative,F,20-49,lymph_pct,S,haut,haut (S),,186,0.016129032258064516,1856,0.02478448275862069,0.6507713884992987,False,True
+pilule_oestroprogestative,F,20-49,mono_pct,S,bas,bas (S),,186,0.021505376344086023,1856,0.02209051724137931,0.9735116706005771,False,True
+pilule_oestroprogestative,F,20-49,mono_pct,S,haut,haut (S),,186,0.010752688172043012,1856,0.01939655172413793,0.5543608124253285,False,True
+pilule_oestroprogestative,F,20-49,eos_pct,S,bas,bas (S),,186,0.021505376344086023,1856,0.023168103448275863,0.9282320580145037,False,True
+pilule_oestroprogestative,F,20-49,eos_pct,S,haut,haut (S),,186,0.010752688172043012,1856,0.024245689655172414,0.4434886499402629,False,True
+pilule_oestroprogestative,F,20-49,baso_pct,S,bas,bas (S),,186,0.005376344086021506,1856,0.009159482758620689,0.5869702719797597,False,True
+pilule_oestroprogestative,F,20-49,baso_pct,S,haut,haut (S),,186,0.021505376344086023,1856,0.02478448275862069,0.8676951846657317,False,True
+pilule_oestroprogestative,F,20-49,rbc,S,bas,bas (S),,186,0.005376344086021506,1860,0.020967741935483872,0.2564102564102564,False,True
+pilule_oestroprogestative,F,20-49,rbc,S,haut,haut (S),,186,0.010752688172043012,1860,0.020967741935483872,0.5128205128205128,False,True
+pilule_oestroprogestative,F,20-49,hb,S,bas,bas (S),,186,0.005376344086021506,1860,0.026344086021505377,0.20408163265306123,False,True
+pilule_oestroprogestative,F,20-49,hb,S,haut,haut (S),,186,0.03763440860215054,1860,0.02258064516129032,1.6666666666666667,False,True
+pilule_oestroprogestative,F,20-49,hct,S,bas,bas (S),,186,0.005376344086021506,1860,0.025806451612903226,0.20833333333333334,False,True
+pilule_oestroprogestative,F,20-49,hct,S,haut,haut (S),,186,0.03225806451612903,1860,0.023118279569892472,1.3953488372093024,False,True
+pilule_oestroprogestative,F,20-49,mcv,S,bas,bas (S),,186,0.010752688172043012,1860,0.02795698924731183,0.38461538461538464,False,True
+pilule_oestroprogestative,F,20-49,mcv,S,haut,haut (S),,186,0.021505376344086023,1860,0.021505376344086023,1.0,False,True
+pilule_oestroprogestative,F,20-49,mch,S,bas,bas (S),,186,0.0,1860,0.027419354838709678,0.0,False,True
+pilule_oestroprogestative,F,20-49,mch,S,haut,haut (S),,186,0.03225806451612903,1860,0.02043010752688172,1.5789473684210524,False,True
+pilule_oestroprogestative,F,20-49,mchc,S,bas,bas (S),,186,0.005376344086021506,1860,0.023118279569892472,0.23255813953488375,False,True
+pilule_oestroprogestative,F,20-49,mchc,S,haut,haut (S),,186,0.026881720430107527,1860,0.01935483870967742,1.3888888888888888,False,True
+pilule_oestroprogestative,F,20-49,rdw,S,bas,bas (S),,186,0.026881720430107527,1860,0.02043010752688172,1.3157894736842104,False,True
+pilule_oestroprogestative,F,20-49,rdw,S,haut,haut (S),,186,0.010752688172043012,1860,0.025268817204301075,0.4255319148936171,False,True
+pilule_oestroprogestative,F,20-49,plt,S,bas,bas (S),,186,0.03225806451612903,1860,0.024193548387096774,1.3333333333333333,False,True
+pilule_oestroprogestative,F,20-49,plt,S,haut,haut (S),,186,0.016129032258064516,1860,0.026881720430107527,0.6,False,True
+pilule_oestroprogestative,F,20-49,mpv,S,bas,bas (S),,186,0.021505376344086023,1860,0.017204301075268817,1.25,False,True
+pilule_oestroprogestative,F,20-49,mpv,S,haut,haut (S),,186,0.021505376344086023,1860,0.024731182795698924,0.8695652173913044,False,True
+pilule_oestroprogestative,F,20-49,insulin,S,bas,bas (S),,83,0.04819277108433735,834,0.02158273381294964,2.2329317269076303,False,True
+pilule_oestroprogestative,F,20-49,insulin,S,haut,haut (S),,83,0.0,834,0.016786570743405275,0.0,False,True
+pilule_oestroprogestative,F,20-49,tc,S,bas,bas (S),,187,0.016042780748663103,1861,0.026329930145083287,0.6092982647604497,False,True
+pilule_oestroprogestative,F,20-49,tc,S,haut,haut (S),,187,0.03208556149732621,1861,0.02095647501343364,1.5310571781160018,False,True
+pilule_oestroprogestative,F,20-49,hdl,S,bas,bas (S),,187,0.0053475935828877,1861,0.022568511552928532,0.2369493251846193,False,True
+pilule_oestroprogestative,F,20-49,hdl,S,haut,haut (S),,187,0.0374331550802139,1861,0.019881783987103708,1.8827865298453532,False,True
+pilule_oestroprogestative,F,20-49,alt,S,bas,bas (S),,187,0.0,1855,0.018867924528301886,0.0,False,True
+pilule_oestroprogestative,F,20-49,alt,S,haut,haut (S),,187,0.0053475935828877,1855,0.022102425876010783,0.24194600234772398,False,True
+pilule_oestroprogestative,F,20-49,ast,S,bas,bas (S),,187,0.0374331550802139,1855,0.02425876010781671,1.543077837195484,False,True
+pilule_oestroprogestative,F,20-49,ast,S,haut,haut (S),,187,0.0106951871657754,1855,0.02371967654986523,0.45089936801166747,False,True
+pilule_oestroprogestative,F,20-49,ggt,S,bas,bas (S),,187,0.016042780748663103,1857,0.014539579967689823,1.1033868092691623,False,True
+pilule_oestroprogestative,F,20-49,ggt,S,haut,haut (S),,187,0.0106951871657754,1857,0.023155627355950458,0.46188285039174226,False,True
+pilule_oestroprogestative,F,20-49,alp,S,bas,bas (S),,187,0.0481283422459893,1857,0.025309639203015617,1.9015815223574923,False,True
+pilule_oestroprogestative,F,20-49,alp,S,haut,haut (S),,187,0.0,1857,0.021540118470651588,0.0,False,True
+pilule_oestroprogestative,F,20-49,bili,S,bas,bas (S),,187,0.0053475935828877,1856,0.007543103448275862,0.7089381207028265,False,True
+pilule_oestroprogestative,F,20-49,bili,S,haut,haut (S),,187,0.0106951871657754,1856,0.02478448275862069,0.4315275517321553,False,True
+pilule_oestroprogestative,F,20-49,albumin,S,bas,bas (S),,187,0.03208556149732621,1857,0.01992460958535272,1.6103483162306693,False,True
+pilule_oestroprogestative,F,20-49,albumin,S,haut,haut (S),,187,0.0106951871657754,1857,0.01992460958535272,0.5367827720768896,False,True
+pilule_oestroprogestative,F,20-49,protein,S,bas,bas (S),,186,0.026881720430107527,1856,0.01993534482758621,1.3484452194129612,False,True
+pilule_oestroprogestative,F,20-49,protein,S,haut,haut (S),,186,0.005376344086021506,1856,0.018318965517241378,0.29348513598987985,False,True
+pilule_oestroprogestative,F,20-49,globulin,S,bas,bas (S),,186,0.026881720430107527,1856,0.022629310344827586,1.187916026625704,False,True
+pilule_oestroprogestative,F,20-49,globulin,S,haut,haut (S),,186,0.0,1856,0.023706896551724137,0.0,False,True
+pilule_oestroprogestative,F,20-49,creat,S,bas,bas (S),,187,0.0213903743315508,1857,0.01938610662358643,1.103386809269162,False,True
+pilule_oestroprogestative,F,20-49,creat,S,haut,haut (S),,187,0.0374331550802139,1857,0.023155627355950458,1.616589976371098,False,True
+pilule_oestroprogestative,F,20-49,urea,S,bas,bas (S),,187,0.0053475935828877,1857,0.012385568120624663,0.43176005580097654,False,True
+pilule_oestroprogestative,F,20-49,urea,S,haut,haut (S),,187,0.0053475935828877,1857,0.01884760366182014,0.2837280366692131,False,True
+pilule_oestroprogestative,F,20-49,na,S,bas,bas (S),,187,0.0374331550802139,1857,0.010770059235325794,3.475668449197861,False,True
+pilule_oestroprogestative,F,20-49,na,S,haut,haut (S),,187,0.0,1857,0.012385568120624663,0.0,False,True
+pilule_oestroprogestative,F,20-49,k,S,bas,bas (S),,187,0.026737967914438502,1857,0.021540118470651588,1.2413101604278076,False,True
+pilule_oestroprogestative,F,20-49,k,S,haut,haut (S),,187,0.016042780748663103,1857,0.015078082929456112,1.0639801375095495,False,True
+pilule_oestroprogestative,F,20-49,cl,S,bas,bas (S),,187,0.016042780748663103,1857,0.010770059235325794,1.4895721925133691,False,True
+pilule_oestroprogestative,F,20-49,cl,S,haut,haut (S),,187,0.0,1857,0.012385568120624663,0.0,False,True
+pilule_oestroprogestative,F,20-49,hco3,S,bas,bas (S),,187,0.026737967914438502,1855,0.022102425876010783,1.20973001173862,False,True
+pilule_oestroprogestative,F,20-49,hco3,S,haut,haut (S),,187,0.0,1855,0.007547169811320755,0.0,False,True
+pilule_oestroprogestative,F,20-49,osmo,S,bas,bas (S),,187,0.0,1857,0.0005385029617662897,0.0,False,True
+pilule_oestroprogestative,F,20-49,osmo,S,haut,haut (S),,187,0.7272727272727273,1857,0.8061389337641357,0.9021679723082529,False,True
+pilule_oestroprogestative,F,20-49,ca,S,bas,bas (S),,187,0.03208556149732621,1857,0.02207862143241788,1.4532411634276772,False,True
+pilule_oestroprogestative,F,20-49,ca,S,haut,haut (S),,187,0.0053475935828877,1857,0.015616585891222402,0.34243038908353307,False,True
+pilule_oestroprogestative,F,20-49,iron,S,bas,bas (S),,187,0.0053475935828877,1856,0.02693965517241379,0.19850267379679146,False,True
+pilule_oestroprogestative,F,20-49,iron,S,haut,haut (S),,187,0.06417112299465241,1856,0.026400862068965518,2.4306449852668344,False,True
+pilule_oestroprogestative,F,20-49,urate,S,bas,bas (S),,187,0.03208556149732621,1857,0.026386645126548196,1.2159773000109135,False,True
+pilule_oestroprogestative,F,20-49,urate,S,haut,haut (S),,187,0.016042780748663103,1857,0.01830910070005385,0.8762189367725701,False,True
+pilule_oestroprogestative,F,20-49,phos,S,bas,bas (S),,187,0.058823529411764705,1857,0.024232633279483037,2.4274509803921567,False,True
+pilule_oestroprogestative,F,20-49,phos,S,haut,haut (S),,187,0.0053475935828877,1857,0.01938610662358643,0.2758467023172905,False,True
+pilule_oestroprogestative,F,20-49,crp,S,bas,bas (S),,187,0.0,1864,0.0,,False,True
+pilule_oestroprogestative,F,20-49,crp,S,haut,haut (S),,187,0.03208556149732621,1864,0.024141630901287552,1.3290552584670234,False,True
+pilule_oestroprogestative,F,20-49,b12,S,bas,bas (S),,78,0.0641025641025641,783,0.02554278416347382,2.509615384615384,False,True
+pilule_oestroprogestative,F,20-49,b12,S,haut,haut (S),,78,0.0,783,0.0280970625798212,0.0,False,True
+pilule_oestroprogestative,F,20-49,rbc_folate,S,bas,bas (S),,77,0.0,785,0.024203821656050957,0.0,False,True
+pilule_oestroprogestative,F,20-49,rbc_folate,S,haut,haut (S),,77,0.012987012987012988,785,0.025477707006369428,0.5097402597402597,False,True
+pilule_oestroprogestative,F,20-49,ferritin,S,bas,bas (S),,148,0.006756756756756757,1469,0.014295439074200136,0.47265122265122267,False,True
+pilule_oestroprogestative,F,20-49,ferritin,S,haut,haut (S),,148,0.033783783783783786,1469,0.02518720217835262,1.3413075237399563,False,True
+pilule_oestroprogestative,F,20-49,tibc,S,bas,bas (S),,78,0.0,790,0.017721518987341773,0.0,False,True
+pilule_oestroprogestative,F,20-49,tibc,S,haut,haut (S),,78,0.07692307692307693,790,0.02531645569620253,3.0384615384615388,False,True
+pilule_oestroprogestative,F,20-49,tsat,S,bas,bas (S),,78,0.0,790,0.026582278481012658,0.0,False,True
+pilule_oestroprogestative,F,20-49,tsat,S,haut,haut (S),,78,0.02564102564102564,790,0.027848101265822784,0.9207459207459208,False,True
+pilule_oestroprogestative,F,20-49,hcy,S,bas,bas (S),,78,0.038461538461538464,788,0.030456852791878174,1.2628205128205128,False,True
+pilule_oestroprogestative,F,20-49,hcy,S,haut,haut (S),,78,0.01282051282051282,788,0.02284263959390863,0.5612535612535613,False,True
+pilule_oestroprogestative,F,20-49,apob,S,bas,bas (S),,64,0.0,703,0.02844950213371266,0.0,False,True
+pilule_oestroprogestative,F,20-49,apob,S,haut,haut (S),,64,0.015625,703,0.01991465149359886,0.7845982142857143,False,True
+pilule_oestroprogestative,F,20-49,glu_fast,R,haut,"≥ 6,1 mmol/L (110 mg/dL) [OMS]",OMS,83,0.0,841,0.019024970273483946,0.0,False,True
+pilule_oestroprogestative,F,20-49,glu_fast,R,haut,"≥ 5,6 mmol/L (100 mg/dL) [ADA]",ADA,83,0.04819277108433735,841,0.15101070154577884,0.3191348069443127,False,True
+pilule_oestroprogestative,F,20-49,hba1c,R,haut,"≥ 6,0 % [OMS]",OMS,187,0.0,1854,0.01348435814455232,0.0,False,True
+pilule_oestroprogestative,F,20-49,hba1c,R,haut,"≥ 5,7 % [ADA]",ADA,187,0.0213903743315508,1854,0.06040992448759439,0.354087089381207,False,True
+pilule_oestroprogestative,F,20-49,ldl,R,haut,"≥ 3,0 mmol/L (116 mg/dL), objectif du risque faible",,83,0.3614457831325301,839,0.33134684147794996,1.0908381728352257,False,True
+pilule_oestroprogestative,F,20-49,non_hdl,R,haut,"≥ 3,4 mmol/L (130 mg/dL), objectif du risque modéré",,187,0.43315508021390375,1861,0.4046211714132187,1.0705200588022243,False,True
+pilule_oestroprogestative,F,20-49,tg_fast,R,haut,"≥ 1,7 mmol/L (150 mg/dL)",,83,0.14457831325301204,839,0.10607866507747318,1.362934885609855,False,True
+pilule_oestroprogestative,F,20-49,egfr,R,bas,"< 60 mL/min/1,73 m² (G3a et au-delà)",,187,0.0,1857,0.003769520732364028,0.0,False,True
+pilule_oestroprogestative,F,20-49,acr,R,haut,"≥ 3 mg/mmol (30 mg/g), A2",,186,0.08602150537634409,1856,0.06088362068965517,1.4128841944999526,False,True
+pilule_oestroprogestative,F,20-49,vitd,R,bas,< 20 ng/mL (50 nmol/L),,180,0.1111111111111111,1785,0.3445378151260504,0.3224932249322493,False,True
+pilule_oestroprogestative,F,20-49,vitd,R,bas,< 30 ng/mL (75 nmol/L) [sensibilité 30],sensibilité 30,180,0.40555555555555556,1785,0.7176470588235294,0.5651183970856102,False,True
+pilule_progestative,F,20-37,wbc,S,bas,bas (S),,9,0.0,1186,0.023608768971332208,0.0,False,False
+pilule_progestative,F,20-37,wbc,S,haut,haut (S),,9,0.0,1186,0.024451939291736932,0.0,False,False
+pilule_progestative,F,20-37,neut_pct,S,bas,bas (S),,9,0.1111111111111111,1184,0.02702702702702703,4.111111111111111,False,False
+pilule_progestative,F,20-37,neut_pct,S,haut,haut (S),,9,0.0,1184,0.02364864864864865,0.0,False,False
+pilule_progestative,F,20-37,lymph_pct,S,bas,bas (S),,9,0.0,1184,0.02364864864864865,0.0,False,False
+pilule_progestative,F,20-37,lymph_pct,S,haut,haut (S),,9,0.1111111111111111,1184,0.02702702702702703,4.111111111111111,False,False
+pilule_progestative,F,20-37,mono_pct,S,bas,bas (S),,9,0.0,1184,0.022804054054054054,0.0,False,False
+pilule_progestative,F,20-37,mono_pct,S,haut,haut (S),,9,0.0,1184,0.019425675675675675,0.0,False,False
+pilule_progestative,F,20-37,eos_pct,S,bas,bas (S),,9,0.1111111111111111,1184,0.02027027027027027,5.481481481481481,False,False
+pilule_progestative,F,20-37,eos_pct,S,haut,haut (S),,9,0.0,1184,0.026182432432432432,0.0,False,False
+pilule_progestative,F,20-37,baso_pct,S,bas,bas (S),,9,0.0,1184,0.010135135135135136,0.0,False,False
+pilule_progestative,F,20-37,baso_pct,S,haut,haut (S),,9,0.0,1184,0.024493243243243243,0.0,False,False
+pilule_progestative,F,20-37,rbc,S,bas,bas (S),,9,0.0,1186,0.016863406408094434,0.0,False,False
+pilule_progestative,F,20-37,rbc,S,haut,haut (S),,9,0.0,1186,0.022765598650927487,0.0,False,False
+pilule_progestative,F,20-37,hb,S,bas,bas (S),,9,0.0,1186,0.025295109612141653,0.0,False,False
+pilule_progestative,F,20-37,hb,S,haut,haut (S),,9,0.0,1186,0.024451939291736932,0.0,False,False
+pilule_progestative,F,20-37,hct,S,bas,bas (S),,9,0.0,1186,0.025295109612141653,0.0,False,False
+pilule_progestative,F,20-37,hct,S,haut,haut (S),,9,0.0,1186,0.025295109612141653,0.0,False,False
+pilule_progestative,F,20-37,mcv,S,bas,bas (S),,9,0.0,1186,0.022765598650927487,0.0,False,False
+pilule_progestative,F,20-37,mcv,S,haut,haut (S),,9,0.0,1186,0.0193929173693086,0.0,False,False
+pilule_progestative,F,20-37,mch,S,bas,bas (S),,9,0.0,1186,0.021079258010118045,0.0,False,False
+pilule_progestative,F,20-37,mch,S,haut,haut (S),,9,0.0,1186,0.01433389544688027,0.0,False,False
+pilule_progestative,F,20-37,mchc,S,bas,bas (S),,9,0.0,1186,0.0193929173693086,0.0,False,False
+pilule_progestative,F,20-37,mchc,S,haut,haut (S),,9,0.0,1186,0.0193929173693086,0.0,False,False
+pilule_progestative,F,20-37,rdw,S,bas,bas (S),,9,0.1111111111111111,1186,0.023608768971332208,4.7063492063492065,False,False
+pilule_progestative,F,20-37,rdw,S,haut,haut (S),,9,0.0,1186,0.023608768971332208,0.0,False,False
+pilule_progestative,F,20-37,plt,S,bas,bas (S),,9,0.0,1186,0.026981450252951095,0.0,False,False
+pilule_progestative,F,20-37,plt,S,haut,haut (S),,9,0.1111111111111111,1186,0.02782462057335582,3.993265993265993,False,False
+pilule_progestative,F,20-37,mpv,S,bas,bas (S),,9,0.0,1186,0.016020236087689713,0.0,False,False
+pilule_progestative,F,20-37,mpv,S,haut,haut (S),,9,0.0,1186,0.021922428330522766,0.0,False,False
+pilule_progestative,F,20-37,insulin,S,bas,bas (S),,4,0.0,524,0.02099236641221374,0.0,False,False
+pilule_progestative,F,20-37,insulin,S,haut,haut (S),,4,0.0,524,0.01717557251908397,0.0,False,False
+pilule_progestative,F,20-37,tc,S,bas,bas (S),,9,0.1111111111111111,1185,0.026160337552742614,4.247311827956989,False,False
+pilule_progestative,F,20-37,tc,S,haut,haut (S),,9,0.0,1185,0.026160337552742614,0.0,False,False
+pilule_progestative,F,20-37,hdl,S,bas,bas (S),,9,0.0,1185,0.024472573839662448,0.0,False,False
+pilule_progestative,F,20-37,hdl,S,haut,haut (S),,9,0.0,1185,0.010970464135021098,0.0,False,False
+pilule_progestative,F,20-37,alt,S,bas,bas (S),,9,0.0,1180,0.012711864406779662,0.0,False,False
+pilule_progestative,F,20-37,alt,S,haut,haut (S),,9,0.0,1180,0.026271186440677965,0.0,False,False
+pilule_progestative,F,20-37,ast,S,bas,bas (S),,9,0.0,1180,0.02711864406779661,0.0,False,False
+pilule_progestative,F,20-37,ast,S,haut,haut (S),,9,0.0,1180,0.02711864406779661,0.0,False,False
+pilule_progestative,F,20-37,ggt,S,bas,bas (S),,9,0.1111111111111111,1181,0.00846740050804403,13.122222222222222,False,False
+pilule_progestative,F,20-37,ggt,S,haut,haut (S),,9,0.0,1181,0.026248941574936496,0.0,False,False
+pilule_progestative,F,20-37,alp,S,bas,bas (S),,9,0.0,1181,0.02201524132091448,0.0,False,False
+pilule_progestative,F,20-37,alp,S,haut,haut (S),,9,0.1111111111111111,1181,0.02540220152413209,4.374074074074074,False,False
+pilule_progestative,F,20-37,bili,S,bas,bas (S),,9,0.0,1180,0.00847457627118644,0.0,False,False
+pilule_progestative,F,20-37,bili,S,haut,haut (S),,9,0.0,1180,0.027966101694915254,0.0,False,False
+pilule_progestative,F,20-37,albumin,S,bas,bas (S),,9,0.0,1181,0.018628281117696866,0.0,False,False
+pilule_progestative,F,20-37,albumin,S,haut,haut (S),,9,0.0,1181,0.02201524132091448,0.0,False,False
+pilule_progestative,F,20-37,protein,S,bas,bas (S),,9,0.0,1180,0.009322033898305085,0.0,False,False
+pilule_progestative,F,20-37,protein,S,haut,haut (S),,9,0.0,1180,0.0211864406779661,0.0,False,False
+pilule_progestative,F,20-37,globulin,S,bas,bas (S),,9,0.1111111111111111,1180,0.0211864406779661,5.2444444444444445,False,False
+pilule_progestative,F,20-37,globulin,S,haut,haut (S),,9,0.0,1180,0.02457627118644068,0.0,False,False
+pilule_progestative,F,20-37,creat,S,bas,bas (S),,9,0.0,1181,0.01947502116850127,0.0,False,False
+pilule_progestative,F,20-37,creat,S,haut,haut (S),,9,0.0,1181,0.026248941574936496,0.0,False,False
+pilule_progestative,F,20-37,urea,S,bas,bas (S),,9,0.0,1181,0.01100762066045724,0.0,False,False
+pilule_progestative,F,20-37,urea,S,haut,haut (S),,9,0.1111111111111111,1181,0.021168501270110076,5.248888888888889,False,False
+pilule_progestative,F,20-37,na,S,bas,bas (S),,9,0.0,1181,0.009314140558848433,0.0,False,False
+pilule_progestative,F,20-37,na,S,haut,haut (S),,9,0.0,1181,0.01693480101608806,0.0,False,False
+pilule_progestative,F,20-37,k,S,bas,bas (S),,9,0.0,1181,0.02201524132091448,0.0,False,False
+pilule_progestative,F,20-37,k,S,haut,haut (S),,9,0.0,1181,0.01100762066045724,0.0,False,False
+pilule_progestative,F,20-37,cl,S,bas,bas (S),,9,0.0,1181,0.00846740050804403,0.0,False,False
+pilule_progestative,F,20-37,cl,S,haut,haut (S),,9,0.0,1181,0.011854360711261643,0.0,False,False
+pilule_progestative,F,20-37,hco3,S,bas,bas (S),,9,0.0,1180,0.01864406779661017,0.0,False,False
+pilule_progestative,F,20-37,hco3,S,haut,haut (S),,9,0.0,1180,0.006779661016949152,0.0,False,False
+pilule_progestative,F,20-37,osmo,S,bas,bas (S),,9,0.0,1181,0.0,,False,False
+pilule_progestative,F,20-37,osmo,S,haut,haut (S),,9,0.7777777777777778,1181,0.8323454699407282,0.9344410534644512,False,False
+pilule_progestative,F,20-37,ca,S,bas,bas (S),,9,0.0,1181,0.018628281117696866,0.0,False,False
+pilule_progestative,F,20-37,ca,S,haut,haut (S),,9,0.1111111111111111,1181,0.016088060965283656,6.906432748538012,False,False
+pilule_progestative,F,20-37,iron,S,bas,bas (S),,9,0.0,1180,0.025423728813559324,0.0,False,False
+pilule_progestative,F,20-37,iron,S,haut,haut (S),,9,0.0,1180,0.026271186440677965,0.0,False,False
+pilule_progestative,F,20-37,urate,S,bas,bas (S),,9,0.0,1181,0.021168501270110076,0.0,False,False
+pilule_progestative,F,20-37,urate,S,haut,haut (S),,9,0.0,1181,0.02201524132091448,0.0,False,False
+pilule_progestative,F,20-37,phos,S,bas,bas (S),,9,0.0,1181,0.023708721422523286,0.0,False,False
+pilule_progestative,F,20-37,phos,S,haut,haut (S),,9,0.1111111111111111,1181,0.02286198137171888,4.860082304526749,False,False
+pilule_progestative,F,20-37,crp,S,bas,bas (S),,9,0.0,1188,0.0,,False,False
+pilule_progestative,F,20-37,crp,S,haut,haut (S),,9,0.0,1188,0.025252525252525252,0.0,False,False
+pilule_progestative,F,20-37,b12,S,bas,bas (S),,3,0.0,521,0.02495201535508637,0.0,False,False
+pilule_progestative,F,20-37,b12,S,haut,haut (S),,3,0.0,521,0.02495201535508637,0.0,False,False
+pilule_progestative,F,20-37,rbc_folate,S,bas,bas (S),,3,0.0,524,0.026717557251908396,0.0,False,False
+pilule_progestative,F,20-37,rbc_folate,S,haut,haut (S),,3,0.0,524,0.02480916030534351,0.0,False,False
+pilule_progestative,F,20-37,ferritin,S,bas,bas (S),,8,0.0,922,0.016268980477223426,0.0,False,False
+pilule_progestative,F,20-37,ferritin,S,haut,haut (S),,8,0.0,922,0.016268980477223426,0.0,False,False
+pilule_progestative,F,20-37,tibc,S,bas,bas (S),,3,0.0,526,0.013307984790874524,0.0,False,False
+pilule_progestative,F,20-37,tibc,S,haut,haut (S),,3,0.0,526,0.030418250950570342,0.0,False,False
+pilule_progestative,F,20-37,tsat,S,bas,bas (S),,3,0.0,526,0.02091254752851711,0.0,False,False
+pilule_progestative,F,20-37,tsat,S,haut,haut (S),,3,0.0,526,0.034220532319391636,0.0,False,False
+pilule_progestative,F,20-37,hcy,S,bas,bas (S),,3,0.0,525,0.02857142857142857,0.0,False,False
+pilule_progestative,F,20-37,hcy,S,haut,haut (S),,3,0.0,525,0.024761904761904763,0.0,False,False
+pilule_progestative,F,20-37,apob,S,bas,bas (S),,4,0.0,444,0.02702702702702703,0.0,False,False
+pilule_progestative,F,20-37,apob,S,haut,haut (S),,4,0.0,444,0.024774774774774775,0.0,False,False
+pilule_progestative,F,20-37,glu_fast,R,haut,"≥ 6,1 mmol/L (110 mg/dL) [OMS]",OMS,4,0.0,531,0.009416195856873822,0.0,False,False
+pilule_progestative,F,20-37,glu_fast,R,haut,"≥ 5,6 mmol/L (100 mg/dL) [ADA]",ADA,4,0.0,531,0.10357815442561205,0.0,False,False
+pilule_progestative,F,20-37,hba1c,R,haut,"≥ 6,0 % [OMS]",OMS,9,0.0,1182,0.005922165820642978,0.0,False,False
+pilule_progestative,F,20-37,hba1c,R,haut,"≥ 5,7 % [ADA]",ADA,9,0.0,1182,0.038917089678511,0.0,False,False
+pilule_progestative,F,20-37,ldl,R,haut,"≥ 3,0 mmol/L (116 mg/dL), objectif du risque faible",,4,0.0,529,0.2589792060491493,0.0,False,False
+pilule_progestative,F,20-37,non_hdl,R,haut,"≥ 3,4 mmol/L (130 mg/dL), objectif du risque modéré",,9,0.1111111111111111,1185,0.3333333333333333,0.3333333333333333,False,False
+pilule_progestative,F,20-37,tg_fast,R,haut,"≥ 1,7 mmol/L (150 mg/dL)",,4,0.0,529,0.10396975425330812,0.0,False,False
+pilule_progestative,F,20-37,egfr,R,bas,"< 60 mL/min/1,73 m² (G3a et au-delà)",,9,0.0,1181,0.000846740050804403,0.0,False,False
+pilule_progestative,F,20-37,acr,R,haut,"≥ 3 mg/mmol (30 mg/g), A2",,9,0.0,1181,0.06350550381033022,0.0,False,False
+pilule_progestative,F,20-37,vitd,R,bas,< 20 ng/mL (50 nmol/L),,9,0.0,1143,0.36395450568678916,0.0,False,False
+pilule_progestative,F,20-37,vitd,R,bas,< 30 ng/mL (75 nmol/L) [sensibilité 30],sensibilité 30,9,0.6666666666666666,1143,0.7209098862642169,0.9247572815533981,False,False
+injectable,F,20-49,wbc,S,bas,bas (S),,37,0.0,1860,0.023118279569892472,0.0,False,True
+injectable,F,20-49,wbc,S,haut,haut (S),,37,0.02702702702702703,1860,0.025268817204301075,1.0695802185163887,False,True
+injectable,F,20-49,neut_pct,S,bas,bas (S),,37,0.02702702702702703,1856,0.025323275862068964,1.0672800460034504,False,True
+injectable,F,20-49,neut_pct,S,haut,haut (S),,37,0.0,1856,0.025323275862068964,0.0,False,True
+injectable,F,20-49,lymph_pct,S,bas,bas (S),,37,0.02702702702702703,1856,0.02747844827586207,0.9835718071012189,False,True
+injectable,F,20-49,lymph_pct,S,haut,haut (S),,37,0.02702702702702703,1856,0.02478448275862069,1.09048178613396,False,True
+injectable,F,20-49,mono_pct,S,bas,bas (S),,37,0.0,1856,0.02209051724137931,0.0,False,True
+injectable,F,20-49,mono_pct,S,haut,haut (S),,37,0.0,1856,0.01939655172413793,0.0,False,True
+injectable,F,20-49,eos_pct,S,bas,bas (S),,37,0.0,1856,0.023168103448275863,0.0,False,True
+injectable,F,20-49,eos_pct,S,haut,haut (S),,37,0.02702702702702703,1856,0.024245689655172414,1.1147147147147147,False,True
+injectable,F,20-49,baso_pct,S,bas,bas (S),,37,0.02702702702702703,1856,0.009159482758620689,2.950715421303657,False,True
+injectable,F,20-49,baso_pct,S,haut,haut (S),,37,0.0,1856,0.02478448275862069,0.0,False,True
+injectable,F,20-49,rbc,S,bas,bas (S),,37,0.0,1860,0.020967741935483872,0.0,False,True
+injectable,F,20-49,rbc,S,haut,haut (S),,37,0.02702702702702703,1860,0.020967741935483872,1.288981288981289,False,True
+injectable,F,20-49,hb,S,bas,bas (S),,37,0.0,1860,0.026344086021505377,0.0,False,True
+injectable,F,20-49,hb,S,haut,haut (S),,37,0.02702702702702703,1860,0.02258064516129032,1.196911196911197,False,True
+injectable,F,20-49,hct,S,bas,bas (S),,37,0.0,1860,0.025806451612903226,0.0,False,True
+injectable,F,20-49,hct,S,haut,haut (S),,37,0.02702702702702703,1860,0.023118279569892472,1.1690760527969832,False,True
+injectable,F,20-49,mcv,S,bas,bas (S),,37,0.0,1860,0.02795698924731183,0.0,False,True
+injectable,F,20-49,mcv,S,haut,haut (S),,37,0.0,1860,0.021505376344086023,0.0,False,True
+injectable,F,20-49,mch,S,bas,bas (S),,37,0.0,1860,0.027419354838709678,0.0,False,True
+injectable,F,20-49,mch,S,haut,haut (S),,37,0.0,1860,0.02043010752688172,0.0,False,True
+injectable,F,20-49,mchc,S,bas,bas (S),,37,0.0,1860,0.023118279569892472,0.0,False,True
+injectable,F,20-49,mchc,S,haut,haut (S),,37,0.0,1860,0.01935483870967742,0.0,False,True
+injectable,F,20-49,rdw,S,bas,bas (S),,37,0.0,1860,0.02043010752688172,0.0,False,True
+injectable,F,20-49,rdw,S,haut,haut (S),,37,0.0,1860,0.025268817204301075,0.0,False,True
+injectable,F,20-49,plt,S,bas,bas (S),,37,0.05405405405405406,1860,0.024193548387096774,2.2342342342342345,False,True
+injectable,F,20-49,plt,S,haut,haut (S),,37,0.0,1860,0.026881720430107527,0.0,False,True
+injectable,F,20-49,mpv,S,bas,bas (S),,37,0.0,1860,0.017204301075268817,0.0,False,True
+injectable,F,20-49,mpv,S,haut,haut (S),,37,0.0,1860,0.024731182795698924,0.0,False,True
+injectable,F,20-49,insulin,S,bas,bas (S),,14,0.0,834,0.02158273381294964,0.0,False,False
+injectable,F,20-49,insulin,S,haut,haut (S),,14,0.07142857142857142,834,0.016786570743405275,4.255102040816326,False,False
+injectable,F,20-49,tc,S,bas,bas (S),,37,0.05405405405405406,1861,0.026329930145083287,2.0529509100937675,False,True
+injectable,F,20-49,tc,S,haut,haut (S),,37,0.0,1861,0.02095647501343364,0.0,False,True
+injectable,F,20-49,hdl,S,bas,bas (S),,37,0.05405405405405406,1861,0.022568511552928532,2.395109395109395,False,True
+injectable,F,20-49,hdl,S,haut,haut (S),,37,0.0,1861,0.019881783987103708,0.0,False,True
+injectable,F,20-49,alt,S,bas,bas (S),,37,0.0,1855,0.018867924528301886,0.0,False,True
+injectable,F,20-49,alt,S,haut,haut (S),,37,0.05405405405405406,1855,0.022102425876010783,2.4456163480553723,False,True
+injectable,F,20-49,ast,S,bas,bas (S),,37,0.05405405405405406,1855,0.02425876010781671,2.2282282282282284,False,True
+injectable,F,20-49,ast,S,haut,haut (S),,37,0.0,1855,0.02371967654986523,0.0,False,True
+injectable,F,20-49,ggt,S,bas,bas (S),,37,0.02702702702702703,1857,0.014539579967689823,1.8588588588588588,False,True
+injectable,F,20-49,ggt,S,haut,haut (S),,37,0.05405405405405406,1857,0.023155627355950458,2.3343808925204277,False,True
+injectable,F,20-49,alp,S,bas,bas (S),,37,0.0,1857,0.025309639203015617,0.0,False,True
+injectable,F,20-49,alp,S,haut,haut (S),,37,0.02702702702702703,1857,0.021540118470651588,1.25472972972973,False,True
+injectable,F,20-49,bili,S,bas,bas (S),,37,0.0,1856,0.007543103448275862,0.0,False,True
+injectable,F,20-49,bili,S,haut,haut (S),,37,0.05405405405405406,1856,0.02478448275862069,2.18096357226792,False,True
+injectable,F,20-49,albumin,S,bas,bas (S),,37,0.0,1857,0.01992460958535272,0.0,False,True
+injectable,F,20-49,albumin,S,haut,haut (S),,37,0.02702702702702703,1857,0.01992460958535272,1.356464572680789,False,True
+injectable,F,20-49,protein,S,bas,bas (S),,37,0.0,1856,0.01993534482758621,0.0,False,True
+injectable,F,20-49,protein,S,haut,haut (S),,37,0.02702702702702703,1856,0.018318965517241378,1.4753577106518285,False,True
+injectable,F,20-49,globulin,S,bas,bas (S),,37,0.05405405405405406,1856,0.022629310344827586,2.3886743886743886,False,True
+injectable,F,20-49,globulin,S,haut,haut (S),,37,0.02702702702702703,1856,0.023706896551724137,1.1400491400491402,False,True
+injectable,F,20-49,creat,S,bas,bas (S),,37,0.02702702702702703,1857,0.01938610662358643,1.3941441441441442,False,True
+injectable,F,20-49,creat,S,haut,haut (S),,37,0.02702702702702703,1857,0.023155627355950458,1.1671904462602138,False,True
+injectable,F,20-49,urea,S,bas,bas (S),,37,0.0,1857,0.012385568120624663,0.0,False,True
+injectable,F,20-49,urea,S,haut,haut (S),,37,0.02702702702702703,1857,0.01884760366182014,1.433976833976834,False,True
+injectable,F,20-49,na,S,bas,bas (S),,37,0.0,1857,0.010770059235325794,0.0,False,True
+injectable,F,20-49,na,S,haut,haut (S),,37,0.0,1857,0.012385568120624663,0.0,False,True
+injectable,F,20-49,k,S,bas,bas (S),,37,0.0,1857,0.021540118470651588,0.0,False,True
+injectable,F,20-49,k,S,haut,haut (S),,37,0.0,1857,0.015078082929456112,0.0,False,True
+injectable,F,20-49,cl,S,bas,bas (S),,37,0.0,1857,0.010770059235325794,0.0,False,True
+injectable,F,20-49,cl,S,haut,haut (S),,37,0.05405405405405406,1857,0.012385568120624663,4.364277320799061,False,True
+injectable,F,20-49,hco3,S,bas,bas (S),,37,0.05405405405405406,1855,0.022102425876010783,2.4456163480553723,False,True
+injectable,F,20-49,hco3,S,haut,haut (S),,37,0.0,1855,0.007547169811320755,0.0,False,True
+injectable,F,20-49,osmo,S,bas,bas (S),,37,0.0,1857,0.0005385029617662897,0.0,False,True
+injectable,F,20-49,osmo,S,haut,haut (S),,37,0.9459459459459459,1857,0.8061389337641357,1.1734279369549911,False,True
+injectable,F,20-49,ca,S,bas,bas (S),,37,0.02702702702702703,1857,0.02207862143241788,1.2241265655899802,False,True
+injectable,F,20-49,ca,S,haut,haut (S),,37,0.0,1857,0.015616585891222402,0.0,False,True
+injectable,F,20-49,iron,S,bas,bas (S),,37,0.02702702702702703,1856,0.02693965517241379,1.0032432432432434,False,True
+injectable,F,20-49,iron,S,haut,haut (S),,37,0.0,1856,0.026400862068965518,0.0,False,True
+injectable,F,20-49,urate,S,bas,bas (S),,37,0.05405405405405406,1857,0.026386645126548196,2.04853833425262,False,True
+injectable,F,20-49,urate,S,haut,haut (S),,37,0.0,1857,0.01830910070005385,0.0,False,True
+injectable,F,20-49,phos,S,bas,bas (S),,37,0.0,1857,0.024232633279483037,0.0,False,True
+injectable,F,20-49,phos,S,haut,haut (S),,37,0.02702702702702703,1857,0.01938610662358643,1.3941441441441442,False,True
+injectable,F,20-49,crp,S,bas,bas (S),,37,0.0,1864,0.0,,False,True
+injectable,F,20-49,crp,S,haut,haut (S),,37,0.02702702702702703,1864,0.024141630901287552,1.1195195195195196,False,True
+injectable,F,20-49,b12,S,bas,bas (S),,15,0.0,783,0.02554278416347382,0.0,False,False
+injectable,F,20-49,b12,S,haut,haut (S),,15,0.0,783,0.0280970625798212,0.0,False,False
+injectable,F,20-49,rbc_folate,S,bas,bas (S),,15,0.06666666666666667,785,0.024203821656050957,2.7543859649122804,False,False
+injectable,F,20-49,rbc_folate,S,haut,haut (S),,15,0.06666666666666667,785,0.025477707006369428,2.6166666666666667,False,False
+injectable,F,20-49,ferritin,S,bas,bas (S),,27,0.0,1469,0.014295439074200136,0.0,False,False
+injectable,F,20-49,ferritin,S,haut,haut (S),,27,0.1111111111111111,1469,0.02518720217835262,4.411411411411412,False,False
+injectable,F,20-49,tibc,S,bas,bas (S),,15,0.0,790,0.017721518987341773,0.0,False,False
+injectable,F,20-49,tibc,S,haut,haut (S),,15,0.0,790,0.02531645569620253,0.0,False,False
+injectable,F,20-49,tsat,S,bas,bas (S),,15,0.06666666666666667,790,0.026582278481012658,2.507936507936508,False,False
+injectable,F,20-49,tsat,S,haut,haut (S),,15,0.0,790,0.027848101265822784,0.0,False,False
+injectable,F,20-49,hcy,S,bas,bas (S),,15,0.0,788,0.030456852791878174,0.0,False,False
+injectable,F,20-49,hcy,S,haut,haut (S),,15,0.0,788,0.02284263959390863,0.0,False,False
+injectable,F,20-49,apob,S,bas,bas (S),,12,0.0,703,0.02844950213371266,0.0,False,False
+injectable,F,20-49,apob,S,haut,haut (S),,12,0.0,703,0.01991465149359886,0.0,False,False
+injectable,F,20-49,glu_fast,R,haut,"≥ 6,1 mmol/L (110 mg/dL) [OMS]",OMS,14,0.0,841,0.019024970273483946,0.0,False,False
+injectable,F,20-49,glu_fast,R,haut,"≥ 5,6 mmol/L (100 mg/dL) [ADA]",ADA,14,0.21428571428571427,841,0.15101070154577884,1.4190101237345332,False,False
+injectable,F,20-49,hba1c,R,haut,"≥ 6,0 % [OMS]",OMS,36,0.0,1854,0.01348435814455232,0.0,False,True
+injectable,F,20-49,hba1c,R,haut,"≥ 5,7 % [ADA]",ADA,36,0.08333333333333333,1854,0.06040992448759439,1.3794642857142856,False,True
+injectable,F,20-49,ldl,R,haut,"≥ 3,0 mmol/L (116 mg/dL), objectif du risque faible",,14,0.2857142857142857,839,0.33134684147794996,0.8622816032887974,False,False
+injectable,F,20-49,non_hdl,R,haut,"≥ 3,4 mmol/L (130 mg/dL), objectif du risque modéré",,37,0.2702702702702703,1861,0.4046211714132187,0.6679587954488354,False,True
+injectable,F,20-49,tg_fast,R,haut,"≥ 1,7 mmol/L (150 mg/dL)",,14,0.07142857142857142,839,0.10607866507747318,0.6733547351524879,False,False
+injectable,F,20-49,egfr,R,bas,"< 60 mL/min/1,73 m² (G3a et au-delà)",,37,0.0,1857,0.003769520732364028,0.0,False,True
+injectable,F,20-49,acr,R,haut,"≥ 3 mg/mmol (30 mg/g), A2",,37,0.05405405405405406,1856,0.06088362068965517,0.8878258789763215,False,True
+injectable,F,20-49,vitd,R,bas,< 20 ng/mL (50 nmol/L),,35,0.5714285714285714,1785,0.3445378151260504,1.6585365853658536,False,True
+injectable,F,20-49,vitd,R,bas,< 30 ng/mL (75 nmol/L) [sensibilité 30],sensibilité 30,35,0.8,1785,0.7176470588235294,1.1147540983606559,False,True
+menopause,F,45-59,wbc,S,bas,bas (S),,144,0.034722222222222224,539,0.03153988868274583,1.1008986928104576,False,True
+menopause,F,45-59,wbc,S,haut,haut (S),,144,0.013888888888888888,539,0.025974025974025976,0.5347222222222222,False,True
+menopause,F,45-59,neut_pct,S,bas,bas (S),,143,0.04895104895104895,538,0.031598513011152414,1.549156725627314,False,True
+menopause,F,45-59,neut_pct,S,haut,haut (S),,143,0.013986013986013986,538,0.027881040892193308,0.5016317016317017,False,True
+menopause,F,45-59,lymph_pct,S,bas,bas (S),,143,0.006993006993006993,538,0.024163568773234202,0.2894029047875202,False,True
+menopause,F,45-59,lymph_pct,S,haut,haut (S),,143,0.06293706293706294,538,0.031598513011152414,1.9917729329494038,False,True
+menopause,F,45-59,mono_pct,S,bas,bas (S),,143,0.02097902097902098,538,0.024163568773234202,0.8682087143625605,False,True
+menopause,F,45-59,mono_pct,S,haut,haut (S),,143,0.04895104895104895,538,0.03345724907063197,1.4630924630924633,False,True
+menopause,F,45-59,eos_pct,S,bas,bas (S),,143,0.027972027972027972,538,0.024163568773234202,1.1576116191500807,False,True
+menopause,F,45-59,eos_pct,S,haut,haut (S),,143,0.013986013986013986,538,0.020446096654275093,0.684043229497775,False,True
+menopause,F,45-59,baso_pct,S,bas,bas (S),,143,0.006993006993006993,538,0.0055762081784386614,1.2540792540792542,False,True
+menopause,F,45-59,baso_pct,S,haut,haut (S),,143,0.02097902097902098,538,0.022304832713754646,0.9405594405594406,False,True
+menopause,F,45-59,rbc,S,bas,bas (S),,144,0.041666666666666664,539,0.03710575139146568,1.1229166666666666,False,True
+menopause,F,45-59,rbc,S,haut,haut (S),,144,0.041666666666666664,539,0.03153988868274583,1.321078431372549,False,True
+menopause,F,45-59,hb,S,bas,bas (S),,144,0.006944444444444444,539,0.02040816326530612,0.3402777777777778,False,True
+menopause,F,45-59,hb,S,haut,haut (S),,144,0.020833333333333332,539,0.03339517625231911,0.6238425925925926,False,True
+menopause,F,45-59,hct,S,bas,bas (S),,144,0.013888888888888888,539,0.02040816326530612,0.6805555555555556,False,True
+menopause,F,45-59,hct,S,haut,haut (S),,144,0.034722222222222224,539,0.03153988868274583,1.1008986928104576,False,True
+menopause,F,45-59,mcv,S,bas,bas (S),,144,0.020833333333333332,539,0.03525046382189239,0.5910087719298246,False,True
+menopause,F,45-59,mcv,S,haut,haut (S),,144,0.034722222222222224,539,0.02411873840445269,1.4396367521367521,False,True
+menopause,F,45-59,mch,S,bas,bas (S),,144,0.020833333333333332,539,0.03710575139146568,0.5614583333333333,False,True
+menopause,F,45-59,mch,S,haut,haut (S),,144,0.05555555555555555,539,0.03710575139146568,1.497222222222222,False,True
+menopause,F,45-59,mchc,S,bas,bas (S),,144,0.020833333333333332,539,0.027829313543599257,0.7486111111111111,False,True
+menopause,F,45-59,mchc,S,haut,haut (S),,144,0.027777777777777776,539,0.02040816326530612,1.3611111111111112,False,True
+menopause,F,45-59,rdw,S,bas,bas (S),,144,0.020833333333333332,539,0.014842300556586271,1.4036458333333333,False,True
+menopause,F,45-59,rdw,S,haut,haut (S),,144,0.006944444444444444,539,0.022263450834879406,0.3119212962962963,False,True
+menopause,F,45-59,plt,S,bas,bas (S),,144,0.027777777777777776,539,0.016697588126159554,1.66358024691358,False,True
+menopause,F,45-59,plt,S,haut,haut (S),,144,0.013888888888888888,539,0.027829313543599257,0.49907407407407406,False,True
+menopause,F,45-59,mpv,S,bas,bas (S),,144,0.006944444444444444,539,0.02040816326530612,0.3402777777777778,False,True
+menopause,F,45-59,mpv,S,haut,haut (S),,144,0.006944444444444444,539,0.01855287569573284,0.3743055555555555,False,True
+menopause,F,45-59,insulin,S,bas,bas (S),,68,0.014705882352941176,256,0.03515625,0.41830065359477125,False,True
+menopause,F,45-59,insulin,S,haut,haut (S),,68,0.058823529411764705,256,0.03125,1.8823529411764706,False,True
+menopause,F,45-59,tc,S,bas,bas (S),,144,0.0,540,0.014814814814814815,0.0,False,True
+menopause,F,45-59,tc,S,haut,haut (S),,144,0.04861111111111111,540,0.03518518518518519,1.381578947368421,False,True
+menopause,F,45-59,hdl,S,bas,bas (S),,144,0.013888888888888888,540,0.020370370370370372,0.6818181818181818,False,True
+menopause,F,45-59,hdl,S,haut,haut (S),,144,0.034722222222222224,540,0.04259259259259259,0.8152173913043479,False,True
+menopause,F,45-59,alt,S,bas,bas (S),,144,0.006944444444444444,540,0.012962962962962963,0.5357142857142857,False,True
+menopause,F,45-59,alt,S,haut,haut (S),,144,0.027777777777777776,540,0.02962962962962963,0.9374999999999999,False,True
+menopause,F,45-59,ast,S,bas,bas (S),,144,0.0,540,0.011111111111111112,0.0,False,True
+menopause,F,45-59,ast,S,haut,haut (S),,144,0.041666666666666664,540,0.025925925925925925,1.6071428571428572,False,True
+menopause,F,45-59,ggt,S,bas,bas (S),,144,0.006944444444444444,540,0.011111111111111112,0.6249999999999999,False,True
+menopause,F,45-59,ggt,S,haut,haut (S),,144,0.034722222222222224,540,0.03148148148148148,1.1029411764705883,False,True
+menopause,F,45-59,alp,S,bas,bas (S),,144,0.006944444444444444,540,0.022222222222222223,0.31249999999999994,False,True
+menopause,F,45-59,alp,S,haut,haut (S),,144,0.06944444444444445,540,0.037037037037037035,1.8750000000000002,False,True
+menopause,F,45-59,bili,S,bas,bas (S),,144,0.0,540,0.001851851851851852,0.0,False,True
+menopause,F,45-59,bili,S,haut,haut (S),,144,0.027777777777777776,540,0.024074074074074074,1.1538461538461537,False,True
+menopause,F,45-59,albumin,S,bas,bas (S),,144,0.013888888888888888,540,0.022222222222222223,0.6249999999999999,False,True
+menopause,F,45-59,albumin,S,haut,haut (S),,144,0.0625,540,0.025925925925925925,2.4107142857142856,False,True
+menopause,F,45-59,protein,S,bas,bas (S),,144,0.013888888888888888,540,0.03333333333333333,0.41666666666666663,False,True
+menopause,F,45-59,protein,S,haut,haut (S),,144,0.034722222222222224,540,0.022222222222222223,1.5625,False,True
+menopause,F,45-59,globulin,S,bas,bas (S),,144,0.034722222222222224,540,0.03518518518518519,0.9868421052631579,False,True
+menopause,F,45-59,globulin,S,haut,haut (S),,144,0.034722222222222224,540,0.03333333333333333,1.0416666666666667,False,True
+menopause,F,45-59,creat,S,bas,bas (S),,144,0.020833333333333332,540,0.020370370370370372,1.0227272727272725,False,True
+menopause,F,45-59,creat,S,haut,haut (S),,144,0.027777777777777776,540,0.018518518518518517,1.5,False,True
+menopause,F,45-59,urea,S,bas,bas (S),,144,0.006944444444444444,540,0.011111111111111112,0.6249999999999999,False,True
+menopause,F,45-59,urea,S,haut,haut (S),,144,0.020833333333333332,540,0.024074074074074074,0.8653846153846153,False,True
+menopause,F,45-59,na,S,bas,bas (S),,144,0.013888888888888888,540,0.009259259259259259,1.5,False,True
+menopause,F,45-59,na,S,haut,haut (S),,144,0.006944444444444444,540,0.009259259259259259,0.75,False,True
+menopause,F,45-59,k,S,bas,bas (S),,144,0.034722222222222224,540,0.025925925925925925,1.3392857142857144,False,True
+menopause,F,45-59,k,S,haut,haut (S),,144,0.020833333333333332,540,0.018518518518518517,1.125,False,True
+menopause,F,45-59,cl,S,bas,bas (S),,144,0.05555555555555555,540,0.03518518518518519,1.5789473684210524,False,True
+menopause,F,45-59,cl,S,haut,haut (S),,144,0.006944444444444444,540,0.012962962962962963,0.5357142857142857,False,True
+menopause,F,45-59,hco3,S,bas,bas (S),,144,0.013888888888888888,540,0.016666666666666666,0.8333333333333333,False,True
+menopause,F,45-59,hco3,S,haut,haut (S),,144,0.027777777777777776,540,0.011111111111111112,2.4999999999999996,False,True
+menopause,F,45-59,osmo,S,bas,bas (S),,144,0.0,540,0.0,,False,True
+menopause,F,45-59,osmo,S,haut,haut (S),,144,0.9236111111111112,540,0.8351851851851851,1.1058758314855877,False,True
+menopause,F,45-59,ca,S,bas,bas (S),,144,0.027777777777777776,540,0.016666666666666666,1.6666666666666665,False,True
+menopause,F,45-59,ca,S,haut,haut (S),,144,0.04861111111111111,540,0.03148148148148148,1.5441176470588238,False,True
+menopause,F,45-59,iron,S,bas,bas (S),,144,0.006944444444444444,540,0.022222222222222223,0.31249999999999994,False,True
+menopause,F,45-59,iron,S,haut,haut (S),,144,0.013888888888888888,540,0.024074074074074074,0.5769230769230769,False,True
+menopause,F,45-59,urate,S,bas,bas (S),,144,0.006944444444444444,540,0.014814814814814815,0.46874999999999994,False,True
+menopause,F,45-59,urate,S,haut,haut (S),,144,0.0625,540,0.027777777777777776,2.25,False,True
+menopause,F,45-59,phos,S,bas,bas (S),,144,0.006944444444444444,540,0.009259259259259259,0.75,False,True
+menopause,F,45-59,phos,S,haut,haut (S),,144,0.034722222222222224,540,0.020370370370370372,1.7045454545454546,False,True
+menopause,F,45-59,crp,S,bas,bas (S),,144,0.0,540,0.0,,False,True
+menopause,F,45-59,crp,S,haut,haut (S),,144,0.006944444444444444,540,0.027777777777777776,0.25,False,True
+menopause,F,45-59,b12,S,bas,bas (S),,41,0.04878048780487805,217,0.027649769585253458,1.7642276422764227,False,True
+menopause,F,45-59,b12,S,haut,haut (S),,41,0.0,217,0.009216589861751152,0.0,False,True
+menopause,F,45-59,rbc_folate,S,bas,bas (S),,41,0.024390243902439025,214,0.028037383177570093,0.8699186991869919,False,True
+menopause,F,45-59,rbc_folate,S,haut,haut (S),,41,0.04878048780487805,214,0.02336448598130841,2.0878048780487806,False,True
+menopause,F,45-59,ferritin,S,bas,bas (S),,13,0.0,192,0.015625,0.0,False,False
+menopause,F,45-59,ferritin,S,haut,haut (S),,13,0.23076923076923078,192,0.0625,3.6923076923076925,False,False
+menopause,F,45-59,tibc,S,bas,bas (S),,41,0.04878048780487805,218,0.05045871559633028,0.966740576496674,False,True
+menopause,F,45-59,tibc,S,haut,haut (S),,41,0.0,218,0.01834862385321101,0.0,False,True
+menopause,F,45-59,tsat,S,bas,bas (S),,41,0.0,218,0.022935779816513763,0.0,False,True
+menopause,F,45-59,tsat,S,haut,haut (S),,41,0.0,218,0.0,,False,True
+menopause,F,45-59,hcy,S,bas,bas (S),,41,0.0,218,0.013761467889908258,0.0,False,True
+menopause,F,45-59,hcy,S,haut,haut (S),,41,0.0975609756097561,218,0.04128440366972477,2.3631436314363143,False,True
+menopause,F,45-59,apob,S,bas,bas (S),,62,0.0,218,0.013761467889908258,0.0,False,True
+menopause,F,45-59,apob,S,haut,haut (S),,62,0.06451612903225806,218,0.03669724770642202,1.758064516129032,False,True
+menopause,F,45-59,glu_fast,R,haut,"≥ 6,1 mmol/L (110 mg/dL) [OMS]",OMS,68,0.11764705882352941,257,0.05058365758754864,2.3257918552036196,True,True
+menopause,F,45-59,glu_fast,R,haut,"≥ 5,6 mmol/L (100 mg/dL) [ADA]",ADA,68,0.3235294117647059,257,0.29571984435797666,1.0940402476780187,False,True
+menopause,F,45-59,hba1c,R,haut,"≥ 6,0 % [OMS]",OMS,144,0.06944444444444445,537,0.0521415270018622,1.3318452380952381,False,True
+menopause,F,45-59,hba1c,R,haut,"≥ 5,7 % [ADA]",ADA,144,0.2916666666666667,537,0.18808193668528864,1.550742574257426,False,True
+menopause,F,45-59,ldl,R,haut,"≥ 3,0 mmol/L (116 mg/dL), objectif du risque faible",,68,0.7647058823529411,257,0.5642023346303502,1.3553752535496957,False,True
+menopause,F,45-59,non_hdl,R,haut,"≥ 3,4 mmol/L (130 mg/dL), objectif du risque modéré",,144,0.7986111111111112,540,0.662962962962963,1.204608938547486,False,True
+menopause,F,45-59,tg_fast,R,haut,"≥ 1,7 mmol/L (150 mg/dL)",,68,0.22058823529411764,257,0.15953307392996108,1.3827116212338595,False,True
+menopause,F,45-59,egfr,R,bas,"< 60 mL/min/1,73 m² (G3a et au-delà)",,144,0.020833333333333332,540,0.011111111111111112,1.8749999999999998,False,True
+menopause,F,45-59,acr,R,haut,"≥ 3 mg/mmol (30 mg/g), A2",,144,0.0625,539,0.06307977736549165,0.9908088235294117,False,True
+menopause,F,45-59,vitd,R,bas,< 20 ng/mL (50 nmol/L),,136,0.19852941176470587,509,0.2554027504911591,0.7773190045248869,False,True
+menopause,F,45-59,vitd,R,bas,< 30 ng/mL (75 nmol/L) [sensibilité 30],sensibilité 30,136,0.6176470588235294,509,0.6836935166994106,0.903397565922921,False,True
+menopause_thm,F,45-59,wbc,S,bas,bas (S),,20,0.1,539,0.03153988868274583,3.1705882352941175,False,False
+menopause_thm,F,45-59,wbc,S,haut,haut (S),,20,0.0,539,0.025974025974025976,0.0,False,False
+menopause_thm,F,45-59,neut_pct,S,bas,bas (S),,20,0.05,538,0.031598513011152414,1.5823529411764707,False,False
+menopause_thm,F,45-59,neut_pct,S,haut,haut (S),,20,0.05,538,0.027881040892193308,1.7933333333333334,False,False
+menopause_thm,F,45-59,lymph_pct,S,bas,bas (S),,20,0.0,538,0.024163568773234202,0.0,False,False
+menopause_thm,F,45-59,lymph_pct,S,haut,haut (S),,20,0.05,538,0.031598513011152414,1.5823529411764707,False,False
+menopause_thm,F,45-59,mono_pct,S,bas,bas (S),,20,0.0,538,0.024163568773234202,0.0,False,False
+menopause_thm,F,45-59,mono_pct,S,haut,haut (S),,20,0.0,538,0.03345724907063197,0.0,False,False
+menopause_thm,F,45-59,eos_pct,S,bas,bas (S),,20,0.0,538,0.024163568773234202,0.0,False,False
+menopause_thm,F,45-59,eos_pct,S,haut,haut (S),,20,0.0,538,0.020446096654275093,0.0,False,False
+menopause_thm,F,45-59,baso_pct,S,bas,bas (S),,20,0.0,538,0.0055762081784386614,0.0,False,False
+menopause_thm,F,45-59,baso_pct,S,haut,haut (S),,20,0.0,538,0.022304832713754646,0.0,False,False
+menopause_thm,F,45-59,rbc,S,bas,bas (S),,20,0.05,539,0.03710575139146568,1.3475,False,False
+menopause_thm,F,45-59,rbc,S,haut,haut (S),,20,0.0,539,0.03153988868274583,0.0,False,False
+menopause_thm,F,45-59,hb,S,bas,bas (S),,20,0.0,539,0.02040816326530612,0.0,False,False
+menopause_thm,F,45-59,hb,S,haut,haut (S),,20,0.05,539,0.03339517625231911,1.4972222222222222,False,False
+menopause_thm,F,45-59,hct,S,bas,bas (S),,20,0.0,539,0.02040816326530612,0.0,False,False
+menopause_thm,F,45-59,hct,S,haut,haut (S),,20,0.05,539,0.03153988868274583,1.5852941176470587,False,False
+menopause_thm,F,45-59,mcv,S,bas,bas (S),,20,0.0,539,0.03525046382189239,0.0,False,False
+menopause_thm,F,45-59,mcv,S,haut,haut (S),,20,0.0,539,0.02411873840445269,0.0,False,False
+menopause_thm,F,45-59,mch,S,bas,bas (S),,20,0.0,539,0.03710575139146568,0.0,False,False
+menopause_thm,F,45-59,mch,S,haut,haut (S),,20,0.0,539,0.03710575139146568,0.0,False,False
+menopause_thm,F,45-59,mchc,S,bas,bas (S),,20,0.0,539,0.027829313543599257,0.0,False,False
+menopause_thm,F,45-59,mchc,S,haut,haut (S),,20,0.0,539,0.02040816326530612,0.0,False,False
+menopause_thm,F,45-59,rdw,S,bas,bas (S),,20,0.0,539,0.014842300556586271,0.0,False,False
+menopause_thm,F,45-59,rdw,S,haut,haut (S),,20,0.05,539,0.022263450834879406,2.2458333333333336,False,False
+menopause_thm,F,45-59,plt,S,bas,bas (S),,20,0.0,539,0.016697588126159554,0.0,False,False
+menopause_thm,F,45-59,plt,S,haut,haut (S),,20,0.05,539,0.027829313543599257,1.7966666666666669,False,False
+menopause_thm,F,45-59,mpv,S,bas,bas (S),,20,0.0,539,0.02040816326530612,0.0,False,False
+menopause_thm,F,45-59,mpv,S,haut,haut (S),,20,0.0,539,0.01855287569573284,0.0,False,False
+menopause_thm,F,45-59,insulin,S,bas,bas (S),,13,0.07692307692307693,256,0.03515625,2.1880341880341883,False,False
+menopause_thm,F,45-59,insulin,S,haut,haut (S),,13,0.0,256,0.03125,0.0,False,False
+menopause_thm,F,45-59,tc,S,bas,bas (S),,20,0.0,540,0.014814814814814815,0.0,False,False
+menopause_thm,F,45-59,tc,S,haut,haut (S),,20,0.0,540,0.03518518518518519,0.0,False,False
+menopause_thm,F,45-59,hdl,S,bas,bas (S),,20,0.0,540,0.020370370370370372,0.0,False,False
+menopause_thm,F,45-59,hdl,S,haut,haut (S),,20,0.15,540,0.04259259259259259,3.5217391304347827,False,False
+menopause_thm,F,45-59,alt,S,bas,bas (S),,20,0.0,540,0.012962962962962963,0.0,False,False
+menopause_thm,F,45-59,alt,S,haut,haut (S),,20,0.0,540,0.02962962962962963,0.0,False,False
+menopause_thm,F,45-59,ast,S,bas,bas (S),,20,0.0,540,0.011111111111111112,0.0,False,False
+menopause_thm,F,45-59,ast,S,haut,haut (S),,20,0.0,540,0.025925925925925925,0.0,False,False
+menopause_thm,F,45-59,ggt,S,bas,bas (S),,20,0.0,540,0.011111111111111112,0.0,False,False
+menopause_thm,F,45-59,ggt,S,haut,haut (S),,20,0.05,540,0.03148148148148148,1.5882352941176474,False,False
+menopause_thm,F,45-59,alp,S,bas,bas (S),,20,0.0,540,0.022222222222222223,0.0,False,False
+menopause_thm,F,45-59,alp,S,haut,haut (S),,20,0.0,540,0.037037037037037035,0.0,False,False
+menopause_thm,F,45-59,bili,S,bas,bas (S),,20,0.0,540,0.001851851851851852,0.0,False,False
+menopause_thm,F,45-59,bili,S,haut,haut (S),,20,0.05,540,0.024074074074074074,2.076923076923077,False,False
+menopause_thm,F,45-59,albumin,S,bas,bas (S),,20,0.0,540,0.022222222222222223,0.0,False,False
+menopause_thm,F,45-59,albumin,S,haut,haut (S),,20,0.0,540,0.025925925925925925,0.0,False,False
+menopause_thm,F,45-59,protein,S,bas,bas (S),,20,0.0,540,0.03333333333333333,0.0,False,False
+menopause_thm,F,45-59,protein,S,haut,haut (S),,20,0.0,540,0.022222222222222223,0.0,False,False
+menopause_thm,F,45-59,globulin,S,bas,bas (S),,20,0.05,540,0.03518518518518519,1.4210526315789473,False,False
+menopause_thm,F,45-59,globulin,S,haut,haut (S),,20,0.0,540,0.03333333333333333,0.0,False,False
+menopause_thm,F,45-59,creat,S,bas,bas (S),,20,0.0,540,0.020370370370370372,0.0,False,False
+menopause_thm,F,45-59,creat,S,haut,haut (S),,20,0.0,540,0.018518518518518517,0.0,False,False
+menopause_thm,F,45-59,urea,S,bas,bas (S),,20,0.0,540,0.011111111111111112,0.0,False,False
+menopause_thm,F,45-59,urea,S,haut,haut (S),,20,0.0,540,0.024074074074074074,0.0,False,False
+menopause_thm,F,45-59,na,S,bas,bas (S),,20,0.0,540,0.009259259259259259,0.0,False,False
+menopause_thm,F,45-59,na,S,haut,haut (S),,20,0.0,540,0.009259259259259259,0.0,False,False
+menopause_thm,F,45-59,k,S,bas,bas (S),,20,0.0,540,0.025925925925925925,0.0,False,False
+menopause_thm,F,45-59,k,S,haut,haut (S),,20,0.05,540,0.018518518518518517,2.7,False,False
+menopause_thm,F,45-59,cl,S,bas,bas (S),,20,0.05,540,0.03518518518518519,1.4210526315789473,False,False
+menopause_thm,F,45-59,cl,S,haut,haut (S),,20,0.0,540,0.012962962962962963,0.0,False,False
+menopause_thm,F,45-59,hco3,S,bas,bas (S),,20,0.0,540,0.016666666666666666,0.0,False,False
+menopause_thm,F,45-59,hco3,S,haut,haut (S),,20,0.0,540,0.011111111111111112,0.0,False,False
+menopause_thm,F,45-59,osmo,S,bas,bas (S),,20,0.0,540,0.0,,False,False
+menopause_thm,F,45-59,osmo,S,haut,haut (S),,20,0.85,540,0.8351851851851851,1.017738359201774,False,False
+menopause_thm,F,45-59,ca,S,bas,bas (S),,20,0.0,540,0.016666666666666666,0.0,False,False
+menopause_thm,F,45-59,ca,S,haut,haut (S),,20,0.0,540,0.03148148148148148,0.0,False,False
+menopause_thm,F,45-59,iron,S,bas,bas (S),,20,0.05,540,0.022222222222222223,2.25,False,False
+menopause_thm,F,45-59,iron,S,haut,haut (S),,20,0.0,540,0.024074074074074074,0.0,False,False
+menopause_thm,F,45-59,urate,S,bas,bas (S),,20,0.0,540,0.014814814814814815,0.0,False,False
+menopause_thm,F,45-59,urate,S,haut,haut (S),,20,0.0,540,0.027777777777777776,0.0,False,False
+menopause_thm,F,45-59,phos,S,bas,bas (S),,20,0.0,540,0.009259259259259259,0.0,False,False
+menopause_thm,F,45-59,phos,S,haut,haut (S),,20,0.05,540,0.020370370370370372,2.4545454545454546,False,False
+menopause_thm,F,45-59,crp,S,bas,bas (S),,20,0.0,540,0.0,,False,False
+menopause_thm,F,45-59,crp,S,haut,haut (S),,20,0.05,540,0.027777777777777776,1.8000000000000003,False,False
+menopause_thm,F,45-59,b12,S,bas,bas (S),,12,0.08333333333333333,217,0.027649769585253458,3.0138888888888884,False,False
+menopause_thm,F,45-59,b12,S,haut,haut (S),,12,0.0,217,0.009216589861751152,0.0,False,False
+menopause_thm,F,45-59,rbc_folate,S,bas,bas (S),,11,0.0,214,0.028037383177570093,0.0,False,False
+menopause_thm,F,45-59,rbc_folate,S,haut,haut (S),,11,0.09090909090909091,214,0.02336448598130841,3.890909090909091,False,False
+menopause_thm,F,45-59,ferritin,S,bas,bas (S),,3,0.0,192,0.015625,0.0,False,False
+menopause_thm,F,45-59,ferritin,S,haut,haut (S),,3,0.0,192,0.0625,0.0,False,False
+menopause_thm,F,45-59,tibc,S,bas,bas (S),,12,0.16666666666666666,218,0.05045871559633028,3.3030303030303028,False,False
+menopause_thm,F,45-59,tibc,S,haut,haut (S),,12,0.0,218,0.01834862385321101,0.0,False,False
+menopause_thm,F,45-59,tsat,S,bas,bas (S),,12,0.0,218,0.022935779816513763,0.0,False,False
+menopause_thm,F,45-59,tsat,S,haut,haut (S),,12,0.0,218,0.0,,False,False
+menopause_thm,F,45-59,hcy,S,bas,bas (S),,12,0.0,218,0.013761467889908258,0.0,False,False
+menopause_thm,F,45-59,hcy,S,haut,haut (S),,12,0.0,218,0.04128440366972477,0.0,False,False
+menopause_thm,F,45-59,apob,S,bas,bas (S),,9,0.0,218,0.013761467889908258,0.0,False,False
+menopause_thm,F,45-59,apob,S,haut,haut (S),,9,0.0,218,0.03669724770642202,0.0,False,False
+menopause_thm,F,45-59,glu_fast,R,haut,"≥ 6,1 mmol/L (110 mg/dL) [OMS]",OMS,13,0.0,257,0.05058365758754864,0.0,False,False
+menopause_thm,F,45-59,glu_fast,R,haut,"≥ 5,6 mmol/L (100 mg/dL) [ADA]",ADA,13,0.38461538461538464,257,0.29571984435797666,1.3006072874493928,False,False
+menopause_thm,F,45-59,hba1c,R,haut,"≥ 6,0 % [OMS]",OMS,20,0.0,537,0.0521415270018622,0.0,False,False
+menopause_thm,F,45-59,hba1c,R,haut,"≥ 5,7 % [ADA]",ADA,20,0.1,537,0.18808193668528864,0.5316831683168317,False,False
+menopause_thm,F,45-59,ldl,R,haut,"≥ 3,0 mmol/L (116 mg/dL), objectif du risque faible",,13,0.38461538461538464,257,0.5642023346303502,0.6816976127320955,False,False
+menopause_thm,F,45-59,non_hdl,R,haut,"≥ 3,4 mmol/L (130 mg/dL), objectif du risque modéré",,20,0.55,540,0.662962962962963,0.8296089385474861,False,False
+menopause_thm,F,45-59,tg_fast,R,haut,"≥ 1,7 mmol/L (150 mg/dL)",,13,0.07692307692307693,257,0.15953307392996108,0.48217636022514077,False,False
+menopause_thm,F,45-59,egfr,R,bas,"< 60 mL/min/1,73 m² (G3a et au-delà)",,20,0.0,540,0.011111111111111112,0.0,False,False
+menopause_thm,F,45-59,acr,R,haut,"≥ 3 mg/mmol (30 mg/g), A2",,20,0.05,539,0.06307977736549165,0.7926470588235294,False,False
+menopause_thm,F,45-59,vitd,R,bas,< 20 ng/mL (50 nmol/L),,20,0.1,509,0.2554027504911591,0.39153846153846156,False,False
+menopause_thm,F,45-59,vitd,R,bas,< 30 ng/mL (75 nmol/L) [sensibilité 30],sensibilité 30,20,0.55,509,0.6836935166994106,0.8044540229885059,False,False
+favorisee,H,30-55,wbc,S,bas,bas (S),,279,0.017921146953405017,1239,0.025020177562550445,0.7162677766215747,False,True
+favorisee,H,30-55,wbc,S,haut,haut (S),,279,0.021505376344086023,1239,0.01937046004842615,1.110215053763441,False,True
+favorisee,H,30-55,neut_pct,S,bas,bas (S),,279,0.017921146953405017,1239,0.025020177562550445,0.7162677766215747,False,True
+favorisee,H,30-55,neut_pct,S,haut,haut (S),,279,0.021505376344086023,1239,0.020177562550443905,1.0658064516129033,False,True
+favorisee,H,30-55,lymph_pct,S,bas,bas (S),,279,0.025089605734767026,1239,0.021791767554479417,1.1513341298287536,False,True
+favorisee,H,30-55,lymph_pct,S,haut,haut (S),,279,0.025089605734767026,1239,0.023405972558514933,1.07193177604746,False,True
+favorisee,H,30-55,mono_pct,S,bas,bas (S),,279,0.025089605734767026,1239,0.026634382566585957,0.942000651678071,False,True
+favorisee,H,30-55,mono_pct,S,haut,haut (S),,279,0.017921146953405017,1239,0.020984665052461663,0.8540115798180313,False,True
+favorisee,H,30-55,eos_pct,S,bas,bas (S),,279,0.010752688172043012,1239,0.013720742534301856,0.7836812144212525,False,True
+favorisee,H,30-55,eos_pct,S,haut,haut (S),,279,0.017921146953405017,1239,0.031476997578692496,0.5693410532120209,False,True
+favorisee,H,30-55,baso_pct,S,bas,bas (S),,279,0.014336917562724014,1239,0.010492332526230832,1.3664185277088503,False,True
+favorisee,H,30-55,baso_pct,S,haut,haut (S),,279,0.021505376344086023,1239,0.023405972558514933,0.9187986651835373,False,True
+favorisee,H,30-55,rbc,S,bas,bas (S),,279,0.043010752688172046,1239,0.031476997578692496,1.3664185277088503,False,True
+favorisee,H,30-55,rbc,S,haut,haut (S),,279,0.021505376344086023,1239,0.02824858757062147,0.7612903225806452,False,True
+favorisee,H,30-55,hb,S,bas,bas (S),,279,0.025089605734767026,1239,0.02824858757062147,0.8881720430107527,False,True
+favorisee,H,30-55,hb,S,haut,haut (S),,279,0.014336917562724014,1239,0.01694915254237288,0.8458781362007168,False,True
+favorisee,H,30-55,hct,S,bas,bas (S),,279,0.03225806451612903,1239,0.025020177562550445,1.2892819979188344,False,True
+favorisee,H,30-55,hct,S,haut,haut (S),,279,0.021505376344086023,1239,0.020984665052461663,1.0248138957816377,False,True
+favorisee,H,30-55,mcv,S,bas,bas (S),,279,0.03225806451612903,1239,0.02824858757062147,1.1419354838709677,False,True
+favorisee,H,30-55,mcv,S,haut,haut (S),,279,0.017921146953405017,1239,0.026634382566585957,0.6728576083414792,False,True
+favorisee,H,30-55,mch,S,bas,bas (S),,279,0.02867383512544803,1239,0.02824858757062147,1.0150537634408603,False,True
+favorisee,H,30-55,mch,S,haut,haut (S),,279,0.017921146953405017,1239,0.021791767554479417,0.8223815213062525,False,True
+favorisee,H,30-55,mchc,S,bas,bas (S),,279,0.010752688172043012,1239,0.022598870056497175,0.47580645161290325,False,True
+favorisee,H,30-55,mchc,S,haut,haut (S),,279,0.03225806451612903,1239,0.03066989507667474,1.0517826825127334,False,True
+favorisee,H,30-55,rdw,S,bas,bas (S),,279,0.02867383512544803,1239,0.01937046004842615,1.4802867383512543,False,True
+favorisee,H,30-55,rdw,S,haut,haut (S),,279,0.02867383512544803,1239,0.022598870056497175,1.2688172043010753,False,True
+favorisee,H,30-55,plt,S,bas,bas (S),,279,0.017921146953405017,1239,0.023405972558514933,0.7656655543196142,False,True
+favorisee,H,30-55,plt,S,haut,haut (S),,279,0.021505376344086023,1239,0.01937046004842615,1.110215053763441,False,True
+favorisee,H,30-55,mpv,S,bas,bas (S),,279,0.025089605734767026,1239,0.020984665052461663,1.195616211745244,False,True
+favorisee,H,30-55,mpv,S,haut,haut (S),,279,0.021505376344086023,1239,0.020177562550443905,1.0658064516129033,False,True
+favorisee,H,30-55,insulin,S,bas,bas (S),,113,0.061946902654867256,558,0.023297491039426525,2.658951667801225,False,True
+favorisee,H,30-55,insulin,S,haut,haut (S),,113,0.008849557522123894,558,0.014336917562724014,0.6172566371681416,False,True
+favorisee,H,30-55,tc,S,bas,bas (S),,279,0.025089605734767026,1241,0.018533440773569703,1.3537478572541686,False,True
+favorisee,H,30-55,tc,S,haut,haut (S),,279,0.03225806451612903,1241,0.031426269137792104,1.0264681555004136,False,True
+favorisee,H,30-55,hdl,S,bas,bas (S),,279,0.007168458781362007,1241,0.029008863819500404,0.2471127041019514,False,True
+favorisee,H,30-55,hdl,S,haut,haut (S),,279,0.04659498207885305,1241,0.024174053182917002,1.9274790919952212,False,True
+favorisee,H,30-55,alt,S,bas,bas (S),,277,0.007220216606498195,1236,0.013754045307443365,0.5249522191548099,False,True
+favorisee,H,30-55,alt,S,haut,haut (S),,277,0.021660649819494584,1236,0.029935275080906147,0.723582788564738,False,True
+favorisee,H,30-55,ast,S,bas,bas (S),,277,0.010830324909747292,1236,0.016181229773462782,0.6693140794223827,False,True
+favorisee,H,30-55,ast,S,haut,haut (S),,277,0.02527075812274368,1236,0.02669902912621359,0.946504758779127,False,True
+favorisee,H,30-55,ggt,S,bas,bas (S),,279,0.014336917562724014,1239,0.012106537530266344,1.1842293906810035,False,True
+favorisee,H,30-55,ggt,S,haut,haut (S),,279,0.017921146953405017,1239,0.031476997578692496,0.5693410532120209,False,True
+favorisee,H,30-55,alp,S,bas,bas (S),,279,0.05017921146953405,1239,0.026634382566585957,1.884001303356142,False,True
+favorisee,H,30-55,alp,S,haut,haut (S),,279,0.010752688172043012,1239,0.01937046004842615,0.5551075268817205,False,True
+favorisee,H,30-55,bili,S,bas,bas (S),,279,0.007168458781362007,1238,0.012116316639741519,0.591636798088411,False,True
+favorisee,H,30-55,bili,S,haut,haut (S),,279,0.03942652329749104,1238,0.022617124394184167,1.743215565796211,False,True
+favorisee,H,30-55,albumin,S,bas,bas (S),,279,0.010752688172043012,1239,0.0258272800645682,0.41633064516129037,False,True
+favorisee,H,30-55,albumin,S,haut,haut (S),,279,0.010752688172043012,1239,0.011299435028248588,0.9516129032258065,False,True
+favorisee,H,30-55,protein,S,bas,bas (S),,279,0.025089605734767026,1234,0.02025931928687196,1.2384229390681003,False,True
+favorisee,H,30-55,protein,S,haut,haut (S),,279,0.010752688172043012,1234,0.023500810372771474,0.4575454208379682,False,True
+favorisee,H,30-55,globulin,S,bas,bas (S),,279,0.035842293906810034,1234,0.02106969205834684,1.7011304108078302,False,True
+favorisee,H,30-55,globulin,S,haut,haut (S),,279,0.0,1234,0.024311183144246355,0.0,False,True
+favorisee,H,30-55,creat,S,bas,bas (S),,279,0.0,1239,0.026634382566585957,0.0,False,True
+favorisee,H,30-55,creat,S,haut,haut (S),,279,0.03225806451612903,1239,0.0258272800645682,1.248991935483871,False,True
+favorisee,H,30-55,urea,S,bas,bas (S),,279,0.014336917562724014,1239,0.01775625504439064,0.8074291300097751,False,True
+favorisee,H,30-55,urea,S,haut,haut (S),,279,0.025089605734767026,1239,0.018563357546408393,1.3515661524076672,False,True
+favorisee,H,30-55,na,S,bas,bas (S),,279,0.007168458781362007,1239,0.016142050040355124,0.4440860215053764,False,True
+favorisee,H,30-55,na,S,haut,haut (S),,279,0.021505376344086023,1239,0.013720742534301856,1.567362428842505,False,True
+favorisee,H,30-55,k,S,bas,bas (S),,279,0.0,1239,0.004035512510088781,0.0,False,True
+favorisee,H,30-55,k,S,haut,haut (S),,279,0.014336917562724014,1239,0.014527845036319613,0.9868578255675029,False,True
+favorisee,H,30-55,cl,S,bas,bas (S),,279,0.010752688172043012,1239,0.01533494753833737,0.701188455008489,False,True
+favorisee,H,30-55,cl,S,haut,haut (S),,279,0.007168458781362007,1239,0.01533494753833737,0.4674589700056593,False,True
+favorisee,H,30-55,hco3,S,bas,bas (S),,277,0.018050541516245487,1236,0.025080906148867314,0.7196925585186911,False,True
+favorisee,H,30-55,hco3,S,haut,haut (S),,277,0.021660649819494584,1236,0.019417475728155338,1.1155234657039712,False,True
+favorisee,H,30-55,osmo,S,bas,bas (S),,279,0.0,1239,0.0016142050040355124,0.0,False,True
+favorisee,H,30-55,osmo,S,haut,haut (S),,279,0.8100358422939068,1239,0.7651331719128329,1.0586860850233655,False,True
+favorisee,H,30-55,ca,S,bas,bas (S),,279,0.017921146953405017,1239,0.020177562550443905,0.8881720430107527,False,True
+favorisee,H,30-55,ca,S,haut,haut (S),,279,0.02867383512544803,1239,0.020984665052461663,1.3664185277088503,False,True
+favorisee,H,30-55,iron,S,bas,bas (S),,279,0.010752688172043012,1239,0.01775625504439064,0.6055718475073314,False,True
+favorisee,H,30-55,iron,S,haut,haut (S),,279,0.017921146953405017,1239,0.021791767554479417,0.8223815213062525,False,True
+favorisee,H,30-55,urate,S,bas,bas (S),,279,0.0035842293906810036,1239,0.01937046004842615,0.1850358422939068,False,True
+favorisee,H,30-55,urate,S,haut,haut (S),,279,0.017921146953405017,1239,0.02744148506860371,0.653067678684377,False,True
+favorisee,H,30-55,phos,S,bas,bas (S),,279,0.010752688172043012,1239,0.026634382566585957,0.4037145650048876,False,True
+favorisee,H,30-55,phos,S,haut,haut (S),,279,0.021505376344086023,1239,0.01937046004842615,1.110215053763441,False,True
+favorisee,H,30-55,crp,S,bas,bas (S),,279,0.0,1242,0.0,,False,True
+favorisee,H,30-55,crp,S,haut,haut (S),,279,0.007168458781362007,1242,0.026570048309178744,0.2697947214076246,False,True
+favorisee,H,30-55,b12,S,bas,bas (S),,139,0.007194244604316547,544,0.022058823529411766,0.32613908872901676,False,True
+favorisee,H,30-55,b12,S,haut,haut (S),,139,0.02877697841726619,544,0.03308823529411765,0.8697042366107115,False,True
+favorisee,H,30-55,rbc_folate,S,bas,bas (S),,141,0.014184397163120567,550,0.025454545454545455,0.5572441742654508,False,True
+favorisee,H,30-55,rbc_folate,S,haut,haut (S),,141,0.04964539007092199,550,0.023636363636363636,2.10038188761593,False,True
+favorisee,H,30-55,ferritin,S,bas,bas (S),,0,,0,,,False,False
+favorisee,H,30-55,ferritin,S,haut,haut (S),,0,,0,,,False,False
+favorisee,H,30-55,tibc,S,bas,bas (S),,0,,0,,,False,False
+favorisee,H,30-55,tibc,S,haut,haut (S),,0,,0,,,False,False
+favorisee,H,30-55,tsat,S,bas,bas (S),,0,,0,,,False,False
+favorisee,H,30-55,tsat,S,haut,haut (S),,0,,0,,,False,False
+favorisee,H,30-55,hcy,S,bas,bas (S),,142,0.007042253521126761,552,0.018115942028985508,0.38873239436619716,False,True
+favorisee,H,30-55,hcy,S,haut,haut (S),,142,0.028169014084507043,552,0.02717391304347826,1.036619718309859,False,True
+favorisee,H,30-55,apob,S,bas,bas (S),,93,0.043010752688172046,497,0.018108651911468814,2.3751493428912784,False,True
+favorisee,H,30-55,apob,S,haut,haut (S),,93,0.021505376344086023,497,0.03822937625754527,0.5625353706847765,False,True
+favorisee,H,30-55,glu_fast,R,haut,"≥ 6,1 mmol/L (110 mg/dL) [OMS]",OMS,115,0.043478260869565216,562,0.13345195729537365,0.3257971014492754,False,True
+favorisee,H,30-55,glu_fast,R,haut,"≥ 5,6 mmol/L (100 mg/dL) [ADA]",ADA,115,0.3217391304347826,562,0.47153024911032027,0.6823297785069729,False,True
+favorisee,H,30-55,hba1c,R,haut,"≥ 6,0 % [OMS]",OMS,279,0.007168458781362007,1239,0.04600484261501211,0.1558196566685531,False,True
+favorisee,H,30-55,hba1c,R,haut,"≥ 5,7 % [ADA]",ADA,279,0.08243727598566308,1239,0.1791767554479419,0.4600891213794439,False,True
+favorisee,H,30-55,ldl,R,haut,"≥ 3,0 mmol/L (116 mg/dL), objectif du risque faible",,115,0.5478260869565217,562,0.6103202846975089,0.8976042590949422,False,True
+favorisee,H,30-55,non_hdl,R,haut,"≥ 3,4 mmol/L (130 mg/dL), objectif du risque modéré",,279,0.6953405017921147,1241,0.734085414987913,0.9472201566674141,False,True
+favorisee,H,30-55,tg_fast,R,haut,"≥ 1,7 mmol/L (150 mg/dL)",,115,0.17391304347826086,562,0.30782918149466193,0.564966071877356,False,True
+favorisee,H,30-55,egfr,R,bas,"< 60 mL/min/1,73 m² (G3a et au-delà)",,279,0.014336917562724014,1239,0.00887812752219532,1.6148582600195502,False,True
+favorisee,H,30-55,acr,R,haut,"≥ 3 mg/mmol (30 mg/g), A2",,276,0.007246376811594203,1229,0.028478437754271765,0.2544513457556936,False,True
+favorisee,H,30-55,vitd,R,bas,< 20 ng/mL (50 nmol/L),,268,0.1865671641791045,1181,0.2972057578323455,0.6277373814687247,False,True
+favorisee,H,30-55,vitd,R,bas,< 30 ng/mL (75 nmol/L) [sensibilité 30],sensibilité 30,268,0.6977611940298507,1181,0.7620660457239627,0.9156177446102819,False,True
+favorisee,F,30-55,wbc,S,bas,bas (S),,327,0.024464831804281346,1386,0.025252525252525252,0.9688073394495413,False,True
+favorisee,F,30-55,wbc,S,haut,haut (S),,327,0.01834862385321101,1386,0.02813852813852814,0.6520818630910374,False,True
+favorisee,F,30-55,neut_pct,S,bas,bas (S),,327,0.01529051987767584,1381,0.024619840695148443,0.6210649397373629,False,True
+favorisee,F,30-55,neut_pct,S,haut,haut (S),,327,0.01834862385321101,1381,0.02389572773352643,0.7678621073116487,False,True
+favorisee,F,30-55,lymph_pct,S,bas,bas (S),,327,0.012232415902140673,1381,0.026792179580014484,0.4565666584015208,False,True
+favorisee,F,30-55,lymph_pct,S,haut,haut (S),,327,0.01529051987767584,1381,0.025343953656770456,0.6033202271734381,False,True
+favorisee,F,30-55,mono_pct,S,bas,bas (S),,327,0.027522935779816515,1381,0.02389572773352643,1.151793160967473,False,True
+favorisee,F,30-55,mono_pct,S,haut,haut (S),,327,0.024464831804281346,1381,0.01882693700217234,1.2994589508350975,False,True
+favorisee,F,30-55,eos_pct,S,bas,bas (S),,327,0.01529051987767584,1381,0.024619840695148443,0.6210649397373629,False,True
+favorisee,F,30-55,eos_pct,S,haut,haut (S),,327,0.021406727828746176,1381,0.024619840695148443,0.869490915632308,False,True
+favorisee,F,30-55,baso_pct,S,bas,bas (S),,327,0.009174311926605505,1381,0.0065170166545981175,1.4077471967380224,False,True
+favorisee,F,30-55,baso_pct,S,haut,haut (S),,327,0.03363914373088685,1381,0.024619840695148443,1.3663428674221982,False,True
+favorisee,F,30-55,rbc,S,bas,bas (S),,327,0.01834862385321101,1386,0.02958152958152958,0.6202729917207429,False,True
+favorisee,F,30-55,rbc,S,haut,haut (S),,327,0.021406727828746176,1386,0.022366522366522368,0.9570878958271677,False,True
+favorisee,F,30-55,hb,S,bas,bas (S),,327,0.012232415902140673,1386,0.027417027417027416,0.4461612747464993,False,True
+favorisee,F,30-55,hb,S,haut,haut (S),,327,0.024464831804281346,1386,0.023809523809523808,1.0275229357798166,False,True
+favorisee,F,30-55,hct,S,bas,bas (S),,327,0.009174311926605505,1386,0.025974025974025976,0.3532110091743119,False,True
+favorisee,F,30-55,hct,S,haut,haut (S),,327,0.03669724770642202,1386,0.025252525252525252,1.453211009174312,False,True
+favorisee,F,30-55,mcv,S,bas,bas (S),,327,0.01529051987767584,1386,0.02886002886002886,0.5298165137614679,False,True
+favorisee,F,30-55,mcv,S,haut,haut (S),,327,0.024464831804281346,1386,0.024531024531024532,0.9973016729627631,False,True
+favorisee,F,30-55,mch,S,bas,bas (S),,327,0.009174311926605505,1386,0.02886002886002886,0.31788990825688074,False,True
+favorisee,F,30-55,mch,S,haut,haut (S),,327,0.021406727828746176,1386,0.025252525252525252,0.8477064220183486,False,True
+favorisee,F,30-55,mchc,S,bas,bas (S),,327,0.009174311926605505,1386,0.023809523809523808,0.3853211009174312,False,True
+favorisee,F,30-55,mchc,S,haut,haut (S),,327,0.027522935779816515,1386,0.025974025974025976,1.0596330275229358,False,True
+favorisee,F,30-55,rdw,S,bas,bas (S),,327,0.024464831804281346,1386,0.01875901875901876,1.3041637261820747,False,True
+favorisee,F,30-55,rdw,S,haut,haut (S),,327,0.01529051987767584,1386,0.020923520923520924,0.7307813982916799,False,True
+favorisee,F,30-55,plt,S,bas,bas (S),,327,0.024464831804281346,1386,0.023088023088023088,1.0596330275229358,False,True
+favorisee,F,30-55,plt,S,haut,haut (S),,327,0.009174311926605505,1386,0.023809523809523808,0.3853211009174312,False,True
+favorisee,F,30-55,mpv,S,bas,bas (S),,327,0.012232415902140673,1386,0.017316017316017316,0.7064220183486238,False,True
+favorisee,F,30-55,mpv,S,haut,haut (S),,327,0.021406727828746176,1386,0.024531024531024532,0.8726389638424176,False,True
+favorisee,F,30-55,insulin,S,bas,bas (S),,153,0.0392156862745098,646,0.02321981424148607,1.6888888888888889,False,True
+favorisee,F,30-55,insulin,S,haut,haut (S),,153,0.006535947712418301,646,0.01393188854489164,0.46913580246913583,False,True
+favorisee,F,30-55,tc,S,bas,bas (S),,327,0.0061162079510703364,1388,0.02089337175792507,0.2927343667615734,False,True
+favorisee,F,30-55,tc,S,haut,haut (S),,327,0.021406727828746176,1388,0.024495677233429394,0.8738981831264616,False,True
+favorisee,F,30-55,hdl,S,bas,bas (S),,327,0.01529051987767584,1388,0.023054755043227664,0.6632262996941897,False,True
+favorisee,F,30-55,hdl,S,haut,haut (S),,327,0.039755351681957186,1388,0.02521613832853026,1.5765836609873305,False,True
+favorisee,F,30-55,alt,S,bas,bas (S),,326,0.006134969325153374,1387,0.01946647440519106,0.31515564644399,False,True
+favorisee,F,30-55,alt,S,haut,haut (S),,326,0.015337423312883436,1387,0.026676279740447006,0.5749461117559277,False,True
+favorisee,F,30-55,ast,S,bas,bas (S),,326,0.018404907975460124,1387,0.01802451333813987,1.0211042944785278,False,True
+favorisee,F,30-55,ast,S,haut,haut (S),,326,0.024539877300613498,1387,0.026676279740447006,0.9199137788094844,False,True
+favorisee,F,30-55,ggt,S,bas,bas (S),,327,0.009174311926605505,1388,0.015129682997118156,0.6063783311489734,False,True
+favorisee,F,30-55,ggt,S,haut,haut (S),,327,0.021406727828746176,1388,0.027377521613832854,0.7819089006920972,False,True
+favorisee,F,30-55,alp,S,bas,bas (S),,327,0.045871559633027525,1388,0.027377521613832854,1.675519072911637,False,True
+favorisee,F,30-55,alp,S,haut,haut (S),,327,0.012232415902140673,1388,0.0223342939481268,0.5476965571668146,False,True
+favorisee,F,30-55,bili,S,bas,bas (S),,327,0.0,1387,0.005046863734679163,0.0,False,True
+favorisee,F,30-55,bili,S,haut,haut (S),,327,0.027522935779816515,1387,0.026676279740447006,1.0317381601785274,False,True
+favorisee,F,30-55,albumin,S,bas,bas (S),,327,0.021406727828746176,1388,0.021613832853025938,0.9904179408766564,False,True
+favorisee,F,30-55,albumin,S,haut,haut (S),,327,0.0061162079510703364,1388,0.01440922190201729,0.42446483180428135,False,True
+favorisee,F,30-55,protein,S,bas,bas (S),,327,0.039755351681957186,1388,0.025936599423631124,1.5327896704043493,False,True
+favorisee,F,30-55,protein,S,haut,haut (S),,327,0.0061162079510703364,1388,0.016570605187319884,0.36909985374285337,False,True
+favorisee,F,30-55,globulin,S,bas,bas (S),,327,0.03669724770642202,1388,0.023054755043227664,1.5917431192660552,False,True
+favorisee,F,30-55,globulin,S,haut,haut (S),,327,0.0061162079510703364,1388,0.02089337175792507,0.2927343667615734,False,True
+favorisee,F,30-55,creat,S,bas,bas (S),,327,0.0061162079510703364,1388,0.01729106628242075,0.3537206931702344,False,True
+favorisee,F,30-55,creat,S,haut,haut (S),,327,0.021406727828746176,1388,0.0223342939481268,0.9584689750419256,False,True
+favorisee,F,30-55,urea,S,bas,bas (S),,327,0.0030581039755351682,1388,0.010086455331412104,0.30318916557448666,False,True
+favorisee,F,30-55,urea,S,haut,haut (S),,327,0.01529051987767584,1388,0.019452449567723344,0.7860459848227431,False,True
+favorisee,F,30-55,na,S,bas,bas (S),,327,0.01834862385321101,1388,0.010806916426512969,1.6978593272171254,False,True
+favorisee,F,30-55,na,S,haut,haut (S),,327,0.009174311926605505,1388,0.011527377521613832,0.7958715596330276,False,True
+favorisee,F,30-55,k,S,bas,bas (S),,327,0.01834862385321101,1388,0.0223342939481268,0.821544835750222,False,True
+favorisee,F,30-55,k,S,haut,haut (S),,327,0.01834862385321101,1388,0.018731988472622477,0.9795342272406493,False,True
+favorisee,F,30-55,cl,S,bas,bas (S),,327,0.01529051987767584,1388,0.01440922190201729,1.0611620795107033,False,True
+favorisee,F,30-55,cl,S,haut,haut (S),,327,0.009174311926605505,1388,0.012247838616714697,0.7490555855369672,False,True
+favorisee,F,30-55,hco3,S,bas,bas (S),,326,0.012269938650306749,1387,0.018745493871665464,0.6545540349221332,False,True
+favorisee,F,30-55,hco3,S,haut,haut (S),,326,0.015337423312883436,1387,0.010093727469358327,1.5195004382120947,False,True
+favorisee,F,30-55,osmo,S,bas,bas (S),,327,0.0030581039755351682,1388,0.0007204610951008645,4.244648318042814,False,True
+favorisee,F,30-55,osmo,S,haut,haut (S),,327,0.7737003058103975,1388,0.8112391930835735,0.9537264870913248,False,True
+favorisee,F,30-55,ca,S,bas,bas (S),,327,0.03058103975535168,1388,0.027377521613832854,1.1170127152744245,False,True
+favorisee,F,30-55,ca,S,haut,haut (S),,327,0.01834862385321101,1388,0.019452449567723344,0.9432551817872918,False,True
+favorisee,F,30-55,iron,S,bas,bas (S),,327,0.0061162079510703364,1387,0.025234318673395817,0.24237658366098735,False,True
+favorisee,F,30-55,iron,S,haut,haut (S),,327,0.03669724770642202,1387,0.02595529920692141,1.413863404689093,False,True
+favorisee,F,30-55,urate,S,bas,bas (S),,327,0.03058103975535168,1388,0.02881844380403458,1.0611620795107033,False,True
+favorisee,F,30-55,urate,S,haut,haut (S),,327,0.012232415902140673,1388,0.020172910662824207,0.6063783311489733,False,True
+favorisee,F,30-55,phos,S,bas,bas (S),,327,0.03058103975535168,1388,0.024495677233429394,1.2484259758949452,False,True
+favorisee,F,30-55,phos,S,haut,haut (S),,327,0.01834862385321101,1388,0.018011527377521614,1.0187155963302752,False,True
+favorisee,F,30-55,crp,S,bas,bas (S),,328,0.0,1389,0.0,,False,True
+favorisee,F,30-55,crp,S,haut,haut (S),,328,0.03048780487804878,1389,0.022318214542836574,1.3660503540519275,False,True
+favorisee,F,30-55,b12,S,bas,bas (S),,149,0.026845637583892617,569,0.019332161687170474,1.3886516168395364,False,True
+favorisee,F,30-55,b12,S,haut,haut (S),,149,0.03355704697986577,569,0.033391915641476276,1.0049452490286117,False,True
+favorisee,F,30-55,rbc_folate,S,bas,bas (S),,148,0.013513513513513514,568,0.01584507042253521,0.852852852852853,False,True
+favorisee,F,30-55,rbc_folate,S,haut,haut (S),,148,0.006756756756756757,568,0.02992957746478873,0.22575516693163755,False,True
+favorisee,F,30-55,ferritin,S,bas,bas (S),,237,0.008438818565400843,944,0.013771186440677966,0.6127880558260305,False,True
+favorisee,F,30-55,ferritin,S,haut,haut (S),,237,0.02109704641350211,944,0.03283898305084746,0.6424390907853544,False,True
+favorisee,F,30-55,tibc,S,bas,bas (S),,150,0.03333333333333333,573,0.029668411867364748,1.1235294117647059,False,True
+favorisee,F,30-55,tibc,S,haut,haut (S),,150,0.02666666666666667,573,0.019197207678883072,1.3890909090909092,False,True
+favorisee,F,30-55,tsat,S,bas,bas (S),,150,0.02,573,0.027923211169284468,0.71625,False,True
+favorisee,F,30-55,tsat,S,haut,haut (S),,150,0.04666666666666667,573,0.02268760907504363,2.056923076923077,False,True
+favorisee,F,30-55,hcy,S,bas,bas (S),,150,0.02666666666666667,572,0.033216783216783216,0.8028070175438597,False,True
+favorisee,F,30-55,hcy,S,haut,haut (S),,150,0.013333333333333334,572,0.022727272727272728,0.5866666666666667,False,True
+favorisee,F,30-55,apob,S,bas,bas (S),,128,0.03125,548,0.023722627737226276,1.3173076923076923,False,True
+favorisee,F,30-55,apob,S,haut,haut (S),,128,0.0078125,548,0.021897810218978103,0.3567708333333333,False,True
+favorisee,F,30-55,glu_fast,R,haut,"≥ 6,1 mmol/L (110 mg/dL) [OMS]",OMS,154,0.006493506493506494,651,0.029185867895545316,0.22248803827751196,False,True
+favorisee,F,30-55,glu_fast,R,haut,"≥ 5,6 mmol/L (100 mg/dL) [ADA]",ADA,154,0.16883116883116883,651,0.19508448540706605,0.8654259126700071,False,True
+favorisee,F,30-55,hba1c,R,haut,"≥ 6,0 % [OMS]",OMS,327,0.0061162079510703364,1379,0.01885424220449601,0.3243942601740767,False,True
+favorisee,F,30-55,hba1c,R,haut,"≥ 5,7 % [ADA]",ADA,327,0.024464831804281346,1379,0.08846990572878898,0.27653281195167195,False,True
+favorisee,F,30-55,ldl,R,haut,"≥ 3,0 mmol/L (116 mg/dL), objectif du risque faible",,153,0.3137254901960784,650,0.4153846153846154,0.7552650689905591,False,True
+favorisee,F,30-55,non_hdl,R,haut,"≥ 3,4 mmol/L (130 mg/dL), objectif du risque modéré",,327,0.42813455657492355,1388,0.5072046109510087,0.8441061996107867,False,True
+favorisee,F,30-55,tg_fast,R,haut,"≥ 1,7 mmol/L (150 mg/dL)",,153,0.058823529411764705,650,0.11538461538461539,0.5098039215686274,False,True
+favorisee,F,30-55,egfr,R,bas,"< 60 mL/min/1,73 m² (G3a et au-delà)",,327,0.0030581039755351682,1388,0.006484149855907781,0.4716275908936459,False,True
+favorisee,F,30-55,acr,R,haut,"≥ 3 mg/mmol (30 mg/g), A2",,328,0.039634146341463415,1386,0.05772005772005772,0.6866615853658536,False,True
+favorisee,F,30-55,vitd,R,bas,< 20 ng/mL (50 nmol/L),,313,0.19169329073482427,1325,0.3041509433962264,0.6302570973291369,False,True
+favorisee,F,30-55,vitd,R,bas,< 30 ng/mL (75 nmol/L) [sensibilité 30],sensibilité 30,313,0.6230031948881789,1325,0.7124528301886792,0.8744483402826664,False,True

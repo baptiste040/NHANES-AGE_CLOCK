@@ -1,0 +1,436 @@
+[
+ {
+  "groupe": "tres_actifs",
+  "id": "tg_fast",
+  "signe_attendu": -1,
+  "source": "Lee 2017",
+  "decalage": -16.394961452039514,
+  "ic95": [
+   -23.785358449452264,
+   -3.7599154770776355
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "tres_actifs",
+  "id": "tc",
+  "signe_attendu": -1,
+  "source": "Lee 2017",
+  "decalage": -1.9335090295002355,
+  "ic95": [
+   -4.640734130449675,
+   0.6835799645312779
+  ],
+  "statut": "non confirmée (IC inclut 0)"
+ },
+ {
+  "groupe": "tres_actifs",
+  "id": "glu_fast",
+  "signe_attendu": -1,
+  "source": "Lee 2017",
+  "decalage": -2.3130276091012814,
+  "ic95": [
+   -5.938406414069974,
+   -1.1766042560265255
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "tres_actifs",
+  "id": "ferritin",
+  "signe_attendu": -1,
+  "source": "Lee 2017 ; Solberg 2023",
+  "statut": "non estimable"
+ },
+ {
+  "groupe": "tres_actifs",
+  "id": "ck",
+  "signe_attendu": 1,
+  "source": "Lee 2017",
+  "statut": "non estimable"
+ },
+ {
+  "groupe": "tres_actifs",
+  "id": "hb",
+  "signe_attendu": -1,
+  "source": "Mairbäurl 2013",
+  "decalage": -0.2346074473202342,
+  "ic95": [
+   -1.88277809547015,
+   0.9565965281611133
+  ],
+  "statut": "non confirmée (IC inclut 0)"
+ },
+ {
+  "groupe": "tres_actifs",
+  "id": "hct",
+  "signe_attendu": -1,
+  "source": "Mairbäurl 2013",
+  "decalage": -0.6193170238268708,
+  "ic95": [
+   -1.9964365413401852,
+   1.011752693908785
+  ],
+  "statut": "non confirmée (IC inclut 0)"
+ },
+ {
+  "groupe": "tres_actifs",
+  "id": "hdl",
+  "signe_attendu": 1,
+  "source": "sans source lue",
+  "decalage": 10.477687484037258,
+  "ic95": [
+   5.6708587650526665,
+   19.337962337631943
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "tres_actifs",
+  "id": "creat",
+  "signe_attendu": 1,
+  "source": "sans source lue",
+  "decalage": -9.999843631986138,
+  "ic95": [
+   -9.999976231506825,
+   -0.08548434725661469
+  ],
+  "statut": "contredite"
+ },
+ {
+  "groupe": "tres_actifs",
+  "id": "egfr",
+  "signe_attendu": -1,
+  "source": "sans source lue",
+  "decalage": 13.467241537104124,
+  "ic95": [
+   0.006896464725336671,
+   13.47727065294151
+  ],
+  "statut": "contredite"
+ },
+ {
+  "groupe": "tres_actifs",
+  "id": "ast",
+  "signe_attendu": 1,
+  "source": "sans source lue",
+  "decalage": 0.0001847772874707,
+  "ic95": [
+   -3.964583295106272,
+   5.186435320302896
+  ],
+  "statut": "non confirmée (IC inclut 0)"
+ },
+ {
+  "groupe": "tres_actifs",
+  "id": "wbc",
+  "signe_attendu": -1,
+  "source": "sans source lue",
+  "decalage": -4.094224024450021,
+  "ic95": [
+   -7.132472191710725,
+   3.2899543748224236
+  ],
+  "statut": "non confirmée (IC inclut 0)"
+ },
+ {
+  "groupe": "tres_actifs",
+  "id": "crp",
+  "signe_attendu": -1,
+  "source": "sans source lue",
+  "decalage": -42.51112474205591,
+  "ic95": [
+   -56.34305890428536,
+   -31.25408521234787
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "tres_actifs",
+  "id": "insulin",
+  "signe_attendu": -1,
+  "source": "sans source lue",
+  "decalage": -33.418890902381015,
+  "ic95": [
+   -45.93961911706882,
+   -7.790391878508752
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "pilule",
+  "id": "tg_fast",
+  "signe_attendu": 1,
+  "source": "Regidor 2023",
+  "decalage": 26.84637234529401,
+  "ic95": [
+   17.013209977760567,
+   41.64881317569922
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "pilule",
+  "id": "hdl",
+  "signe_attendu": 1,
+  "source": "Regidor 2023",
+  "decalage": 11.709049831216278,
+  "ic95": [
+   9.071291487450273,
+   14.972451117162745
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "pilule",
+  "id": "ferritin",
+  "signe_attendu": 1,
+  "source": "Fischer 2021",
+  "decalage": 31.322232016061303,
+  "ic95": [
+   18.2512293065759,
+   47.804007742680454
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "pilule",
+  "id": "crp",
+  "signe_attendu": 1,
+  "source": "sans source lue",
+  "decalage": 112.30366265407726,
+  "ic95": [
+   86.35029690155156,
+   138.3714478416514
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "pilule",
+  "id": "tibc",
+  "signe_attendu": 1,
+  "source": "sans source lue",
+  "decalage": 13.551294130168912,
+  "ic95": [
+   11.027870202851542,
+   15.809863977267913
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "pilule",
+  "id": "albumin",
+  "signe_attendu": -1,
+  "source": "sans source lue",
+  "decalage": -2.5253893588175425,
+  "ic95": [
+   -4.629721711125945,
+   -2.3820379623452737
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "pilule",
+  "id": "b12",
+  "signe_attendu": -1,
+  "source": "sans source lue",
+  "decalage": -18.92970011299786,
+  "ic95": [
+   -24.149798300649582,
+   -13.298675050585151
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "pilule_oestroprogestative",
+  "id": "tg_fast",
+  "signe_attendu": 1,
+  "source": "Regidor 2023",
+  "decalage": 21.99305285830928,
+  "ic95": [
+   12.030989612035349,
+   38.11533414630834
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "pilule_oestroprogestative",
+  "id": "hdl",
+  "signe_attendu": 1,
+  "source": "Regidor 2023",
+  "decalage": 13.818909977864124,
+  "ic95": [
+   11.033734200927437,
+   18.068790147469027
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "pilule_oestroprogestative",
+  "id": "ferritin",
+  "signe_attendu": 1,
+  "source": "Fischer 2021",
+  "decalage": 36.240681789325,
+  "ic95": [
+   19.881244534436004,
+   53.873722049699644
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "pilule_oestroprogestative",
+  "id": "crp",
+  "signe_attendu": 1,
+  "source": "sans source lue",
+  "decalage": 116.3355863437829,
+  "ic95": [
+   81.89533421447813,
+   149.42471919106174
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "pilule_oestroprogestative",
+  "id": "tibc",
+  "signe_attendu": 1,
+  "source": "sans source lue",
+  "decalage": 14.025294955192248,
+  "ic95": [
+   11.374796197724102,
+   16.241619440839195
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "pilule_oestroprogestative",
+  "id": "albumin",
+  "signe_attendu": -1,
+  "source": "sans source lue",
+  "decalage": -2.657318631379446,
+  "ic95": [
+   -4.748499235290882,
+   -2.3824714541824554
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "pilule_oestroprogestative",
+  "id": "b12",
+  "signe_attendu": -1,
+  "source": "sans source lue",
+  "decalage": -24.342186349201533,
+  "ic95": [
+   -28.224869943032882,
+   -16.00877789150642
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "menopause",
+  "id": "tc",
+  "signe_attendu": 1,
+  "source": "Fasero 2025",
+  "decalage": 3.5199551693401165,
+  "ic95": [
+   0.4234488010155024,
+   6.204372632840149
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "menopause",
+  "id": "ldl",
+  "signe_attendu": 1,
+  "source": "Fasero 2025",
+  "decalage": 0.7870075400011167,
+  "ic95": [
+   -6.54176242845772,
+   9.301651792500621
+  ],
+  "statut": "non confirmée (IC inclut 0)"
+ },
+ {
+  "groupe": "menopause",
+  "id": "tg_fast",
+  "signe_attendu": 1,
+  "source": "Fasero 2025",
+  "decalage": 17.22355939827733,
+  "ic95": [
+   0.9040715962984835,
+   40.15013960564091
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "menopause",
+  "id": "apob",
+  "signe_attendu": 1,
+  "source": "Fasero 2025",
+  "decalage": 4.249147365852934,
+  "ic95": [
+   -4.802714693448329,
+   9.806188106967163
+  ],
+  "statut": "non confirmée (IC inclut 0)"
+ },
+ {
+  "groupe": "menopause",
+  "id": "hdl",
+  "signe_attendu": -1,
+  "source": "Fasero 2025",
+  "decalage": 2.3527579691164924,
+  "ic95": [
+   -1.5826730616025797,
+   7.048647384407292
+  ],
+  "statut": "non confirmée (IC inclut 0)"
+ },
+ {
+  "groupe": "menopause",
+  "id": "alp",
+  "signe_attendu": 1,
+  "source": "Bhattoa 2025 (marqueurs osseux, dont la PAL osseuse : indirect)",
+  "decalage": 16.923148766410854,
+  "ic95": [
+   10.12697399072502,
+   24.89901602474971
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "menopause",
+  "id": "ferritin",
+  "signe_attendu": 1,
+  "source": "sans source lue",
+  "decalage": 196.42857142857048,
+  "ic95": [
+   113.1413643157463,
+   288.1287631734551
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "menopause",
+  "id": "hb",
+  "signe_attendu": 1,
+  "source": "sans source lue",
+  "decalage": 2.689545059591314,
+  "ic95": [
+   1.470557559052299,
+   3.6660252986278508
+  ],
+  "statut": "confirmée"
+ },
+ {
+  "groupe": "menopause",
+  "id": "urate",
+  "signe_attendu": 1,
+  "source": "sans source lue",
+  "decalage": 4.007797837268168,
+  "ic95": [
+   1.1188169118242497,
+   7.112235172413417
+  ],
+  "statut": "confirmée"
+ }
+]
