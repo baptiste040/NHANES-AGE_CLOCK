@@ -38,7 +38,8 @@
     6.07
    ],
    "n": 1019,
-   "sources": "2001-2002 + NHANES III"
+   "sources": "2001-2002 + NHANES III",
+   "note": "Seuil regroupe 2001-2002 + NHANES III : il inclut les 388 personnes de 2001-2002 dont le premier examen a servi au developpement du modele (pas une estimation independante). Estimation independante (NHANES III seul) : 5,88 ans toutes personnes, 6,02 sans CRP > 10 mg/L (audit du 2026-11-12)."
   },
   "hepatique": {
    "seuil_ans": 5.1,
@@ -47,7 +48,8 @@
     5.55
    ],
    "n": 1019,
-   "sources": "2001-2002 + NHANES III"
+   "sources": "2001-2002 + NHANES III",
+   "note": "Seuil regroupe 2001-2002 + NHANES III : il inclut les 388 personnes de 2001-2002 dont le premier examen a servi au developpement du modele (pas une estimation independante)."
   },
   "inflammatoire_hematologique": {
    "seuil_ans": 4.32,
@@ -56,7 +58,8 @@
     4.6
    ],
    "n": 1019,
-   "sources": "2001-2002 + NHANES III"
+   "sources": "2001-2002 + NHANES III",
+   "note": "Seuil regroupe 2001-2002 + NHANES III : il inclut les 388 personnes de 2001-2002 dont le premier examen a servi au developpement du modele (pas une estimation independante)."
   }
  },
  "seuils_toutes_personnes": {

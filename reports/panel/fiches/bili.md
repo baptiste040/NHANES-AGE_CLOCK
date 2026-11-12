@@ -23,7 +23,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : favorisée, +12,5 % (0,18 fois le changement détectable).
+- Plus grand décalage : favorisée, +11,2 % (0,16 fois le changement détectable).
 
 ## Q4 : normalisation spontanée d'une anomalie
 

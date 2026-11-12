@@ -15,7 +15,7 @@ import pandas as pd
 from .. import nhanes3 as n3
 from ..features import rcs_basis
 from ..nhanes import download, read_xpt
-from .remesures import OUT, PAIRS, RAW, add_derived
+from .remesures import OUT, PAIRS, RAW, add_derived, recalibrate_nh3
 
 SEED = 2026
 URL = "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/{y}/DataFiles/{f}.xpt"
@@ -115,6 +115,7 @@ def nh3() -> tuple[pd.DataFrame, pd.DataFrame]:
     e2["fast_h"], e2["hour"] = se.PHRFAST.reindex(e1.index), t2.reindex(e1.index)
     for mid, v in v2.items():
         e2[mid] = se[v].reindex(e1.index) if v in se else np.nan
+    e1, e2 = recalibrate_nh3(e1), recalibrate_nh3(e2)          # correction du 2026-11-12 (audit, point 2c)
     e1, e2 = add_derived(e1), add_derived(e2)
     for e in (e1, e2):
         e["ldl_f"] = np.where(e.tg_fast < 400, e.tc - e.hdl - e.tg_fast / 5, np.nan)
@@ -307,15 +308,30 @@ def _ratio(eff, mid, cd, scale):
     return abs(eff) / s if pd.notna(s) else np.nan
 
 
-def run() -> pd.DataFrame:
+def _ci_cols(df):
+    import ast
+    for c in df.columns:
+        if c.endswith("_ic95"):
+            df[c] = df[c].apply(lambda s: ast.literal_eval(s) if isinstance(s, str) else s)
+    return df
+
+
+def run(redo_nh3: bool = True, redo_continuous: bool = True) -> pd.DataFrame:
+    """redo_continuous=False : reutilise Q2_B_nhanes_1999_2018.csv (independant de NHANES III et de Q1)."""
     OUT.mkdir(parents=True, exist_ok=True)
     e1, e2 = nh3()
-    A = within(e1, e2)
-    A.to_csv(OUT / "Q2_A_intra.csv", index=False)
-    B3 = between_nh3(e1)
-    B3.to_csv(OUT / "Q2_B_nhanes3.csv", index=False)
-    B1 = between_continuous(continuous())
-    B1.to_csv(OUT / "Q2_B_nhanes_1999_2018.csv", index=False)
+    if redo_nh3:
+        A = within(e1, e2)
+        A.to_csv(OUT / "Q2_A_intra.csv", index=False)
+        B3 = between_nh3(e1)
+        B3.to_csv(OUT / "Q2_B_nhanes3.csv", index=False)
+    else:
+        A, B3 = _ci_cols(pd.read_csv(OUT / "Q2_A_intra.csv")), _ci_cols(pd.read_csv(OUT / "Q2_B_nhanes3.csv"))
+    if redo_continuous:
+        B1 = between_continuous(continuous())
+        B1.to_csv(OUT / "Q2_B_nhanes_1999_2018.csv", index=False)
+    else:
+        B1 = _ci_cols(pd.read_csv(OUT / "Q2_B_nhanes_1999_2018.csv"))
     cd = pd.read_csv(OUT / "Q1_changement_detectable.csv")
     cd = cd[cd.groupe == "20-79 ans"].set_index("id")
     ids = list(dict.fromkeys(list(A.id) + list(B3.id) + list(B1.id)))

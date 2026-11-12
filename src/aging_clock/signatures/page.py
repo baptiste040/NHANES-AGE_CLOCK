@@ -125,7 +125,7 @@ footer { margin-top: 48px; font-size: 12.5px; color: var(--muted); border-top: 1
 d'effets moyens tirés de méta-analyses et d'une simulation pour l'horizon de 6 mois. Les personnes présentées plus bas sont
 <b>fictives</b> (données synthétiques).</div>
 
-<h2>1. Sans rien changer, presque une personne sur deux a un marqueur « significatif »</h2>
+<h2>1. Sans rien changer, plus d'une personne sur deux a un marqueur « significatif »</h2>
 <p>Paires de prises de sang chez des personnes sans intervention (NHANES III), bruit extrapolé à 6 mois, 18 marqueurs
 d'un bilan de suivi, chacun comparé à son changement détectable.</p>
 <div class="hero" id="hero"></div>
@@ -152,7 +152,9 @@ des pièges qui la déclenchent au-delà de 10 %.</p>
 
 <h2>4. Le levier du bilan de départ</h2>
 <p><b>Recommandation de conception.</b> Sensibilité à 6 mois de la signature selon le nombre de prélèvements au départ
-(à quelques semaines d'intervalle) et de bilans de suivi. Modèle gaussien, effet maintenu, 5 % de fausses alertes.</p>
+(à quelques semaines d'intervalle) et de bilans de suivi. Modèle gaussien, effet maintenu, 5 % de fausses alertes. Un
+deuxième prélèvement au départ aide, mais moins qu'un deuxième bilan de suivi : des prélèvements rapprochés partagent la
+même variation à long terme.</p>
 <div id="tab-levier"></div>
 <p class="note" id="levier-note"></p>
 
@@ -165,12 +167,13 @@ teste seulement le protocole prescrit. Pour chaque cas, la règle de choix du ti
 <h2>6. Limites, en clair</h2>
 <ul>
 <li>Les prises de sang répétées sont à <b>2 semaines</b> d'intervalle. L'horizon de 6 mois est <b>simulé</b> ; la variabilité à long
-terme n'est connue que pour 7 marqueurs sur 18. Les sensibilités à 6 mois sont donc probablement optimistes.</li>
+terme vient d'études EFLM de qualité inégale (toutes notes) pour 16 marqueurs sur 18. Avec les seules études de bonne qualité,
+seules l'ALAT et l'ASAT recevaient un bruit à long terme : c'était une borne optimiste (version corrigée le 12 novembre 2026).</li>
 <li>Les effets d'intervention sont des <b>moyennes de méta-analyses</b>, souvent chez des personnes malades (obésité, stéatose), et
 souvent assemblées à partir d'études différentes. L'effet sur l'ALAT est probablement surestimé pour des personnes en bonne santé.</li>
 <li>La part d'effet reçue par chaque personne est <b>postulée</b>, pas mesurée.</li>
 <li>Une signature dit qu'il y a eu un changement <b>compatible</b> avec l'effet attendu, pas lequel : une perte de poids déclenche aussi
-la signature de l'activité physique dans 28 % des cas.</li>
+la signature de l'activité physique dans 23 % des cas.</li>
 <li>Tester toutes les signatures à la fois fait monter les fausses alertes (voir section 2).</li>
 <li>Données américaines, laboratoires des années 1988-2002 ; les écarts réels entre laboratoires de routine sont inconnus pour les
 lipides et la numération.</li>
@@ -261,7 +264,7 @@ function hideTip() { tip.style.display = 'none'; }
   document.getElementById('tab-levier').append(t);
   const g = i => { const a = D.levier.find(q => q.iv === i && q.b === 1 && q.f === 1).sig, b = D.levier.find(q => q.iv === i && q.b === 2 && q.f === 1).sig; return [a, b]; };
   const [a, b] = g(ivs[0]);
-  document.getElementById('levier-note').textContent = `Un deuxième prélèvement au départ, quelques semaines avant le début du programme, fait passer la détection de la perte de poids de ${pct(a)} à ${pct(b)} ; ` +
+  document.getElementById('levier-note').textContent = `Un deuxième prélèvement au départ, quelques semaines avant le début du programme, fait passer la détection de la perte de poids de ${pct(a)} à ${pct(b)} (un deuxième bilan de suivi, à ${pct(D.levier.find(q => q.iv === ivs[0] && q.b === 1 && q.f === 2).sig)}) ; ` +
     `ajouter en plus un bilan à 12 mois la porte à ${pct(D.levier.find(q => q.iv === ivs[0] && q.b === 2 && q.f === 2).sig)}. Modèle gaussien : les valeurs d'une même ligne sont comparables entre elles, pas avec la section 2.`;
 })();
 

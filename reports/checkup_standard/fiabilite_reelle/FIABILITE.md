@@ -8,7 +8,8 @@ du second examen. Les résultats ci-dessous intègrent la correction du bug de l
 ## Données
 
 - 388 adultes de 20 à 79 ans, cohorte de développement (cycle 2001-2002). Ils ont été reprélevés
-  3 à 47 jours plus tard, avec un délai médian de 17 jours.
+  6 à 47 jours plus tard, avec un délai médian de 17 jours (correction du 2026-11-12 : « 3 à 47 jours »
+  valait pour l'ensemble des personnes remesurées, pas pour les 388 analysées).
 - Les participants ont été recrutés de façon **non aléatoire** (Lacher et al. 2010, NHSR 21) :
   sexes et âges équilibrés de 16 à 69 ans, environ 5 % des personnes prélevées, second prélèvement
   au moins 8 jours après le premier.

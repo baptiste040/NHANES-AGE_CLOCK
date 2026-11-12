@@ -13,6 +13,14 @@ pré-enregistrement dans `DECISIONS.md` et un rapport :
 
 Résultats par marqueur : `resultats_par_marqueur.csv` et `fiches/`.
 
+> **Corrections d'erreurs du 2026-11-12** (audit indépendant ; `DECISIONS.md`, « Corrections d'erreurs
+> après audit »). (1) Créatinine de NHANES III recalibrée : créatinine et DFGe < 60 passent de
+> « normalisation < 30 % » à « confirmer avant de signaler » (Q4). (2) Q1 prend 2001-2002 comme jeu
+> principal pour les méthodes changées depuis NHANES III : changements détectables plus petits pour
+> l'HbA1c, la glycémie et les lipides ; l'HbA1c sous alimentation méditerranéenne devient « limite ».
+> (3) Q4 : le taux des anomalies nettes, obtenu par construction, est recalculé avec un découpage
+> indépendant. (4) Q3 : IC des marqueurs discrets. Les chiffres ci-dessous sont corrigés.
+
 **Niveau de preuve**, indiqué pour chaque résultat :
 - **pré-enregistré** ou non : protocole et règles de décision fixés avant de lire les données ;
 - **répliqué** ou non : retrouvé dans un second jeu indépendant (NHANES III et NHANES 2001-2002,
@@ -24,18 +32,21 @@ Résultats par marqueur : `resultats_par_marqueur.csv` et `fiches/`.
 
 - **Chiffre clé.** Un changement n'est détectable chez une personne, en 6 mois, qu'au-delà de ces
   valeurs (30-55 ans, hausse / baisse) :
-  - HbA1c : +11 / −10 % ;
-  - créatinine : +21 / −17 % ;
-  - glycémie à jeun : +24 / −19 % ;
-  - cholestérol total : +26 / −21 % ;
-  - HDL : +41 / −29 % ;
-  - LDL : +57 / −36 % ;
-  - TG : +115 / −54 % ;
+  - HbA1c : +5 / −5 % (+11 / −10 % avec les méthodes de NHANES III) ;
+  - créatinine : +24 / −20 % ;
+  - glycémie à jeun : +22 / −18 % ;
+  - cholestérol total : +23 / −19 % ;
+  - HDL : +29 / −23 % ;
+  - LDL : +39 / −28 % ;
+  - TG : +107 / −52 % ;
   - insuline : +120 / −55 % ;
-  - ALAT : +186 / −65 % ;
+  - ALAT : +169 / −63 % (environ +100 % avec toutes les études longues EFLM, notes A à C) ;
   - CRP : +397 / −80 %.
 - **Ce sont des bornes basses.** Elles viennent de remesures à environ 2 semaines. Un CV à long
-  terme n'existe que pour quelques marqueurs.
+  terme n'existe que pour quelques marqueurs. Pour les méthodes qui ont changé depuis 1988-1994,
+  elles viennent des remesures de 2001-2002 (correction du 2026-11-12) ; comparées aux RCV publiés
+  (Westgard 2014), elles valent 0,9 à 1,4 fois ces RCV, sauf l'ALAT (×2,0, ou ×1,2 avec toutes les
+  études longues).
 - **Niveau de preuve : pré-enregistré, répliqué.** Les CV de NHANES III et de 2001-2002 sont à moins
   d'un facteur 1,5 pour 93 % des marqueurs. Les spécifications EFLM sous-estiment le CV observé pour
   83 % d'entre eux.
@@ -50,11 +61,15 @@ Résultats par marqueur : `resultats_par_marqueur.csv` et `fiches/`.
   - sur 25 couples (intervention, marqueur) tirés de méta-analyses, 20 ne sont visibles qu'en
     moyenne de groupe, 3 sont limites, et 2 seulement sont détectables chez une personne ;
   - les deux détectables : la vitamine D sous supplémentation (ratio 1,7) et l'HbA1c sous activité
-    physique, **chez des diabétiques** (1,3) ;
-  - l'effet de l'activité physique sur le cholestérol total vaut 0,14 fois le changement
-    détectable : il faudrait environ 60 bilans avant et après pour le voir chez une personne.
+    physique, **chez des diabétiques** (1,8, effet rapporté à une base de diabétiques) ;
+  - **les limites** : TG sous oméga-3, homocystéine sous acide folique et, depuis la correction,
+    **HbA1c sous alimentation méditerranéenne** (0,56 ; 0,28 avec les méthodes de NHANES III). L'ALAT
+    sous alimentation méditerranéenne sort des « limites » (0,40) ;
+  - l'effet de l'activité physique sur le cholestérol total vaut 0,16 fois le changement
+    détectable : il faudrait environ 50 bilans avant et après pour le voir chez une personne.
 - **Niveau de preuve : pré-enregistré, non répliqué** (effets tirés de la littérature lue, souvent
-  des résumés, chez des populations souvent malades).
+  des résumés, chez des populations souvent malades). La conclusion tient avec le bruit plus faible
+  des méthodes modernes, sauf pour l'HbA1c, marqueur très stable, qui devient limite.
 - **Conséquence pratique.**
   - Ne pas promettre à une personne de « voir » l'effet de son hygiène de vie sur ses marqueurs en
     6 mois.
@@ -80,11 +95,14 @@ Résultats par marqueur : `resultats_par_marqueur.csv` et `fiches/`.
 ### 4. Une anomalie limite disparaît souvent seule : c'est la mesure, pas une guérison
 
 - **Chiffre clé.**
-  - En 2 semaines, les anomalies limites (à moins d'un changement détectable du seuil) redeviennent
-    normales dans 41 % des cas, les anomalies nettes dans 5 %.
-  - Le bruit de mesure seul explique la normalisation observée, à 10 points près, pour 87 % des
-    couples (marqueur, seuil).
-- **Niveau de preuve : pré-enregistré, répliqué** (NHANES III et 2001-2002, 73 % des couples dans le
+  - En 2 semaines, les anomalies limites (à moins d'un changement détectable du seuil, calé sur
+    l'autre jeu de remesures) redeviennent normales dans 41 % des cas, les anomalies nettes dans
+    4 % (1 % attendu sous le seul bruit ; l'ancien « 5 % » était obtenu par construction).
+  - Le bruit de mesure seul, calé sur l'autre jeu, explique la normalisation observée à 10 points
+    près pour 76 % des couples (marqueur, seuil) ; NHANES III se normalise un peu plus que prévu.
+  - Un premier DFGe < 60 ou une créatinine haute se normalisent une fois sur trois à deux fois sur
+    cinq : à confirmer avant de signaler.
+- **Niveau de preuve : pré-enregistré, répliqué** (NHANES III et 2001-2002, 74 % des couples dans le
   second jeu).
 - **Conséquence pratique.**
   - Confirmer une anomalie limite et isolée avant de la signaler.
@@ -102,6 +120,8 @@ Résultats par marqueur : `resultats_par_marqueur.csv` et `fiches/`.
   - Pour classer, glycémie au seuil de l'ADA : +4 à +7 points à chaque changement d'instrument.
   - Un changement de laboratoire peut **imiter ou masquer** l'effet moyen d'une intervention
     réaliste pour 11 marqueurs sur 15 : TG, insuline, cholestérol, HDL, transaminases.
+  - Créatinine de 1999 : +22 % pour un changement détectable de +23 % (ratio 0,98 depuis la
+    correction ; 1,07 avant).
 - **Niveau de preuve.**
   - Pré-enregistré.
   - Vérification de l'implémentation : partielle. Nous trouvons +6,8 points sur la glycémie, contre
@@ -117,11 +137,13 @@ Résultats par marqueur : `resultats_par_marqueur.csv` et `fiches/`.
 
 - **Chiffre clé.**
   - Quand l'écart est publié (évaluations externes de la qualité), le changement détectable entre
-    deux laboratoires est 1,02 à 1,49 fois celui d'un même laboratoire :
-    - calcium : ×1,49 ;
-    - PAL : ×1,30 ;
-    - HbA1c : ×1,27 ;
-    - enzymes : ×1,02 à ×1,04.
+    deux laboratoires est 1,01 à 1,81 fois celui d'un même laboratoire :
+    - calcium : ×1,81 ;
+    - **HbA1c : ×1,76** (×1,27 avant la correction : avec une méthode moderne, le bruit d'un même
+      laboratoire est faible, et l'écart entre laboratoires pèse plus ; un changement de laboratoire
+      peut créer un faux changement) ;
+    - PAL : ×1,26 ;
+    - enzymes : ×1,02 à ×1,05.
   - **Rien trouvé** pour les lipides, la numération, les vitamines et l'insuline.
 - **Niveau de preuve : pré-enregistré, littérature seule** (études lues, CV mesurés au sein des
   groupes de méthode : bornes basses).

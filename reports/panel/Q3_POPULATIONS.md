@@ -45,6 +45,26 @@ centile « population générale » flatte-t-il une population favorisée et en 
 Les fichiers de données gardent la sortie brute de la règle pré-enregistrée. La requalification est
 une décision d'interprétation, datée, consignée dans `DECISIONS.md`.
 
+## Corrections du 2026-11-12 (audit indépendant)
+
+- **IC des marqueurs discrets.** Pour 45 couples (groupe, marqueur) sur 1 224, surtout bilirubine,
+  sodium, potassium, chlorure, bicarbonates, basophiles, et la créatinine et le DFGe dans la
+  sensibilité « seuil global » des très actifs, la régression médiane se calait sur un pas de
+  quantification : IC de largeur ~1e-5, ou estimation sur une marche (créatinine −10,0 %
+  [−10,0 ; −10,0]). Ces IC ne mesuraient aucune précision. Pour ces couples, l'estimation principale
+  devient la différence ajustée par moindres carrés, avec un IC bootstrap (marquée * dans les
+  tableaux ; colonnes `estimateur`, `decalage_mediane`, `ic95_mediane` de `Q3_decalages.csv`).
+  Quatre catégories changent, toutes dans des sensibilités ou des marqueurs secondaires (sodium,
+  bilirubine) ; aucune conclusion ci-dessous ne change.
+- **Créatinine sous pilule.** La médiane donne +8,6 % [+5,1 ; +11,4], les moindres carrés +4,7 % :
+  du simple au double, parce que la créatinine de 2003-2010 avance par pas. L'IC n'est pas dégénéré,
+  mais le chiffre est à lire comme « +5 à +9 % ».
+- **Changements détectables de Q1** (jeu 2001-2002 pour les méthodes changées depuis NHANES III,
+  créatinine de NHANES III recalibrée) : les colonnes « CD 6 mois » et « Rapport au CD » sont
+  recalculées ; les tableaux sont générés depuis les CSV (`q3_rapport.py`). L'HbA1c de la population
+  favorisée passe à 0,54 fois le changement détectable (5 % au lieu de 10 %) ; aucune catégorie
+  principale ne change.
+
 ## Ce qu'il faut retenir
 
 1. **Les seuils usuels restent utilisables pour ces groupes, à deux exceptions près, plus un seuil de
@@ -132,6 +152,9 @@ Sens des colonnes :
   bootstrap (500 tirages).
 - **Moindres carrés** : sensibilité (moyenne géométrique).
 - **Rapport au CD** : |décalage| / changement détectable à 6 mois (Q1, 30-55 ans).
+- **\*** : marqueur discret (valeurs à ex aequo) dont l'IC de la régression médiane était dégénéré
+  (largeur d'environ 1e-5) ; l'estimation est alors la différence ajustée par moindres carrés, avec
+  un IC bootstrap (500 tirages). Correction du 2026-11-12.
 
 **Créatinine et DFGe chez les très actifs : lire la colonne des moindres carrés.** En 2003-2006, la
 créatinine est arrondie à 0,1 mg/dL. La régression médiane saute alors d'une valeur à l'autre (−10 %
@@ -142,30 +165,33 @@ L'estimation principale reste rapportée, mais elle n'est pas fiable pour ces de
 
 | Marqueur | n groupe | Décalage (médiane) [IC 95 %] | Moindres carrés | CD 6 mois | Rapport au CD | Catégorie |
 |---|---|---|---|---|---|---|
-| GGT/HDL | 82 | −22,9 % [−31,9 ; −10,8] | −21,5 | 38,5 | 0,60 | décalé, sous le changement détectable |
-| Créatinine | 82 | −10,0 % [−10,0 ; −0,0] | −4,4 | 17,2 | 0,58 | décalé, sous le changement détectable |
-| DFGe (CKD-EPI 2021) | 82 | +13,5 % [+0,1 ; +13,5] | +4,0 | 24,1 | 0,56 | décalé, sous le changement détectable |
-| GGT | 82 | −16,0 % [−24,6 ; −5,0] | −15,8 | 34,9 | 0,46 | décalé, sous le changement détectable |
-| Cholestérol non-HDL | 82 | −10,1 % [−13,7 ; −4,5] | −7,7 | 26,2 | 0,39 | décalé, sous le changement détectable |
+| GGT/HDL | 82 | −22,9 % [−31,9 ; −10,8] | −21,5 | 38,1 | 0,60 | décalé, sous le changement détectable |
+| DFGe (CKD-EPI 2021) | 82 | +13,5 % [+0,1 ; +13,5] | +4,0 | 24,0 | 0,56 | décalé, sous le changement détectable |
+| Créatinine | 82 | −10,0 % [−10,0 ; −0,0] | −4,4 | 19,6 | 0,51 | décalé, sous le changement détectable |
+| GGT | 82 | −16,0 % [−24,6 ; −5,0] | −15,8 | 34,1 | 0,47 | décalé, sous le changement détectable |
+| Cholestérol non-HDL | 82 | −10,1 % [−13,7 ; −4,5] | −7,7 | 23,6 | 0,43 | décalé, sous le changement détectable |
 | CRP | 82 | −29,9 % [−46,2 ; −8,4] | −31,5 | 79,9 | 0,37 | décalé, sous le changement détectable |
-| Hémoglobine | 82 | +0,1 % [−1,3 ; +1,8] | −0,1 | 10,3 | 0,01 | sans différence |
+| HDL | 82 | +9,4 % [+0,5 ; +19,6] | +7,1 | 29,5 | 0,32 | décalé, sous le changement détectable |
+| Hémoglobine | 82 | +0,1 % [−1,3 ; +1,8] | −0,1 | 9,8 | 0,01 | sans différence |
 
 ### Très actifs, femmes (5 % les plus actives, contre les autres femmes)
 
 | Marqueur | n groupe | Décalage (médiane) [IC 95 %] | Moindres carrés | CD 6 mois | Rapport au CD | Catégorie |
 |---|---|---|---|---|---|---|
-| GGT/HDL | 81 | −33,0 % [−42,6 ; −22,3] | −28,5 | 38,5 | 0,86 | décalé, sous le changement détectable |
-| PAL | 81 | −15,3 % [−21,8 ; −9,6] | −13,2 | 19,1 | 0,80 | décalé, sous le changement détectable |
+| GGT/HDL | 81 | −33,0 % [−42,6 ; −22,3] | −28,5 | 38,1 | 0,87 | décalé, sous le changement détectable |
+| PAL | 81 | −15,3 % [−21,8 ; −9,6] | −13,2 | 19,2 | 0,79 | décalé, sous le changement détectable |
 | CRP | 81 | −60,6 % [−74,8 ; −42,8] | −53,9 | 79,9 | 0,76 | décalé, sous le changement détectable |
-| GGT | 81 | −21,0 % [−29,1 ; −12,0] | −17,7 | 34,9 | 0,60 | décalé, sous le changement détectable |
+| GGT | 81 | −21,0 % [−29,1 ; −12,0] | −17,7 | 34,1 | 0,62 | décalé, sous le changement détectable |
 | Folates érythrocytaires | 80 | +13,3 % [+5,1 ; +18,7] | +9,9 | 31,4 | 0,42 | décalé, sous le changement détectable |
-| VGM | 82 | +1,0 % [−0,2 ; +2,0] | +0,7 | 2,7 | 0,37 | sans différence |
-| Cholestérol non-HDL | 81 | −8,2 % [−12,8 ; +0,2] | −6,4 | 26,2 | 0,31 | sans différence |
+| HDL | 81 | +12,1 % [+6,8 ; +25,7] | +15,1 | 29,5 | 0,41 | décalé, sous le changement détectable |
+| VGM | 82 | +1,0 % [−0,2 ; +2,0] | +0,7 | 2,8 | 0,37 | sans différence |
+| Cholestérol non-HDL | 81 | −8,2 % [−12,8 ; +0,2] | −6,4 | 23,6 | 0,35 | sans différence |
+| Glycémie moyenne estimée | 82 | −2,2 % [−3,7 ; +0,1] | −4,0 | 7,0 | 0,31 | sans différence |
 | Globulines | 81 | −3,6 % [−7,4 ; −0,4] | −5,0 | 15,0 | 0,24 | **inadapté** (taux : bas S) |
-| Protéines totales | 81 | −1,4 % [−2,9 ; −0,0] | −1,5 | 9,4 | 0,15 | **inadapté** (taux : bas S) |
-| Hémoglobine | 82 | −1,2 % [−3,8 ; +0,7] | −1,0 | 9,4 | 0,13 | sans différence |
-| Créatinine | 81 | −0,0 % [−6,5 ; +4,1] | −0,1 | 17,2 | 0,00 | sans différence |
-| DFGe (CKD-EPI 2021) | 81 | +0,0 % [−4,6 ; +8,4] | +0,3 | 24,1 | 0,00 | sans différence |
+| Protéines totales | 81 | −1,4 % [−2,9 ; −0,0] | −1,5 | 8,8 | 0,16 | **inadapté** (taux : bas S) |
+| Hémoglobine | 82 | −1,2 % [−3,8 ; +0,7] | −1,0 | 8,9 | 0,13 | sans différence |
+| Créatinine | 81 | −0,0 % [−6,5 ; +4,1] | −0,1 | 19,6 | 0,00 | sans différence |
+| DFGe (CKD-EPI 2021) | 81 | +0,0 % [−4,6 ; +8,4] | +0,3 | 24,0 | 0,00 | sans différence |
 
 Les marqueurs à jeun (TG, insuline) ne sont pas estimables par sexe : moins de 50 personnes à jeun
 dans chaque sexe. Ils le sont en commun (deux sexes, ajustés sur le sexe), voir les sensibilités.
@@ -185,8 +211,8 @@ sexes :
 | Urée | +10,1 % [+2,5 ; +17,9] | +2,2 % [+0,0 ; +13,5] | +8,3 % [+4,3 ; +8,6] |
 | Leucocytes | −4,1 % [−7,1 ; +3,3] | −1,9 % [−9,1 ; +3,5] | −5,7 % [−9,5 ; −3,5] |
 | Hémoglobine | −0,2 % [−1,9 ; +1,0] | −0,1 % [−1,2 ; +0,9] | −0,1 % [−1,3 ; +0,2] |
-| Créatinine | −10,0 % [−10,0 ; −0,1] | −10,0 % [−10,0 ; −10,0] | +5,5 % [+3,0 ; +7,9] |
-| DFGe (CKD-EPI 2021) | +13,5 % [+0,0 ; +13,5] | +13,5 % [+13,5 ; +13,5] | −6,2 % [−8,8 ; −3,5] |
+| Créatinine | −10,0 % [−10,0 ; −0,1] | −3,8 % [−7,0 ; −0,6]* | +5,5 % [+3,0 ; +7,9] |
+| DFGe (CKD-EPI 2021) | +13,5 % [+0,0 ; +13,5] | +3,7 % [+0,8 ; +6,8]* | −6,2 % [−8,8 ; −3,5] |
 
 - **La créatinine diverge selon la définition de l'activité.**
   - Avec l'accéléromètre, qui mesure surtout la marche et la course, elle est plutôt plus basse.
@@ -235,11 +261,13 @@ sexes :
 | Marqueur | n groupe | Décalage (médiane) [IC 95 %] | Moindres carrés | CD 6 mois | Rapport au CD | Catégorie |
 |---|---|---|---|---|---|---|
 | Ferritine (45-49 ans seulement) | 60 | +196,4 % [+113,1 ; +288,1] | +201,8 | 93,5 | 2,10 | **inadapté** |
-| PAL | 655 | +16,9 % [+10,1 ; +24,9] | +16,2 | 23,7 | 0,71 | décalé, sous le changement détectable |
-| Neutrophiles/lymphocytes | 661 | −15,9 % [−20,8 ; −8,5] | −11,6 | 45,6 | 0,35 | décalé, sous le changement détectable |
-| Indice SII | 661 | −16,7 % [−23,4 ; −8,6] | −16,8 | 49,2 | 0,34 | décalé, sous le changement détectable |
+| PAL | 655 | +16,9 % [+10,1 ; +24,9] | +16,2 | 23,8 | 0,71 | décalé, sous le changement détectable |
+| Plaquettes | 664 | −6,9 % [−9,8 ; −3,5] | −5,8 | 20,9 | 0,33 | décalé, sous le changement détectable |
+| Indice SII | 661 | −16,7 % [−23,4 ; −8,6] | −16,8 | 51,2 | 0,33 | décalé, sous le changement détectable |
+| Neutrophiles/lymphocytes | 661 | −15,9 % [−20,8 ; −8,5] | −11,6 | 49,7 | 0,32 | décalé, sous le changement détectable |
 | Folates érythrocytaires | 242 | −7,5 % [−16,3 ; +3,6] | −1,3 | 23,9 | 0,31 | sans différence |
-| Glycémie à jeun (plasma) | 292 | +1,3 % [−2,7 ; +3,8] | +2,7 | 24,2 | 0,05 | risque réellement plus élevé, seuil à conserver (seuil R ≥ 6,1 mmol/L, OMS ; règle brute : « inadapté ») |
+| Calcium | 655 | +2,1 % [+1,1 ; +2,4] | +1,5 | 7,0 | 0,30 | décalé, sous le changement détectable |
+| Glycémie à jeun (plasma) | 292 | +1,3 % [−2,7 ; +3,8] | +2,7 | 22,0 | 0,06 | risque réellement plus élevé, seuil à conserver (seuil R ≥ 6,1 mmol/L, OMS ; règle brute : « inadapté ») |
 
 - **Le décalage est ajusté sur l'âge** (spline, dans l'intervalle 45-59 ans).
 - **Ferritine.** Ménopausées : 60 femmes ; comparaison : 401 femmes réglées, toutes de 45 à 49 ans.
@@ -255,21 +283,25 @@ sexes :
 
 | Marqueur | n groupe | Décalage (médiane) [IC 95 %] | Moindres carrés | CD 6 mois | Rapport au CD | Catégorie |
 |---|---|---|---|---|---|---|
-| GGT/HDL | 1071 | −29,3 % [−32,7 ; −25,9] | −28,9 | 38,5 | 0,76 | décalé, sous le changement détectable |
-| PAL | 1071 | −11,4 % [−13,1 ; −9,5] | −11,8 | 19,1 | 0,59 | décalé, sous le changement détectable |
-| GGT | 1071 | −18,9 % [−22,0 ; −16,8] | −20,7 | 34,9 | 0,54 | décalé, sous le changement détectable |
+| GGT/HDL | 1071 | −29,3 % [−32,7 ; −25,9] | −28,9 | 38,1 | 0,77 | décalé, sous le changement détectable |
+| PAL | 1071 | −11,4 % [−13,1 ; −9,5] | −11,8 | 19,2 | 0,59 | décalé, sous le changement détectable |
+| Glycémie moyenne estimée | 1074 | −3,9 % [−4,5 ; −3,1] | −6,1 | 7,0 | 0,55 | décalé, sous le changement détectable |
+| GGT | 1071 | −18,9 % [−22,0 ; −16,8] | −20,7 | 34,1 | 0,55 | décalé, sous le changement détectable |
+| HbA1c | 1074 | −2,7 % [−3,1 ; −2,1] | −4,5 | 5,0 | 0,54 | décalé, sous le changement détectable |
+| LDL/HDL | 489 | −15,5 % [−18,4 ; −11,8] | −13,6 | 28,6 | 0,54 | décalé, sous le changement détectable |
+| TG/HDL | 489 | −28,2 % [−32,9 ; −22,3] | −27,7 | 54,8 | 0,51 | décalé, sous le changement détectable |
 | Folates érythrocytaires | 498 | +16,1 % [+11,7 ; +20,8] | +14,9 | 31,4 | 0,51 | décalé, sous le changement détectable |
-| TG/HDL | 489 | −28,2 % [−32,9 ; −22,3] | −27,7 | 58,9 | 0,48 | décalé, sous le changement détectable |
 | CRP | 1075 | −37,5 % [−43,7 ; −30,8] | −33,7 | 79,9 | 0,47 | décalé, sous le changement détectable |
 | ApoB | 403 | −9,8 % [−11,6 ; −7,2] | −8,3 | 21,8 | 0,45 | décalé, sous le changement détectable |
-| HOMA-IR | 488 | −23,9 % [−29,8 ; −17,1] | −23,2 | 58,6 | 0,41 | décalé, sous le changement détectable |
+| HDL | 1073 | +12,5 % [+9,7 ; +15,1] | +11,4 | 29,5 | 0,43 | décalé, sous le changement détectable |
+| HOMA-IR | 488 | −23,9 % [−29,8 ; −17,1] | −23,2 | 61,2 | 0,39 | décalé, sous le changement détectable |
+| Albumine/globulines | 1071 | +6,7 % [+5,3 ; +8,0] | +7,3 | 17,1 | 0,39 | décalé, sous le changement détectable |
 | Insuline (à jeun) | 488 | −20,6 % [−25,7 ; −13,5] | −18,4 | 54,6 | 0,38 | décalé, sous le changement détectable |
-| Triglycérides (à jeun) | 489 | −19,5 % [−23,0 ; −14,2] | −18,8 | 53,5 | 0,36 | décalé, sous le changement détectable |
-| LDL/HDL | 489 | −15,5 % [−18,4 ; −11,8] | −13,6 | 43,3 | 0,36 | décalé, sous le changement détectable |
-| DFGe (CKD-EPI 2021) | 1071 | −6,6 % [−8,9 ; −5,0] | −3,3 | 19,5 | 0,34 | décalé, sous le changement détectable |
-| Cholestérol non-HDL | 1073 | −8,0 % [−9,5 ; −5,9] | −5,9 | 26,2 | 0,31 | décalé, sous le changement détectable |
-| HDL | 1073 | +12,5 % [+9,7 ; +15,1] | +11,4 | 41,3 | 0,30 | décalé, sous le changement détectable |
-| Leucocytes | 1074 | −9,9 % [−11,4 ; −7,6] | −9,7 | 32,5 | 0,30 | décalé, sous le changement détectable |
+| Triglycérides (à jeun) | 489 | −19,5 % [−23,0 ; −14,2] | −18,8 | 51,6 | 0,38 | décalé, sous le changement détectable |
+| DFGe (CKD-EPI 2021) | 1071 | −6,6 % [−8,9 ; −5,0] | −3,3 | 19,4 | 0,34 | décalé, sous le changement détectable |
+| Cholestérol non-HDL | 1073 | −8,0 % [−9,5 ; −5,9] | −5,9 | 23,6 | 0,34 | décalé, sous le changement détectable |
+| Indice TyG | 489 | −0,2  [−0,3 ; −0,2] | −0,3 | 0,7 | 0,32 | décalé, sous le changement détectable |
+| Leucocytes | 1074 | −9,9 % [−11,4 ; −7,6] | −9,7 | 32,1 | 0,31 | décalé, sous le changement détectable |
 
 - Aucun marqueur n'atteint le changement détectable.
 - Aucun taux de faux signaux ne franchit la règle : les taux restent proches de la référence, comme

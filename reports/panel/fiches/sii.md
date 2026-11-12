@@ -4,7 +4,7 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +119 % / −54 % en 6 mois (borne basse (2 semaines)).
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +115 % / −53 % en 6 mois (borne basse (2 semaines)).
 2. Pièges : aucun piège majeur repéré dans Q2 à Q5.
 3. Risque (mortalité à 10 ans, association) : forme en U ou en J, zone de risque minimal 245–713 ; HR 1,2 sous 243 et HR 1,2 au-dessus de 701 ; marqueur de maladie probable (seuil bas hors IC (174) sans les décès précoces).
 
@@ -12,14 +12,14 @@ Couverture : Q1 Q3 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 28,8 % (jeu nhanes3) ; CV à 6 mois : 28,8 %.
-- Changement détectable à 6 mois, 20-79 ans : +119 % / −54 % ; 30-55 ans : +97 % / −49 %.
+- CV observé : 28,1 % (jeu 2001_2002) ; CV à 6 mois : 28,1 %.
+- Changement détectable à 6 mois, 20-79 ans : +115 % / −53 % ; 30-55 ans : +105 % / −51 %.
 - Statut : borne basse (2 semaines).
 
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : ménopause, −16,7 % (0,34 fois le changement détectable).
+- Plus grand décalage : ménopause, −16,7 % (0,33 fois le changement détectable).
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)
 

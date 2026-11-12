@@ -4,7 +4,7 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +10 % / −9 % en 6 mois (extrapolé à 6 mois) ; la meilleure intervention étudiée (Fer oral (femmes réglées)) atteint 0,37 fois ce seuil : visible seulement en moyenne de groupe.
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +10 % / −9 % en 6 mois (extrapolé à 6 mois) ; la meilleure intervention étudiée (Fer oral (femmes réglées)) atteint 0,38 fois ce seuil : visible seulement en moyenne de groupe.
 2. Pièges : une anomalie limite se normalise souvent seule : confirmer avant de signaler.
 3. Risque (mortalité à 10 ans, association) : forme en U ou en J, zone de risque minimal 14–17,5 ; HR 1,2 sous 14 et HR 1,2 au-dessus de 16,8.
 
@@ -12,10 +12,10 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 3,0 % (jeu nhanes3) ; CV à 6 mois : 3,5 %.
+- CV observé : 2,8 % (jeu 2001_2002) ; CV à 6 mois : 3,4 %.
 - Changement détectable à 6 mois, 20-79 ans : +10 % / −9 % ; 30-55 ans : +10 % / −9 %.
 - Statut : extrapolé à 6 mois.
-- Interventions étudiées : 1 ; la plus forte, Fer oral (femmes réglées) (femmes réglées), +3,8 %, ratio 0,37 : visible seulement en moyenne de groupe.
+- Interventions étudiées : 1 ; la plus forte, Fer oral (femmes réglées) (femmes réglées), +3,7 %, ratio 0,38 : visible seulement en moyenne de groupe.
 
 ## Q2 : jeûne et heure
 
@@ -24,7 +24,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : ménopause, +2,7 % (0,26 fois le changement détectable).
+- Plus grand décalage : ménopause, +2,7 % (0,27 fois le changement détectable).
 
 ## Q4 : normalisation spontanée d'une anomalie
 

@@ -58,7 +58,9 @@ Mesurée sur des remesures réelles à quelques semaines d'intervalle : NHANES 2
   entre deux bilans est un vrai changement s'il dépasse le 95ᵉ centile des écarts observés.
   Valeurs, CRP ≤ 10 mg/L aux deux bilans : **global 6,5 ans** [IC 95 % 6,0 ; 7,1] ;
   cardiovasculaire 4,8 ; métabolique 2,8 ; rénal 5,5 ; hépatique 5,1 ; inflammatoire et
-  hématologique 4,3.
+  hématologique 4,3. Les seuils rénal, hépatique et inflammatoire regroupent 2001-2002 et NHANES III :
+  ils incluent les 388 personnes de 2001-2002 dont le premier examen a servi au développement. Seule
+  estimation indépendante pour le rénal (NHANES III seul) : 6,0 ans sans CRP > 10 mg/L.
 - **CRP > 10 mg/L à l'un des deux bilans** : pas de seuil fourni ; refaire le bilan avant de
   comparer. Toutes personnes confondues, le seuil global serait de 6,9 ans.
 - Ce sont des **bornes basses** : remesures à 1-48 jours, même protocole, même personnel, même

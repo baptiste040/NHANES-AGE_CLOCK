@@ -2,7 +2,7 @@
  "prediction_1_part_cv_obs_sup_attendu": 0.8333333333333334,
  "n_1": 42,
  "verifiee_1": true,
- "prediction_2_part_queues_epaisses": 0.8,
+ "prediction_2_part_queues_epaisses": 0.8142857142857143,
  "n_2": 70,
  "verifiee_2": true,
  "prediction_3_part_replication": 0.9344262295081968,

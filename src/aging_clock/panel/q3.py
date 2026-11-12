@@ -378,6 +378,48 @@ SOURCED = {
 }
 
 
+DEGENERE = 0.01   # largeur d'IC (en % ou en unites) en dessous de laquelle l'IC de la regression mediane est un artefact
+
+
+def discrete_fix(Sh, d, G, cd, n_boot=500, seed=SEED):
+    """Correction du 2026-11-12 (audit, point 5.1). Marqueurs discrets (valeurs a ex aequo) : la regression
+    mediane se cale sur un pas de quantification et donne un IC degenere (largeur ~1e-5). Pour ces couples,
+    l'estimation principale devient la difference ajustee par moindres carres, avec un IC bootstrap."""
+    Sh = Sh.copy()
+    Sh["estimateur"] = "régression médiane"
+    Sh["decalage_mediane"] = Sh.get("decalage")
+    Sh["ic95_mediane"] = Sh["ic95"]
+    w = Sh.ic95.apply(lambda c: (c[1] - c[0]) if isinstance(c, (list, tuple)) else np.inf)
+    flag = w < DEGENERE
+    for i in Sh.index[flag]:
+        r = Sh.loc[i]
+        g, c, sexes, _ = G[r.groupe]
+        sx = sexes if r.sexe == "ensemble" else ((1,) if r.sexe == "H" else (2,))
+        m = (g | c) & d.sex.isin(sx)
+        sub = d[m].assign(grp=g[m].astype(int))
+        if r.id in FASTING:
+            sub = sub[sub.WTSAF2YR.notna() & (sub.WTSAF2YR > 0)]
+        sc = r.echelle
+        x = sub[r.id].to_numpy(float)
+        ok = np.isfinite(x) & ((x > 0) if sc == "log" else True)
+        sub, x = sub[ok], x[ok]
+        y = np.log(x) if sc == "log" else x
+        M = _design(sub, len(sx) == 2)
+        conv = (lambda v: 100 * (np.exp(v) - 1)) if sc == "log" else (lambda v: v)
+        b = np.linalg.lstsq(M, y, rcond=None)[0][-1]
+        rng = np.random.default_rng(seed)
+        gi, ci = np.where(sub.grp.to_numpy() == 1)[0], np.where(sub.grp.to_numpy() == 0)[0]
+        bs = []
+        for _ in range(n_boot):
+            ix = np.concatenate([rng.choice(gi, len(gi)), rng.choice(ci, len(ci))])
+            bs.append(np.linalg.lstsq(M[ix], y[ix], rcond=None)[0][-1])
+        lo, hi = np.quantile(bs, [.025, .975])
+        Sh.at[i, "decalage"] = float(conv(b))
+        Sh.at[i, "ic95"] = [float(conv(lo)), float(conv(hi))]
+        Sh.at[i, "estimateur"] = "moindres carrés (valeurs discrètes, IC de la médiane dégénéré)"
+    return Sh
+
+
 def expectations(Sh):
     rows = []
     for k, ex in EXPECT.items():
@@ -445,7 +487,14 @@ def run_after_shifts():
     R = pd.read_csv(OUT / "D1_seuils_cliniques.csv")
     cd = q1_cd()
     Sh = pd.read_csv(OUT / "Q3_decalages.csv")
-    Sh["ic95"] = Sh.ic95.apply(lambda s: ast.literal_eval(s) if isinstance(s, str) else s)
+    for col in ("ic95", "ic95_mediane"):
+        if col in Sh:
+            Sh[col] = Sh[col].apply(lambda s: ast.literal_eval(s) if isinstance(s, str) else s)
+    if "estimateur" in Sh:                                  # deja corrige : repartir de la regression mediane
+        Sh["decalage"], Sh["ic95"] = Sh.decalage_mediane, Sh.ic95_mediane
+        Sh = Sh.drop(columns=["estimateur", "decalage_mediane", "ic95_mediane"])
+    Sh = discrete_fix(Sh, d, G, cd)
+    Sh.to_csv(OUT / "Q3_decalages.csv", index=False)
     T = rates(d, G, S, R)
     T.to_csv(OUT / "Q3_faux_signaux.csv", index=False)
     Sy = synthese(Sh, T, cd)
@@ -468,7 +517,7 @@ def run(only_groups=False):
     cd = q1_cd()
     ids = list(dict.fromkeys([*intervalles.STAT_IDS, "ck", "glu_fast", "tg_fast", "hba1c", "vitd", *DERIVED_IDS]))
     ids = [i for i in ids if i in d]
-    Sh = shifts(d, G, cd, ids)
+    Sh = discrete_fix(shifts(d, G, cd, ids), d, G, cd)
     Sh.to_csv(OUT / "Q3_decalages.csv", index=False)
     T = rates(d, G, S, R)
     T.to_csv(OUT / "Q3_faux_signaux.csv", index=False)

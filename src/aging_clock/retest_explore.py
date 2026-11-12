@@ -23,7 +23,7 @@ EXTRA_PROTEIN = ("L40_B", "LBXSTP", "L40_2_B", "LB2STP")     # proteines totales
 
 
 def _paired() -> tuple[pd.DataFrame, pd.DataFrame, list, r.Scorer]:
-    """Memes personnes et memes valeurs que l'analyse principale (n = 387)."""
+    """Memes personnes et memes valeurs que l'analyse principale (n = 388)."""
     panel = load_panel("checkup_standard")
     co, _ = r.population()
     sc = r.Scorer()

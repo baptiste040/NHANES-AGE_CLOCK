@@ -4,26 +4,26 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +65 % / −39 % en 6 mois (borne basse (2 semaines)).
-2. Pièges : décalage de −29 % chez les personnes « favorisée » (0,76 fois le changement détectable).
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +63 % / −38 % en 6 mois (borne basse (2 semaines)).
+2. Pièges : décalage de −29 % chez les personnes « favorisée » (0,77 fois le changement détectable).
 3. Risque (mortalité à 10 ans, association) : forme montante, zone de risque minimal 0,11–0,797 ; HR 1,2 au-dessus de 0,634.
 
 Couverture : Q1 Q3 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 18,2 % (jeu nhanes3) ; CV à 6 mois : 18,2 %.
-- Changement détectable à 6 mois, 20-79 ans : +65 % / −39 % ; 30-55 ans : +63 % / −38 %.
+- CV observé : 17,7 % (jeu 2001_2002) ; CV à 6 mois : 17,7 %.
+- Changement détectable à 6 mois, 20-79 ans : +63 % / −38 % ; 30-55 ans : +62 % / −38 %.
 - Statut : borne basse (2 semaines).
 
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : favorisée, −29,3 % (0,76 fois le changement détectable).
+- Plus grand décalage : favorisée, −29,3 % (0,77 fois le changement détectable).
 
 ## Q5 : changements de méthode et de laboratoire
 
-- Plus grand décalage de méthode NHANES : ratio 0,14 (événement 5) ; négligeable au regard du bruit.
+- Plus grand décalage de méthode NHANES : ratio 0,15 (événement 5) ; négligeable au regard du bruit.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)
 

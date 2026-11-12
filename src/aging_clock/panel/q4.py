@@ -75,8 +75,25 @@ def _cd(jeu):
     return v
 
 
+AUTRE = {"2001_2002": "nhanes3", "nhanes3": "2001_2002"}
+
+
+def _sw2_other(c, logs):
+    """Variance intra-personne (une mesure) tiree de l'autre jeu : independante des paires analysees."""
+    if c is None:
+        return np.nan
+    if logs and pd.notna(c.get("cv_obs")):
+        return float(np.log(1 + (c.cv_obs / 100) ** 2))
+    if not logs and pd.notna(c.get("sd_intra")):
+        return float(c.sd_intra ** 2)
+    return np.nan
+
+
 def metrics(e1, e2, jeu):
-    cdv = _cd(jeu)
+    # Correction du 2026-11-12 (audit, point 2d) : le changement detectable qui separe anomalies « limites »
+    # et « nettes », et la variance de bruit du modele binormal, viennent de l'autre jeu de remesures
+    # (2001-2002 pour NHANES III et inversement). Avant, ils venaient des memes paires : circulaire.
+    cdv = _cd(AUTRE[jeu])
     rows = []
     for mid, typ, var, f in thresholds():
         if mid not in e1 or e1[mid].isna().all():
@@ -94,14 +111,18 @@ def metrics(e1, e2, jeu):
         logs = (x1 > 0).all() and (x2 > 0).all()
         t1, t2 = (np.log(x1), np.log(x2)) if logs else (x1, x2)
         tlo, thi = (np.log(np.where(lo > 0, lo, np.nan)), np.log(np.where(hi > 0, hi, np.nan))) if logs else (lo, hi)
-        sw2 = np.var(t2 - t1, ddof=1) / 2
+        c = cdv.loc[mid] if mid in cdv.index else None
+        sw2_same = np.var(t2 - t1, ddof=1) / 2
+        sw2 = _sw2_other(c, logs)
+        indep = np.isfinite(sw2)
+        if not indep:
+            sw2 = sw2_same
         st2 = np.var(np.concatenate([t1, t2]), ddof=1)
         rho = max(0.0, 1 - sw2 / st2)
         mu = np.mean(np.concatenate([t1, t2]))
         cm, cs = mu + rho * (t1 - mu), np.sqrt(st2 * (1 - rho ** 2))
         p_norm = (np.where(np.isfinite(thi), norm.cdf((thi - cm) / cs), 1.0) - np.where(np.isfinite(tlo), norm.cdf((tlo - cm) / cs), 0.0))
-        # anomalies limites : a moins d'un changement detectable empirique (2 semaines) du seuil
-        c = cdv.loc[mid] if mid in cdv.index else None
+        # anomalies limites : a moins d'un changement detectable empirique (2 semaines, autre jeu) du seuil
         if c is not None and pd.notna(c.get("cd_emp_hausse")):
             qh, ql = np.log(1 + c.cd_emp_hausse / 100), -np.log(1 - c.cd_emp_baisse / 100)
             lim_h = h1 & (np.log(x1) - np.log(hi) < qh)
@@ -110,19 +131,27 @@ def metrics(e1, e2, jeu):
             lim_h = h1 & (x1 - hi < c.cd_emp_unites)
             lim_l = l1 & (lo - x1 < c.cd_emp_unites)
         else:
-            lim_h = lim_l = np.zeros(len(x1), bool)
-        lim = lim_h | lim_l
+            lim_h = lim_l = None                          # pas de changement detectable : pas de partage
+        split = lim_h is not None
+        lim = (lim_h | lim_l) if split else np.zeros(len(x1), bool)
         for side, m in [("bas", l1), ("haut", h1), ("tous", abn1)]:
             k = int((m & ~abn2).sum())
             n = int(m.sum())
             r = {"jeu": jeu, "id": mid, "type": typ, "variante": var, "cote": side, "n_paires": len(x1), "n_anormaux_1": n,
                  "taux_normalisation": k / n if n else np.nan, "ic95": _wilson(k, n),
-                 "attendu_bruit": float(p_norm[m].mean()) if n else np.nan}
+                 "attendu_bruit": float(p_norm[m].mean()) if n else np.nan, "bruit_autre_jeu": bool(indep)}
             if side == "tous":
+                r["cd_autre_jeu"] = split
                 for lab, mm in [("limites", m & lim), ("nettes", m & ~lim)]:
+                    if not split:                         # avant le 2026-11-12 : tout etait compte « net »
+                        r[f"n_{lab}"] = r[f"taux_{lab}"] = r[f"attendu_bruit_{lab}"] = np.nan
+                        r[f"ic95_{lab}"] = [np.nan, np.nan]
+                        continue
                     kk, nn = int((mm & ~abn2).sum()), int(mm.sum())
                     r[f"n_{lab}"] = nn
                     r[f"taux_{lab}"] = kk / nn if nn else np.nan
+                    r[f"ic95_{lab}"] = _wilson(kk, nn)
+                    r[f"attendu_bruit_{lab}"] = float(p_norm[mm].mean()) if nn else np.nan
                 nn = int((~abn1).sum())
                 r["taux_apparition"] = float((~abn1 & abn2).sum() / nn) if nn else np.nan
                 r["part_anormaux_1"] = float(abn1.mean())

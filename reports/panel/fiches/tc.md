@@ -4,7 +4,7 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +26 % / −21 % en 6 mois (borne basse (2 semaines)) ; la meilleure intervention étudiée (Activité physique (toutes formes)) atteint 0,14 fois ce seuil : visible seulement en moyenne de groupe.
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +22 % / −18 % en 6 mois (borne basse (2 semaines)) ; la meilleure intervention étudiée (Activité physique (toutes formes)) atteint 0,16 fois ce seuil : visible seulement en moyenne de groupe.
 2. Pièges : une anomalie limite se normalise souvent seule : confirmer avant de signaler.
 3. Risque (mortalité à 10 ans, association) : forme en U ou en J, zone de risque minimal 166–266 ; HR 1,2 sous 166 et HR 1,2 au-dessus de 261.
 
@@ -12,19 +12,19 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 8,3 % (jeu nhanes3) ; CV à 6 mois : 8,3 %.
-- Changement détectable à 6 mois, 20-79 ans : +26 % / −21 % ; 30-55 ans : +26 % / −21 %.
+- CV observé : 7,1 % (jeu 2001_2002) ; CV à 6 mois : 7,1 %.
+- Changement détectable à 6 mois, 20-79 ans : +22 % / −18 % ; 30-55 ans : +23 % / −19 %.
 - Statut : borne basse (2 semaines).
-- Interventions étudiées : 2 ; la plus forte, Activité physique (toutes formes) (148 ECR, adultes), −2,9 %, ratio 0,14 : visible seulement en moyenne de groupe.
+- Interventions étudiées : 2 ; la plus forte, Activité physique (toutes formes) (148 ECR, adultes), −2,9 %, ratio 0,16 : visible seulement en moyenne de groupe.
 
 ## Q2 : jeûne et heure
 
-- Effet du jeûne (même personne) : −1,2 % (ratio 0,06) ; heure : −2,4 % (ratio 0,11) ; catégorie : indifférent.
+- Effet du jeûne (même personne) : −1,2 % (ratio 0,07) ; heure : −2,4 % (ratio 0,13) ; catégorie : indifférent.
 
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : injectable, −6,0 % (0,29 fois le changement détectable).
+- Plus grand décalage : injectable, −6,0 % (0,32 fois le changement détectable).
 
 ## Q4 : normalisation spontanée d'une anomalie
 

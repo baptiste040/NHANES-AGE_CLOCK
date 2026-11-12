@@ -4,16 +4,16 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +22 % / −18 % en 6 mois (borne basse (2 semaines)).
-2. Pièges : changement de méthode ou de laboratoire (un changement de laboratoire peut créer un faux changement, ratio 0,77); décalage de −15 % chez les personnes « pilule » (0,79 fois le changement détectable).
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +24 % / −19 % en 6 mois (borne basse (2 semaines)).
+2. Pièges : changement de méthode ou de laboratoire (un changement de laboratoire peut créer un faux changement, ratio 0,72); décalage de −15 % chez les personnes « pilule » (0,78 fois le changement détectable).
 3. Risque (mortalité à 10 ans, association) : forme montante, zone de risque minimal 33–81,9 ; HR 1,2 au-dessus de 69,2.
 
 Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 7,1 % (jeu nhanes3) ; CV à 6 mois : 7,1 %.
-- Changement détectable à 6 mois, 20-79 ans : +22 % / −18 % ; 30-55 ans : +24 % / −19 %.
+- CV observé : 7,7 % (jeu 2001_2002) ; CV à 6 mois : 7,7 %.
+- Changement détectable à 6 mois, 20-79 ans : +24 % / −19 % ; 30-55 ans : +24 % / −19 %.
 - Statut : borne basse (2 semaines).
 
 ## Q2 : jeûne et heure
@@ -23,7 +23,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : pilule, −15,1 % (0,79 fois le changement détectable).
+- Plus grand décalage : pilule, −15,1 % (0,78 fois le changement détectable).
 
 ## Q4 : normalisation spontanée d'une anomalie
 
@@ -31,8 +31,8 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q5 : changements de méthode et de laboratoire
 
-- Plus grand décalage de méthode NHANES : ratio 0,77 (événement 4) ; un changement de laboratoire peut créer un faux changement.
-- Entre deux laboratoires de routine (littérature) : changement détectable +28 %.
+- Plus grand décalage de méthode NHANES : ratio 0,72 (événement 4) ; un changement de laboratoire peut créer un faux changement.
+- Entre deux laboratoires de routine (littérature) : changement détectable +30 %.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)
 

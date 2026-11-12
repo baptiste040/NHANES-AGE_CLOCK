@@ -3,8 +3,22 @@
 Programme « panel » : le comportement des biomarqueurs d'un check-up de prévention, sur un cas
 générique (bilan large au départ, puis prise de sang tous les 6 mois, sans contrôle de l'heure ni
 du jeûne). Protocole pré-enregistré dans `DECISIONS.md` (commit `76c3962`, avant tout calcul).
-Code : `src/aging_clock/panel/` (`remesures.py`, `q1.py`, `q1_interventions.py`). Données :
-`Q1_variabilite_remesures.csv`, `Q1_changement_detectable.csv`, `Q1_interventions.csv`.
+Code : `src/aging_clock/panel/` (`remesures.py`, `q1.py`, `q1_interventions.py`, `q1_rcv.py`,
+`q1_rapport.py`). Données : `Q1_variabilite_remesures.csv`, `Q1_changement_detectable.csv`,
+`Q1_interventions.csv`, `Q1_comparaison_rcv_publies.csv`.
+
+> **Corrections d'erreurs du 2026-11-12** (audit indépendant ; détail et tableaux avant/après dans
+> `DECISIONS.md`, « Corrections d'erreurs après audit ») :
+> 1. la créatinine de NHANES III est maintenant recalibrée (0,960 x − 0,184 mg/dL), comme dans le
+>    pipeline principal ; le DFGe en dépend ;
+> 2. le jeu principal est **2001-2002** pour tous les marqueurs dont la méthode ou l'automate a changé
+>    depuis NHANES III (glycémie, HbA1c, lipides, profil biochimique, numération) ; NHANES III passe en
+>    sensibilité. Les tableaux ci-dessous sont régénérés depuis les CSV ;
+> 3. l'effet de l'activité physique structurée sur l'HbA1c, mesuré chez des diabétiques, est rapporté
+>    à une base de diabétiques (médiane des HbA1c ≥ 6,5 %, soit 7,6 %), et non à la médiane d'une
+>    population surtout saine : −9 % au lieu de −13 % ;
+> 4. le statut « extrapolé à 6 mois » n'est plus donné aux plaquettes : leur CV_I à long terme est
+>    inférieur au CV_I à court terme, rien n'est ajouté.
 
 ## À lire avant les chiffres
 
@@ -35,9 +49,17 @@ Code : `src/aging_clock/panel/` (`remesures.py`, `q1.py`, `q1_interventions.py`)
    - IC par bootstrap (2 000 tirages).
 
    Les marqueurs qui peuvent valoir 0 (basophiles, éosinophiles en nombre, Lp(a), et certaines
-   formules de NHANES III) sont sur l'échelle additive, en unités. Le jeu principal est NHANES III,
-   sauf s'il manque ou si plus de 20 % de ses valeurs sont au plancher. C'est le cas de la CRP,
-   censurée chez 62 % des personnes dans NHANES III.
+   formules de NHANES III) sont sur l'échelle additive, en unités.
+
+   **Jeu principal (corrigé le 2026-11-12).** 2001-2002 pour les marqueurs dont la méthode ou
+   l'automate a changé depuis NHANES III, d'après la documentation du CDC : HbA1c (Diamat, échange
+   d'ions → Primus, affinité boronate) ; profil biochimique (Hitachi 737 → Hitachi 704 en 2001, puis
+   Beckman Synchron LX20 en 2002) ; numération (Coulter S-Plus JR → Coulter MAXM) ; glycémie et
+   lipides ; indices dérivés de ces marqueurs. NHANES III sinon (insuline, vitamines, ferritine,
+   urines, marqueurs absents de 2001-2002), ou 2001-2002 si NHANES III manque ou a plus de 20 % de
+   valeurs au plancher (CRP, censurée chez 62 % des personnes). Avant la correction, NHANES III était
+   principal pour tous ; son changement détectable est donné à côté, en sensibilité. Créatinine de
+   NHANES III recalibrée (0,960 x − 0,184 mg/dL, Selvin 2007).
 2. **Extrapolation à 6 mois** : $CV_{6m}^2 = CV_{obs}^2 + \max(0, CV_{I,LT}^2 - CV_{I,CT}^2)$.
    - CV_I,CT : méta-analyse EFLM.
    - CV_I,LT : médiane des études EFLM (BIVAC) qui réunissent ces conditions :
@@ -61,106 +83,107 @@ Les trois prédictions pré-enregistrées sur la variabilité sont **vérifiées
 | Prédiction | Observé | Vérifiée |
 |---|---|---|
 | L'EFLM sous-estime le CV observé pour ≥ 2/3 des marqueurs | 35 marqueurs sur 42 (83 %) | oui |
-| Queues épaisses (changement empirique > 1,10 × celui du CV robuste) pour ≥ 50 % des marqueurs | 80 % (56 sur 70) | oui |
+| Queues épaisses (changement empirique > 1,10 × celui du CV robuste) pour ≥ 50 % des marqueurs | 81 % (57 sur 70 ; 56 avant la recalibration de la créatinine) | oui |
 | Réplication : CV de 2001-2002 et de NHANES III à moins d'un facteur 1,5 pour ≥ 2/3 des marqueurs | 93 % (57 sur 61) | oui |
 
 **L'EFLM à long terme est rare.** Sur 572 jeux de données EFLM de 6 mois ou plus, seuls 30
 remplissent les critères. La plupart des études longues ont la note BIVAC C. Un CV_I à long terme
-n'existe donc que pour la numération, l'ALAT, l'ASAT, les bicarbonates, les plaquettes et la TSH.
+n'existe donc que pour la numération, l'ALAT, l'ASAT, les bicarbonates, les plaquettes et la TSH (pour
+les plaquettes, il est inférieur au CV_I à court terme : rien n'est ajouté).
 Ailleurs, le changement détectable reste une borne basse à 2 semaines. 81 % des jeux utilisés
 dans les méta-analyses EFLM durent moins de 6 mois : le CV_I « méta-analyse » est bien un CV à
 court terme.
 
 ## Changement détectable à 6 mois
 
-| Marqueur | Jeu principal | n | CV observé (%) | **Changement détectable à 6 mois (%)**, hausse / baisse, 20-79 ans | 30-55 ans | Statut |
-|---|---|---|---|---|---|---|
-| Leucocytes | NHANES III | 1791 | 13,0 | **+46 / −31** | +48 / −32 | extrapolé à 6 mois |
-| Neutrophiles (%) | NHANES III | 272 | 12,0 | **+43 / −30** | +43 / −30 | extrapolé à 6 mois |
-| Neutrophiles (nombre) | 2001-02 | 420 | 20,3 | **+77 / −44** | +72 / −42 | extrapolé à 6 mois |
-| Lymphocytes (%) | NHANES III | 1792 | 13,9 | **+47 / −32** | +46 / −31 | extrapolé à 6 mois |
-| Lymphocytes (nombre) | NHANES III | 1791 | 13,4 | **+45 / −31** | +46 / −32 | extrapolé à 6 mois |
-| Monocytes (%) | 2001-02 | 420 | 14,5 | **+57 / −36** | +60 / −38 | extrapolé à 6 mois |
-| Monocytes (nombre) | 2001-02 | 420 | 17,4 | **+69 / −41** | +70 / −41 | extrapolé à 6 mois |
-| Éosinophiles (%) | 2001-02 | 420 | 28,3 | **+119 / −54** | +116 / −54 | extrapolé à 6 mois |
-| Éosinophiles (nombre) | 2001-02 | 420 | ET intra 0,07 | **± 0,20 (unités)** | ± 0,17 | borne basse (2 semaines), échelle additive |
-| Basophiles (%) | 2001-02 | 420 | ET intra 0,30 | **± 0,82 (unités)** | ± 0,83 | borne basse (2 semaines), échelle additive |
-| Basophiles (nombre) | — | — | — | — | — | non interprétable (valeurs censurées > 20 %) |
-| Hématies | NHANES III | 1790 | 2,9 | **+10 / −9** | +10 / −9 | extrapolé à 6 mois |
-| Hémoglobine | NHANES III | 1792 | 3,0 | **+10 / −9** | +10 / −9 | extrapolé à 6 mois |
-| Hématocrite | NHANES III | 1790 | 3,0 | **+10 / −9** | +10 / −9 | extrapolé à 6 mois |
-| VGM | NHANES III | 1792 | 0,8 | **+3 / −3** | +3 / −3 | extrapolé à 6 mois |
-| TCMH | NHANES III | 1791 | 1,4 | **+5 / −4** | +5 / −5 | extrapolé à 6 mois |
-| CCMH | NHANES III | 1791 | 1,5 | **+5 / −4** | +4 / −4 | extrapolé à 6 mois |
-| RDW | NHANES III | 1792 | 2,0 | **+7 / −6** | +7 / −7 | extrapolé à 6 mois |
-| Plaquettes | NHANES III | 1766 | 10,9 | **+35 / −26** | +42 / −29 | extrapolé à 6 mois |
-| VPM | NHANES III | 1792 | 4,5 | **+13 / −12** | +14 / −12 | borne basse (2 semaines) |
-| Glycémie à jeun (plasma) | NHANES III | 1190 | 9,3 | **+29 / −23** | +24 / −19 | borne basse (2 semaines) |
-| Glucose sérique (non à jeun) | NHANES III | 1756 | 10,4 | **+33 / −25** | +27 / −22 | borne basse (2 semaines) |
-| Insuline (à jeun) | NHANES III | 1182 | 28,2 | **+115 / −54** | +120 / −55 | borne basse (2 semaines) |
-| HbA1c | NHANES III | 1821 | 3,6 | **+10 / −9** | +11 / −10 | borne basse (2 semaines) |
-| Cholestérol total | NHANES III | 1807 | 8,3 | **+26 / −21** | +26 / −21 | borne basse (2 semaines) |
-| LDL (calculé, à jeun) | NHANES III | 583 | 14,0 | **+47 / −32** | +57 / −36 | borne basse (2 semaines) |
-| HDL | NHANES III | 1779 | 12,9 | **+43 / −30** | +41 / −29 | borne basse (2 semaines) |
-| Triglycérides (à jeun) | NHANES III | 1798 | 27,4 | **+111 / −53** | +115 / −54 | borne basse (2 semaines) |
-| Triglycérides sériques (non à jeun) | NHANES III | 1342 | 25,7 | **+101 / −50** | +109 / −52 | borne basse (2 semaines) |
-| ALAT | NHANES III | 1757 | 23,4 | **+181 / −64** | +186 / −65 | extrapolé à 6 mois |
-| ASAT | NHANES III | 1757 | 17,2 | **+86 / −46** | +92 / −48 | extrapolé à 6 mois |
-| GGT | NHANES III | 1392 | 15,5 | **+53 / −35** | +54 / −35 | borne basse (2 semaines) |
-| PAL | NHANES III | 1757 | 7,1 | **+22 / −18** | +24 / −19 | borne basse (2 semaines) |
-| Bilirubine totale | 2001-02 | 409 | 18,4 | **+66 / −40** | +68 / −41 | borne basse (2 semaines) |
-| Albumine | NHANES III | 1757 | 4,4 | **+13 / −11** | +13 / −11 | borne basse (2 semaines) |
-| Protéines totales | NHANES III | 1757 | 3,6 | **+10 / −9** | +10 / −9 | borne basse (2 semaines) |
-| Créatinine | NHANES III | 1757 | 6,8 | **+21 / −17** | +21 / −17 | borne basse (2 semaines) |
-| Urée | NHANES III | 1757 | 18,9 | **+68 / −40** | +69 / −41 | borne basse (2 semaines) |
-| Sodium | NHANES III | 1757 | 1,3 | **+4 / −4** | +4 / −4 | borne basse (2 semaines) |
-| Potassium | NHANES III | 1757 | 5,4 | **+16 / −14** | +15 / −13 | borne basse (2 semaines) |
-| Chlorure | NHANES III | 1757 | 2,1 | **+6 / −6** | +6 / −6 | borne basse (2 semaines) |
-| Bicarbonates | NHANES III | 1757 | 11,4 | **+38 / −27** | +41 / −29 | extrapolé à 6 mois |
-| CRP | 2001-02 | 412 | 58,7 | **+351 / −78** | +397 / −80 | borne basse (2 semaines) |
-| Vitamine B12 | NHANES III | 894 | 14,3 | **+48 / −33** | +58 / −37 | borne basse (2 semaines) |
-| Folates érythrocytaires | NHANES III | 1176 | 9,4 | **+30 / −23** | +31 / −24 | borne basse (2 semaines) |
-| 25-OH vitamine D | 2001-02 | 341 | 15,7 | **+54 / −35** | +58 / −37 | borne basse (2 semaines) |
-| Calcium | NHANES III | 1757 | 3,3 | **+10 / −9** | +9 / −9 | borne basse (2 semaines) |
-| LH | NHANES III | 275 | 67,6 | **+448 / −82** | +534 / −84 | borne basse (2 semaines) |
-| FSH | 2001-02 | 86 | 43,8 | **+219 / −69** | +253 / −72 | borne basse (2 semaines) |
-| PSA total | 2001-02 | 102 | 17,4 | **+62 / −38** | +63 / −39 | borne basse (2 semaines) |
-| PSA libre | 2001-02 | 102 | 18,0 | **+64 / −39** | +63 / −39 | borne basse (2 semaines) |
-| Fer sérique | NHANES III | 1817 | 31,1 | **+132 / −57** | +149 / −60 | borne basse (2 semaines) |
-| Ferritine | NHANES III | 1807 | 22,3 | **+84 / −46** | +94 / −48 | borne basse (2 semaines) |
-| Homocystéine | 2001-02 | 418 | 13,7 | **+46 / −32** | +44 / −31 | borne basse (2 semaines) |
-| Acide urique | NHANES III | 1756 | 9,4 | **+30 / −23** | +30 / −23 | borne basse (2 semaines) |
-| Phosphate | NHANES III | 1757 | 9,4 | **+30 / −23** | +32 / −24 | borne basse (2 semaines) |
-| Albumine urinaire | NHANES III | 1196 | 107,5 | **+1034 / −91** | +1073 / −91 | borne basse (2 semaines) |
-| Créatinine urinaire | NHANES III | 1196 | 56,4 | **+330 / −77** | +365 / −78 | borne basse (2 semaines) |
-| HOMA-IR | NHANES III | 1174 | 32,1 | **+139 / −58** | +142 / −59 | borne basse (2 semaines) |
-| QUICKI | NHANES III | 1174 | 4,5 | **+13 / −12** | +14 / −12 | borne basse (2 semaines) |
-| Glycémie moyenne estimée | NHANES III | 1821 | 5,2 | **+15 / −13** | +17 / −14 | borne basse (2 semaines) |
-| Indice TyG | NHANES III | 1159 | ET intra 0,29 | **± 0,79 (unités)** | ± 0,80 | borne basse (2 semaines), échelle additive |
-| Cholestérol non-HDL | NHANES III | 1778 | 11,2 | **+36 / −27** | +35 / −26 | borne basse (2 semaines) |
-| LDL/HDL | NHANES III | 583 | 19,4 | **+70 / −41** | +76 / −43 | borne basse (2 semaines) |
-| TG/HDL | NHANES III | 1775 | 32,5 | **+141 / −58** | +143 / −59 | borne basse (2 semaines) |
-| Indice athérogène (log10 TG/HDL, mmol) | NHANES III | 1775 | ET intra 0,14 | **± 0,38 (unités)** | ± 0,39 | borne basse (2 semaines), échelle additive |
-| Albumine/globulines | NHANES III | 1757 | 8,3 | **+26 / −20** | +27 / −21 | borne basse (2 semaines) |
-| FIB-4 | NHANES III | 1683 | 17,3 | **+61 / −38** | +69 / −41 | borne basse (2 semaines) |
-| GGT/HDL | NHANES III | 1363 | 18,2 | **+65 / −39** | +63 / −38 | borne basse (2 semaines) |
-| ASAT/ALAT | NHANES III | 1757 | 17,6 | **+62 / −38** | +64 / −39 | borne basse (2 semaines) |
-| Urée/créatinine | NHANES III | 1757 | 18,8 | **+68 / −40** | +69 / −41 | borne basse (2 semaines) |
-| Osmolalité effective (2 Na + glucose) | NHANES III | 1756 | 1,3 | **+4 / −4** | +4 / −4 | borne basse (2 semaines) |
-| Neutrophiles/lymphocytes | NHANES III | 271 | 24,8 | **+97 / −49** | +84 / −46 | borne basse (2 semaines) |
-| Indice SII | NHANES III | 269 | 28,8 | **+119 / −54** | +97 / −49 | borne basse (2 semaines) |
-| Calcium corrigé | NHANES III | 1757 | 3,0 | **+9 / −8** | +9 / −8 | borne basse (2 semaines) |
-| DFGe (CKD-EPI 2021) | NHANES III | 1757 | 8,0 | **+25 / −20** | +24 / −19 | borne basse (2 semaines) |
-| Granulocytes (%, automate) | NHANES III | 1742 | 9,2 | **+29 / −22** | +30 / −23 | borne basse (2 semaines) |
-| Globulines | NHANES III | 1342 | 5,8 | **+18 / −15** | +18 / −15 | borne basse (2 semaines) |
-| Osmolalité mesurée | NHANES III | 1342 | 1,2 | **+4 / −3** | +3 / −3 | borne basse (2 semaines) |
-| ApoA1 | NHANES III | 838 | 8,5 | **+27 / −21** | +26 / −21 | borne basse (2 semaines) |
-| ApoB | NHANES III | 850 | 9,9 | **+31 / −24** | +28 / −22 | borne basse (2 semaines) |
-| Lp(a) | NHANES III | 952 | ET intra 7,63 | **± 21,15 (unités)** | ± 22,13 | borne basse (2 semaines), échelle additive |
-| Capacité totale de fixation du fer | NHANES III | 1756 | 6,7 | **+21 / −17** | +21 / −17 | borne basse (2 semaines) |
-| Saturation de la transferrine | NHANES III | 1756 | 31,4 | **+134 / −57** | +153 / −60 | borne basse (2 semaines) |
-| Sélénium | NHANES III | 1714 | 6,8 | **+21 / −17** | +21 / −17 | borne basse (2 semaines) |
-| Iode urinaire | NHANES III | 1148 | 70,9 | **+486 / −83** | +465 / −82 | borne basse (2 semaines) |
+| Marqueur | Jeu principal | n | CV observé (%) | **Changement détectable à 6 mois (%)**, hausse / baisse, 20-79 ans | 30-55 ans | Avec le bruit de NHANES III (sensibilité) | Statut |
+|---|---|---|---|---|---|---|---|
+| Leucocytes | 2001-02 | 420 | 13,4 | **+48 / −32** | +47 / −32 | +46 / −31 | extrapolé à 6 mois |
+| Neutrophiles (%) | 2001-02 | 420 | 10,2 | **+37 / −27** | +34 / −25 | +43 / −30 | extrapolé à 6 mois |
+| Neutrophiles (nombre) | 2001-02 | 420 | 20,3 | **+77 / −44** | +72 / −42 | — | extrapolé à 6 mois |
+| Lymphocytes (%) | 2001-02 | 420 | 16,6 | **+59 / −37** | +58 / −37 | +47 / −32 | extrapolé à 6 mois |
+| Lymphocytes (nombre) | 2001-02 | 420 | 15,7 | **+55 / −35** | +58 / −37 | +45 / −31 | extrapolé à 6 mois |
+| Monocytes (%) | 2001-02 | 420 | 14,5 | **+57 / −36** | +60 / −38 | — | extrapolé à 6 mois |
+| Monocytes (nombre) | 2001-02 | 420 | 17,4 | **+69 / −41** | +70 / −41 | — | extrapolé à 6 mois |
+| Éosinophiles (%) | 2001-02 | 420 | 28,3 | **+119 / −54** | +116 / −54 | — | extrapolé à 6 mois |
+| Éosinophiles (nombre) | 2001-02 | 420 | ET intra 0,07 | **± 0,20 (unités)** | ± 0,17 | — | borne basse (2 semaines), échelle additive |
+| Basophiles (%) | 2001-02 | 420 | ET intra 0,30 | **± 0,82 (unités)** | ± 0,83 | — | borne basse (2 semaines), échelle additive |
+| Basophiles (nombre) | — | — | — | — | — | — | non interprétable (valeurs censurées > 20 %) |
+| Hématies | 2001-02 | 420 | 3,1 | **+11 / −10** | +10 / −10 | +10 / −9 | extrapolé à 6 mois |
+| Hémoglobine | 2001-02 | 420 | 2,8 | **+10 / −9** | +10 / −9 | +10 / −9 | extrapolé à 6 mois |
+| Hématocrite | 2001-02 | 420 | 3,2 | **+11 / −10** | +10 / −9 | +10 / −9 | extrapolé à 6 mois |
+| VGM | 2001-02 | 420 | 0,8 | **+3 / −3** | +3 / −3 | +3 / −3 | extrapolé à 6 mois |
+| TCMH | 2001-02 | 420 | 1,2 | **+4 / −4** | +4 / −4 | +5 / −4 | extrapolé à 6 mois |
+| CCMH | 2001-02 | 420 | 1,3 | **+4 / −4** | +4 / −4 | +5 / −4 | extrapolé à 6 mois |
+| RDW | 2001-02 | 420 | 1,7 | **+6 / −6** | +6 / −6 | +7 / −6 | extrapolé à 6 mois |
+| Plaquettes | 2001-02 | 420 | 8,5 | **+26 / −21** | +26 / −21 | +35 / −26 | borne basse (2 semaines) |
+| VPM | 2001-02 | 420 | 3,7 | **+11 / −10** | +11 / −10 | +13 / −12 | borne basse (2 semaines) |
+| Glycémie à jeun (plasma) | 2001-02 | 167 | 7,7 | **+24 / −19** | +22 / −18 | +29 / −23 | borne basse (2 semaines) |
+| Glucose sérique (non à jeun) | 2001-02 | 409 | 8,4 | **+26 / −21** | +24 / −20 | +33 / −25 | borne basse (2 semaines) |
+| Insuline (à jeun) | NHANES III | 1182 | 28,2 | **+115 / −54** | +120 / −55 | (jeu principal) | borne basse (2 semaines) |
+| HbA1c | 2001-02 | 419 | 1,9 | **+5 / −5** | +5 / −5 | +10 / −9 | borne basse (2 semaines) |
+| Cholestérol total | 2001-02 | 406 | 7,1 | **+22 / −18** | +23 / −19 | +26 / −21 | borne basse (2 semaines) |
+| LDL (calculé, à jeun) | 2001-02 | 147 | 11,4 | **+37 / −27** | +39 / −28 | +47 / −32 | borne basse (2 semaines) |
+| HDL | 2001-02 | 406 | 9,6 | **+30 / −23** | +29 / −23 | +43 / −30 | borne basse (2 semaines) |
+| Triglycérides (à jeun) | 2001-02 | 166 | 26,3 | **+105 / −51** | +107 / −52 | +111 / −53 | borne basse (2 semaines) |
+| Triglycérides sériques (non à jeun) | 2001-02 | 409 | 28,3 | **+116 / −54** | +121 / −55 | +101 / −50 | borne basse (2 semaines) |
+| ALAT | 2001-02 | 409 | 18,3 | **+162 / −62** | +169 / −63 | +181 / −64 | extrapolé à 6 mois |
+| ASAT | 2001-02 | 409 | 17,4 | **+87 / −47** | +95 / −49 | +86 / −46 | extrapolé à 6 mois |
+| GGT | 2001-02 | 409 | 15,2 | **+52 / −34** | +52 / −34 | +53 / −35 | borne basse (2 semaines) |
+| PAL | 2001-02 | 409 | 7,7 | **+24 / −19** | +24 / −19 | +22 / −18 | borne basse (2 semaines) |
+| Bilirubine totale | 2001-02 | 409 | 18,4 | **+66 / −40** | +68 / −41 | — | borne basse (2 semaines) |
+| Albumine | 2001-02 | 409 | 3,5 | **+10 / −9** | +10 / −9 | +13 / −11 | borne basse (2 semaines) |
+| Protéines totales | 2001-02 | 409 | 3,4 | **+10 / −9** | +10 / −9 | +10 / −9 | borne basse (2 semaines) |
+| Créatinine | 2001-02 | 409 | 7,4 | **+23 / −19** | +24 / −20 | +26 / −21 | borne basse (2 semaines) |
+| Urée | 2001-02 | 409 | 18,6 | **+67 / −40** | +72 / −42 | +68 / −40 | borne basse (2 semaines) |
+| Sodium | 2001-02 | 409 | 1,3 | **+4 / −4** | +3 / −3 | +4 / −4 | borne basse (2 semaines) |
+| Potassium | 2001-02 | 409 | 6,2 | **+19 / −16** | +18 / −15 | +16 / −14 | borne basse (2 semaines) |
+| Chlorure | 2001-02 | 409 | 1,8 | **+5 / −5** | +5 / −5 | +6 / −6 | borne basse (2 semaines) |
+| Bicarbonates | 2001-02 | 409 | 6,3 | **+20 / −17** | +19 / −16 | +38 / −27 | extrapolé à 6 mois |
+| CRP | 2001-02 | 412 | 58,7 | **+351 / −78** | +397 / −80 | +206 / −67 | borne basse (2 semaines) |
+| Vitamine B12 | NHANES III | 894 | 14,3 | **+48 / −33** | +58 / −37 | (jeu principal) | borne basse (2 semaines) |
+| Folates érythrocytaires | NHANES III | 1176 | 9,4 | **+30 / −23** | +31 / −24 | (jeu principal) | borne basse (2 semaines) |
+| 25-OH vitamine D | 2001-02 | 341 | 15,7 | **+54 / −35** | +58 / −37 | — | borne basse (2 semaines) |
+| Calcium | 2001-02 | 409 | 2,4 | **+7 / −6** | +7 / −7 | +10 / −9 | borne basse (2 semaines) |
+| LH | NHANES III | 275 | 67,6 | **+448 / −82** | +534 / −84 | (jeu principal) | borne basse (2 semaines) |
+| FSH | 2001-02 | 86 | 43,8 | **+219 / −69** | +253 / −72 | — | borne basse (2 semaines) |
+| PSA total | 2001-02 | 102 | 17,4 | **+62 / −38** | +63 / −39 | — | borne basse (2 semaines) |
+| PSA libre | 2001-02 | 102 | 18,0 | **+64 / −39** | +63 / −39 | — | borne basse (2 semaines) |
+| Fer sérique | 2001-02 | 409 | 31,2 | **+133 / −57** | +138 / −58 | +132 / −57 | borne basse (2 semaines) |
+| Ferritine | NHANES III | 1807 | 22,3 | **+84 / −46** | +94 / −48 | (jeu principal) | borne basse (2 semaines) |
+| Homocystéine | 2001-02 | 418 | 13,7 | **+46 / −32** | +44 / −31 | — | borne basse (2 semaines) |
+| Acide urique | 2001-02 | 409 | 9,3 | **+29 / −23** | +29 / −22 | +30 / −23 | borne basse (2 semaines) |
+| Phosphate | 2001-02 | 409 | 9,9 | **+31 / −24** | +33 / −25 | +30 / −23 | borne basse (2 semaines) |
+| Albumine urinaire | NHANES III | 1196 | 107,5 | **+1034 / −91** | +1073 / −91 | (jeu principal) | borne basse (2 semaines) |
+| Créatinine urinaire | NHANES III | 1196 | 56,4 | **+330 / −77** | +365 / −78 | (jeu principal) | borne basse (2 semaines) |
+| HOMA-IR | 2001-02 | 160 | 31,8 | **+136 / −58** | +158 / −61 | +139 / −58 | borne basse (2 semaines) |
+| QUICKI | 2001-02 | 160 | 4,4 | **+13 / −11** | +14 / −12 | +13 / −12 | borne basse (2 semaines) |
+| Glycémie moyenne estimée | 2001-02 | 419 | 2,7 | **+8 / −7** | +8 / −7 | +15 / −13 | borne basse (2 semaines) |
+| Indice TyG | 2001-02 | 164 | ET intra 0,27 | **± 0,76 (unités)** | ± 0,72 | — | borne basse (2 semaines), échelle additive |
+| Cholestérol non-HDL | 2001-02 | 406 | 9,4 | **+30 / −23** | +31 / −24 | +36 / −27 | borne basse (2 semaines) |
+| LDL/HDL | 2001-02 | 147 | 11,6 | **+38 / −27** | +40 / −29 | +70 / −41 | borne basse (2 semaines) |
+| TG/HDL | 2001-02 | 166 | 30,7 | **+130 / −56** | +121 / −55 | +141 / −58 | borne basse (2 semaines) |
+| Indice athérogène (log10 TG/HDL, mmol) | 2001-02 | 166 | ET intra 0,13 | **± 0,36 (unités)** | ± 0,34 | — | borne basse (2 semaines), échelle additive |
+| Albumine/globulines | 2001-02 | 409 | 5,9 | **+18 / −15** | +17 / −15 | +26 / −20 | borne basse (2 semaines) |
+| FIB-4 | 2001-02 | 407 | 15,2 | **+52 / −34** | +54 / −35 | +61 / −38 | borne basse (2 semaines) |
+| GGT/HDL | 2001-02 | 406 | 17,7 | **+63 / −38** | +62 / −38 | +65 / −39 | borne basse (2 semaines) |
+| ASAT/ALAT | 2001-02 | 409 | 14,0 | **+47 / −32** | +51 / −34 | +62 / −38 | borne basse (2 semaines) |
+| Urée/créatinine | 2001-02 | 409 | 18,5 | **+66 / −40** | +72 / −42 | +69 / −41 | borne basse (2 semaines) |
+| Osmolalité effective (2 Na + glucose) | 2001-02 | 409 | 1,3 | **+4 / −3** | +3 / −3 | +4 / −4 | borne basse (2 semaines) |
+| Neutrophiles/lymphocytes | 2001-02 | 420 | 26,4 | **+106 / −51** | +99 / −50 | +97 / −49 | borne basse (2 semaines) |
+| Indice SII | 2001-02 | 420 | 28,1 | **+115 / −53** | +105 / −51 | +119 / −54 | borne basse (2 semaines) |
+| Calcium corrigé | 2001-02 | 409 | 2,0 | **+6 / −5** | +6 / −6 | +9 / −8 | borne basse (2 semaines) |
+| DFGe (CKD-EPI 2021) | 2001-02 | 409 | 7,4 | **+23 / −18** | +24 / −19 | +22 / −18 | borne basse (2 semaines) |
+| Granulocytes (%, automate) | NHANES III | 1742 | 9,2 | **+29 / −22** | +30 / −23 | (jeu principal) | borne basse (2 semaines) |
+| Globulines | NHANES III | 1342 | 5,8 | **+18 / −15** | +18 / −15 | (jeu principal) | borne basse (2 semaines) |
+| Osmolalité mesurée | NHANES III | 1342 | 1,2 | **+4 / −3** | +3 / −3 | (jeu principal) | borne basse (2 semaines) |
+| ApoA1 | NHANES III | 838 | 8,5 | **+27 / −21** | +26 / −21 | (jeu principal) | borne basse (2 semaines) |
+| ApoB | NHANES III | 850 | 9,9 | **+31 / −24** | +28 / −22 | (jeu principal) | borne basse (2 semaines) |
+| Lp(a) | NHANES III | 952 | ET intra 7,63 | **± 21,15 (unités)** | ± 22,13 | — | borne basse (2 semaines), échelle additive |
+| Capacité totale de fixation du fer | NHANES III | 1756 | 6,7 | **+21 / −17** | +21 / −17 | (jeu principal) | borne basse (2 semaines) |
+| Saturation de la transferrine | NHANES III | 1756 | 31,4 | **+134 / −57** | +153 / −60 | (jeu principal) | borne basse (2 semaines) |
+| Sélénium | NHANES III | 1714 | 6,8 | **+21 / −17** | +21 / −17 | (jeu principal) | borne basse (2 semaines) |
+| Iode urinaire | NHANES III | 1148 | 70,9 | **+486 / −83** | +465 / −82 | (jeu principal) | borne basse (2 semaines) |
 
 Lecture : pour l'hémoglobine, un changement de moins de +10 % ou −9 % entre deux bilans à 6 mois
 n'est pas distinguable de la variabilité normale. Pour les indices dérivés (HOMA-IR, rapports,
@@ -187,12 +210,13 @@ court terme. Les CV_I eux-mêmes ne sont pas reproduits ici (licence de la base 
 
 | Variabilité | Marqueurs | Changement détectable |
 |---|---|---|
-| **Très stables** | VGM, TCMH, CCMH, RDW, sodium, chlorure, osmolalité | moins de 7 % |
-| **Stables** | hémoglobine, hématocrite, hématies, HbA1c, calcium, protéines, albumine, VPM | environ 10 à 13 % |
+| **Très stables** | VGM, TCMH, CCMH, RDW, HbA1c, sodium, chlorure, calcium, osmolalité | moins de 7 % |
+| **Stables** | hémoglobine, hématocrite, hématies, protéines, albumine, VPM | environ 10 à 11 % |
 | **Bruités** | CRP, insuline, triglycérides, ALAT, fer, LH, FSH, urines | souvent plus de 100 % à la hausse : une valeur isolée ne se compare presque pas |
 
 **Deux points d'attention :**
-- **Bicarbonates.** CV de 11 % dans NHANES III contre 6 % en 2001-2002.
+- **Bicarbonates.** CV de 11 % dans NHANES III contre 6 % en 2001-2002 (jeu principal depuis le
+  2026-11-12).
   - **Correction du 2026-11-11.** La première version de ce rapport donnait 18 % et l'attribuait à
     un artefact pré-analytique (perte de CO₂). C'était en réalité un **bug de lecture** : le code
     « 88 » (vide mais applicable) des champs à 2 chiffres de NHANES III était lu comme une valeur,
@@ -202,35 +226,65 @@ court terme. Les CV_I eux-mêmes ne sont pas reproduits ici (licence de la base 
 - **Neutrophiles (%).** Dans NHANES III, la formule est faite à la main et ne porte que sur
   272 personnes.
 
+## Comparaison aux RCV publiés (ajout du 2026-11-12)
+
+Changement détectable à 6 mois de dix marqueurs, avant et après la correction, rapporté au RCV
+publié (Westgard 2014 : $CV = \sqrt{CV_I^2 + I^2}$ ; EFLM : $CV_A = 0{,}5\,CV_I$). Valeurs publiées
+reprises de l'audit ; fichier `Q1_comparaison_rcv_publies.csv`. Un RCV publié est à court terme :
+un rapport un peu supérieur à 1 est attendu (variabilité à 6 mois, laboratoires réels).
+
+| Marqueur | Avant (NHANES III) | **Après (2001-2002)** | RCV Westgard 2014 | Rapport Westgard avant → **après** (hausse) | Rapport Westgard après (baisse) | RCV EFLM | Rapport EFLM après (hausse / baisse) |
+|---|---|---|---|---|---|---|---|
+| Glycémie à jeun (plasma) | +29 / −23 | **+24 / −19** | +19 / −16 | 1,53 → **1,25** | 1,20 | +16 / −14 | 1,49 / 1,38 |
+| HbA1c | +10 / −9 | **+5 / −5** | +6 / −6 | 1,67 → **0,91** | 0,87 | +4 / −4 | 1,37 / 1,30 |
+| Cholestérol total | +26 / −21 | **+22 / −18** | +20 / −17 | 1,30 → **1,09** | 1,06 | +18 / −15 | 1,21 / 1,20 |
+| LDL (calculé, à jeun) | +47 / −32 | **+37 / −27** | +27 / −21 | 1,74 → **1,37** | 1,28 | +27 / −21 | 1,37 / 1,28 |
+| HDL | +43 / −30 | **+30 / −23** | +25 / −20 | 1,72 → **1,21** | 1,16 | +19 / −16 | 1,59 / 1,45 |
+| Triglycérides (à jeun) | +111 / −53 | **+105 / −51** | +84 / −46 | 1,32 → **1,25** | 1,11 | +83 / −45 | 1,26 / 1,14 |
+| ALAT | +181 / −64 | **+162 / −62** | +81 / −45 | 2,23 → **2,00** | 1,37 | +47 / −32 | 3,45 / 1,93 |
+| GGT | +53 / −35 | **+52 / −34** | +51 / −34 | 1,04 → **1,02** | 1,01 | +29 / −22 | 1,80 / 1,56 |
+| Créatinine | +21 / −17 | **+23 / −19** | +20 / −17 | 1,05 → **1,14** | 1,09 | +15 / −13 | 1,52 / 1,43 |
+| CRP | +351 / −78 | **+351 / −78** | +246 / −71 | 1,43 → **1,43** | 1,10 | +182 / −65 | 1,93 / 1,20 |
+
+- **Avec les méthodes de 2001-2002, les écarts à Westgard se resserrent** : de 1,04-2,23 à
+  0,91-2,00 (hausse). L'HbA1c passe sous 1 (0,91) ; HDL, LDL, glycémie et triglycérides
+  descendent à 1,2-1,4.
+- **L'ALAT reste à 2,0.** Ce n'est pas le jeu : c'est l'ajout à long terme, tiré de 3 études EFLM
+  notées A/B (CV_I 33 %). Avec toutes les études longues (notes A, B et C, n = 8 : CV_I 22 %), le
+  changement détectable est de **+100 %**, soit 1,24 fois le RCV de Westgard. Le chiffre de +162 %
+  est donc à lire avec cette sensibilité (colonne `cd6m_hausse_sens_noteC`).
+- **La créatinine monte un peu** (1,05 → 1,14) : la recalibration affine de NHANES III et le passage
+  à 2001-2002 relèvent légèrement le bruit relatif.
+
 ## Effets d'interventions rapportés au changement détectable
 
-| Intervention | Marqueur | Effet moyen | Changement détectable à 6 mois | **Ratio**, 20-79 ans | Ratio, 30-55 ans | Conclusion | Source (lecture) ; population |
-|---|---|---|---|---|---|---|---|
-| Activité physique (toutes formes) | Cholestérol total | −3 % | 21 % | **0,14** | 0,14 | visible seulement en moyenne de groupe | Smart 2025 (R) ; 148 ECR, adultes |
-| Activité physique (toutes formes) | HDL | +4 % | 43 % | **0,10** | 0,11 | visible seulement en moyenne de groupe | Smart 2025 (R) ; 148 ECR, adultes |
-| Activité physique (toutes formes) | LDL (calculé, à jeun) | −6 % | 32 % | **0,18** | 0,16 | visible seulement en moyenne de groupe | Smart 2025 (R) ; 148 ECR, adultes |
-| Activité physique (toutes formes) | Triglycérides (à jeun) | −7 % | 53 % | **0,13** | 0,13 | visible seulement en moyenne de groupe | Smart 2025 (R) ; 148 ECR, adultes |
-| Activité physique structurée | HbA1c | −13 % | 9 % | **1,34** | 1,26 | détectable chez une personne | Umpierre 2011 (R) ; diabète de type 2 |
-| Activité physique aérobie | Glycémie à jeun (plasma) | −3 % | 23 % | **0,13** | 0,15 | visible seulement en moyenne de groupe | Wewege 2018 (R) ; syndrome métabolique |
-| Activité physique (toutes formes) | Insuline (à jeun) | −20 % | 54 % | **0,37** | 0,36 | visible seulement en moyenne de groupe | Smart 2018 (R) ; surpoids ou stéatose |
-| Alimentation méditerranéenne | Glycémie à jeun (plasma) | −3 % | 23 % | **0,14** | 0,17 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes, 57 essais contrôlés |
-| Alimentation méditerranéenne | Insuline (à jeun) | −10 % | 54 % | **0,18** | 0,18 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
-| Alimentation méditerranéenne | HOMA-IR | −19 % | 58 % | **0,33** | 0,32 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
-| Alimentation méditerranéenne | HbA1c | −3 % | 9 % | **0,30** | 0,28 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
-| Alimentation méditerranéenne | Cholestérol total | −3 % | 21 % | **0,14** | 0,13 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
-| Alimentation méditerranéenne | LDL (calculé, à jeun) | −7 % | 32 % | **0,21** | 0,19 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
-| Alimentation méditerranéenne | HDL | +3 % | 43 % | **0,06** | 0,07 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
-| Alimentation méditerranéenne | Triglycérides (à jeun) | −10 % | 53 % | **0,20** | 0,19 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
-| Alimentation méditerranéenne | ALAT | −38 % | 64 % | **0,59** | 0,58 | limite | Papadaki 2020 (TC) ; adultes |
-| Alimentation méditerranéenne | GGT | −11 % | 35 % | **0,31** | 0,31 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
-| Alimentation méditerranéenne | CRP | −29 % | 78 % | **0,37** | 0,36 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
-| Perte de poids de 5 kg | ALAT | −28 % | 64 % | **0,43** | 0,43 | visible seulement en moyenne de groupe | Koutoukidis 2021 (R) ; stéatose (NAFLD) |
-| Perte de poids de 5 kg | ASAT | −15 % | 46 % | **0,32** | 0,31 | visible seulement en moyenne de groupe | Koutoukidis 2021 (R) ; stéatose (NAFLD) |
-| Perte de poids de 5 kg (poids stabilisé) | HDL | +4 % | 43 % | **0,08** | 0,09 | visible seulement en moyenne de groupe | Dattilo 1992 (R) ; 70 études |
-| Vitamine D3, 25 µg/j | 25-OH vitamine D | +98 % | 54 % | **1,80** | 1,67 | détectable chez une personne | Autier 2012 (R) ; plus de 50 ans, sans calcium |
-| Oméga-3 (EPA + DHA), 2 g/j | Triglycérides (à jeun) | −36 % | 53 % | **0,69** | 0,67 | limite | Wang 2023 (TC) ; 90 ECR, surtout hyperlipidémiques |
-| Acide folique 0,8 mg/j | Homocystéine | −23 % | 32 % | **0,73** | 0,75 | limite | Homocysteine Lowering Trialists' Collaboration 2005 (R) ; 25 ECR |
-| Fer oral (femmes réglées) | Hémoglobine | +4 % | 10 % | **0,37** | 0,37 | visible seulement en moyenne de groupe | Low 2016 (R) ; femmes réglées |
+| Intervention | Marqueur | Effet moyen | Changement détectable à 6 mois | **Ratio**, 20-79 ans | Ratio, 30-55 ans | Ratio avec le bruit de NHANES III | Conclusion | Source (lecture) ; population |
+|---|---|---|---|---|---|---|---|---|
+| Activité physique (toutes formes) | Cholestérol total | −3 % | 18 % | **0,16** | 0,16 | 0,14 | visible seulement en moyenne de groupe | Smart 2025 (R) ; 148 ECR, adultes |
+| Activité physique (toutes formes) | HDL | +4 % | 30 % | **0,15** | 0,15 | 0,11 | visible seulement en moyenne de groupe | Smart 2025 (R) ; 148 ECR, adultes |
+| Activité physique (toutes formes) | LDL (calculé, à jeun) | −6 % | 27 % | **0,22** | 0,21 | 0,19 | visible seulement en moyenne de groupe | Smart 2025 (R) ; 148 ECR, adultes |
+| Activité physique (toutes formes) | Triglycérides (à jeun) | −7 % | 51 % | **0,13** | 0,13 | 0,13 | visible seulement en moyenne de groupe | Smart 2025 (R) ; 148 ECR, adultes |
+| Activité physique structurée | HbA1c | −9 % | 5 % | **1,70** | 1,76 | 0,94 | détectable chez une personne | Umpierre 2011 (R) ; diabète de type 2 |
+| Activité physique aérobie | Glycémie à jeun (plasma) | −3 % | 19 % | **0,15** | 0,16 | 0,12 | visible seulement en moyenne de groupe | Wewege 2018 (R) ; syndrome métabolique |
+| Activité physique (toutes formes) | Insuline (à jeun) | −20 % | 54 % | **0,37** | 0,36 | 0,37 | visible seulement en moyenne de groupe | Smart 2018 (R) ; surpoids ou stéatose |
+| Alimentation méditerranéenne | Glycémie à jeun (plasma) | −3 % | 19 % | **0,16** | 0,17 | 0,14 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes, 57 essais contrôlés |
+| Alimentation méditerranéenne | Insuline (à jeun) | −10 % | 54 % | **0,18** | 0,18 | 0,18 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
+| Alimentation méditerranéenne | HOMA-IR | −17 % | 58 % | **0,29** | 0,28 | 0,29 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
+| Alimentation méditerranéenne | HbA1c | −3 % | 5 % | **0,54** | 0,56 | 0,30 | limite | Papadaki 2020 (TC) ; adultes |
+| Alimentation méditerranéenne | Cholestérol total | −3 % | 18 % | **0,16** | 0,15 | 0,14 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
+| Alimentation méditerranéenne | LDL (calculé, à jeun) | −7 % | 27 % | **0,25** | 0,24 | 0,21 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
+| Alimentation méditerranéenne | HDL | +3 % | 30 % | **0,09** | 0,09 | 0,06 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
+| Alimentation méditerranéenne | Triglycérides (à jeun) | −10 % | 51 % | **0,20** | 0,20 | 0,19 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
+| Alimentation méditerranéenne | ALAT | −25 % | 62 % | **0,40** | 0,39 | 0,38 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
+| Alimentation méditerranéenne | GGT | −10 % | 34 % | **0,31** | 0,31 | 0,30 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
+| Alimentation méditerranéenne | CRP | −29 % | 78 % | **0,37** | 0,36 | 0,42 | visible seulement en moyenne de groupe | Papadaki 2020 (TC) ; adultes |
+| Perte de poids de 5 kg | ALAT | −18 % | 62 % | **0,29** | 0,29 | 0,28 | visible seulement en moyenne de groupe | Koutoukidis 2021 (R) ; stéatose (NAFLD) |
+| Perte de poids de 5 kg | ASAT | −13 % | 47 % | **0,27** | 0,26 | 0,27 | visible seulement en moyenne de groupe | Koutoukidis 2021 (R) ; stéatose (NAFLD) |
+| Perte de poids de 5 kg (poids stabilisé) | HDL | +4 % | 30 % | **0,12** | 0,13 | 0,09 | visible seulement en moyenne de groupe | Dattilo 1992 (R) ; 70 études |
+| Vitamine D3, 25 µg/j | 25-OH vitamine D | +98 % | 54 % | **1,80** | 1,67 | — | détectable chez une personne | Autier 2012 (R) ; plus de 50 ans, sans calcium |
+| Oméga-3 (EPA + DHA), 2 g/j | Triglycérides (à jeun) | −35 % | 51 % | **0,68** | 0,68 | 0,67 | limite | Wang 2023 (TC) ; 90 ECR, surtout hyperlipidémiques |
+| Acide folique 0,8 mg/j | Homocystéine | −23 % | 32 % | **0,73** | 0,75 | — | limite | Homocysteine Lowering Trialists' Collaboration 2005 (R) ; 25 ECR |
+| Fer oral (femmes réglées) | Hémoglobine | +4 % | 10 % | **0,38** | 0,38 | 0,36 | visible seulement en moyenne de groupe | Low 2016 (R) ; femmes réglées |
 
 Règle pré-enregistrée :
 - **≥ 1** : un effet moyen est détectable chez une personne ;
@@ -246,15 +300,23 @@ Règle pré-enregistrée :
 - **réduction de l'alcool** (GGT, HDL, TG, VGM) : rien trouvé avec ces requêtes ;
 - **ferritine sous fer chez les sportifs** : différence standardisée seulement.
 
-**Résultat.** Sur 25 couples intervention-marqueur, chez les 20-79 ans :
+**Résultat (corrigé le 2026-11-12).** Sur 25 couples intervention-marqueur, chez les 20-79 ans :
 - **2 sont détectables chez une personne** :
   - 25-OH vitamine D sous supplémentation (ratio 1,8) ;
-  - HbA1c sous activité physique structurée (ratio 1,3), mais chez des diabétiques de type 2,
-    dont l'HbA1c baisse plus que celle de personnes en bonne santé ;
-- **3 sont limites** : ALAT sous alimentation méditerranéenne (0,6), TG sous oméga-3 à 2 g/j
-  (0,7), homocystéine sous acide folique (0,7) ;
+  - HbA1c sous activité physique structurée (ratio 1,7 ; 0,9 avec le bruit de NHANES III), mais chez
+    des diabétiques de type 2, dont l'HbA1c baisse plus que celle de personnes en bonne santé ;
+- **3 sont limites** : **HbA1c sous alimentation méditerranéenne (0,5 ; 0,3 avec le bruit de NHANES
+  III)**, TG sous oméga-3 à 2 g/j (0,7), homocystéine sous acide folique (0,7) ;
 - **20 ne sont visibles qu'en moyenne de groupe**, dont tous les effets de l'activité physique et
-  de l'alimentation méditerranéenne sur les lipides et la glycémie (ratios de 0,06 à 0,21).
+  de l'alimentation méditerranéenne sur les lipides et la glycémie (ratios de 0,09 à 0,25).
+
+Deux conclusions changent par rapport à la version d'avant les corrections :
+- **HbA1c sous alimentation méditerranéenne** : « visible seulement en moyenne de groupe » (0,30)
+  devient **« limite » (0,54)**, parce que le bruit de l'HbA1c de 2001-2002 est moitié moindre ;
+- **ALAT sous alimentation méditerranéenne** : « limite » (0,59) devient **« visible seulement en
+  moyenne de groupe » (0,40)**. Le bruit change peu ; c'est l'effet en % qui baisse, parce que
+  l'ALAT médiane de 2001-2002 (23 U/L) est plus haute que celle de NHANES III (15 U/L, automate
+  Hitachi 737). Le même effet absolu (−5,66 U/L) fait −25 % au lieu de −38 %.
 
 Les conclusions sont les mêmes chez les 30-55 ans.
 
@@ -264,14 +326,19 @@ Les conclusions sont les mêmes chez les 30-55 ans.
   - activité physique sur les lipides < 0,5.
 - Mal prédit :
   - TG sous oméga-3 à 2 g/j : 0,7, et non ≥ 1 ;
-  - HbA1c sous activité physique : 1,3, et non < 0,5. Mais l'effet vient de diabétiques.
+  - HbA1c sous activité physique : 1,7 (1,3 avant les corrections), et non < 0,5. Mais l'effet vient
+    de diabétiques.
 
 ## Lecture (interprétation)
 
 1. **La plupart des interventions réalistes ne produisent pas, en moyenne, un changement
    détectable chez une personne en 6 mois.** C'est vrai même avec des seuils qui sont des bornes
-   basses. Les lipides sont l'exemple le plus net : leur effet moyen représente 6 à 21 % du
-   changement détectable.
+   basses, et la conclusion tient avec le bruit des méthodes modernes (2001-2002), plus faible. Les
+   lipides et la glycémie sont l'exemple le plus net : leur effet moyen représente 9 à 25 % du
+   changement détectable (6 à 21 % avec le bruit de NHANES III). **Exception nouvelle depuis la
+   correction : l'HbA1c**, marqueur très stable avec une méthode moderne (changement détectable de
+   5 %), devient « limite » sous alimentation méditerranéenne. Avec un analyseur aussi précis que
+   celui de 2001-2002, une baisse moyenne de 3 % commence à se voir chez une personne.
 2. **Les exceptions ont un point commun** : un effet direct sur le marqueur lui-même
    (supplémentation en vitamine D, acide folique) ou une population de départ très anormale
    (HbA1c de diabétiques, TG d'hyperlipidémiques).
@@ -294,8 +361,10 @@ Les conclusions sont les mêmes chez les 30-55 ans.
   - GGT : +77 % au lieu de +53 % ;
   - B12 : +69 % au lieu de +48 %.
 - **Médiane de départ** pour convertir les effets en % : médiane NHANES des 30-55 ans, issue du jeu
-  principal (NHANES III, ou 2001-2002 pour la CRP et la vitamine D). La vitamine D de 2001-2002 a
-  été dosée avant la standardisation LC-MS/MS.
+  principal (2001-2002 depuis la correction du 2026-11-12 pour les marqueurs dont la méthode a changé ;
+  NHANES III pour les autres). Exception, depuis la même date : un effet mesuré chez des diabétiques
+  (HbA1c sous activité structurée) est rapporté à la médiane des HbA1c ≥ 6,5 % (7,6 %). La vitamine D
+  de 2001-2002 a été dosée avant la standardisation LC-MS/MS.
 
 ## Limites
 
@@ -311,11 +380,12 @@ Les conclusions sont les mêmes chez les 30-55 ans.
 Trois compléments, sans nouvelle donnée NHANES. Fichier : `Q1_secondaire_moyenner.csv` ; code : `q1_secondaire.py`.
 
 **1. Population des méta-analyses.** Elle figure pour chaque couple dans le tableau ci-dessous. Beaucoup d'effets viennent de populations malades ou à risque : diabétiques, syndrome métabolique, stéatose, obésité, hyperlipidémie. Chez des adultes en bonne santé, ils sont probablement plus petits.
-- **HbA1c sous activité physique** : ratio 1,3 chez des diabétiques de type 2 (Umpierre 2011). Chez des **non-diabétiques**, rien trouvé avec ces requêtes : aucune méta-analyse d'activité physique sur l'HbA1c hors diabète. On ne peut donc pas dire si l'effet serait détectable chez une personne non diabétique.
+- **HbA1c sous activité physique** : ratio 1,7 chez des diabétiques de type 2 (Umpierre 2011 ; effet
+  rapporté à une base de diabétiques depuis le 2026-11-12). Chez des **non-diabétiques**, rien trouvé avec ces requêtes : aucune méta-analyse d'activité physique sur l'HbA1c hors diabète. On ne peut donc pas dire si l'effet serait détectable chez une personne non diabétique.
 - **Oméga-3** : sans hyperlipidémie, l'effet plafonne vers −40 mg/dL (Wang 2023, TC), soit le même ordre de grandeur que l'effet global.
 
 **2. Deux références.**
-- **Statine** (atorvastatine 10 mg/j ou équivalent) : −40 % de LDL (Law 2003, BMJ, résumé). C'est un effet **clairement détectable** chez une personne : ratio 1,25.
+- **Statine** (atorvastatine 10 mg/j ou équivalent) : −40 % de LDL (Law 2003, BMJ, résumé). C'est un effet **clairement détectable** chez une personne : ratio 1,48 (1,25 avec le bruit de NHANES III).
 - **Perte de poids de 5-10 %**, d'après deux méta-analyses, sur un scénario de 7 kg :
   - lipides : Hasan 2020 (73 ECR, surpoids ou obésité, IMC moyen 36), par kg perdu après une intervention sur le mode de vie : TG −4,0 mg/dL, LDL −1,28, HDL +0,46 ;
   - ALAT : Koutoukidis 2021, −0,83 U/L par kg, chez des personnes avec stéatose.
@@ -331,46 +401,46 @@ Hypothèses : erreurs indépendantes, effet stable dans le temps, même laborato
 
 | Intervention | Marqueur | Population | Effet moyen | Ratio | **A : prises de sang par bilan** | **B : bilans avant et après** | 30-55 ans (A / B) | Source (lecture) |
 |---|---|---|---|---|---|---|---|---|
-| Activité physique (toutes formes) | Cholestérol total | 148 ECR, adultes | −3 % | 0,14 | **62** | **62** | 64 / 64 | Smart 2025 (R) |
-| Activité physique (toutes formes) | HDL | 148 ECR, adultes | +4 % | 0,10 | **69** | **69** | 65 / 65 | Smart 2025 (R) |
-| Activité physique (toutes formes) | LDL (calculé, à jeun) | 148 ECR, adultes | −6 % | 0,18 | **41** | **41** | 55 / 55 | Smart 2025 (R) |
+| Activité physique (toutes formes) | Cholestérol total | 148 ECR, adultes | −3 % | 0,16 | **45** | **45** | 49 / 49 | Smart 2025 (R) |
+| Activité physique (toutes formes) | HDL | 148 ECR, adultes | +4 % | 0,15 | **37** | **37** | 35 / 35 | Smart 2025 (R) |
+| Activité physique (toutes formes) | LDL (calculé, à jeun) | 148 ECR, adultes | −6 % | 0,22 | **27** | **27** | 29 / 29 | Smart 2025 (R) |
 | Activité physique (toutes formes) | Triglycérides (à jeun) | 148 ECR, adultes | −7 % | 0,13 | **> 100** | **> 100** | > 100 / > 100 | Smart 2025 (R) |
-| Activité physique structurée | HbA1c | diabète de type 2 | −13 % | 1,34 | **1** | **1** | 1 / 1 | Umpierre 2011 (R) |
-| Activité physique aérobie | Glycémie à jeun (plasma) | syndrome métabolique | −3 % | 0,13 | **76** | **76** | 54 / 54 | Wewege 2018 (R) |
+| Activité physique structurée | HbA1c | diabète de type 2 | −9 % | 1,70 | **1** | **1** | 1 / 1 | Umpierre 2011 (R) |
+| Activité physique aérobie | Glycémie à jeun (plasma) | syndrome métabolique | −3 % | 0,15 | **57** | **57** | 50 / 50 | Wewege 2018 (R) |
 | Activité physique (toutes formes) | Insuline (à jeun) | surpoids ou stéatose | −20 % | 0,37 | **13** | **13** | 13 / 13 | Smart 2018 (R) |
-| Alimentation méditerranéenne | Glycémie à jeun (plasma) | adultes, 57 essais contrôlés | −3 % | 0,14 | **62** | **62** | 44 / 44 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | Glycémie à jeun (plasma) | adultes, 57 essais contrôlés | −3 % | 0,16 | **47** | **47** | 41 / 41 | Papadaki 2020 (TC) |
 | Alimentation méditerranéenne | Insuline (à jeun) | adultes | −10 % | 0,18 | **55** | **55** | 58 / 58 | Papadaki 2020 (TC) |
-| Alimentation méditerranéenne | HOMA-IR | adultes | −19 % | 0,33 | **18** | **18** | 18 / 18 | Papadaki 2020 (TC) |
-| Alimentation méditerranéenne | HbA1c | adultes | −3 % | 0,30 | **12** | **12** | 14 / 14 | Papadaki 2020 (TC) |
-| Alimentation méditerranéenne | Cholestérol total | adultes | −3 % | 0,14 | **66** | **66** | 68 / 68 | Papadaki 2020 (TC) |
-| Alimentation méditerranéenne | LDL (calculé, à jeun) | adultes | −7 % | 0,21 | **31** | **31** | 42 / 42 | Papadaki 2020 (TC) |
-| Alimentation méditerranéenne | HDL | adultes | +3 % | 0,06 | **> 100** | **> 100** | > 100 / > 100 | Papadaki 2020 (TC) |
-| Alimentation méditerranéenne | Triglycérides (à jeun) | adultes | −10 % | 0,20 | **46** | **46** | 49 / 49 | Papadaki 2020 (TC) |
-| Alimentation méditerranéenne | ALAT | adultes | −38 % | 0,59 | **impossible** | **5** | impossible / 5 | Papadaki 2020 (TC) |
-| Alimentation méditerranéenne | GGT | adultes | −11 % | 0,31 | **14** | **14** | 14 / 14 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | HOMA-IR | adultes | −17 % | 0,29 | **22** | **22** | 26 / 26 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | HbA1c | adultes | −3 % | 0,54 | **4** | **4** | 4 / 4 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | Cholestérol total | adultes | −3 % | 0,16 | **49** | **49** | 52 / 52 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | LDL (calculé, à jeun) | adultes | −7 % | 0,25 | **20** | **20** | 22 / 22 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | HDL | adultes | +3 % | 0,09 | **94** | **94** | 90 / 90 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | Triglycérides (à jeun) | adultes | −10 % | 0,20 | **46** | **46** | 47 / 47 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | ALAT | adultes | −25 % | 0,40 | **impossible** | **12** | impossible / 13 | Papadaki 2020 (TC) |
+| Alimentation méditerranéenne | GGT | adultes | −10 % | 0,31 | **15** | **15** | 15 / 15 | Papadaki 2020 (TC) |
 | Alimentation méditerranéenne | CRP | adultes | −29 % | 0,37 | **21** | **21** | 23 / 23 | Papadaki 2020 (TC) |
-| Perte de poids de 5 kg | ALAT | stéatose (NAFLD) | −28 % | 0,43 | **impossible** | **11** | impossible / 11 | Koutoukidis 2021 (R) |
-| Perte de poids de 5 kg | ASAT | stéatose (NAFLD) | −15 % | 0,32 | **impossible** | **16** | impossible / 17 | Koutoukidis 2021 (R) |
-| Perte de poids de 5 kg (poids stabilisé) | HDL | 70 études | +4 % | 0,08 | **100** | **100** | 95 / 95 | Dattilo 1992 (R) |
+| Perte de poids de 5 kg | ALAT | stéatose (NAFLD) | −18 % | 0,29 | **impossible** | **24** | impossible / 25 | Koutoukidis 2021 (R) |
+| Perte de poids de 5 kg | ASAT | stéatose (NAFLD) | −13 % | 0,27 | **impossible** | **22** | impossible / 25 | Koutoukidis 2021 (R) |
+| Perte de poids de 5 kg (poids stabilisé) | HDL | 70 études | +4 % | 0,12 | **53** | **53** | 51 / 51 | Dattilo 1992 (R) |
 | Vitamine D3, 25 µg/j | 25-OH vitamine D | plus de 50 ans, sans calcium | +98 % | 1,80 | **1** | **1** | 1 / 1 | Autier 2012 (R) |
-| Oméga-3 (EPA + DHA), 2 g/j | Triglycérides (à jeun) | 90 ECR, surtout hyperlipidémiques | −36 % | 0,69 | **3** | **3** | 3 / 3 | Wang 2023 (TC) |
+| Oméga-3 (EPA + DHA), 2 g/j | Triglycérides (à jeun) | 90 ECR, surtout hyperlipidémiques | −35 % | 0,68 | **3** | **3** | 3 / 3 | Wang 2023 (TC) |
 | Acide folique 0,8 mg/j | Homocystéine | 25 ECR | −23 % | 0,73 | **3** | **3** | 2 / 2 | Homocysteine Lowering Trialists' Collaboration 2005 (R) |
-| Fer oral (femmes réglées) | Hémoglobine | femmes réglées | +4 % | 0,37 | **impossible** | **7** | impossible / 7 | Low 2016 (R) |
-| Statine (atorvastatine 10 mg/j ou équivalent) | LDL (calculé, à jeun) | 164 essais contre placebo | −40 % | 1,25 | **1** | **1** | 1 / 1 | Law 2003 (R) |
-| Perte de poids de 7 kg (≈ 5-10 %), méta-analyse | Triglycérides (à jeun) | 73 ECR, surpoids ou obésité (IMC moyen 36) | −24 % | 0,45 | **8** | **8** | 8 / 8 | Hasan 2020 (R) |
-| Perte de poids de 7 kg (≈ 5-10 %), méta-analyse | LDL (calculé, à jeun) | 73 ECR, surpoids ou obésité | −7 % | 0,23 | **26** | **26** | 36 / 36 | Hasan 2020 (R) |
-| Perte de poids de 7 kg (≈ 5-10 %), méta-analyse | HDL | 73 ECR, surpoids ou obésité | +7 % | 0,16 | **30** | **30** | 29 / 29 | Hasan 2020 (R) |
-| Perte de poids de 7 kg (≈ 5-10 %), méta-analyse | ALAT | stéatose (NAFLD) | −39 % | 0,60 | **impossible** | **5** | impossible / 5 | Koutoukidis 2021 (R) |
-| Perte de poids de 5 % (essai unique, petite taille) | Glycémie à jeun (plasma) | obèses non diabétiques, n = 19 contre 14 | −4 % | 0,18 | **38** | **38** | 27 / 27 | Magkos 2016 (TC) |
+| Fer oral (femmes réglées) | Hémoglobine | femmes réglées | +4 % | 0,38 | **impossible** | **7** | impossible / 7 | Low 2016 (R) |
+| Statine (atorvastatine 10 mg/j ou équivalent) | LDL (calculé, à jeun) | 164 essais contre placebo | −40 % | 1,48 | **1** | **1** | 1 / 1 | Law 2003 (R) |
+| Perte de poids de 7 kg (≈ 5-10 %), méta-analyse | Triglycérides (à jeun) | 73 ECR, surpoids ou obésité (IMC moyen 36) | −23 % | 0,45 | **8** | **8** | 8 / 8 | Hasan 2020 (R) |
+| Perte de poids de 7 kg (≈ 5-10 %), méta-analyse | LDL (calculé, à jeun) | 73 ECR, surpoids ou obésité | −7 % | 0,27 | **17** | **17** | 19 / 19 | Hasan 2020 (R) |
+| Perte de poids de 7 kg (≈ 5-10 %), méta-analyse | HDL | 73 ECR, surpoids ou obésité | +7 % | 0,23 | **16** | **16** | 16 / 16 | Hasan 2020 (R) |
+| Perte de poids de 7 kg (≈ 5-10 %), méta-analyse | ALAT | stéatose (NAFLD) | −25 % | 0,41 | **impossible** | **11** | impossible / 12 | Koutoukidis 2021 (R) |
+| Perte de poids de 5 % (essai unique, petite taille) | Glycémie à jeun (plasma) | obèses non diabétiques, n = 19 contre 14 | −4 % | 0,21 | **27** | **27** | 23 / 23 | Magkos 2016 (TC) |
 | Perte de poids de 5 % (essai unique, petite taille) | Insuline (à jeun) | obèses non diabétiques | −14 % | 0,25 | **28** | **28** | 30 / 30 | Magkos 2016 (TC) |
-| Perte de poids de 5 % (essai unique, petite taille) | Triglycérides (à jeun) | obèses non diabétiques | −38 % | 0,72 | **3** | **3** | 3 / 3 | Magkos 2016 (TC) |
+| Perte de poids de 5 % (essai unique, petite taille) | Triglycérides (à jeun) | obèses non diabétiques | −38 % | 0,74 | **3** | **3** | 3 / 3 | Magkos 2016 (TC) |
 | Perte de poids de 5 % (essai unique, petite taille) | HDL | obèses non diabétiques | +0 % | 0,01 | **> 100** | **> 100** | > 100 / > 100 | Magkos 2016 (TC) |
-| Perte de poids de 5 % (essai unique, petite taille) | ALAT | obèses non diabétiques | −17 % | 0,26 | **impossible** | **33** | impossible / 34 | Magkos 2016 (TC) |
+| Perte de poids de 5 % (essai unique, petite taille) | ALAT | obèses non diabétiques | −17 % | 0,27 | **impossible** | **28** | impossible / 30 | Magkos 2016 (TC) |
 | Perte de poids de 5 % (essai unique, petite taille) | CRP | obèses non diabétiques | +5 % | 0,01 | **> 100** | **> 100** | > 100 / > 100 | Magkos 2016 (TC) |
 
 **Lecture pratique** (interprétation) :
 - **Une seule mesure suffit** quand l'effet est direct et fort : vitamine D sous supplémentation, LDL sous statine, et HbA1c chez des diabétiques.
-- **Environ 3 à 8 mesures de part et d'autre** pour les TG sous oméga-3 ou sous perte de poids, et pour l'homocystéine sous acide folique.
+- **Environ 3 à 8 mesures de part et d'autre** pour les TG sous oméga-3 ou sous perte de poids, l'homocystéine sous acide folique, et l'HbA1c sous alimentation méditerranéenne (avec le bruit de 2001-2002).
 - **Des dizaines de mesures** pour les lipides et la glycémie sous activité physique, alimentation ou perte de poids modérée : en pratique, ce n'est jamais faisable pour une personne.
 - **Impossible par des prélèvements rapprochés** pour l'ALAT et l'hémoglobine : la variation à long terme dépasse déjà l'effet. Seule une tendance sur plusieurs bilans peut alors le montrer.
 - Ces nombres supposent le même laboratoire. Un changement de laboratoire (Q5) les augmente.

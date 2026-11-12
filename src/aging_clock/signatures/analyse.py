@@ -50,13 +50,31 @@ def q1():
     return t[t.groupe == "20-79 ans"].drop_duplicates("id").set_index("id")
 
 
-def omega(panel):
+# Correction du 2026-11-12 (audit, point 4c) : l'analyse principale a 6 mois extrapole TOUS les marqueurs,
+# avec la variabilite a long terme de toutes les etudes longues EFLM (notes A, B et C) ; l'ancienne version
+# (notes A et B seulement : en pratique ALAT et ASAT) devient une borne optimiste.
+NOISE = "ABC"
+CV6 = {"ABC": "cv_6m_sens_noteC", "AB": "cv_6m"}
+CDH = {"ABC": ("cd6m_hausse_sens_noteC", "cd6m_baisse_sens_noteC"), "AB": ("cd6m_hausse", "cd6m_baisse")}
+
+
+def omega(panel, noise=None):
     c = q1()
+    col = CV6[noise or NOISE]
     w = []
     for m in panel:
-        cv_o, cv_6 = c.loc[m, "cv_obs_principal"] / 100, c.loc[m, "cv_6m"] / 100
+        cv_o, cv_6 = c.loc[m, "cv_obs_principal"] / 100, c.loc[m, col] / 100
         w.append(max(0.0, 2 * (np.log(1 + cv_6 ** 2) - np.log(1 + cv_o ** 2))))
     return np.array(w)
+
+
+def cd_bounds(panel, noise=None):
+    """Seuils « naifs » par marqueur (changement detectable de Q1 a 6 mois, meme hypothese de bruit)."""
+    c = q1()
+    h, b = CDH[noise or NOISE]
+    hi = np.array([np.log(1 + c.loc[m, h] / 100) for m in panel])
+    lo = np.array([np.log(1 - c.loc[m, b] / 100) for m in panel])
+    return hi, lo
 
 
 # ------------------------------------------------------------------ covariance
@@ -147,8 +165,7 @@ def partie_a(data, rng):
     for jeu, (e1, e2) in data.items():
         panels = [("18", P)] + ([("19 avec CRP", V.PANEL_CRP)] if jeu == "2001" else [])
         for plab, panel in panels:
-            hi = np.array([np.log(1 + c.loc[m, "cd6m_hausse"] / 100) for m in panel])
-            lo = np.array([np.log(1 - c.loc[m, "cd6m_baisse"] / 100) for m in panel])
+            hi, lo = cd_bounds(panel)
             om = omega(panel)
             D, ok = deltas(e1, e2, panel, crp_fill=("crp" in panel))
             for hz in ("2 semaines", "6 mois"):
@@ -371,6 +388,11 @@ def run():
     # alcool illustratif
     va = {"reduction_alcool": V.vector("reduction_alcool", alcool_illustratif=True)}
     b_alc, _, _ = run_detection(Dcal, Dev, S2, S6, om, va, rng, label="alcool GGT -15 % (illustratif)")
+    # hypothese de bruit a 6 mois : notes A/B seulement (ancienne analyse principale, borne optimiste)
+    om_ab = omega(P, "AB")
+    b_ab, _, _ = run_detection(Dcal, Dev, S2, S2 + np.diag(om_ab), om_ab, vecs, rng, label="bruit 6 mois A/B (borne optimiste)")
+    meta["omega_AB"] = dict(zip(P, om_ab.tolist()))
+    meta["marqueurs_extrapoles"] = {"ABC": [m for m, w in zip(P, om) if w > 0], "AB": [m for m, w in zip(P, om_ab) if w > 0]}
     # covariance non robuste, L correlee
     S2n, _, _ = robust_cov(Dcal, robust=False)
     b_nr, _, _ = run_detection(Dcal, Dev, S2n, S2n + np.diag(om), om, vecs, rng, label="covariance non robuste")
@@ -388,7 +410,7 @@ def run():
         bc, _, _ = run_detection(Dc[halves[a_]], Dc[halves[b_]], Sa, Sa + np.diag(omc), omc, vv, rng, label=f"avec CRP, pli {a_ + 1}")
         crp_rows.append(bc)
     crp = pd.concat(crp_rows)
-    sens_all = pd.concat([B] + liv + [b_alc, b_nr, b_lc, crp])
+    sens_all = pd.concat([B] + liv + [b_alc, b_ab, b_nr, b_lc, crp])
     # plusieurs bilans (B10), gaussien
     multi = []
     for iv in IV:

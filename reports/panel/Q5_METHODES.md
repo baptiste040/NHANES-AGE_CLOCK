@@ -31,6 +31,31 @@ intervention réaliste ?
   S = convention statistique (intervalle de référence calculé sur NHANES, CLSI EP28).
 - NHANES est américain.
 
+## Vérification du 2026-11-12 (corrections d'erreurs après audit)
+
+Q5 a été relancé en entier, parce qu'il lit les changements détectables de Q1 (désormais calculés sur
+2001-2002 pour les méthodes changées depuis NHANES III). Les décalages ne changent pas ; seuls les
+ratios au changement détectable bougent (médiane 0,002 ; au plus 0,20). **Trois classements des parties (a)
+et (b) changent**, tous près d'une borne de la règle :
+
+| Événement | Marqueur | Décalage | Ratio avant → après | Catégorie avant → après |
+|---|---|---|---|---|
+| 1 (1999-2001, étalonnage) | Créatinine, équation publiée | +22,3 % | 1,07 → **0,98** | impossible sans équation → **faux changement possible** |
+| 3 (2005-2009, instrument) | Créatinine, équation publiée | −8,9 % | 0,52 → **0,48** | faux changement possible → **négligeable** |
+| 5 (2015-2017, Beckman → Roche) | Albumine, décalage empirique | −5,7 % | 0,50 → **0,62** | négligeable → **faux changement possible** |
+
+- La créatinine de 1999 reste le décalage le plus grand de la biochimie (+22 %, environ le changement
+  détectable) : la lecture « il faut l'équation de passage » est inchangée.
+- **Partie (c), entre laboratoires de routine : l'HbA1c change de catégorie.** Le changement
+  détectable d'un même laboratoire est maintenant celui d'une méthode moderne (+5,5 % au lieu de
+  +10,4 %). L'écart entre laboratoires y pèse donc plus : rapport ×1,76 au lieu de ×1,27 (EurA1c,
+  principal), catégorie « négligeable » → **« un changement de laboratoire peut créer un faux
+  changement »** ; ×2,97 au lieu de ×1,81 avec l'étude allemande (« comparaison impossible sans
+  équation de passage »). Calcium : ×1,81 au lieu de ×1,49 (catégorie inchangée). Les rapports
+  principaux vont désormais de ×1,01 à ×1,81.
+- Les trois prédictions gardent leur statut (P1 non vérifiée, P2 vérifiée, P3 non vérifiée).
+- Les tableaux ci-dessous donnent les ratios d'avant ; les valeurs à jour sont dans les CSV.
+
 ## Ce qu'il faut retenir
 
 1. **Pour suivre une personne, la plupart des changements de méthode de NHANES restent petits devant
@@ -45,9 +70,10 @@ intervention réaliste ?
        2012), insuline (2003).
 2. **Entre laboratoires de routine (c), le changement détectable grandit surtout pour les marqueurs
    très régulés.**
-   - Calcium : ×1,49 ; PAL : ×1,30 ; HbA1c : ×1,27 ; magnésium : ×1,22 ; protéines : ×1,18.
+   - Calcium : ×1,81 ; HbA1c : ×1,76 ; PAL : ×1,26 ; magnésium : ×1,22 ; protéines : ×1,20 (valeurs
+     corrigées le 2026-11-12 ; avant : ×1,49 ; ×1,27 ; ×1,30 ; ×1,22 ; ×1,18).
    - Ce sont des bornes basses pour la plupart (CV mesurés au sein des groupes de méthode).
-   - Pour les enzymes, le bruit domine : ×1,02 à ×1,04.
+   - Pour les enzymes, le bruit domine : ×1,02 à ×1,05.
 3. **Pour classer, un changement de laboratoire compte beaucoup.**
    - Passage Beckman → Roche en 2017 (bilan biochimique) : +26 points de personnes sous la limite basse de l'ASAT, +13 pour
      le chlore, +14 pour la bilirubine, +10 pour le calcium et l'ALAT (intervalles S).

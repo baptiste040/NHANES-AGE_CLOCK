@@ -12,18 +12,18 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 3,6 % (jeu nhanes3) ; CV à 6 mois : 3,6 %.
+- CV observé : 3,4 % (jeu 2001_2002) ; CV à 6 mois : 3,4 %.
 - Changement détectable à 6 mois, 20-79 ans : +10 % / −9 % ; 30-55 ans : +10 % / −9 %.
 - Statut : borne basse (2 semaines).
 
 ## Q2 : jeûne et heure
 
-- Effet du jeûne (même personne) : −0,5 % (ratio 0,05) ; heure : +1,4 % (ratio 0,14) ; catégorie : indifférent.
+- Effet du jeûne (même personne) : −0,5 % (ratio 0,05) ; heure : +1,4 % (ratio 0,15) ; catégorie : indifférent.
 
 ## Q3 : populations particulières
 
 - Seuils inadaptés : très actifs; très actifs (F).
-- Plus grand décalage : très actifs, −1,7 % (0,18 fois le changement détectable).
+- Plus grand décalage : très actifs, −1,7 % (0,19 fois le changement détectable).
 
 ## Q4 : normalisation spontanée d'une anomalie
 
@@ -31,7 +31,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q5 : changements de méthode et de laboratoire
 
-- Plus grand décalage de méthode NHANES : ratio 0,03 (événement 5) ; négligeable au regard du bruit.
+- Plus grand décalage de méthode NHANES : ratio 0,04 (événement 5) ; négligeable au regard du bruit.
 - Entre deux laboratoires de routine (littérature) : changement détectable +12 %.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)

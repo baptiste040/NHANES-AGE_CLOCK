@@ -4,26 +4,26 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +70 % / −41 % en 6 mois (borne basse (2 semaines)).
-2. Pièges : aucun piège majeur repéré dans Q2 à Q5.
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +38 % / −27 % en 6 mois (borne basse (2 semaines)).
+2. Pièges : décalage de −17 % chez les personnes « très actifs » (0,59 fois le changement détectable).
 3. Risque (mortalité à 10 ans, association) : forme en U ou en J, zone de risque minimal 1,6–5,65 ; HR 1,2 sous 1,81 et HR 1,2 au-dessus de 4,54.
 
 Couverture : Q1 Q3 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 19,4 % (jeu nhanes3) ; CV à 6 mois : 19,4 %.
-- Changement détectable à 6 mois, 20-79 ans : +70 % / −41 % ; 30-55 ans : +76 % / −43 %.
+- CV observé : 11,6 % (jeu 2001_2002) ; CV à 6 mois : 11,6 %.
+- Changement détectable à 6 mois, 20-79 ans : +38 % / −27 % ; 30-55 ans : +40 % / −29 %.
 - Statut : borne basse (2 semaines).
 
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : très actifs, −16,8 % (0,39 fois le changement détectable).
+- Plus grand décalage : très actifs, −16,8 % (0,59 fois le changement détectable).
 
 ## Q5 : changements de méthode et de laboratoire
 
-- Plus grand décalage de méthode NHANES : ratio 0,05 (événement 13) ; négligeable au regard du bruit.
+- Plus grand décalage de méthode NHANES : ratio 0,10 (événement 13) ; négligeable au regard du bruit.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)
 

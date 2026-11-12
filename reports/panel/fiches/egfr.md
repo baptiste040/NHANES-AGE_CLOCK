@@ -4,16 +4,16 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +25 % / −20 % en 6 mois (borne basse (2 semaines)).
-2. Pièges : changement de méthode ou de laboratoire (un changement de laboratoire peut créer un faux changement, ratio 0,59); décalage de +13 % chez les personnes « très actifs » (0,56 fois le changement détectable).
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +23 % / −18 % en 6 mois (borne basse (2 semaines)).
+2. Pièges : changement de méthode ou de laboratoire (un changement de laboratoire peut créer un faux changement, ratio 0,63); décalage de +13 % chez les personnes « très actifs » (0,56 fois le changement détectable); une anomalie limite se normalise souvent seule : confirmer avant de signaler.
 3. Risque (mortalité à 10 ans, association) : forme en U ou en J, zone de risque minimal 68,7–102 ; HR 1,2 sous 66,4 et HR 1,2 au-dessus de 101.
 
 Couverture : Q1 Q3 Q4 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 8,0 % (jeu nhanes3) ; CV à 6 mois : 8,0 %.
-- Changement détectable à 6 mois, 20-79 ans : +25 % / −20 % ; 30-55 ans : +24 % / −19 %.
+- CV observé : 7,4 % (jeu 2001_2002) ; CV à 6 mois : 7,4 %.
+- Changement détectable à 6 mois, 20-79 ans : +23 % / −18 % ; 30-55 ans : +24 % / −19 %.
 - Statut : borne basse (2 semaines).
 
 ## Q3 : populations particulières
@@ -23,11 +23,11 @@ Couverture : Q1 Q3 Q4 Q5 Q6.
 
 ## Q4 : normalisation spontanée d'une anomalie
 
-- R tous : normalisation < 30 %.
+- R tous : confirmer avant de signaler.
 
 ## Q5 : changements de méthode et de laboratoire
 
-- Plus grand décalage de méthode NHANES : ratio 0,59 (événement 1) ; un changement de laboratoire peut créer un faux changement.
+- Plus grand décalage de méthode NHANES : ratio 0,63 (événement 1) ; un changement de laboratoire peut créer un faux changement.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)
 

@@ -25,6 +25,17 @@ un horaire fixe pour qu'un suivi ait un sens ?
 - **Seuils** : Q2 n'en utilise aucun.
 - NHANES est américain ; NHANES III date de 1988-1994. La composition des repas est inconnue.
 
+
+## Vérification du 2026-11-12 (corrections d'erreurs après audit)
+
+- **Créatinine de NHANES III recalibrée** (0,960 x − 0,184 mg/dL) avant le calcul des effets. Effet du
+  jeûne chez une même personne : +1,17 % → +1,46 % ; 11 h contre 8 h : −1,36 % → −1,76 %. Catégorie
+  inchangée (« indifférent »).
+- **Changements détectables de Q1 recalculés** (2001-2002 pour les méthodes changées depuis NHANES
+  III). Les ratios effet / changement détectable bougent de 0,10 au plus (HbA1c, heure : 0,13 →
+  0,23 ; VPM : 0,33 → 0,41 ; glycémie : 0,25 → 0,30). **Aucune catégorie ne change.** Les ratios à
+  jour sont dans `Q2_synthese.csv` ; les chiffres cités plus bas sont ceux d'avant, à 0,10 près.
+- Les associations de NHANES 1999-2018 ne dépendent ni de NHANES III ni de Q1 : non recalculées.
 ## Synthèse : le jeûne pèse peu pour suivre, beaucoup pour classer
 
 1. **Pour suivre une personne, le jeûne pèse peu.**

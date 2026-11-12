@@ -12,7 +12,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 0,8 % (jeu nhanes3) ; CV à 6 mois : 1,0 %.
+- CV observé : 0,8 % (jeu 2001_2002) ; CV à 6 mois : 1,0 %.
 - Changement détectable à 6 mois, 20-79 ans : +3 % / −3 % ; 30-55 ans : +3 % / −3 %.
 - Statut : extrapolé à 6 mois.
 
@@ -23,7 +23,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : pilule, +0,8 % (0,31 fois le changement détectable).
+- Plus grand décalage : pilule, +0,8 % (0,30 fois le changement détectable).
 
 ## Q4 : normalisation spontanée d'une anomalie
 

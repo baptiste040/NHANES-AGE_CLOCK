@@ -4,26 +4,26 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +7 % / −6 % en 6 mois (extrapolé à 6 mois).
-2. Pièges : changement de méthode ou de laboratoire (un changement de laboratoire peut créer un faux changement, ratio 0,79).
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +6 % / −6 % en 6 mois (extrapolé à 6 mois).
+2. Pièges : changement de méthode ou de laboratoire (un changement de laboratoire peut créer un faux changement, ratio 0,88); décalage de −3 % chez les personnes « pilule » (0,57 fois le changement détectable).
 3. Risque (mortalité à 10 ans, association) : forme montante, zone de risque minimal 11,3–12,6 ; HR 1,2 au-dessus de 12,4.
 
 Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 2,0 % (jeu nhanes3) ; CV à 6 mois : 2,4 %.
-- Changement détectable à 6 mois, 20-79 ans : +7 % / −6 % ; 30-55 ans : +7 % / −7 %.
+- CV observé : 1,7 % (jeu 2001_2002) ; CV à 6 mois : 2,2 %.
+- Changement détectable à 6 mois, 20-79 ans : +6 % / −6 % ; 30-55 ans : +6 % / −6 %.
 - Statut : extrapolé à 6 mois.
 
 ## Q2 : jeûne et heure
 
-- Effet du jeûne (même personne) : −0,4 % (ratio 0,05) ; heure : +0,8 % (ratio 0,12) ; catégorie : indifférent.
+- Effet du jeûne (même personne) : −0,4 % (ratio 0,06) ; heure : +0,8 % (ratio 0,13) ; catégorie : indifférent.
 
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : pilule, −3,2 % (0,47 fois le changement détectable).
+- Plus grand décalage : pilule, −3,2 % (0,57 fois le changement détectable).
 
 ## Q4 : normalisation spontanée d'une anomalie
 
@@ -31,7 +31,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q5 : changements de méthode et de laboratoire
 
-- Plus grand décalage de méthode NHANES : ratio 0,79 (événement 17) ; un changement de laboratoire peut créer un faux changement.
+- Plus grand décalage de méthode NHANES : ratio 0,88 (événement 17) ; un changement de laboratoire peut créer un faux changement.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)
 

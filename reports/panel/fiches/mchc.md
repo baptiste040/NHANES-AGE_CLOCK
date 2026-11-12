@@ -4,7 +4,7 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +5 % / −4 % en 6 mois (extrapolé à 6 mois).
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +4 % / −4 % en 6 mois (extrapolé à 6 mois).
 2. Pièges : une anomalie limite se normalise souvent seule : confirmer avant de signaler.
 3. Risque (mortalité à 10 ans, association) : forme descendante, zone de risque minimal 32,9–35,6 ; HR 1,2 sous 33,1.
 
@@ -12,8 +12,8 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 1,5 % (jeu nhanes3) ; CV à 6 mois : 1,6 %.
-- Changement détectable à 6 mois, 20-79 ans : +5 % / −4 % ; 30-55 ans : +4 % / −4 %.
+- CV observé : 1,3 % (jeu 2001_2002) ; CV à 6 mois : 1,4 %.
+- Changement détectable à 6 mois, 20-79 ans : +4 % / −4 % ; 30-55 ans : +4 % / −4 %.
 - Statut : extrapolé à 6 mois.
 
 ## Q2 : jeûne et heure
@@ -23,7 +23,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : pilule, +0,9 % (0,20 fois le changement détectable).
+- Plus grand décalage : pilule, +0,9 % (0,22 fois le changement détectable).
 
 ## Q4 : normalisation spontanée d'une anomalie
 
@@ -31,7 +31,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q5 : changements de méthode et de laboratoire
 
-- Plus grand décalage de méthode NHANES : ratio 0,32 (événement 17) ; négligeable au regard du bruit.
+- Plus grand décalage de méthode NHANES : ratio 0,36 (événement 17) ; négligeable au regard du bruit.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)
 

@@ -447,6 +447,9 @@ THRESHOLD_SCORES = {"global": "complet", "cardiovasculaire": "complet", "metabol
                     "renal": "biologique", "hepatique": "biologique",
                     "inflammatoire_hematologique": "biologique"}
 THRESHOLDS = ROOT / "models" / "seuils_changement_v1.json"
+# Ajout du 2026-11-12 (audit, point 1.3) : signaler que les seuils regroupes ne sont pas independants.
+NOTE_REGROUPE = ("Seuil regroupe 2001-2002 + NHANES III : il inclut les 388 personnes de 2001-2002 dont le premier "
+                 "examen a servi au developpement du modele (pas une estimation independante).")
 
 
 def empirical_thresholds() -> Path:
@@ -509,7 +512,8 @@ def empirical_thresholds() -> Path:
                             "bilan avant de comparer."),
               "scores": {row.score: {"seuil_ans": round(row.seuil_p95, 2),
                                      "ic95": [round(row.ic95_bas, 2), round(row.ic95_haut, 2)],
-                                     "n": int(row.n), "sources": row.sources}
+                                     "n": int(row.n), "sources": row.sources,
+                                     **({"note": NOTE_REGROUPE} if "2001" in row.sources else {})}
                          for row in main.itertuples()},
               "seuils_toutes_personnes": {row.score: round(row.seuil_p95, 2)
                                           for row in t[t.regle == "tous"].itertuples()}}

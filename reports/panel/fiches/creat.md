@@ -4,36 +4,36 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +21 % / −17 % en 6 mois (borne basse (2 semaines)).
-2. Pièges : changement de méthode ou de laboratoire (comparaison impossible sans équation de passage, ratio 1,19); décalage de −10 % chez les personnes « très actifs » (0,58 fois le changement détectable); pour classer, changement de méthode : −13 points (intervalle statistique D1, limite basse, événement 1).
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +23 % / −19 % en 6 mois (borne basse (2 semaines)).
+2. Pièges : changement de méthode ou de laboratoire (comparaison impossible sans équation de passage, ratio 1,08); décalage de −10 % chez les personnes « très actifs » (0,51 fois le changement détectable); pour classer, changement de méthode : −13 points (intervalle statistique D1, limite basse, événement 1); une anomalie limite se normalise souvent seule : confirmer avant de signaler.
 3. Risque (mortalité à 10 ans, association) : forme montante, zone de risque minimal 0,66–1,09 ; HR 1,2 au-dessus de 1,09.
 
 Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 6,8 % (jeu nhanes3) ; CV à 6 mois : 6,8 %.
-- Changement détectable à 6 mois, 20-79 ans : +21 % / −17 % ; 30-55 ans : +21 % / −17 %.
+- CV observé : 7,4 % (jeu 2001_2002) ; CV à 6 mois : 7,4 %.
+- Changement détectable à 6 mois, 20-79 ans : +23 % / −19 % ; 30-55 ans : +24 % / −20 %.
 - Statut : borne basse (2 semaines).
 
 ## Q2 : jeûne et heure
 
-- Effet du jeûne (même personne) : +1,2 % (ratio 0,06) ; heure : −1,4 % (ratio 0,08) ; catégorie : indifférent.
+- Effet du jeûne (même personne) : +1,5 % (ratio 0,06) ; heure : −1,8 % (ratio 0,09) ; catégorie : indifférent.
 
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : très actifs, −10,0 % (0,58 fois le changement détectable).
+- Plus grand décalage : très actifs, −10,0 % (0,51 fois le changement détectable).
 
 ## Q4 : normalisation spontanée d'une anomalie
 
-- S tous : normalisation < 30 %.
+- S tous : confirmer avant de signaler.
 
 ## Q5 : changements de méthode et de laboratoire
 
-- Plus grand décalage de méthode NHANES : ratio 1,19 (événement 4) ; comparaison impossible sans équation de passage.
+- Plus grand décalage de méthode NHANES : ratio 1,08 (événement 4) ; comparaison impossible sans équation de passage.
 - Effet sur la classification : −13 points (intervalle statistique D1, limite basse, événement 1).
-- Entre deux laboratoires de routine (littérature) : changement détectable +23 %.
+- Entre deux laboratoires de routine (littérature) : changement détectable +25 %.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)
 

@@ -59,10 +59,13 @@ def run() -> pd.DataFrame:
     base["origine"] = "principale"
     add = []
     v = pd.read_csv(OUT / "Q1_variabilite_remesures.csv")
-    v55 = v[(v.groupe == "30-55 ans") & (v.jeu == "nhanes3")].set_index("id")["mediane_x1"]
+    # mediane de conversion : jeu principal de Q1 (correction du 2026-11-12 ; avant : NHANES III)
+    jp = cd[cd.groupe == "20-79 ans"].set_index("id")["jeu_principal"]
+    vv = v[v.groupe == "30-55 ans"]
+    v55 = pd.Series({i: g.set_index("jeu")["mediane_x1"].get(jp.get(i), g.mediane_x1.iloc[0]) for i, g in vv.groupby("id")})
     for grp in ["20-79 ans", "30-55 ans"]:
         for inter, mid, pct, src, lu, pop, note in ADDED:
-            if "méta-analyse" in inter:          # effet absolu -> % de la mediane NHANES III des 30-55 ans
+            if "méta-analyse" in inter:          # effet absolu -> % de la mediane des 30-55 ans (jeu principal)
                 pct = 100 * pct / v55[mid]
             c = cd[(cd.groupe == grp) & (cd.id == mid)].iloc[0]
             add.append({"groupe": grp, "intervention": inter, "id": mid, "marqueur": c.marqueur, "effet_pct": pct,

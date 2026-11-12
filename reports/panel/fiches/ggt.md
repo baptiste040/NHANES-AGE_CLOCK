@@ -4,18 +4,18 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +53 % / −35 % en 6 mois (borne basse (2 semaines)) ; la meilleure intervention étudiée (Alimentation méditerranéenne) atteint 0,31 fois ce seuil : visible seulement en moyenne de groupe.
-2. Pièges : décalage de −19 % chez les personnes « très actifs » (0,54 fois le changement détectable).
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +52 % / −34 % en 6 mois (borne basse (2 semaines)) ; la meilleure intervention étudiée (Alimentation méditerranéenne) atteint 0,31 fois ce seuil : visible seulement en moyenne de groupe.
+2. Pièges : décalage de −19 % chez les personnes « très actifs » (0,55 fois le changement détectable).
 3. Risque (mortalité à 10 ans, association) : forme montante, zone de risque minimal 7–33,6 ; HR 1,2 au-dessus de 31,2.
 
 Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 15,5 % (jeu nhanes3) ; CV à 6 mois : 15,5 %.
-- Changement détectable à 6 mois, 20-79 ans : +53 % / −35 % ; 30-55 ans : +54 % / −35 %.
+- CV observé : 15,2 % (jeu 2001_2002) ; CV à 6 mois : 15,2 %.
+- Changement détectable à 6 mois, 20-79 ans : +52 % / −34 % ; 30-55 ans : +52 % / −34 %.
 - Statut : borne basse (2 semaines).
-- Interventions étudiées : 1 ; la plus forte, Alimentation méditerranéenne (adultes), −10,9 %, ratio 0,31 : visible seulement en moyenne de groupe.
+- Interventions étudiées : 1 ; la plus forte, Alimentation méditerranéenne (adultes), −10,5 %, ratio 0,31 : visible seulement en moyenne de groupe.
 
 ## Q2 : jeûne et heure
 
@@ -24,7 +24,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : très actifs, −18,9 % (0,54 fois le changement détectable).
+- Plus grand décalage : très actifs, −18,9 % (0,55 fois le changement détectable).
 
 ## Q4 : normalisation spontanée d'une anomalie
 
@@ -33,7 +33,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 ## Q5 : changements de méthode et de laboratoire
 
 - Plus grand décalage de méthode NHANES : ratio 0,18 (événement 5) ; négligeable au regard du bruit.
-- Entre deux laboratoires de routine (littérature) : changement détectable +55 %.
+- Entre deux laboratoires de routine (littérature) : changement détectable +54 %.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)
 

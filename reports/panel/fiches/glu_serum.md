@@ -4,7 +4,7 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +33 % / −25 % en 6 mois (borne basse (2 semaines)).
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +26 % / −21 % en 6 mois (borne basse (2 semaines)).
 2. Pièges : aucun piège majeur repéré dans Q2 à Q5.
 3. Risque (mortalité à 10 ans, association) : forme montante, zone de risque minimal 80,8–116 ; HR 1,2 au-dessus de 112.
 
@@ -12,17 +12,17 @@ Couverture : Q1 Q2 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 10,4 % (jeu nhanes3) ; CV à 6 mois : 10,4 %.
-- Changement détectable à 6 mois, 20-79 ans : +33 % / −25 % ; 30-55 ans : +27 % / −22 %.
+- CV observé : 8,4 % (jeu 2001_2002) ; CV à 6 mois : 8,4 %.
+- Changement détectable à 6 mois, 20-79 ans : +26 % / −21 % ; 30-55 ans : +24 % / −20 %.
 - Statut : borne basse (2 semaines).
 
 ## Q2 : jeûne et heure
 
-- Effet du jeûne (même personne) : +1,6 % (ratio 0,05) ; heure : −6,0 % (ratio 0,24) ; catégorie : indifférent.
+- Effet du jeûne (même personne) : +1,6 % (ratio 0,06) ; heure : −6,0 % (ratio 0,29) ; catégorie : indifférent.
 
 ## Q5 : changements de méthode et de laboratoire
 
-- Plus grand décalage de méthode NHANES : ratio 0,08 (événement 5) ; négligeable au regard du bruit.
+- Plus grand décalage de méthode NHANES : ratio 0,10 (événement 5) ; négligeable au regard du bruit.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)
 

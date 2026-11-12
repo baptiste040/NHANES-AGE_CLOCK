@@ -14,8 +14,11 @@ PANEL = ["tc", "hdl", "tg_serum", "glu_serum", "hba1c", "alt", "ast", "ggt", "al
          "wbc", "hb", "mcv", "rdw", "plt"]                      # signature principale (CRP exclue : NHANES III censure a 62 %)
 PANEL_CRP = PANEL + ["crp"]                                      # sensibilite (2001-2002 seulement)
 
-# Medianes de conversion (30-55 ans, premier examen des remesures, comme Q1)
-MED = {"tc": 203.0, "hdl": 48.0, "tg": 118.0, "alt": 15.0, "ast": 19.0, "ggt": 23.0, "crp_mgL": 2.7, "wbc": 6.9}
+# Medianes de conversion (30-55 ans, premier examen des remesures, jeu principal de Q1, comme Q1).
+# Correction du 2026-11-12 : Q1 prend desormais 2001-2002 comme jeu principal pour ces marqueurs (methodes
+# changees depuis NHANES III) ; avant : medianes de NHANES III (tc 203, hdl 48, tg 118, alt 15, ast 19,
+# ggt 23, wbc 6,9). L'ALAT de NHANES III (Hitachi 737) est nettement plus basse (15 contre 23 U/L).
+MED = {"tc": 203.0, "hdl": 47.0, "tg": 122.0, "alt": 23.0, "ast": 22.0, "ggt": 24.0, "crp_mgL": 2.7, "wbc": 7.1}
 SD_LN_CRP = 1.274                                                # 30-55 ans, 2001-2002, premier examen (CRP > 0)
 
 # (intervention, marqueur, effet %, source, population, lecture, note)
@@ -36,9 +39,9 @@ C = [
     # --- activite physique aerobie structuree
     ("activite_aerobie", "tc", -2.906, "Smart 2025, Sports Med, doi:10.1007/s40279-024-02115-z", "148 ECR, adultes", "R",
      "toutes formes d'activité (sous-groupe aérobie non lu)"),
-    ("activite_aerobie", "hdl", 4.396, "Smart 2025", "148 ECR, adultes", "R", "idem"),
-    ("activite_aerobie", "tg_serum", -6.788, "Smart 2025", "148 ECR, adultes", "R", "TG à jeun ; appliqué aux TG non à jeun"),
-    ("activite_aerobie", "glu_serum", -2.919, "Wewege 2018, Atherosclerosis, doi:10.1016/j.atherosclerosis.2018.05.002",
+    ("activite_aerobie", "hdl", 4.489, "Smart 2025", "148 ECR, adultes", "R", "idem"),
+    ("activite_aerobie", "tg_serum", -6.566, "Smart 2025", "148 ECR, adultes", "R", "TG à jeun ; appliqué aux TG non à jeun"),
+    ("activite_aerobie", "glu_serum", -2.801, "Wewege 2018, Atherosclerosis, doi:10.1016/j.atherosclerosis.2018.05.002",
      "syndrome métabolique", "R", "glycémie à jeun ; autre étude que les lipides"),
     ("activite_aerobie", "alt", 0.0, "Smart 2018, Br J Sports Med, doi:10.1136/bjsports-2016-096197", "surpoids ou stéatose", "R",
      "ALAT, ASAT, GGT « non significativement modifiées » : 0 sourcé"),
@@ -48,10 +51,10 @@ C = [
      "38 ECR, adultes en bonne santé", "TC", "DMS −0,18 × écart type de ln CRP (1,27, 30-55 ans) ; conversion par hypothèse"),
     # --- alimentation mediterraneenne (une seule meta-analyse)
     *[("mediterraneen", m, v, "Papadaki 2020, Nutrients, doi:10.3390/nu12113342", "adultes, 57 essais contrôlés", "TC", note)
-      for m, v, note in [("tc", -2.808, ""), ("hdl", 2.708, ""), ("tg_serum", -10.424, "TG à jeun ; appliqué aux TG non à jeun"),
-                         ("glu_serum", -3.222, "glycémie à jeun ; appliquée à la glycémie sérique"), ("hba1c", -2.830, ""),
-                         ("alt", -37.733, "−5,66 U/L sur une médiane de 15 : effet très grand, probablement porté par des études chez des personnes avec stéatose"),
-                         ("ggt", -10.913, ""), ("crp", -28.519, "sensibilité avec CRP")]],
+      for m, v, note in [("tc", -2.808, ""), ("hdl", 2.766, ""), ("tg_serum", -10.082, "TG à jeun ; appliqué aux TG non à jeun"),
+                         ("glu_serum", -3.091, "glycémie à jeun ; appliquée à la glycémie sérique"), ("hba1c", -2.830, ""),
+                         ("alt", -24.609, "−5,66 U/L sur une médiane de 23 : effet grand, probablement porté par des études chez des personnes avec stéatose"),
+                         ("ggt", -10.458, ""), ("crp", -28.519, "sensibilité avec CRP")]],
     # --- reduction de l'alcool (de 30 g/j a 0)
     ("reduction_alcool", "hdl", 100 * (-3.99) / MED["hdl"], "Rimm 1999, BMJ, doi:10.1136/bmj.319.7224.1523",
      "adultes sans maladie chronique ni dépendance", "R", "effet de +30 g/j inversé (arrêt de 30 g/j) ; Brien 2011 (R) confirme le HDL"),

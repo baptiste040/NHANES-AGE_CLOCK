@@ -20,6 +20,19 @@ RAW = ROOT / "data" / "raw" / "panel"
 OUT = ROOT / "reports" / "panel"
 URL = "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/{f}.xpt"
 SEED, N_BOOT = 2026, 2000
+# Recalibration recommandee de la creatinine de NHANES III vers la methode standardisee (mg/dL,
+# Selvin 2007 ; note CDC du fichier de laboratoire). Correction d'erreur du 2026-11-12 (audit, point 2c) :
+# elle etait appliquee dans le pipeline principal (retest_nh3) mais pas dans le programme panel.
+NH3_CREAT_CAL = (0.960, -0.184)
+
+
+def recalibrate_nh3(e: pd.DataFrame) -> pd.DataFrame:
+    """Applique la recalibration de la creatinine de NHANES III (avant calcul du DFGe et des rapports)."""
+    if "creat" in e:
+        a, b = NH3_CREAT_CAL
+        e = e.copy()
+        e["creat"] = a * e["creat"] + b
+    return e
 
 # id, libelle, (2001 : fichier 1, variable 1, fichier 2, variable 2), (NHANES III : var 1, var 2)
 PAIRS = [
@@ -158,7 +171,7 @@ def pairs_nh3() -> tuple[pd.DataFrame, pd.DataFrame]:
             continue
         e1[pid] = lab[b[0]].reindex(base.index)
         e2[pid] = se[b[1]].reindex(base.index)
-    return e1, e2
+    return recalibrate_nh3(e1), recalibrate_nh3(e2)
 
 
 def add_derived(e: pd.DataFrame) -> pd.DataFrame:

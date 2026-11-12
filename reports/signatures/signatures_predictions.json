@@ -1,62 +1,85 @@
 {
  "P1": {
   "enonce": "À 6 mois, signature > meilleur marqueur seul (IC de la différence > 0) pour au moins 4 interventions sur 5.",
-  "observe": "4 sur 5 avec les IC qui intègrent le calage (aérobie : gain +5 points, IC [−0 ; +12]) ; 5 sur 5 avec les IC initiaux",
+  "observe": "5 sur 5 avec les IC qui intègrent le calage (aérobie : gain +4 points, IC [+1 ; +7])",
   "verifiee": true,
-  "reserve": "IC recalculés avec rééchantillonnage des paires de calibration et recalage des seuils (500 tirages)"
+  "reserve": "IC recalculés avec rééchantillonnage des paires de calibration et recalage des seuils (500 tirages)",
+  "observe_avant": "4 sur 5 avec les IC qui intègrent le calage (aérobie : gain +5 points, IC [−0 ; +12]) ; 5 sur 5 avec les IC initiaux",
+  "verifiee_avant": true
  },
  "P2": {
   "enonce": "À 6 mois, aucune signature n'atteint 80 % pour l'effet moyen.",
-  "observe": "maximum 50 % (méditerranéen)",
-  "verifiee": true
+  "observe": "maximum 41 % (perte de poids)",
+  "verifiee": true,
+  "observe_avant": "maximum 50 % (méditerranéen)",
+  "verifiee_avant": true
  },
  "P3": {
   "enonce": "Perte de poids et méditerranéen en tête, activité aérobie dernière.",
-  "observe": "49 % et 50 % en tête, aérobie 16 % dernière",
-  "verifiee": true
+  "observe": "perte de poids 41 % et méditerranéen 40 % en tête, aérobie 13 % dernière",
+  "verifiee": true,
+  "observe_avant": "49 % et 50 % en tête, aérobie 16 % dernière",
+  "verifiee_avant": true
  },
  "P4": {
   "enonce": "Fausses alertes ciblées entre 3 et 10 % pour au moins 4 signatures sur 5 ; plus de 15 % avec les 5 signatures à la fois.",
-  "observe": "6 mois : 5,8 %, 5,7 %, 10,4 % (méditerranéen), 7,0 %, 4,0 % ; 25,3 % avec les 5",
-  "verifiee": true
+  "observe": "6 mois : 6,3 %, 5,5 %, 9,7 % (méditerranéen), 6,4 %, 3,7 % ; 24,8 % avec les 5",
+  "verifiee": true,
+  "observe_avant": "6 mois : 5,8 %, 5,7 %, 10,4 % (méditerranéen), 7,0 %, 4,0 % ; 25,3 % avec les 5",
+  "verifiee_avant": true
  },
  "P5": {
   "enonce": "Changement de laboratoire (biochimie, +) : perte de poids et méditerranéen déclenchées au-delà de 10 %.",
-  "observe": "perte de poids 14,2 % ; méditerranéen 9,7 % (11,1 % dans le sens −), soit au niveau de ses fausses alertes de base (10,4 %)",
-  "verifiee": false,
-  "note": "vérifiée pour la perte de poids seulement"
+  "observe": "perte de poids 14,2 % ; méditerranéen 10,3 % (fausses alertes de base 9,7 %)",
+  "verifiee": true,
+  "note": "vérifiée depuis la correction (avant : perte de poids seulement)",
+  "observe_avant": "perte de poids 14,2 % ; méditerranéen 9,7 % (11,1 % dans le sens −), soit au niveau de ses fausses alertes de base (10,4 %)",
+  "verifiee_avant": false
  },
  "P6": {
   "enonce": "Début de pilule : arrêt du tabac au-delà de 10 % ; arrêt de pilule : réduction de l'alcool au-delà de 10 %.",
-  "observe": "15 % et 34 %",
-  "verifiee": true
+  "observe": "début de pilule : tabac 9,3 % ; arrêt : alcool 20,9 %",
+  "verifiee": false,
+  "observe_avant": "15 % et 34 %",
+  "verifiee_avant": true,
+  "note": "n'est plus vérifiée : le début de pilule déclenche le tabac dans 9,3 % des cas, juste sous 10 %"
  },
  "P7": {
   "enonce": "Perte de poids et méditerranéen : cosinus > 0,7 et déclenchement croisé > 30 %.",
-  "observe": "cosinus 0,49 ; 28 % et 20 %",
-  "verifiee": false
+  "observe": "cosinus 0,52 ; 24 % et 18 %",
+  "verifiee": false,
+  "observe_avant": "cosinus 0,49 ; 28 % et 20 %",
+  "verifiee_avant": false
  },
  "P8": {
   "enonce": "Prélèvement non à jeun (même personne) : chaque signature déclenchée dans moins de 10 % des cas.",
-  "observe": "méditerranéen 11,7 % (sens +) ; les autres de 4 % à 9 %",
+  "observe": "méditerranéen 11,2 % (sens +) ; les autres de 3 % à 8 %",
   "verifiee": false,
-  "note": "le méditerranéen a déjà 10,4 % de fausses alertes de base"
+  "note": "le méditerranéen a déjà 10,4 % de fausses alertes de base",
+  "observe_avant": "méditerranéen 11,7 % (sens +) ; les autres de 4 % à 9 %",
+  "verifiee_avant": false
  },
  "P9": {
   "enonce": "Sans les enzymes : gain de la signature qui survit pour la perte de poids et le méditerranéen, et sensibilité à 6 mois < 25 %.",
-  "observe": "gain : perte de poids oui (+18 points), méditerranéen non (+1 point, IC incluant 0) ; sensibilités 31 % et 42 %",
-  "verifiee": false
+  "observe": "gain : perte de poids oui (+11 points), méditerranéen +3 points (IC initial [+2 ; +4]) ; sensibilités 25 % et 30 %",
+  "verifiee": false,
+  "observe_avant": "gain : perte de poids oui (+18 points), méditerranéen non (+1 point, IC incluant 0) ; sensibilités 31 % et 42 %",
+  "verifiee_avant": false
  },
  "P10": {
   "enonce": "L'ALAT porte plus de 40 % du signal de la perte de poids et du méditerranéen.",
-  "observe": "6 mois : 32 % et 34 % ; 2 semaines : 71 % et 81 %",
+  "observe": "6 mois : 31 % (perte de poids) et 43 % (méditerranéen) ; 2 semaines : 38 % et 57 %",
   "verifiee": false,
-  "note": "vérifiée à 2 semaines, pas à 6 mois (horizon principal)"
+  "note": "vérifiée pour le méditerranéen seulement, à 6 mois",
+  "observe_avant": "6 mois : 32 % et 34 % ; 2 semaines : 71 % et 81 %",
+  "verifiee_avant": false
  },
  "P11": {
   "enonce": "Un seul bilan de départ : aucune signature à 80 % ; plan symétrique : perte de poids en 6 bilans au plus.",
-  "observe": "plafonds de 28 % à 71 % ; perte de poids en 4 bilans de chaque côté",
-  "verifiee": true
+  "observe": "plafonds de 19 % à 62 % ; perte de poids en 5 bilans de chaque côté",
+  "verifiee": true,
+  "observe_avant": "plafonds de 28 % à 71 % ; perte de poids en 4 bilans de chaque côté",
+  "verifiee_avant": true
  },
  "P12": {
   "enonce": "Réduction de l'alcool : non interprétable, pas de prédiction.",
@@ -66,33 +89,44 @@
  "tableau_a_priori_6_mois": {
   "perte_poids": {
    "predit_signature": 0.46,
-   "observe_signature": 0.49,
+   "observe_signature": 0.406,
    "predit_meilleur": 0.25,
-   "observe_meilleur": 0.29
+   "observe_meilleur": 0.228,
+   "observe_signature_avant": 0.49,
+   "observe_meilleur_avant": 0.29
   },
   "activite_aerobie": {
    "predit_signature": 0.12,
-   "observe_signature": 0.16,
+   "observe_signature": 0.13,
    "predit_meilleur": 0.08,
-   "observe_meilleur": 0.105
+   "observe_meilleur": 0.089,
+   "observe_signature_avant": 0.16,
+   "observe_meilleur_avant": 0.105
   },
   "mediterraneen": {
    "predit_signature": 0.37,
-   "observe_signature": 0.5,
+   "observe_signature": 0.404,
    "predit_meilleur": 0.24,
-   "observe_meilleur": 0.41
+   "observe_meilleur": 0.221,
+   "observe_signature_avant": 0.5,
+   "observe_meilleur_avant": 0.41
   },
   "reduction_alcool": {
    "predit_signature": 0.14,
-   "observe_signature": 0.29,
+   "observe_signature": 0.189,
    "predit_meilleur": 0.13,
-   "observe_meilleur": 0.15
+   "observe_meilleur": 0.133,
+   "observe_signature_avant": 0.29,
+   "observe_meilleur_avant": 0.15
   },
   "arret_tabac": {
    "predit_signature": 0.2,
-   "observe_signature": 0.26,
+   "observe_signature": 0.197,
    "predit_meilleur": 0.16,
-   "observe_meilleur": 0.11
+   "observe_meilleur": 0.104,
+   "observe_signature_avant": 0.26,
+   "observe_meilleur_avant": 0.11
   }
- }
+ },
+ "correction_2026_11_12": "Statuts réévalués après les corrections d'erreurs du 2026-11-12 (bruit à 6 mois de tous les marqueurs, notes EFLM A/B/C ; vecteurs convertis avec les médianes de 2001-2002 ; créatinine de NHANES III recalibrée). Les valeurs d'avant sont dans « observe_avant » et « verifiee_avant »."
 }

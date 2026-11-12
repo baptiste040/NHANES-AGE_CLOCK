@@ -92,7 +92,10 @@ biochimie et hs-CRP en 2017-2018) déplacent l'écart d'âge moyen de −1,1 an 
 équations de pontage NHANES ou, à défaut, recalage par quantiles par strates d'âge et de sexe.
 
 **Fiabilité réelle** — sur des remesures à quelques semaines (NHANES 2001-2002, n = 388 ; NHANES III,
-n = 781, indépendant du développement), protocoles pré-enregistrés : CCI du score global 0,89-0,92.
+n = 781, indépendant du développement), protocoles pré-enregistrés. CCI de l'écart à l'âge (plus
+exigeant que le CCI de l'âge biologique, d'environ 0,98) : **0,89 pour le score complet** (NHANES III,
+seule source où tension, pouls et mensurations sont aussi remesurés) ; 0,92 pour la partie biologique
+seule (2001-2002, mesures physiques fixées).
 Un vrai changement entre deux bilans suppose un écart d'au moins **6,5 ans** pour le score global
 (95ᵉ centile observé, CRP ≤ 10 mg/L). Le bruit a des queues épaisses et des variations corrélées
 entre marqueurs : un intervalle gaussien n'est pas adapté

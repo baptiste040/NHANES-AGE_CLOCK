@@ -4,7 +4,7 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +45 % / −31 % en 6 mois (extrapolé à 6 mois).
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +55 % / −35 % en 6 mois (extrapolé à 6 mois).
 2. Pièges : aucun piège majeur repéré dans Q2 à Q5.
 3. Risque (mortalité à 10 ans, association) : forme en U ou en J, zone de risque minimal 1,45–2,88 ; HR 1,2 sous 1,43 et HR 1,2 au-dessus de 2,9 ; marqueur de maladie probable (seuil bas hors IC (1.32) sans les décès précoces).
 
@@ -12,13 +12,13 @@ Couverture : Q1 Q2 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 13,4 % (jeu nhanes3) ; CV à 6 mois : 13,6 %.
-- Changement détectable à 6 mois, 20-79 ans : +45 % / −31 % ; 30-55 ans : +46 % / −32 %.
+- CV observé : 15,7 % (jeu 2001_2002) ; CV à 6 mois : 15,9 %.
+- Changement détectable à 6 mois, 20-79 ans : +55 % / −35 % ; 30-55 ans : +58 % / −37 %.
 - Statut : extrapolé à 6 mois.
 
 ## Q2 : jeûne et heure
 
-- Effet du jeûne (même personne) : +1,8 % (ratio 0,04) ; heure : −8,1 % (ratio 0,26) ; catégorie : indifférent.
+- Effet du jeûne (même personne) : +1,8 % (ratio 0,03) ; heure : −8,1 % (ratio 0,23) ; catégorie : indifférent.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)
 

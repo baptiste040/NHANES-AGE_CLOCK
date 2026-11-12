@@ -4,7 +4,7 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +29 % / −23 % en 6 mois (borne basse (2 semaines)) ; la meilleure intervention étudiée (Alimentation méditerranéenne) atteint 0,14 fois ce seuil : visible seulement en moyenne de groupe.
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +24 % / −19 % en 6 mois (borne basse (2 semaines)) ; la meilleure intervention étudiée (Alimentation méditerranéenne) atteint 0,16 fois ce seuil : visible seulement en moyenne de groupe.
 2. Pièges : pour classer, jeûne : jusqu'à +31 points au seuil ADA (5,6 mmol/L) et +16 au seuil OMS si le jeûne n'est pas vérifié; pour classer, changement de méthode : +5 points (≥ 5,6 mmol/L (100 mg/dL) (ADA), événement 6).
 3. Risque (mortalité à 10 ans, association) : forme montante, zone de risque minimal 91–137 ; HR 1,2 au-dessus de 122.
 
@@ -12,27 +12,27 @@ Couverture : Q1 Q2 Q3 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 9,3 % (jeu nhanes3) ; CV à 6 mois : 9,3 %.
-- Changement détectable à 6 mois, 20-79 ans : +29 % / −23 % ; 30-55 ans : +24 % / −19 %.
+- CV observé : 7,7 % (jeu 2001_2002) ; CV à 6 mois : 7,7 %.
+- Changement détectable à 6 mois, 20-79 ans : +24 % / −19 % ; 30-55 ans : +22 % / −18 %.
 - Statut : borne basse (2 semaines).
-- Interventions étudiées : 2 ; la plus forte, Alimentation méditerranéenne (adultes, 57 essais contrôlés), −3,2 %, ratio 0,14 : visible seulement en moyenne de groupe.
+- Interventions étudiées : 2 ; la plus forte, Alimentation méditerranéenne (adultes, 57 essais contrôlés), −3,1 %, ratio 0,16 : visible seulement en moyenne de groupe.
 
 ## Q2 : jeûne et heure
 
-- Effet du jeûne (même personne) : +1,1 % (ratio 0,04) ; heure : −5,7 % (ratio 0,25) ; catégorie : indifférent.
+- Effet du jeûne (même personne) : +1,1 % (ratio 0,05) ; heure : −5,7 % (ratio 0,30) ; catégorie : indifférent.
 - Pour classer : jusqu'à +31 points au seuil ADA (5,6 mmol/L) et +16 au seuil OMS si le jeûne n'est pas vérifié.
 
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
 - Note : ménopause : risque réellement plus élevé, seuil à conserver (amendement du 2026-11-12).
-- Plus grand décalage : favorisée, −3,1 % (0,16 fois le changement détectable).
+- Plus grand décalage : favorisée, −3,1 % (0,17 fois le changement détectable).
 
 ## Q5 : changements de méthode et de laboratoire
 
-- Plus grand décalage de méthode NHANES : ratio 0,06 (événement 6) ; négligeable au regard du bruit.
+- Plus grand décalage de méthode NHANES : ratio 0,08 (événement 6) ; négligeable au regard du bruit.
 - Effet sur la classification : +5 points (≥ 5,6 mmol/L (100 mg/dL) (ADA), événement 6).
-- Entre deux laboratoires de routine (littérature) : changement détectable +30 %.
+- Entre deux laboratoires de routine (littérature) : changement détectable +25 %.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)
 

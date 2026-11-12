@@ -4,7 +4,7 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +68 % / −40 % en 6 mois (borne basse (2 semaines)).
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +67 % / −40 % en 6 mois (borne basse (2 semaines)).
 2. Pièges : aucun piège majeur repéré dans Q2 à Q5.
 3. Risque (mortalité à 10 ans, association) : forme en U ou en J, zone de risque minimal 11,5–17,3 ; HR 1,2 sous 11,4 et HR 1,2 au-dessus de 18.
 
@@ -12,8 +12,8 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 18,9 % (jeu nhanes3) ; CV à 6 mois : 18,9 %.
-- Changement détectable à 6 mois, 20-79 ans : +68 % / −40 % ; 30-55 ans : +69 % / −41 %.
+- CV observé : 18,6 % (jeu 2001_2002) ; CV à 6 mois : 18,6 %.
+- Changement détectable à 6 mois, 20-79 ans : +67 % / −40 % ; 30-55 ans : +72 % / −42 %.
 - Statut : borne basse (2 semaines).
 
 ## Q2 : jeûne et heure
@@ -23,7 +23,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : très actifs, +10,1 % (0,15 fois le changement détectable).
+- Plus grand décalage : très actifs, +10,1 % (0,14 fois le changement détectable).
 
 ## Q4 : normalisation spontanée d'une anomalie
 

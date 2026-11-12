@@ -1,7 +1,8 @@
 """Programme « panel », Q1 partie A (suite) : changement detectable a 6 mois et predictions.
 
-CV_6m^2 = CV_obs^2 + max(0, CV_I,LT^2 - CV_I,CT^2) (echelle log). CV_obs : NHANES III (principal),
-2001-2002 et version robuste (sensibilites). CV_I,LT : etudes EFLM >= 6 mois, adultes sains,
+CV_6m^2 = CV_obs^2 + max(0, CV_I,LT^2 - CV_I,CT^2) (echelle log). CV_obs : 2001-2002 pour les marqueurs dont
+la methode a change depuis NHANES III, NHANES III sinon (principal) ; l'autre jeu et la version robuste
+en sensibilite (correction du 2026-11-12). CV_I,LT : etudes EFLM >= 6 mois, adultes sains,
 note BIVAC A ou B (principal) ; note C incluse en sensibilite non pre-enregistree.
 Les valeurs EFLM sont lues dans private/panel/ (hors depot, licence EFLM).
 """
@@ -16,6 +17,22 @@ from ..config import ROOT
 from .remesures import OUT
 
 PRIV = ROOT / "private" / "panel"
+
+# Correction d'erreur du 2026-11-12 (audit, point 3) : pour les marqueurs dont la methode ou l'automate a
+# change entre NHANES III (1988-1994) et 2001-2002, le jeu principal est 2001-2002 (methodes plus proches
+# d'un laboratoire actuel) ; NHANES III passe en sensibilite. Changements documentes par le CDC :
+# HbA1c (Diamat, echange d'ions -> Primus, affinite boronate) ; profil biochimique (Hitachi 737 ->
+# Hitachi 704 en 2001 puis Beckman Synchron LX20 en 2002) ; numeration (Coulter S-Plus JR -> Coulter MAXM) ;
+# glycemie et lipides (demande de l'auteur du projet). Un indice derive suit ses composantes.
+METHODE_CHANGEE = {
+    "glu_fast", "glu_serum", "hba1c", "tc", "hdl", "ldl", "tg_fast", "tg_serum",
+    "alt", "ast", "ggt", "alp", "bili", "albumin", "protein", "creat", "urea", "na", "k", "cl", "hco3", "ca", "phos",
+    "urate", "iron",
+    "wbc", "neut_pct", "lymph_pct", "lymph_n", "mono_pct", "eos_pct", "baso_pct", "rbc", "hb", "hct", "mcv", "mch", "mchc",
+    "rdw", "plt", "mpv",
+    "homa_ir", "quicki", "eag", "tyg", "non_hdl", "ldl_hdl", "tg_hdl", "aip", "alb_glob", "fib4", "ggt_hdl", "ast_alt",
+    "urea_creat", "osmo_eff", "nlr", "sii", "ca_corr", "egfr",
+}
 
 
 def cd_from_cv(cv):
@@ -49,9 +66,15 @@ def run() -> dict:
                             r[f"{k}_{jeu}"] = x[k]
             # jeu principal : NHANES III sauf si absent, ou CRP censuree (> 20 % au minimum)
             key = "cv_obs" if r["echelle"] == "log" else "sd_intra"
+            ok01 = f"{key}_2001_2002" in r and r.get("part_au_minimum_2001_2002", 0) <= 0.20
             main = "nhanes3"
-            if f"{key}_nhanes3" not in r or r.get("part_au_minimum_nhanes3", 0) > 0.20:
-                main = "2001_2002" if (f"{key}_2001_2002" in r and r.get("part_au_minimum_2001_2002", 0) <= 0.20) else None
+            motif = "NHANES III (méthode inchangée ou non documentée)"
+            if pid in METHODE_CHANGEE and ok01:
+                main, motif = "2001_2002", "2001-2002 (méthode changée depuis NHANES III)"
+            elif f"{key}_nhanes3" not in r or r.get("part_au_minimum_nhanes3", 0) > 0.20:
+                main = "2001_2002" if ok01 else None
+                motif = "2001-2002 (NHANES III absent ou censuré)" if ok01 else "aucun"
+            r["motif_jeu"] = motif
             if main and f"cv_obs_{main}" not in r and f"sd_intra_{main}" in r:
                 r["echelle"] = "add"                         # echelle additive dans le jeu retenu
             r["jeu_principal"] = main
@@ -64,7 +87,9 @@ def run() -> dict:
                 cv6 = float(combine(np.array(cvo), np.array(ct), np.array(lab)))
                 cv6c = float(combine(np.array(cvo), np.array(ct), np.array(lc)))
                 r |= {"cv_obs_principal": cvo, "cv_6m": cv6, "cv_6m_sens_noteC": cv6c,
-                      "statut": "extrapolé à 6 mois" if np.isfinite(lab) else "borne basse (2 semaines)"}
+                      # correction du 2026-11-12 : « extrapole » seulement si l'ajout a long terme est > 0
+                      # (plaquettes, bicarbonates... : CV_I,LT <= CV_I,CT, rien n'est ajoute)
+                      "statut": "extrapolé à 6 mois" if (np.isfinite(lab) and np.isfinite(ct) and lab > ct) else "borne basse (2 semaines)"}
                 r["cd6m_hausse"], r["cd6m_baisse"] = [float(x) for x in cd_from_cv(cv6)]
                 r["cd6m_hausse_sens_noteC"], r["cd6m_baisse_sens_noteC"] = [float(x) for x in cd_from_cv(cv6c)]
                 rob = r.get(f"cv_robuste_{main}")
@@ -72,7 +97,12 @@ def run() -> dict:
                     r["cd6m_hausse_robuste"] = float(cd_from_cv(combine(np.array(rob), np.array(ct), np.array(lab)))[0])
                 alt = "2001_2002" if main == "nhanes3" else "nhanes3"
                 if f"cv_obs_{alt}" in r:
-                    r["cd6m_hausse_autre_jeu"] = float(cd_from_cv(combine(np.array(r[f"cv_obs_{alt}"]), np.array(ct), np.array(lab)))[0])
+                    h_, b_ = cd_from_cv(combine(np.array(r[f"cv_obs_{alt}"]), np.array(ct), np.array(lab)))
+                    r["cd6m_hausse_autre_jeu"], r["cd6m_baisse_autre_jeu"] = float(h_), float(b_)
+                for jeu in ("nhanes3", "2001_2002"):            # les deux jeux, cote a cote (sensibilite)
+                    if f"cv_obs_{jeu}" in r:
+                        h_, b_ = cd_from_cv(combine(np.array(r[f"cv_obs_{jeu}"]), np.array(ct), np.array(lab)))
+                        r[f"cd6m_hausse_{jeu}"], r[f"cd6m_baisse_{jeu}"] = float(h_), float(b_)
             elif main:
                 sd = r[f"sd_intra_{main}"]
                 r |= {"sd_intra_principal": sd, "cd6m_unites": float(1.96 * np.sqrt(2) * sd),

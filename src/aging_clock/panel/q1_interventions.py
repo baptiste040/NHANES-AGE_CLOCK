@@ -10,7 +10,18 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from .remesures import OUT
+from .remesures import OUT, pairs_2001, pairs_nh3
+
+# Correction du 2026-11-12 (audit, point 3) : un effet absolu mesure chez des diabetiques est rapporte a
+# une base de diabetiques (mediane de l'HbA1c >= 6,5 % au premier examen, 20-79 ans, jeu principal), et non
+# a la mediane d'une population surtout saine, qui gonflait le pourcentage.
+BASE_DIABETIQUE = {("Activité physique structurée", "hba1c")}
+
+
+def _base_diabetique(jeu: str) -> float:
+    e1, _ = pairs_2001() if jeu == "2001_2002" else pairs_nh3()
+    x = e1.hba1c[e1.hba1c >= 6.5]
+    return float(x.median())
 
 # (intervention, id marqueur, effet absolu, unite, conversion vers l'unite NHANES, source, lu, population, note)
 EFFECTS = [
@@ -65,6 +76,10 @@ def run() -> pd.DataFrame:
         else:
             base = float(med.get(mid, np.nan))
             pct = 100 * eff * conv / base
+        pct_saine = pct
+        if (inter, mid) in BASE_DIABETIQUE:
+            base = _base_diabetique(main.get(mid))
+            pct = 100 * eff * conv / base
         for grp in ["20-79 ans", "30-55 ans"]:
             c = cd[(cd.groupe == grp) & (cd.id == mid)]
             if c.empty:
@@ -75,8 +90,11 @@ def run() -> pd.DataFrame:
             ratio = abs(pct) / seuil
             concl = "détectable chez une personne" if ratio >= 1 else ("limite" if ratio >= 0.5 else "visible seulement en moyenne de groupe")
             rows.append({"groupe": grp, "intervention": inter, "id": mid, "marqueur": c.marqueur, "effet": eff, "unite": unit,
-                         "mediane_nhanes_30_55": base, "effet_pct": pct, "cd6m_pct": seuil, "statut_cd": c.statut,
+                         "mediane_nhanes_30_55": base, "effet_pct": pct, "effet_pct_base_30_55": pct_saine, "cd6m_pct": seuil, "statut_cd": c.statut,
                          "ratio": ratio, "conclusion": concl,
+                         "jeu_cd": c.jeu_principal,
+                         "ratio_cd_nhanes3": (abs(pct) / (c.get("cd6m_baisse_nhanes3") if pct < 0 else c.get("cd6m_hausse_nhanes3"))
+                                              if pd.notna(c.get("cd6m_hausse_nhanes3")) else np.nan),
                          "ratio_cd_empirique_2sem": abs(pct) / emp if emp and np.isfinite(emp) else np.nan,
                          "source": src, "lu": lu, "population": pop, "note": note})
     t = pd.DataFrame(rows)

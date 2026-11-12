@@ -12,8 +12,8 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 1,3 % (jeu nhanes3) ; CV à 6 mois : 1,3 %.
-- Changement détectable à 6 mois, 20-79 ans : +4 % / −4 % ; 30-55 ans : +4 % / −4 %.
+- CV observé : 1,3 % (jeu 2001_2002) ; CV à 6 mois : 1,3 %.
+- Changement détectable à 6 mois, 20-79 ans : +4 % / −4 % ; 30-55 ans : +3 % / −3 %.
 - Statut : borne basse (2 semaines).
 
 ## Q2 : jeûne et heure
@@ -23,7 +23,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : ménopause, +0,7 % (0,19 fois le changement détectable).
+- Plus grand décalage : ménopause, +0,7 % (0,21 fois le changement détectable).
 
 ## Q4 : normalisation spontanée d'une anomalie
 
@@ -31,7 +31,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q5 : changements de méthode et de laboratoire
 
-- Plus grand décalage de méthode NHANES : ratio 0,21 (événement 5) ; négligeable au regard du bruit.
+- Plus grand décalage de méthode NHANES : ratio 0,22 (événement 5) ; négligeable au regard du bruit.
 - Entre deux laboratoires de routine (littérature) : changement détectable +4 %.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)

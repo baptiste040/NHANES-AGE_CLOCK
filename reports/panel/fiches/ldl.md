@@ -4,7 +4,7 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +47 % / −32 % en 6 mois (borne basse (2 semaines)) ; la meilleure intervention étudiée (Alimentation méditerranéenne) atteint 0,21 fois ce seuil : visible seulement en moyenne de groupe.
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +37 % / −27 % en 6 mois (borne basse (2 semaines)) ; la meilleure intervention étudiée (Alimentation méditerranéenne) atteint 0,25 fois ce seuil : visible seulement en moyenne de groupe.
 2. Pièges : aucun piège majeur repéré dans Q2 à Q5.
 3. Risque (mortalité à 10 ans, association) : forme descendante, zone de risque minimal 98,3–218 ; HR 1,2 sous 112.
 
@@ -12,19 +12,19 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 14,0 % (jeu nhanes3) ; CV à 6 mois : 14,0 %.
-- Changement détectable à 6 mois, 20-79 ans : +47 % / −32 % ; 30-55 ans : +57 % / −36 %.
+- CV observé : 11,4 % (jeu 2001_2002) ; CV à 6 mois : 11,4 %.
+- Changement détectable à 6 mois, 20-79 ans : +37 % / −27 % ; 30-55 ans : +39 % / −28 %.
 - Statut : borne basse (2 semaines).
-- Interventions étudiées : 2 ; la plus forte, Alimentation méditerranéenne (adultes), −6,7 %, ratio 0,21 : visible seulement en moyenne de groupe.
+- Interventions étudiées : 2 ; la plus forte, Alimentation méditerranéenne (adultes), −6,8 %, ratio 0,25 : visible seulement en moyenne de groupe.
 
 ## Q2 : jeûne et heure
 
-- Effet du jeûne (même personne) : −4,0 % (ratio 0,12) ; heure : −0,3 % (ratio 0,01) ; catégorie : indifférent.
+- Effet du jeûne (même personne) : −4,0 % (ratio 0,15) ; heure : −0,3 % (ratio 0,01) ; catégorie : indifférent.
 
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : favorisée, −4,9 % (0,14 fois le changement détectable).
+- Plus grand décalage : favorisée, −4,9 % (0,18 fois le changement détectable).
 
 ## Q4 : normalisation spontanée d'une anomalie
 
@@ -32,7 +32,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q5 : changements de méthode et de laboratoire
 
-- Plus grand décalage de méthode NHANES : ratio 0,03 (événement 13) ; négligeable au regard du bruit.
+- Plus grand décalage de méthode NHANES : ratio 0,04 (événement 13) ; négligeable au regard du bruit.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)
 

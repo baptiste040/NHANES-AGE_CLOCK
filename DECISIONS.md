@@ -4072,3 +4072,305 @@ Rapport : `reports/signatures/SIGNATURES.md`. Pré-enregistrement : commit `29ba
 4. **Partie C (démo).** `reports/signatures/demo_signatures.html`, page autonome générée à partir des
    fichiers de résultats. Personnes fictives tirées du modèle de bruit à 6 mois ; la règle de choix
    de chaque tirage est affichée.
+
+## Corrections d'erreurs après audit indépendant (2026-11-12)
+
+Un audit indépendant a recalculé les résultats à partir des fichiers bruts NHANES, avec ses propres
+scripts (hors dépôt). Il confirme la plupart des chiffres à la décimale, et relève des erreurs.
+L'auteur du projet a demandé de les corriger ici, comme **corrections d'erreurs** et non comme
+nouvelles analyses. Chaque correction donne un tableau avant/après. Les fichiers d'avant sont
+conservés hors dépôt. Les pré-enregistrements ne sont pas réécrits : ce qui suit les amende.
+
+### C1. Créatinine de NHANES III non recalibrée dans le programme « panel » (erreur, gravité élevée)
+
+- **L'erreur.** Le pipeline principal (`retest_nh3.harmonize`) applique la recalibration recommandée
+  de la créatinine de NHANES III vers la méthode standardisée : **0,960 x − 0,184** (mg/dL ; Selvin
+  2007, note du CDC). Le programme « panel » ne l'appliquait nulle part : `remesures.pairs_nh3` et
+  `q2.nh3` lisaient `CEP` et `CER` bruts, puis calculaient le DFGe dessus. Les seuils D1 de la
+  créatinine, eux, viennent de NHANES 2003-2010.
+- **Le signal manqué.** 17 % de DFGe < 60 chez des adultes de 20 à 79 ans, ce n'est pas plausible.
+- **Correction.** `remesures.recalibrate_nh3`, appliquée aux deux examens de NHANES III dans
+  `pairs_nh3` (Q1, Q4, signatures) et dans `q2.nh3` (Q2), avant le calcul du DFGe.
+- **Relancés.** Q1 (variabilité, changements détectables, interventions, analyse secondaire), Q4,
+  Q2 (vérification), Q3 et Q5 (qui lisent les changements détectables de Q1), signatures, démo,
+  livrables. Q6 n'utilise pas NHANES III.
+
+| Résultat | Avant | Après |
+|---|---|---|
+| Créatinine, NHANES III : médiane ; CV observé | 1,00 mg/dL ; 6,8 % | 0,78 mg/dL ; 8,5 % |
+| DFGe, NHANES III : médiane ; CV observé | 76 ; 8,0 % | 100 ; 7,2 % |
+| Q4, DFGe < 60 : part d'anormaux ; normalisation | 16,6 % (n = 292) ; 20,9 % | **4,6 %** (n = 81) ; **32,1 %** |
+| Q4, DFGe < 60 : conclusion | normalisation < 30 % (un seul jeu) | **confirmer avant de signaler** (un seul jeu) |
+| Q4, créatinine S : part d'anormaux ; normalisation | 22,3 % ⚠ (n = 391) ; 25,6 % | **11,0 %** (n = 194) ; **44,3 %** |
+| Q4, créatinine S : conclusion | normalisation < 30 % (deux jeux) | **confirmer avant de signaler** (deux jeux) |
+| Q4, ⚠ « intervalle non transposable » de la créatinine | oui | non (il venait de l'oubli) |
+| Q4, bilan des 57 couples (isolée peu informative / confirmer / < 30 %) | 14 / 18 / 25 | 14 / **20** / **23** |
+| Q2, effet du jeûne sur la créatinine (même personne) | +1,17 % | +1,46 % (catégorie inchangée) |
+| Q2, 11 h contre 8 h (créatinine, NHANES III) | −1,36 % | −1,76 % (catégorie inchangée) |
+| Q1, prédiction 2 (queues épaisses) | 80 % (56 sur 70) | 81 % (57 sur 70), toujours vérifiée |
+
+Ces chiffres d'audit sont reproduits exactement par le code corrigé (16,6 → 4,6 % ; 20,9 → 32,1 % ;
+22,3 → 11,0 % ; 25,6 → 44,3 %).
+
+**Non corrigé ici** (même famille d'oubli, effet mineur selon l'audit, non demandé) : la
+recalibration de la créatinine de 2005-2006 (0,978 x − 0,016) n'est pas appliquée aux intervalles
+D1 (`intervalles.py`, NHANES 2003-2010). La corriger changerait la table D1 figée par empreinte
+avant Q4, puis Q3 et Q6 : à décider à part.
+
+### C2. Q1 : jeu principal pour les marqueurs dont la méthode a changé (biais de méthode, gravité moyenne)
+
+- **Le problème.** NHANES III (1988-1994) était le jeu principal de Q1 pour presque tous les
+  marqueurs, à cause de sa taille. Ses méthodes sont plus anciennes et plus bruitées que celles d'un
+  laboratoire actuel. Exemple : HbA1c, CV de 3,6 % dans NHANES III contre 1,9 % en 2001-2002, soit
+  exactement le CV_I de Westgard. Le changement détectable d'un laboratoire moderne était donc
+  surestimé ; le qualificatif « borne basse » ne valait que pour l'horizon, pas pour la méthode.
+- **Correction (demandée par l'auteur du projet).** Jeu principal = **2001-2002** pour les marqueurs
+  dont la méthode ou l'automate a changé depuis NHANES III ; NHANES III en sensibilité (colonnes
+  `cd6m_hausse_nhanes3`, `cd6m_baisse_nhanes3`). Changements documentés par le CDC (fichiers de
+  laboratoire de NHANES III et pages de 2001-2002, lus le 2026-11-12) :
+  - **HbA1c** : Diamat (Bio-Rad, échange d'ions) → Primus CLC330 (affinité boronate) ;
+  - **profil biochimique** : Hitachi 737 (Boehringer Mannheim) → Hitachi 704 en 2001, puis Beckman
+    Synchron LX20 en 2002 (ALAT, ASAT, GGT, PAL, bilirubine, albumine, protéines, créatinine, urée,
+    électrolytes, calcium, phosphate, acide urique, fer) ;
+  - **numération** : Coulter S-Plus JR → Coulter MAXM ;
+  - **glycémie et lipides** (demandés explicitement ; méthodes de référence dans les deux enquêtes,
+    mais laboratoires et automates différents) ;
+  - indices dérivés de ces marqueurs.
+  Restent sur NHANES III : insuline, vitamine B12, folates, ferritine, urines, LH, et les marqueurs
+  absents de 2001-2002. Au total, 59 marqueurs passent sur 2001-2002.
+- **Aussi corrigés dans Q1** :
+  - **conversion des effets en %** : la règle pré-enregistrée (médiane des 30-55 ans du jeu
+    principal) suit le nouveau jeu. L'ALAT médiane passe de 15 U/L (NHANES III, Hitachi 737) à
+    23 U/L : le même effet absolu pèse moins en % ;
+  - **HbA1c sous activité physique structurée** : effet mesuré chez des diabétiques (−0,67 point,
+    Umpierre 2011), désormais rapporté à une base de diabétiques (médiane des HbA1c ≥ 6,5 % au
+    premier examen, 7,6 %), et non à la médiane des 30-55 ans (5,3 %) : **−8,8 % au lieu de
+    −12,6 %** ;
+  - **statut « extrapolé à 6 mois »** : seulement si l'ajout à long terme est positif. Les plaquettes
+    (CV_I à long terme 6,7 < 7,2 à court terme) passent en « borne basse ».
+
+| Marqueur | Changement détectable à 6 mois, hausse / baisse : avant (NHANES III) | Après (2001-2002) |
+|---|---|---|
+| Glycémie à jeun | +29 / −23 % | +24 / −19 % |
+| HbA1c | +10 / −9 % | **+5 / −5 %** |
+| Cholestérol total | +26 / −21 % | +22 / −18 % |
+| LDL | +47 / −32 % | +37 / −27 % |
+| HDL | +43 / −30 % | +30 / −23 % |
+| TG à jeun | +111 / −53 % | +105 / −51 % |
+| ALAT | +181 / −64 % | +162 / −62 % (sensibilité notes A/B/C : +100 %) |
+| GGT | +53 / −35 % | +52 / −34 % |
+| Créatinine | +21 / −17 % | +23 / −19 % |
+| Plaquettes | +35 / −26 % (« extrapolé ») | +26 / −21 % (borne basse) |
+
+**Comparaison aux RCV publiés** (Westgard 2014, valeurs de l'audit ; `Q1_comparaison_rcv_publies.csv`) :
+le rapport « changement détectable / RCV de Westgard » (hausse) passe de 1,04-2,23 à **0,91-2,00**.
+HbA1c 1,67 → 0,91 ; HDL 1,72 → 1,21 ; LDL 1,74 → 1,37 ; glycémie 1,53 → 1,25. L'ALAT reste à 2,0 :
+c'est l'ajout à long terme tiré de 3 études A/B ; avec les études de note C, 1,24.
+
+**Effets d'interventions** (ratio effet / changement détectable, 20-79 ans) :
+
+| Couple | Avant : ratio ; conclusion | Après : ratio ; conclusion | Avec le bruit de NHANES III |
+|---|---|---|---|
+| HbA1c, activité structurée (diabétiques) | 1,34 ; détectable | 1,70 ; détectable | 0,94 |
+| **HbA1c, méditerranéen** | 0,30 ; groupe seulement | **0,54 ; limite** | 0,30 |
+| **ALAT, méditerranéen** | 0,59 ; limite | **0,40 ; groupe seulement** | 0,38 |
+| TG, oméga-3 | 0,69 ; limite | 0,68 ; limite | 0,67 |
+| Homocystéine, acide folique | 0,73 ; limite | 0,73 ; limite | — |
+| Vitamine D, 25 µg/j | 1,80 ; détectable | 1,80 ; détectable | — |
+| Lipides et glycémie, activité et méditerranéen | 0,06-0,21 ; groupe seulement | 0,09-0,25 ; groupe seulement | 0,06-0,21 |
+| LDL, statine (analyse secondaire) | 1,25 ; détectable | 1,48 ; détectable | 1,25 |
+
+- **Bilan** : toujours 2 couples détectables, 3 limites et 20 visibles seulement en moyenne de groupe,
+  mais **deux couples changent de catégorie**, en sens opposés.
+- **Conclusion « interventions visibles seulement en moyenne de groupe » : elle tient, avec une
+  nuance.** Pour les lipides, la glycémie, les enzymes et la CRP, le bruit plus faible des méthodes
+  modernes ne suffit pas : les ratios restent sous 0,3. **L'HbA1c fait exception** : avec un
+  analyseur moderne, une baisse moyenne de 3 % (alimentation méditerranéenne) devient « limite ».
+  Pour l'ALAT, la conclusion se renforce (l'effet en % était gonflé par la médiane basse de NHANES
+  III).
+
+### C3. Q4 : taux de normalisation des anomalies nettes obtenu par construction (interprétation, gravité moyenne)
+
+- **Le problème.** Une anomalie est « nette » si elle dépasse le seuil de plus d'un changement
+  détectable. Ce changement détectable était le 95ᵉ centile de |d − moyenne(d)| **des mêmes paires**.
+  Pour se normaliser, une anomalie nette devait donc franchir plus que le 95ᵉ centile du bruit de
+  ces données : cela ne pouvait presque pas arriver. Le « 5 % » décrivait le découpage. Même
+  circularité, plus faible, pour l'« attendu sous le bruit » (corrélation tirée des mêmes paires).
+- **Correction (option retenue : seuils définis indépendamment).** Le changement détectable
+  « limites / nettes » et la variance du bruit du modèle binormal viennent de **l'autre jeu**
+  (2001-2002 pour NHANES III, NHANES III pour 2001-2002). Les marqueurs sans changement détectable
+  dans l'autre jeu ne sont plus partagés (avant, toutes leurs anomalies étaient comptées « nettes » :
+  ACR, ApoB…). Le tableau du rapport est généré depuis les CSV (`q4_rapport.py`).
+
+| Chiffre (NHANES III, couples d'au moins 20 anomalies dans la classe) | Avant (mêmes paires) | Après (autre jeu) |
+|---|---|---|
+| Normalisation des anomalies limites, médiane | 41 % | 41 % (47 couples ; 39 % attendus sous le bruit) |
+| Normalisation des anomalies nettes, médiane | « 5 % » (circulaire) | **4 %** (31 couples ; **1 %** attendu sous le bruit) |
+| Couples dont les nettes se normalisent > 5 points au-dessus de l'attendu | — | 12 sur 31 (bicarbonates 54 % contre 3 %, HDL 35 % contre 3 %, DFGe 21 % contre 3 %…) |
+| Observé à moins de 10 points de l'attendu sous le bruit | 87 % des couples (2001-02 : 73 %) | **76 %** (2001-02 : 74 %) |
+| Écart médian observé − attendu | 0 point | +3 points |
+
+- **Nouvelle formulation.** « Une anomalie nette persiste presque toujours » devient : une anomalie
+  nette se normalise rarement (4 %), mais plus souvent que ne le prédit le seul bruit de 2001-2002
+  pour les marqueurs bruités ; l'écart mêle un bruit plus grand des méthodes de NHANES III et de
+  vraies variations, que ces données ne séparent pas. « La normalisation s'explique presque
+  entièrement par le bruit » devient « en grande partie ».
+- Les taux de normalisation par couple et les conclusions de la règle ne dépendent pas de ce
+  découpage : seuls C1 les change.
+
+### C4. Signatures : bruit à 6 mois asymétrique (biais, gravité moyenne) et corrections associées
+
+- **Le problème.** L'horizon de 6 mois ajoutait une variabilité à long terme tirée des seules études
+  EFLM notées A/B. En pratique, l'ajout n'était notable que pour l'ALAT (écart type ajouté 0,415, plus
+  que son bruit à 2 semaines) et l'ASAT ; il était négligeable pour les leucocytes, l'hémoglobine, le
+  RDW et le VGM, et nul pour les 12 autres marqueurs. Or l'EFLM (notes A/B/C) leur donne aussi un CV à
+  long terme plus grand (HDL 9,0 contre 5,7 ; GGT 16,2 contre 8,2 ; glucose 7,7 contre 4,9 ; HbA1c 2,0
+  contre 1,2). Le meilleur marqueur seul de la perte de poids (ALAT) était pénalisé, la signature se
+  reportait sur des marqueurs au bruit sous-estimé : le gain était gonflé.
+- **Corrections.**
+  1. **Analyse principale à 6 mois : ajout à long terme pour tous les marqueurs**, avec la médiane de
+     toutes les études longues (notes A, B et C), comme le recalcul de l'audit
+     (`analyse.NOISE = "ABC"`). 16 marqueurs sur 18 reçoivent un ajout (pas l'urée ni les plaquettes,
+     dont le CV_I à long terme est inférieur au court terme). Les seuils « naïfs » de la partie A
+     suivent la même hypothèse (`cd6m_*_sens_noteC` de Q1). L'ancienne version est gardée comme
+     **borne optimiste** (variante « bruit 6 mois A/B »).
+  2. **« 7 marqueurs extrapolés » corrigé en 6** : pour les plaquettes, l'ajout est nul.
+  3. **Vecteurs d'effet : conversion des effets absolus en % avec les nouvelles médianes.** Le
+     pré-enregistrement convertit « par la médiane NHANES des 30-55 ans au premier examen des
+     remesures, comme dans Q1 ». Q1 corrigé (C2) prend 2001-2002 comme jeu principal pour ces
+     marqueurs : les médianes suivent. C'est une correction, pas un changement de protocole.
+
+     | Intervention | Composante | Ancien vecteur (médianes NHANES III) | Nouveau vecteur (médianes 2001-2002) |
+     |---|---|---|---|
+     | Perte de poids (7 kg) | ALAT | −38,7 % (−5,81 U/L ; 15 U/L) | **−25,3 %** (23 U/L) |
+     | | ASAT | −20,6 % (−3,92 U/L ; 19 U/L) | **−17,8 %** (22 U/L) |
+     | | TG | −23,7 % (118 mg/dL) | −23,0 % (122 mg/dL) |
+     | | HDL | +6,7 % (48 mg/dL) | +6,9 % (47 mg/dL) |
+     | | cholestérol total ; glycémie | −5,6 % ; −4,1 % | inchangés |
+     | Méditerranéen | ALAT | −37,7 % | **−24,6 %** |
+     | | GGT | −10,9 % | −10,5 % |
+     | | TG ; glycémie ; HDL | −10,4 % ; −3,2 % ; +2,7 % | −10,1 % ; −3,1 % ; +2,8 % |
+     | | cholestérol total ; HbA1c ; CRP | −2,8 % ; −2,8 % ; −28,5 % | inchangés |
+     | Activité aérobie | HDL ; TG ; glycémie | +4,4 % ; −6,8 % ; −2,9 % | +4,5 % ; −6,6 % ; −2,8 % |
+     | Arrêt du tabac | HDL ; leucocytes | +8,1 % ; −11,6 % | +8,2 % ; −11,3 % |
+     | Réduction de l'alcool | HDL ; TG | −8,3 % ; −4,8 % | −8,5 % ; −4,7 % |
+
+     Fichiers : `signatures_vecteurs_avant_apres.csv`, `signatures_vecteurs_sources.csv`.
+  4. **HbA1c** (correction déjà demandée en C2) : son bruit suit Q1 corrigé, celui d'une méthode
+     moderne, dans les seuils de la partie A et dans l'ajout à long terme.
+  5. **Créatinine de NHANES III recalibrée** dans les paires d'évaluation (C1).
+- **Relancés** : parties A et B, compléments (IC avec recalage, levier du départ), démo, avec la même
+  graine. Décomposition des effets (`decomposition.py`, `signatures_decomposition_corrections.csv`).
+
+| 6 mois (sensibilité signature / meilleur seul, gain en points) | Avant | **Après** |
+|---|---|---|
+| Perte de poids | 49 / 29 (ALAT), +21 [+18 ; +25] | **41 / 23 (ALAT), +18 [+15 ; +21]** |
+| Méditerranéen | 50 / 41 (HbA1c), +9 [+6 ; +24] | **40 / 22 (ALAT), +18 [+14 ; +22]** |
+| Arrêt du tabac | 26 / 11, +15 [+6 ; +21] | **20 / 10, +10 [+6 ; +14]** |
+| Réduction de l'alcool | 29 / 15, +13 | 19 / 13, +6 [+4 ; +8] |
+| Activité aérobie | 16 / 10, +5 [−0 ; +12] | **13 / 9, +4 [+1 ; +7]** |
+| Fausses alertes ciblées | 4 à 10 % | 4 à 10 % (méditerranéen 9,7 %) |
+| Les 5 signatures à la fois | 25 % | 25 % |
+| Partie A, ≥ 1 marqueur au-delà de son seuil (6 mois) | 45-47 % | **53-60 %** |
+| Partie A, ≥ 3 marqueurs | 7-8 % | 10-11 % |
+| Pilule, début → tabac ; arrêt → alcool | 15 % ; 34 % | 9 % ; 21 % |
+| Plan symétrique pour 80 % (perte de poids) | 4 bilans de chaque côté | 5 |
+| Levier : 2ᵉ prélèvement au départ ; 2ᵉ bilan de suivi (perte de poids / méditerranéen / tabac) | +5 / +5 / +6 ; +7 / +7 / +6 | +4 / +3 / +4 ; +7 / +7 / +5 |
+
+**Gain de la perte de poids selon l'hypothèse de bruit** (fourchette demandée) :
+
+| Vecteurs | Bruit A/B (borne optimiste) | Bruit A/B/C (principal) | Long terme corrélé |
+|---|---|---|---|
+| Anciens (médianes NHANES III) | +21 (publié) | +12 (recalcul de l'audit, reproduit) | — |
+| Nouveaux (médianes 2001-2002) | +25 | **+18** | +17 |
+
+Le gain de la perte de poids va donc de **+17 à +25 points** selon l'hypothèse de bruit (nouveaux
+vecteurs). Les deux corrections tirent en sens opposés : le bruit de tous les marqueurs réduit le
+gain, la conversion par les médianes de 2001-2002 réduit surtout la force du meilleur marqueur seul
+(ALAT) et le relève. Les sensibilités absolues baissent dans tous les cas.
+
+**Conclusions qui changent.**
+- Au mieux **2 personnes sur 5** détectées (et non 1 sur 2).
+- Le gain est significatif pour les **5** interventions (4 sur 5 avant).
+- **Le levier du départ s'affaiblit** : un deuxième prélèvement au départ apporte +3 à +4 points
+  (aérobie +1), un deuxième bilan de suivi +5 à +7 (aérobie +2). Le rapport disait « +5 à +6, autant
+  qu'un deuxième bilan de suivi » ; c'était déjà un peu flatteur (perte de poids : +5 contre +7), et
+  l'écart grandit, parce que le bruit à long terme, que des prélèvements rapprochés ne moyennent pas,
+  n'est plus supposé nul.
+- Prédictions : **P5 devient vérifiée** (laboratoire de biochimie : méditerranéen 10,3 %), **P6 ne
+  l'est plus** (début de pilule → tabac 9,3 %, sous 10 %). Six vérifiées sur 11, comme avant
+  (`signatures_predictions.json`, avec les statuts d'avant).
+- Reste vrai : la signature fait mieux que le meilleur marqueur seul ; aucune n'atteint 80 % ; usage
+  ciblé oui, usage global non ; enregistrer laboratoire et contraception.
+
+**Réserve maintenue** (audit, point 4c) : la composante à long terme est tirée du même modèle en
+calage et en évaluation ; à 6 mois, le contrôle des fausses alertes est en partie vrai par
+construction.
+
+### C5. Q3 : IC dégénérés des marqueurs discrets (inexactitude, gravité faible)
+
+- **Le problème.** La régression médiane, sur des valeurs à ex aequo (bilirubine, sodium, potassium,
+  chlorure, bicarbonates, basophiles, créatinine arrondie à 0,1 mg/dL), se cale sur un pas de
+  quantification. Plusieurs IC avaient une largeur d'environ 1e-5 (bilirubine [−5,6e-5 ; 2,8e-5]),
+  ou une estimation collée à une marche (créatinine des très actifs, seuil global : −10,0 %
+  [−10,0 ; −10,0]).
+- **Correction (option « bootstrap »).** Quand l'IC de la médiane fait moins de 0,01 (point de % ou
+  unité), l'estimation principale devient la différence ajustée par moindres carrés, avec un IC
+  bootstrap (500 tirages, même stratification) : `q3.discrete_fix`. 45 couples sur 1 224 sont
+  concernés ; les valeurs de la médiane restent dans `decalage_mediane` et `ic95_mediane`.
+
+| Exemple | Avant (médiane) | Après (moindres carrés, bootstrap) |
+|---|---|---|
+| Créatinine, très actifs (seuil global) | −10,0 % [−10,0 ; −10,0] | −3,8 % [−7,0 ; −0,6] |
+| DFGe, très actifs (seuil global) | +13,5 % [+13,5 ; +13,5] | +3,7 % [+0,8 ; +6,8] |
+| Bilirubine, population favorisée | +12,5 % [+12,5 ; +12,5] | +11,2 % [+8,7 ; +13,9] |
+| Bicarbonates, sous pilule | −0,0 % [−0,0 ; −0,0] | −1,4 % [−2,2 ; −0,6] |
+
+- **Effet.** Quatre catégories changent, toutes secondaires (sodium : très actifs seuil global et
+  population favorisée ; bilirubine : très actifs questionnaire, deux strates). Aucune attente
+  physiologique ne change de statut ; la prédiction P1 reste non vérifiée.
+- **Créatinine sous pilule** (IC non dégénéré) : médiane +8,6 %, moindres carrés +4,7 % ; signalé
+  dans le rapport (« +5 à +9 % »).
+- **Aussi relancé** : changements détectables de Q1 (C2) ; les colonnes « CD 6 mois » et « rapport au
+  CD » bougent, sans changer de catégorie principale. Tableaux du rapport générés depuis les CSV
+  (`q3_rapport.py`).
+
+### C6. Vérifications de Q2 et Q5 après C1 et C2
+
+- **Q2** (relancé sur NHANES III ; NHANES 1999-2018 non concerné, non recalculé) : seule la créatinine
+  change (jeûne +1,17 → +1,46 % ; 11 h contre 8 h −1,36 → −1,76 %). Les ratios au changement
+  détectable bougent de 0,10 au plus. **Aucune catégorie ne change.**
+- **Q5** (relancé en entier) : décalages inchangés. Trois classements des parties (a) et (b)
+  changent, près d'une borne : créatinine 1999 (1,07 → 0,98 : « impossible sans équation » → « faux
+  changement possible ») ; créatinine 2005 (0,52 → 0,48 : → « négligeable ») ; albumine 2017
+  (0,50 → 0,62 : → « faux changement possible »). **Partie (c), entre laboratoires de routine :
+  l'HbA1c change de catégorie**, rapport ×1,27 → **×1,76** (« négligeable » → « faux changement
+  possible »), parce que le bruit d'un même laboratoire moderne est faible ; calcium ×1,49 → ×1,81.
+  Les trois prédictions gardent leur statut.
+- **Q6** : n'utilise ni NHANES III ni les changements détectables de Q1 (seulement la liste des
+  marqueurs et leur échelle, inchangées) : non relancé.
+- **Livrables** régénérés (57 fiches, `resultats_par_marqueur.csv`) : trois conclusions changent
+  (créatinine et DFGe en Q4 ; ALAT en Q1).
+
+### C7. Détails
+
+| Point | Avant | Après |
+|---|---|---|
+| CCI du README | « 0,89-0,92 » | 0,89 pour le **score complet** (NHANES III, seule source où tension, pouls et mensurations sont remesurés) ; 0,92 pour la **partie biologique** (2001-2002, mesures physiques fixées) ; précision : le CCI porte sur l'écart à l'âge |
+| Délai de remesure (`FIABILITE.md`) | 3 à 47 jours | **6 à 47 jours** pour les 388 personnes analysées (médiane 17), vérifié ; 3 à 47 pour toutes les personnes remesurées |
+| Docstring `retest_explore._paired` | n = 387 | n = 388 |
+| Seuils regroupés rénal, hépatique, inflammatoire (`models/seuils_changement_v1.json`, fiche du modèle) | non signalé | champ `note` : ils incluent les 388 personnes de 2001-2002 dont le premier examen a servi au développement ; estimation indépendante du rénal (NHANES III seul, audit) : 5,88 ans, 6,02 sans CRP > 10 mg/L, contre 5,52 publiés. Valeur publiée inchangée (non demandé) |
+| IC des marqueurs discrets (Q3) | IC de largeur ~1e-5 | moindres carrés et bootstrap (C5) |
+| Statut « extrapolé à 6 mois » de Q1 | plaquettes incluses | plaquettes en borne basse (ajout nul) |
+
+### Fichiers
+
+- Code : `panel/remesures.py` (`recalibrate_nh3`), `panel/q1.py` (`METHODE_CHANGEE`, statut),
+  `panel/q1_interventions.py` (base diabétique), `panel/q1_secondaire.py`, `panel/q1_rcv.py`,
+  `panel/q1_rapport.py`, `panel/q2.py`, `panel/q3.py` (`discrete_fix`), `panel/q3_rapport.py`,
+  `panel/q4.py` (autre jeu), `panel/q4_rapport.py`, `signatures/analyse.py` (`NOISE`, `omega`,
+  `cd_bounds`), `signatures/vecteurs.py`, `signatures/decomposition.py`, `signatures/demo.py`,
+  `signatures/page.py`, `retest_nh3.py`, `retest_explore.py`.
+- Rapports : Q1 à Q5, `SYNTHESE_PANEL.md`, `SIGNATURES.md`, démo, fiches, README, fiche du modèle,
+  `FIABILITE.md`.
+- Non modifiés : pré-enregistrements (ce texte les amende), Q6, piste « suivi ».

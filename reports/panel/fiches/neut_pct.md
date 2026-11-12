@@ -4,7 +4,7 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +43 % / −30 % en 6 mois (extrapolé à 6 mois).
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +37 % / −27 % en 6 mois (extrapolé à 6 mois).
 2. Pièges : une anomalie limite se normalise souvent seule : confirmer avant de signaler.
 3. Risque (mortalité à 10 ans, association) : forme montante, zone de risque minimal 33,4–64,3 ; HR 1,2 au-dessus de 64,9.
 
@@ -12,8 +12,8 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 12,0 % (jeu nhanes3) ; CV à 6 mois : 13,0 %.
-- Changement détectable à 6 mois, 20-79 ans : +43 % / −30 % ; 30-55 ans : +43 % / −30 %.
+- CV observé : 10,2 % (jeu 2001_2002) ; CV à 6 mois : 11,3 %.
+- Changement détectable à 6 mois, 20-79 ans : +37 % / −27 % ; 30-55 ans : +34 % / −25 %.
 - Statut : extrapolé à 6 mois.
 
 ## Q2 : jeûne et heure
@@ -23,7 +23,7 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : ménopause, −4,7 % (0,16 fois le changement détectable).
+- Plus grand décalage : ménopause, −4,7 % (0,19 fois le changement détectable).
 
 ## Q4 : normalisation spontanée d'une anomalie
 

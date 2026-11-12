@@ -4,7 +4,7 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +6 % / −6 % en 6 mois (borne basse (2 semaines)).
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +5 % / −5 % en 6 mois (borne basse (2 semaines)).
 2. Pièges : pour classer, changement de méthode : +13 points (intervalle statistique D1, limite basse, événement 5).
 3. Risque (mortalité à 10 ans, association) : forme en U ou en J, zone de risque minimal 101–109 ; HR 1,2 sous 101 et HR 1,2 au-dessus de 108 ; marqueur de maladie probable (côté haut disparaît sans les décès précoces).
 
@@ -12,18 +12,18 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 2,1 % (jeu nhanes3) ; CV à 6 mois : 2,1 %.
-- Changement détectable à 6 mois, 20-79 ans : +6 % / −6 % ; 30-55 ans : +6 % / −6 %.
+- CV observé : 1,8 % (jeu 2001_2002) ; CV à 6 mois : 1,8 %.
+- Changement détectable à 6 mois, 20-79 ans : +5 % / −5 % ; 30-55 ans : +5 % / −5 %.
 - Statut : borne basse (2 semaines).
 
 ## Q2 : jeûne et heure
 
-- Effet du jeûne (même personne) : −0,1 % (ratio 0,02) ; heure : −0,1 % (ratio 0,01) ; catégorie : indifférent.
+- Effet du jeûne (même personne) : −0,1 % (ratio 0,02) ; heure : −0,1 % (ratio 0,02) ; catégorie : indifférent.
 
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : injectable, +1,0 % (0,16 fois le changement détectable).
+- Plus grand décalage : injectable, +1,0 % (0,20 fois le changement détectable).
 
 ## Q4 : normalisation spontanée d'une anomalie
 
@@ -31,9 +31,9 @@ Couverture : Q1 Q2 Q3 Q4 Q5 Q6.
 
 ## Q5 : changements de méthode et de laboratoire
 
-- Plus grand décalage de méthode NHANES : ratio 0,25 (événement 5) ; négligeable au regard du bruit.
+- Plus grand décalage de méthode NHANES : ratio 0,30 (événement 5) ; négligeable au regard du bruit.
 - Effet sur la classification : +13 points (intervalle statistique D1, limite basse, événement 5).
-- Entre deux laboratoires de routine (littérature) : changement détectable +7 %.
+- Entre deux laboratoires de routine (littérature) : changement détectable +6 %.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)
 

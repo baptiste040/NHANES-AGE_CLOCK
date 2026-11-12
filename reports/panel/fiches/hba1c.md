@@ -4,32 +4,32 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +10 % / −9 % en 6 mois (borne basse (2 semaines)) ; la meilleure intervention étudiée (Activité physique structurée) atteint 1,34 fois ce seuil : détectable chez une personne.
-2. Pièges : aucun piège majeur repéré dans Q2 à Q5.
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +5 % / −5 % en 6 mois (borne basse (2 semaines)) ; la meilleure intervention étudiée (Activité physique structurée) atteint 1,70 fois ce seuil : détectable chez une personne.
+2. Pièges : décalage de −3 % chez les personnes « favorisée » (0,54 fois le changement détectable).
 3. Risque (mortalité à 10 ans, association) : forme en U ou en J, zone de risque minimal 4,94–6,06 ; HR 1,2 sous 4,94 et HR 1,2 au-dessus de 5,94.
 
 Couverture : Q1 Q2 Q3 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 3,6 % (jeu nhanes3) ; CV à 6 mois : 3,6 %.
-- Changement détectable à 6 mois, 20-79 ans : +10 % / −9 % ; 30-55 ans : +11 % / −10 %.
+- CV observé : 1,9 % (jeu 2001_2002) ; CV à 6 mois : 1,9 %.
+- Changement détectable à 6 mois, 20-79 ans : +5 % / −5 % ; 30-55 ans : +5 % / −5 %.
 - Statut : borne basse (2 semaines).
-- Interventions étudiées : 2 ; la plus forte, Activité physique structurée (diabète de type 2), −12,6 %, ratio 1,34 : détectable chez une personne.
+- Interventions étudiées : 2 ; la plus forte, Activité physique structurée (diabète de type 2), −8,8 %, ratio 1,70 : détectable chez une personne.
 
 ## Q2 : jeûne et heure
 
-- Effet du jeûne (même personne) : +0,0 % (ratio 0,00) ; heure : −1,2 % (ratio 0,13) ; catégorie : indifférent.
+- Effet du jeûne (même personne) : +0,0 % (ratio 0,00) ; heure : −1,2 % (ratio 0,23) ; catégorie : indifférent.
 
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : favorisée, −2,7 % (0,27 fois le changement détectable).
+- Plus grand décalage : favorisée, −2,7 % (0,54 fois le changement détectable).
 
 ## Q5 : changements de méthode et de laboratoire
 
-- Plus grand décalage de méthode NHANES : ratio 0,16 (événement 16) ; négligeable au regard du bruit.
-- Entre deux laboratoires de routine (littérature) : changement détectable +13 %.
+- Plus grand décalage de méthode NHANES : ratio 0,30 (événement 16) ; négligeable au regard du bruit.
+- Entre deux laboratoires de routine (littérature) : changement détectable +10 %.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)
 

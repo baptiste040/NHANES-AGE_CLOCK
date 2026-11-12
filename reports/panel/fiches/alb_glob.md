@@ -4,26 +4,26 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable chez une personne qu'à partir de +26 % / −20 % en 6 mois (borne basse (2 semaines)).
-2. Pièges : changement de méthode ou de laboratoire (un changement de laboratoire peut créer un faux changement, ratio 0,55).
+1. Suivre : un changement n'est détectable chez une personne qu'à partir de +18 % / −15 % en 6 mois (borne basse (2 semaines)).
+2. Pièges : changement de méthode ou de laboratoire (un changement de laboratoire peut créer un faux changement, ratio 0,74).
 3. Risque (mortalité à 10 ans, association) : forme descendante, zone de risque minimal 1,38–2,14 ; HR 1,2 sous 1,48.
 
 Couverture : Q1 Q3 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : 8,3 % (jeu nhanes3) ; CV à 6 mois : 8,3 %.
-- Changement détectable à 6 mois, 20-79 ans : +26 % / −20 % ; 30-55 ans : +27 % / −21 %.
+- CV observé : 5,9 % (jeu 2001_2002) ; CV à 6 mois : 5,9 %.
+- Changement détectable à 6 mois, 20-79 ans : +18 % / −15 % ; 30-55 ans : +17 % / −15 %.
 - Statut : borne basse (2 semaines).
 
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : pilule, −5,7 % (0,27 fois le changement détectable).
+- Plus grand décalage : favorisée, +6,7 % (0,39 fois le changement détectable).
 
 ## Q5 : changements de méthode et de laboratoire
 
-- Plus grand décalage de méthode NHANES : ratio 0,55 (événement 5) ; un changement de laboratoire peut créer un faux changement.
+- Plus grand décalage de méthode NHANES : ratio 0,74 (événement 5) ; un changement de laboratoire peut créer un faux changement.
 
 ## Q6 : zones fondées sur le risque de mortalité (association, pas cible)
 

@@ -4,7 +4,7 @@ Fiche générée automatiquement à partir de `resultats_par_marqueur.csv` (prog
 
 ## Conclusion en trois lignes
 
-1. Suivre : un changement n'est détectable qu'à partir de ± 0,791 unités en 6 mois (borne basse (2 semaines), échelle additive).
+1. Suivre : un changement n'est détectable qu'à partir de ± 0,759 unités en 6 mois (borne basse (2 semaines), échelle additive).
 2. Pièges : aucun piège majeur repéré dans Q2 à Q5.
 3. Risque (mortalité à 10 ans, association) : forme montante, zone de risque minimal 7,51–9,71 ; HR 1,2 au-dessus de 9,66.
 
@@ -12,18 +12,18 @@ Couverture : Q1 Q2 Q3 Q5 Q6.
 
 ## Q1 : bruit de mesure et changement détectable
 
-- CV observé : — % (jeu nhanes3) ; CV à 6 mois : — %.
-- Changement détectable à 6 mois, 20-79 ans : — % / — % ; échelle additive : ± 0,791 unités.
+- CV observé : — % (jeu 2001_2002) ; CV à 6 mois : — %.
+- Changement détectable à 6 mois, 20-79 ans : — % / — % ; échelle additive : ± 0,759 unités.
 - Statut : borne basse (2 semaines), échelle additive.
 
 ## Q2 : jeûne et heure
 
-- Effet du jeûne (même personne) : +0,0 % (ratio 0,01) ; heure : −0,1 % (ratio 0,13) ; catégorie : indifférent.
+- Effet du jeûne (même personne) : +0,0 % (ratio 0,01) ; heure : −0,1 % (ratio 0,14) ; catégorie : indifférent.
 
 ## Q3 : populations particulières
 
 - Seuils inadaptés : aucun groupe.
-- Plus grand décalage : favorisée, −0,2 % (0,29 fois le changement détectable).
+- Plus grand décalage : favorisée, −0,2 % (0,32 fois le changement détectable).
 
 ## Q5 : changements de méthode et de laboratoire
 
